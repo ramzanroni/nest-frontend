@@ -57,13 +57,44 @@ if($_POST['check']=="cartItemView")
 {
         if($_COOKIE['shopping_cart']!='')
         {
-            $sum=0;
             echo json_encode($_COOKIE['shopping_cart']);
         }
 }
 
 if($_POST['check']=="deleteItemFromCart")
 {
-    echo "working";
+    $cartIndexID=$_POST['cartIndexID'];
+    if($_COOKIE['shopping_cart']!='')
+        {
+            $cookie_data=stripcslashes($_COOKIE['shopping_cart']);
+            $cartData=json_decode($cookie_data, true);
+            unset($cartData[$cartIndexID]);
+            $nowCartData=array_values($cartData);
+            $afterRemoveCart=json_encode($nowCartData);
+            setcookie('shopping_cart', $afterRemoveCart, time() + (86400 * 30), "/");
+            echo $afterRemoveCart;
+        }
+            
+}
+
+// UpdateHoleCart
+
+if($_POST['check']=='UpdateHoleCart')
+{
+    $cartItemJson=json_decode($_POST['cartItemJson']);
+    $item=count($cartItemJson);
+    $cartItem=json_decode($_COOKIE['shopping_cart']);
+    // print_r($cartItem);
+    for ($i=0; $i < $item; $i++) { 
+    //   echo $cartItemJson[]->$i;
+        if($cartItemJson[$i]->quantity != $cartItem[$i]->productQuantity)
+        {
+            $cartItem[$i]->productQuantity=$cartItemJson[$i]->quantity;
+        }
+
+    }
+    $afterUpdateCart=json_encode($cartItem);
+    setcookie('shopping_cart', $afterUpdateCart, time() + (86400 * 30), "/");
+    
 }
 ?>

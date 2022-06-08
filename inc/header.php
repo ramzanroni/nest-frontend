@@ -35,6 +35,12 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body">
                     <div class="row" id="productView">
+
+                        <!-- input hidden -->
+                        <input type="hidden" id="productIdIn">
+                        <input type="hidden" id="productNameIn">
+                        <input type="hidden" id="productPriceIn">
+                        <input type="hidden" name="" id="productImageIn">
                         <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                             <div class="detail-gallery">
                                 <span class="zoom-icon"><i class="fi-rs-search"></i></span>
@@ -101,11 +107,14 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 </div>
                                 <div class="detail-extralink mb-30">
                                     <div class="detail-qty border radius">
-                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                        <a onclick="cartDecrement()" class="qty-down"><i
+                                                class="fi-rs-angle-small-down"></i></a>
+                                        <input type="text" name="quantity" id="itemQuantity" class="qty-val" value="1"
+                                            min="1">
+                                        <a onclick="cartInchrement()" class="qty-up"><i
+                                                class="fi-rs-angle-small-up"></i></a>
                                     </div>
-                                    <div class="product-extra-link2">
+                                    <div class="product-extra-link2" id="add-to-card-btn">
                                         <button type="submit" class="button button-add-to-cart"><i
                                                 class="fi-rs-shopping-cart"></i>Add to cart</button>
                                     </div>
@@ -254,12 +263,13 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <a href="shop-wishlist.php"><span class="lable">Wishlist</span></a>
                                 </div>
                                 <div class="header-action-icon-2" onmouseover="cartPopUp()">
-                                    <a class="mini-cart-icon" href="shop-cart.html">
+                                    <a class="mini-cart-icon" href="shop-cart.php">
                                         <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
                                         <span class="pro-count blue" id="cartCount">0</span>
                                     </a>
                                     <a href="shop-cart.php"><span class="lable">Cart</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2" id="cartItem">
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2" id="cartItem"
+                                        onmouseleave="removeCssClass()">
 
                                     </div>
                                 </div>

@@ -1,6 +1,8 @@
 ﻿<?php
 include 'apidata/dataFetch.php';
 include 'inc/header.php'; 
+
+
 ?>
 <main class="main">
     <div class="container mb-30">
@@ -89,6 +91,7 @@ include 'inc/header.php';
                             <div class="row product-grid-4">
 
                                 <?php 
+                                    // print_r($_COOKIE['shopping_cart']);
                                 foreach ($productsArr as $productData) {
                                    ?>
                                 <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
