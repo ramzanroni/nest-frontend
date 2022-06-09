@@ -52,6 +52,7 @@ function addtoCart(productID, productName, productprice, productQuantity, produc
         },
         success: function (response) {
             cartItem();
+            $("#myTabContent").load(" #myTabContent > *");
         }
     });
 }
@@ -94,7 +95,7 @@ function cartPopUp()
             var sum = 0;
            var html = '<ul>';
             for (let i = 0; i < cartData.length; i++) {
-                html += '<li><div class="shopping-cart-img"><a href="shop-product-right.html"><img alt="Nest" src="//'+cartData[i].productImage+'" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.html">'+cartData[i].productName+'</a></h4>   <h4><span>'+cartData[i].productQuantity+' × </span>'+cartData[i].productprice+'</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(this,'+i+')"><i class="fi-rs-cross-small"></i></a></div></li>';
+                html += '<li><div class="shopping-cart-img"><a href="shop-product-right.php?product_id='+cartData[i].productID+'"><img alt="Nest" src="//'+cartData[i].productImage+'" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php?product_id='+cartData[i].productID+'">'+cartData[i].productName+'</a></h4>   <h4><span>'+cartData[i].productQuantity+' × </span>'+cartData[i].productprice+'</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(this,'+i+')"><i class="fi-rs-cross-small"></i></a></div></li>';
                 sum = sum + cartData[i].productprice * cartData[i].productQuantity;
             }
             html += '</ul>';
@@ -144,6 +145,7 @@ function deleteCatItem(data,cartIndexID)
             html += '</ul>';
             html += '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳'+sum+'</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.html" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
             $("#cartItem").html(html); 
+            $("#myTabContent").load(" #myTabContent > *");
             
         }
     });
@@ -240,6 +242,7 @@ function cartDecrement()
 // inchrement
 function cartInchrement()
 {
+
     var quantityChnageup = parseInt($("#itemQuantity").val());
         $("#itemQuantity").val(quantityChnageup + 1);
 }
@@ -255,4 +258,69 @@ function addCartPopup()
     addtoCart(productCartId, productNameIn, productPriceIn, itemQuantity, productImageIn);
     cartItem();
 
+}
+
+function CartItemChange(status, cartItemID)
+{
+
+    var cartItemField = "#getItem_" + cartItemID;
+    var cartCounterId = "#cartCount_" + cartItemID;
+    var cartItemNum = $(cartItemField).val();
+    var newItem = '';
+    if (status == "decrement")
+    {
+        if (cartItemNum > 1)
+        {
+            newItem = cartItemNum - 1;
+        }
+    }
+    if (status == "increment")
+    {
+        newItem =parseInt(cartItemNum) + 1;
+    }
+    var check = "cartItemUpdateData";
+    if (newItem > 0)
+    {
+        $.ajax({
+            url: "pages/cartAction.php",
+            type: "POST",
+           
+            data: {
+                newItem: newItem,
+                cartItemID:cartItemID,
+                check: check
+            },
+            success: function (response) {
+                $(cartItemField).val(newItem);
+                $(cartCounterId).html(newItem);
+                // $("#mainCartDivPage").load(" #mainCartDivPage > *");
+            }
+        });
+        }
+    
+}
+
+function cartInchrementSingle()
+{
+    
+    var quantityChnageupSingle = parseInt($("#itemQuantitySingle").val());
+        $("#itemQuantitySingle").val(quantityChnageupSingle + 1);
+}
+
+function cartDecrementSingle()
+{
+    var quantityChnageDownSingle = $("#itemQuantitySingle").val();
+    if (quantityChnageDownSingle > 1)
+    {
+        $("#itemQuantitySingle").val(quantityChnageDownSingle - 1);
+        }
+}
+
+// addtoCartSingle
+
+function addtoCartSingle(productID, productName, productPrice, productImage)
+{
+    var productQuantity = $("#itemQuantitySingle").val();
+    addtoCart(productID, productName, productPrice, productQuantity, productImage);
+    
 }

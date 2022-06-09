@@ -323,8 +323,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
                                                 ?>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="assets/imgs/theme/icons/category-1.svg"
+                                            <a
+                                                href="shop-grid-right.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
+                                                <img src="assets/imgs/theme/icons/category-1.svg"
                                                     alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
                                         </li>
                                         <?php
@@ -336,8 +337,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             foreach ($categorySecondHalf as $categorySecondHalfvalue) {
                                                 ?>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="assets/imgs/theme/icons/category-1.svg"
+                                            <a
+                                                href="shop-grid-right.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
+                                                <img src="assets/imgs/theme/icons/category-1.svg"
                                                     alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
                                         </li>
                                         <?php

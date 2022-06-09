@@ -97,4 +97,23 @@ if($_POST['check']=='UpdateHoleCart')
     setcookie('shopping_cart', $afterUpdateCart, time() + (86400 * 30), "/");
     
 }
+
+if($_POST['check']=='cartItemUpdateData')
+{
+    $newItem=$_POST['newItem'];
+    $cartItemID=$_POST['cartItemID'];
+    $cartArray=json_decode($_COOKIE['shopping_cart']);
+    print_r($cartArray);
+    $cartCount=count($cartArray);
+    for ($i=0; $i < $cartCount; $i++) 
+    { 
+        if($cartArray[$i]->productID==$cartItemID)
+        {
+           $cartArray[$i]->productQuantity=$newItem;
+        } 
+    }
+    $newCart=json_encode($cartArray);
+    setcookie('shopping_cart', $newCart, time() + (86400 * 30), "/");
+
+}
 ?>

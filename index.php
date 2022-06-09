@@ -91,8 +91,10 @@ include 'inc/header.php';
                             <div class="row product-grid-4">
 
                                 <?php 
-                                    // print_r($_COOKIE['shopping_cart']);
+                                    $cartCookiesProduct=json_decode($_COOKIE['shopping_cart']);
+                                    $cartItem=count($cartCookiesProduct);
                                 foreach ($productsArr as $productData) {
+                                    
                                    ?>
                                 <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                                     <div class="product-cart-wrap mb-30">
@@ -122,7 +124,7 @@ include 'inc/header.php';
                                                 <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
                                             </div>
                                             <h2><a
-                                                    href="shop-product-right.html"><?php echo $productData->description; ?></a>
+                                                    href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
                                             </h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
@@ -135,14 +137,65 @@ include 'inc/header.php';
                                                 </div> -->
                                             <div class="product-card-bottom">
                                                 <div class="product-price">
-                                                    <span><?php echo $productData->webprice; ?></span>
+                                                    <span>৳<?php echo $productData->webprice; ?></span>
                                                     <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
                                                 </div>
+                                                <?php 
+                                                    $cartProductID=''; 
+                                                    $numberOfItem='';
+                                                       foreach ($cartCookiesProduct as $cartKey => $itemValue) 
+                                                       {
+                                                           if($itemValue->productID==$productData->stockid)
+                                                           {
+                                                                $cartProductID=$itemValue->productID;
+                                                                $numberOfItem=$itemValue->productQuantity;
+                                                           }
+                                                       }
+                                                      if($cartProductID=='')
+                                                      {
+                                                        ?>
                                                 <div class="add-cart">
                                                     <a class="add"
                                                         onclick="addtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>' )"><i
                                                             class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                 </div>
+                                                <?php
+                                                      }
+                                                      else
+                                                      {
+                                                          ?>
+                                                <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
+                                                    value="<?php echo $numberOfItem; ?>">
+                                                <div class="add-cart">
+                                                    <a class="add"><span
+                                                            onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
+                                                            class="btn mr-5 p-1">-</span> <i
+                                                            class="fi-rs-shopping-cart"></i>
+                                                        <span class="bg-brand text-white p-1 rounded-circle"
+                                                            id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span><span
+                                                            onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
+                                                            class="btn ml-5 p-1">+</span></a>
+
+                                                </div>
+                                                <!-- <a onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
+                                                    class="btn btn-info p-1">-</a>
+                                                <div class="header-action-2 add-cart">
+                                                    <div class="header-action-icon-2">
+                                                        <a class="mini-cart-icon">
+                                                            <img alt="Nest"
+                                                                src="assets/imgs/theme/icons/icon-cart.svg" />
+                                                            <span class="pro-count blue"
+                                                                id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <a onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
+                                                    class="btn btn-info p-1">+</a> -->
+                                                <?php
+                                                      }
+                                                    ?>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -3524,7 +3577,8 @@ include 'inc/header.php';
                             foreach ($categoryItemData as $categoryValue) {
                                 ?>
                         <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg"
+                            <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>"> <img
+                                    src="assets/imgs/theme/icons/category-1.svg"
                                     alt="" /><?php echo $categoryValue->categoryName; ?></a><span
                                 class="count"><?php echo $categoryValue->item; ?></span>
                         </li>
