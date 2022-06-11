@@ -100,13 +100,14 @@ include 'inc/header.php';
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.html">
+                                                <a
+                                                    href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
                                                     <img class="default-img" src="//<?php echo $productData->img; ?>"
                                                         alt="" />
                                                     <!-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> -->
                                                 </a>
                                             </div>
-                                            <div class="product-action-1">
+                                            <!-- <div class="product-action-1">
                                                 <a aria-label="Add To Wishlist" class="action-btn"
                                                     href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
@@ -114,18 +115,26 @@ include 'inc/header.php';
                                                 <a onclick="productQuikView(<?php echo $productData->stockid; ?>)"
                                                     aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                     data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                            </div>
-                                            <div class="product-badges product-badges-position product-badges-mrg">
-                                                <span class="hot"><?php echo $productData->units; ?></span>
-                                            </div>
+                                            </div> -->
+
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
+                                                <a
+                                                    href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
                                             </div>
                                             <h2><a
                                                     href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+
+                                                <!-- <div class="product-badges">
+                                                    <small><span
+                                                        class="hot"><?php echo $productData->units; ?></span></small>
+                                                </div> -->
                                             </h2>
+                                            <div class="product-rate-cover product-badges">
+                                                <span
+                                                    class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
+                                            </div>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
@@ -166,31 +175,23 @@ include 'inc/header.php';
                                                           ?>
                                                 <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
                                                     value="<?php echo $numberOfItem; ?>">
-                                                <div class="add-cart">
-                                                    <a class="add"><span
-                                                            onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
-                                                            class="btn mr-5 p-1">-</span> <i
-                                                            class="fi-rs-shopping-cart"></i>
-                                                        <span class="bg-brand text-white p-1 rounded-circle"
-                                                            id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span><span
-                                                            onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
-                                                            class="btn ml-5 p-1">+</span></a>
-
-                                                </div>
-                                                <!-- <a onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
-                                                    class="btn btn-info p-1">-</a>
-                                                <div class="header-action-2 add-cart">
-                                                    <div class="header-action-icon-2">
-                                                        <a class="mini-cart-icon">
-                                                            <img alt="Nest"
-                                                                src="assets/imgs/theme/icons/icon-cart.svg" />
-                                                            <span class="pro-count blue"
+                                                <div class="col-8 float-end after-cart">
+                                                    <div class="col-3 float-end add decrement"
+                                                        onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
+                                                        <a>-</a>
+                                                    </div>
+                                                    <div class="col-6 float-end middle">
+                                                        <a><i class="fi-rs-shopping-cart"></i>
+                                                            <span
                                                                 id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
                                                         </a>
                                                     </div>
+                                                    <div class="col-3 float-end increment"
+                                                        onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
+                                                        <a>+</a>
+                                                    </div>
                                                 </div>
-                                                <a onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
-                                                    class="btn btn-info p-1">+</a> -->
+
                                                 <?php
                                                       }
                                                     ?>

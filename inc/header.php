@@ -27,6 +27,8 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 </head>
 
 <body>
+
+
     <!-- Quick view -->
     <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
         aria-hidden="true">
@@ -794,3 +796,15 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         </div>
     </div>
     <!--End header-->
+    <!-- fixed cart -->
+    <!-- <div class="wrapper">
+        <div class="inner-fixed">
+            <div class="item" id="item">
+                <i class="fi-rs-shopping-cart mr-5 color-danger"></i><br>
+                <span id="numberofCartItem"></span> Items
+            </div>
+            <div class="total">
+                ৳ <span id="total_Taka"></span>
+            </div>
+        </div>
+    </div> -->

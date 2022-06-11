@@ -70,10 +70,27 @@ function cartItem()
         },
         success: function (response) {
             $("#cartCount").html(response);
+            $("#numberofCartItem").html(response);
+            totalCartSum();
         }
     });
 }
 
+function totalCartSum()
+{
+    var check = "sumCartItem";
+    $.ajax({
+        url: "pages/cartAction.php",
+        type: "POST",
+       
+        data: {
+            check: check
+        },
+        success: function (response) {
+            $("#total_Taka").html(response);           
+        }
+    });
+}
 // CartPopUp
 
 function cartPopUp()
@@ -146,6 +163,7 @@ function deleteCatItem(data,cartIndexID)
             html += '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳'+sum+'</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.html" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
             $("#cartItem").html(html); 
             $("#myTabContent").load(" #myTabContent > *");
+            
             
         }
     });
@@ -225,6 +243,7 @@ function updateCart(totalItem)
         success: function (response) {
             // console.log(response);
             $("#mainCartDivPage").load(" #mainCartDivPage > *");
+            cartItem();
         }
     });
 }
@@ -293,6 +312,7 @@ function CartItemChange(status, cartItemID)
             success: function (response) {
                 $(cartItemField).val(newItem);
                 $(cartCounterId).html(newItem);
+                cartItem();
                 // $("#mainCartDivPage").load(" #mainCartDivPage > *");
             }
         });

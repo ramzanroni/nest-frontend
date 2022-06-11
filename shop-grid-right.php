@@ -176,30 +176,33 @@ $totalProduct= count($categoryData);
                                                           ?>
                                     <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
                                         value="<?php echo $numberOfItem; ?>">
-                                    <div class="add-cart">
-                                        <a class="add"><span
-                                                onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
-                                                class="btn mr-5 p-1">-</span> <i class="fi-rs-shopping-cart"></i>
-                                            <span class="bg-brand text-white p-1 rounded-circle"
-                                                id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span><span
-                                                onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
-                                                class="btn ml-5 p-1">+</span></a>
-
+                                    <div class="col-8 float-end after-cart p-1">
+                                        <div class="col-3 float-end decrement"
+                                            onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
+                                            -
+                                        </div>
+                                        <div class="col-6 float-end"><i class="fi-rs-shopping-cart"></i>
+                                            <span
+                                                id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
+                                        </div>
+                                        <div class="col-3 float-end increment"
+                                            onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
+                                            +
+                                        </div>
                                     </div>
                                     <!-- <a onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
-                                                    class="btn btn-info p-1">-</a>
-                                                <div class="header-action-2 add-cart">
-                                                    <div class="header-action-icon-2">
-                                                        <a class="mini-cart-icon">
-                                                            <img alt="Nest"
-                                                                src="assets/imgs/theme/icons/icon-cart.svg" />
-                                                            <span class="pro-count blue"
-                                                                id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <a onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
-                                                    class="btn btn-info p-1">+</a> -->
+                                        class="btn btn-info p-1">-</a>
+                                    <div class="header-action-2 add-cart">
+                                        <div class="header-action-icon-2">
+                                            <a class="mini-cart-icon">
+                                                <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
+                                                <span class="pro-count blue"
+                                                    id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
+                                        class="btn btn-info p-1">+</a> -->
                                     <?php
                                                       }
                                                     ?>
@@ -255,7 +258,8 @@ $totalProduct= count($categoryData);
                                         <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown</a>
+                                        <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa,
+                                                Brown</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -295,7 +299,8 @@ $totalProduct= count($categoryData);
                                         <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten</a>
+                                        <h2><a href="shop-product-right.html">Perdue Simply Smart Organics
+                                                Gluten</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -374,7 +379,8 @@ $totalProduct= count($categoryData);
                                         <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a>
+                                        <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry
+                                                Juice</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -413,8 +419,8 @@ $totalProduct= count($categoryData);
                     foreach ($categoryItemData as $categoryValue) {
                         ?>
                         <li>
-                            <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>"> <img
-                                    src="assets/imgs/theme/icons/category-1.svg"
+                            <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>">
+                                <img src="assets/imgs/theme/icons/category-1.svg"
                                     alt="" /><?php echo $categoryValue->categoryName; ?></a><span
                                 class="count"><?php echo $categoryValue->item; ?></span>
                         </li>
@@ -467,17 +473,20 @@ $totalProduct= count($categoryData);
                                 <br />
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2"
                                     value="" />
-                                <label class="form-check-label" for="exampleCheckbox2"><span>Green (78)</span></label>
+                                <label class="form-check-label" for="exampleCheckbox2"><span>Green
+                                        (78)</span></label>
                                 <br />
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3"
                                     value="" />
-                                <label class="form-check-label" for="exampleCheckbox3"><span>Blue (54)</span></label>
+                                <label class="form-check-label" for="exampleCheckbox3"><span>Blue
+                                        (54)</span></label>
                             </div>
                             <label class="fw-900 mt-15">Item Condition</label>
                             <div class="custome-checkbox">
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11"
                                     value="" />
-                                <label class="form-check-label" for="exampleCheckbox11"><span>New (1506)</span></label>
+                                <label class="form-check-label" for="exampleCheckbox11"><span>New
+                                        (1506)</span></label>
                                 <br />
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21"
                                     value="" />
@@ -486,7 +495,8 @@ $totalProduct= count($categoryData);
                                 <br />
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31"
                                     value="" />
-                                <label class="form-check-label" for="exampleCheckbox31"><span>Used (45)</span></label>
+                                <label class="form-check-label" for="exampleCheckbox31"><span>Used
+                                        (45)</span></label>
                             </div>
                         </div>
                     </div>

@@ -103,7 +103,6 @@ if($_POST['check']=='cartItemUpdateData')
     $newItem=$_POST['newItem'];
     $cartItemID=$_POST['cartItemID'];
     $cartArray=json_decode($_COOKIE['shopping_cart']);
-    print_r($cartArray);
     $cartCount=count($cartArray);
     for ($i=0; $i < $cartCount; $i++) 
     { 
@@ -114,6 +113,22 @@ if($_POST['check']=='cartItemUpdateData')
     }
     $newCart=json_encode($cartArray);
     setcookie('shopping_cart', $newCart, time() + (86400 * 30), "/");
+}
 
+if($_POST['check']=="sumCartItem")
+{
+    if($_COOKIE['shopping_cart']!='')
+    {
+        $cookiesItem=json_decode($_COOKIE['shopping_cart']);
+        $sum=0;
+        foreach ($cookiesItem as $key => $Cartvalue) {
+            $sum=$sum+$Cartvalue->productprice*$Cartvalue->productQuantity;
+        }
+        echo $sum;
+    }
+    else
+    {
+        echo 0;
+    }
 }
 ?>
