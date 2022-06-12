@@ -116,7 +116,7 @@ function cartPopUp()
                 sum = sum + cartData[i].productprice * cartData[i].productQuantity;
             }
             html += '</ul>';
-            html += '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳'+sum+'</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.html" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
+            html += '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳'+sum+'</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
             $("#cartItem").html(html); 
         }
     });
@@ -320,6 +320,7 @@ function CartItemChange(status, cartItemID)
     
 }
 
+
 function cartInchrementSingle()
 {
     
@@ -343,4 +344,43 @@ function addtoCartSingle(productID, productName, productPrice, productImage)
     var productQuantity = $("#itemQuantitySingle").val();
     addtoCart(productID, productName, productPrice, productQuantity, productImage);
     
+}
+$(document).ready(function () {
+    
+    $("#limitValue li").on("click", function () {
+    var limit = $(this).attr("data-id");
+    $("#getLimit").val(limit);
+
+    sortingProduct();
+});
+$("#sortByValue li").on("click", function () {
+    var sortBy = $(this).attr("data-id");
+    $("#getSortByValue").val(sortBy);
+    sortingProduct();
+});
+});
+
+function sortingProduct()
+{
+    var limitValueData = $('#getLimit').val();
+    var sortByData = $("#getSortByValue").val();
+    var catID = $("#catId").val();
+    var check = "sortingProductList";
+    $.ajax({
+        url: "pages/productPageAction.php",
+        type: "POST",
+       
+        data: {
+            limitValueData: limitValueData,
+            sortByData: sortByData,
+            catID:catID,
+            check: check
+        },
+        success: function (response) {            
+            $("#productItem").html(response);
+            $(".sort-by-cover").removeClass("show");
+            $(".sort-by-dropdown").removeClass("show");
+            // $("#mainCartDivPage").load(" #mainCartDivPage > *");
+        }
+    });
 }

@@ -147,7 +147,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <ul>
                                 <li><a href="page-about.php">About Us</a></li>
                                 <li><a href="page-account.php">My Account</a></li>
-                                <li><a href="shop-wishlist.php">Wishlist</a></li>
+                                <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
                                 <li><a href="shop-order.php">Order Tracking</a></li>
                             </ul>
                         </div>
@@ -256,14 +256,14 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </a>
                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
                                 </div> -->
-                                <div class="header-action-icon-2">
+                                <!-- <div class="header-action-icon-2">
                                     <a href="shop-wishlist.php">
                                         <img class="svgInject" alt="Nest"
                                             src="assets/imgs/theme/icons/icon-heart.svg" />
                                         <span class="pro-count blue">6</span>
                                     </a>
                                     <a href="shop-wishlist.php"><span class="lable">Wishlist</span></a>
-                                </div>
+                                </div> -->
                                 <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                     <a class="mini-cart-icon" href="shop-cart.php">
                                         <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
@@ -291,8 +291,8 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                         class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
                                             <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
                                                     Voucher</a></li>
-                                            <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My
-                                                    Wishlist</a></li>
+                                            <!-- <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My -->
+                                            <!-- Wishlist</a></li> -->
                                             <li><a href="page-account.php"><i
                                                         class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
                                             <li><a href="page-login.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
@@ -375,8 +375,8 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
-                                    <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg"
-                                            alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li>
+                                    <!-- <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg" -->
+                                    <!-- alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li> -->
                                     <!-- <li>
                                         <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -411,7 +411,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                 </ul>
                                             </li>
                                             <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                            <li><a href="shop-wishlist.php">Shop – Wishlist</a></li>
+                                            <!-- <li><a href="shop-wishlist.php">Shop – Wishlist</a></li> -->
                                             <li><a href="shop-cart.php">Shop – Cart</a></li>
                                             <li><a href="shop-checkout.php">Shop – Checkout</a></li>
                                             <li><a href="shop-compare.php">Shop – Compare</a></li>
@@ -503,7 +503,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
@@ -535,10 +535,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <li><a href="page-terms.html">Terms of Service</a></li>
                                             <li><a href="page-404.html">404 Page</a></li>
                                         </ul>
-                                    </li>
-                                    <li>
+                                    </li> -->
+                                    <!-- <li>
                                         <a href="page-contact.html">Contact</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -556,12 +556,12 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     </div>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
-                            <div class="header-action-icon-2">
+                            <!-- <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
                                     <span class="pro-count white">4</span>
                                 </a>
-                            </div>
+                            </div> -->
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
@@ -666,7 +666,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         </ul>
                                     </li>
                                     <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                    <li><a href="shop-wishlist.php">Shop – Wishlist</a></li>
+                                    <!-- <li><a href="shop-wishlist.php">Shop – Wishlist</a></li> -->
                                     <li><a href="shop-cart.php">Shop – Cart</a></li>
                                     <li><a href="shop-checkout.php">Shop – Checkout</a></li>
                                     <li><a href="shop-compare.php">Shop – Compare</a></li>
@@ -683,7 +683,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
+                            <!-- <li class="menu-item-has-children">
                                 <a href="#">Vendors</a>
                                 <ul class="dropdown">
                                     <li><a href="vendors-grid.html">Vendors Grid</a></li>
@@ -693,7 +693,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
                                     <li><a href="vendor-guide.html">Vendor Guide</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="menu-item-has-children">
                                 <a href="#">Mega menu</a>
                                 <ul class="dropdown">
@@ -726,7 +726,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
+                            <!-- <li class="menu-item-has-children">
                                 <a href="blog-category-fullwidth.html">Blog</a>
                                 <ul class="dropdown">
                                     <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
@@ -767,7 +767,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <li><a href="#">German</a></li>
                                     <li><a href="#">Spanish</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </nav>
                     <!-- mobile menu end -->

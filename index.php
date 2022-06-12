@@ -176,9 +176,9 @@ include 'inc/header.php';
                                                 <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
                                                     value="<?php echo $numberOfItem; ?>">
                                                 <div class="col-8 float-end after-cart">
-                                                    <div class="col-3 float-end add decrement"
-                                                        onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
-                                                        <a>-</a>
+                                                    <div class="col-3 float-end increment"
+                                                        onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
+                                                        <a><i class="fi-rs-plus"></i></a>
                                                     </div>
                                                     <div class="col-6 float-end middle">
                                                         <a><i class="fi-rs-shopping-cart"></i>
@@ -186,9 +186,9 @@ include 'inc/header.php';
                                                                 id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
                                                         </a>
                                                     </div>
-                                                    <div class="col-3 float-end increment"
-                                                        onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
-                                                        <a>+</a>
+                                                    <div class="col-3 float-end add decrement"
+                                                        onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
+                                                        <a><i class="fi-rs-minus"></i></a>
                                                     </div>
                                                 </div>
 

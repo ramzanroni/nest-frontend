@@ -1,13 +1,13 @@
 (function ($) {
     ("use strict");
     // Page loading
-    $(window).on("load", function () {
-        $("#preloader-active").delay(450).fadeOut("slow");
-        $("body").delay(450).css({
-            overflow: "visible"
-        });
-        $("#onloadModal").modal("show");
-    });
+    // $(window).on("load", function () {
+    //     $("#preloader-active").delay(100).fadeOut("slow");
+    //     $("body").delay(100).css({
+    //         overflow: "visible"
+    //     });
+    //     $("#onloadModal").modal("show");
+    // });
     /*-----------------
         Menu Stick
     -----------------*/
@@ -586,10 +586,10 @@
     }
 
     /*---- CounterUp ----*/
-    $(".count").counterUp({
-        delay: 10,
-        time: 2000
-    });
+    // $(".count").counterUp({
+    //     delay: 10,
+    //     time: 2000
+    // });
 
     // Isotope active
     $(".grid").imagesLoaded(function () {

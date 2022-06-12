@@ -4,8 +4,17 @@ include 'inc/header.php';
 
 // single product api data 
 $category_id=$_GET['category_id'];
-
-$url = 'http://192.168.0.116/neonbazar_api/category_wise_product.php?category_id='.$category_id; //url will be here
+$limit=2;
+$sortby="PriceLowtoHigh";
+if($_COOKIE['product_limit'])
+{
+    $limit=$_COOKIE['product_limit'];
+}
+if($_COOKIE['sort_by'])
+{
+    $sortby=$_COOKIE['sort_by'];
+}
+$url = 'http://192.168.0.116/neonbazar_api/category_wise_product.php?category_id='.$category_id.'&limit='.$limit.'&sort_by='.$sortby; //url will be here
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -18,6 +27,22 @@ $categoryInfo = curl_exec($ch);
 curl_close($ch);
 $categoryData= json_decode($categoryInfo);
 $totalProduct= count($categoryData);
+
+
+//total item of this category
+$url = 'http://192.168.0.116/neonbazar_api/total_number_of_item_category_wise.php?category_id='.$category_id;
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array( //header will be here
+    'Content-Type: application/json',
+    'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+)
+);
+$categoryItemInfo = curl_exec($ch);
+curl_close($ch);
+$categoryDataCount= json_decode($categoryItemInfo);
+$totalCategoryItem=$categoryDataCount[0]->totalItem;
 ?>
 <main class="main">
     <div class="page-header mt-30 mb-50">
@@ -27,7 +52,7 @@ $totalProduct= count($categoryData);
                     <div class="col-xl-3">
                         <h1 class="mb-15">Snack</h1>
                         <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                             <span></span> Shop <span></span> Snack
                         </div>
                     </div>
@@ -57,100 +82,97 @@ $totalProduct= count($categoryData);
     <div class="container mb-30" id="myTabContent">
         <div class="row">
             <div class="col-lg-4-5">
-                <div class="shop-product-fillter">
-                    <div class="totall-product">
-                        <p>We found <strong class="text-brand"><?php echo $totalProduct; ?></strong> items for you!</p>
-                    </div>
-                    <div class="sort-by-product-area">
-                        <div class="sort-by-cover mr-10">
-                            <div class="sort-by-product-wrap">
-                                <div class="sort-by">
-                                    <span><i class="fi-rs-apps"></i>Show:</span>
+                <span>
+                    <div class="shop-product-fillter">
+                        <div class="totall-product">
+                            <p>We found <strong class="text-brand"><?php echo $totalProduct; ?></strong> items for you!
+                            </p>
+                        </div>
+                        <div class="sort-by-product-area">
+                            <div class="sort-by-cover mr-10">
+                                <div class="sort-by-product-wrap">
+                                    <div class="sort-by">
+                                        <span><i class="fi-rs-apps"></i>Show:</span>
+                                    </div>
+                                    <div class="sort-by-dropdown-wrap">
+                                        <span> <?php echo $limit; ?> <i class="fi-rs-angle-small-down"></i></span>
+                                    </div>
                                 </div>
-                                <div class="sort-by-dropdown-wrap">
-                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                <input type="hidden" id="getLimit" value="<?php echo $limit; ?>">
+                                <div class="sort-by-dropdown">
+                                    <ul id="limitValue">
+                                        <li data-id="2"><a>2</a></li>
+                                        <li data-id="3"><a>3</a></li>
+                                        <li data-id="4"><a>4</a></li>
+                                        <li data-id="5"><a>5</a></li>
+                                        <li data-id="All"><a>All</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="sort-by-dropdown">
-                                <ul>
-                                    <li><a class="active" href="#">50</a></li>
-                                    <li><a href="#">100</a></li>
-                                    <li><a href="#">150</a></li>
-                                    <li><a href="#">200</a></li>
-                                    <li><a href="#">All</a></li>
-                                </ul>
+                            <div class="sort-by-cover">
+                                <div class="sort-by-product-wrap">
+                                    <div class="sort-by">
+                                        <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                    </div>
+                                    <div class="sort-by-dropdown-wrap">
+                                        <span> <?php echo $sortby; ?> <i class="fi-rs-angle-small-down"></i></span>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="catId" value="<?php echo $category_id; ?>">
+                                <input type="hidden" id="getSortByValue" value="<?php echo $sortby; ?>">
+                                <div class="sort-by-dropdown">
+                                    <ul id="sortByValue">
+                                        <!-- <li><a>Featured</a></li> -->
+                                        <li data-id="PriceLowtoHigh"><a>PriceLowtoHigh</a></li>
+                                        <li data-id="PriceHightoLow"><a>PriceHightoLow</a></li>
+                                        <!-- <li><a>Release Date</a></li>
+                                    <li><a>Avg. Rating</a></li> -->
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="sort-by-cover">
-                            <div class="sort-by-product-wrap">
-                                <div class="sort-by">
-                                    <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
-                                </div>
-                                <div class="sort-by-dropdown-wrap">
-                                    <span> Featured <i class="fi-rs-angle-small-down"></i></span>
-                                </div>
-                            </div>
-                            <div class="sort-by-dropdown">
-                                <ul>
-                                    <li><a class="active" href="#">Featured</a></li>
-                                    <li><a href="#">Price: Low to High</a></li>
-                                    <li><a href="#">Price: High to Low</a></li>
-                                    <li><a href="#">Release Date</a></li>
-                                    <li><a href="#">Avg. Rating</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="row product-grid">
-                    <?php  
+                    <div class="row product-grid" id="productItem">
+                        <?php  
                     $cartCookiesProduct=json_decode($_COOKIE['shopping_cart']);
                     foreach ($categoryData as $productData) {
                         ?>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="product-cart-wrap mb-30">
-                            <div class="product-img-action-wrap">
-                                <div class="product-img product-img-zoom">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
-                                        <!-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> -->
-                                    </a>
-                                </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
-                                            class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                            class="fi-rs-shuffle"></i></a>
-                                    <a onclick="productQuikView(<?php echo $productData->stockid; ?>)"
-                                        aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                        data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                </div>
-                                <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot"><?php echo $productData->units; ?></span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <div class="product-category">
-                                    <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
-                                </div>
-                                <h2><a
-                                        href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
-                                </h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a
+                                            href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
+                                            <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
+                                            <!-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> -->
+                                        </a>
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot"><?php echo $productData->units; ?></span>
+                                    </div>
                                 </div>
-                                <!-- <div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
+                                    </div>
+                                    <h2><a
+                                            href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+                                    </h2>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width: 90%"></div>
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    </div>
+                                    <!-- <div>
                                                     <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
                                                 </div> -->
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>৳<?php echo $productData->webprice; ?></span>
-                                        <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
-                                    </div>
-                                    <?php 
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>৳<?php echo $productData->webprice; ?></span>
+                                            <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
+                                        </div>
+                                        <?php 
                                                     $cartProductID=''; 
                                                     $numberOfItem='';
                                                        foreach ($cartCookiesProduct as $cartKey => $itemValue) 
@@ -164,33 +186,35 @@ $totalProduct= count($categoryData);
                                                       if($cartProductID=='')
                                                       {
                                                         ?>
-                                    <div class="add-cart">
-                                        <a class="add"
-                                            onclick="addtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>' )"><i
-                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                    <?php
+                                        <div class="add-cart">
+                                            <a class="add"
+                                                onclick="addtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>' )"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                        <?php
                                                       }
                                                       else
                                                       {
                                                           ?>
-                                    <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
-                                        value="<?php echo $numberOfItem; ?>">
-                                    <div class="col-8 float-end after-cart p-1">
-                                        <div class="col-3 float-end decrement"
-                                            onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
-                                            -
+                                        <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
+                                            value="<?php echo $numberOfItem; ?>">
+                                        <div class="col-8 float-end after-cart">
+                                            <div class="col-3 float-end increment"
+                                                onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
+                                                <a><i class="fi-rs-plus"></i></a>
+                                            </div>
+                                            <div class="col-6 float-end middle">
+                                                <a><i class="fi-rs-shopping-cart"></i>
+                                                    <span
+                                                        id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-3 float-end add decrement"
+                                                onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
+                                                <a><i class="fi-rs-minus"></i></a>
+                                            </div>
                                         </div>
-                                        <div class="col-6 float-end"><i class="fi-rs-shopping-cart"></i>
-                                            <span
-                                                id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                        </div>
-                                        <div class="col-3 float-end increment"
-                                            onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
-                                            +
-                                        </div>
-                                    </div>
-                                    <!-- <a onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
+                                        <!-- <a onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)"
                                         class="btn btn-info p-1">-</a>
                                     <div class="header-action-2 add-cart">
                                         <div class="header-action-icon-2">
@@ -203,38 +227,60 @@ $totalProduct= count($categoryData);
                                     </div>
                                     <a onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)"
                                         class="btn btn-info p-1">+</a> -->
-                                    <?php
+                                        <?php
                                                       }
                                                     ?>
 
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
                     }
                    ?>
-                    <!--end product card-->
-                </div>
-                <!--product grid-->
-                <div class="pagination-area mt-20 mb-20">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-start">
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <!--end product card-->
+                    </div>
+                    <!--product grid-->
+                    <div class="pagination-area mt-20 mb-20">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+
+                                <?php 
+                            $currentPage=1;
+                            $nextPage=$currentPage+1;
+                            $previousPage=$currentPage-1;
+                                $perpageItem=$limit;
+                                $numberOfpage=ceil($totalCategoryItem/$perpageItem);
+                            ?>
+                                <li class="page-item">
+                                    <a class="page-link" onclick="pagination(1)"><i
+                                            class="fi-rs-arrow-small-left"></i></a>
+                                </li>
+                                <?php
+                                for ($i=1; $i <= $numberOfpage; $i++) { 
+
+                                   ?>
+                                <li id="pagination_<?php echo $i; ?>"
+                                    class="page-item <?php if($i==1){echo 'active';} ?>">
+                                    <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                </li>
+                                <?php
+                                }
+                            ?>
+                                <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
                             <li class="page-item active"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                            <li class="page-item"><a class="page-link" href="#">6</a></li> -->
+                                <li class="page-item">
+                                    <a class="page-link" onclick="pagination(2)"><i
+                                            class="fi-rs-arrow-small-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </span>
                 <section class="section-padding pb-5">
                     <div class="section-title">
                         <h3 class="">Deals Of The Day</h3>
@@ -408,6 +454,7 @@ $totalProduct= count($categoryData);
                         </div>
                     </div>
                 </section>
+
                 <!--End Deals-->
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar">

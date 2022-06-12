@@ -12395,7 +12395,7 @@ footer .hotline img {
   padding-bottom: 6px;
   font-size: 14px;
   font-weight: 700;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 4px 0px 0px 4px;
 
   
 }
@@ -12408,7 +12408,7 @@ footer .hotline img {
   padding-bottom: 6px;
   font-size: 14px;
   font-weight: 700;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 0px 4px 4px 0px;
 }
 .middle{
   border-left: 1px solid;
@@ -12422,7 +12422,7 @@ footer .hotline img {
 }
 .increment:hover{
   background-color: #83b735;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 0px 4px 4px 0px;
   color: #fff;
   -webkit-transform: translateY(3px 3px);
           transform: translateY(3px 3px);
@@ -12431,7 +12431,7 @@ footer .hotline img {
 }
 .decrement:hover{
   background-color: #83b735;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 4px 0px 0px 4px;
   color: #fff;
   -webkit-transform: translateY(3px 3px);
           transform: translateY(3px 3px);
