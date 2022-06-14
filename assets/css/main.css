@@ -12384,7 +12384,11 @@ footer .hotline img {
   
   text-align: center;
   color: white;
+  float: left !important;
   
+}
+.after-cart-top{
+  flex: 0 0 initial !important;
 }
 .decrement{
   /* border-left: 2px solid; */

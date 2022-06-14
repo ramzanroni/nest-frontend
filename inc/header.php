@@ -1,4 +1,4 @@
-<?php  
+<?php
 list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, ceil(count($categoryItemData) / 2));
 
 ?>
@@ -24,6 +24,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="./js/index.js"></script>
+    <style></style>
 </head>
 
 <body>
@@ -203,9 +204,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 </div>
             </div>
         </div>
-        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block sticky-bar">
             <div class="container">
-                <div class="header-wrap">
+                <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1">
                         <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
                     </div>
@@ -215,13 +216,13 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 <select class="select-active">
                                     <option value="">All Categories</option>
 
-                                    <?php 
-                                        foreach ($categoryItemData as $categoryValue) {
-                                            ?>
+                                    <?php
+                                    foreach ($categoryItemData as $categoryValue) {
+                                    ?>
                                     <option value="<?php echo $categoryValue->categoryID; ?>">
                                         <?php echo $categoryValue->categoryName; ?></option>
                                     <?php
-                                        }
+                                    }
                                     ?>
                                 </select>
                                 <input type="text" placeholder="Search for items..." />
@@ -306,9 +307,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 </div>
             </div>
         </div>
-        <div class="header-bottom header-bottom-bg-color sticky-bar">
+        <div class="header-bottom header-bottom-bg-color">
             <div class="container">
-                <div class="header-wrap header-space-between position-relative">
+                <div class="header-wrap header-space-between">
                     <div class="logo logo-width-1 d-block d-lg-none">
                         <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
                     </div>
@@ -321,31 +322,31 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                                 <div class="d-flex categori-dropdown-inner">
                                     <ul>
-                                        <?php  
-                                            foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
-                                                ?>
+                                        <?php
+                                        foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
+                                        ?>
                                         <li>
                                             <a
                                                 href="shop-grid-right.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
-                                                <img src="assets/imgs/theme/icons/category-1.svg"
+                                                <img src="//<?php echo $categoryFirstHalfvalue->categoryImg; ?>"
                                                     alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
                                         </li>
                                         <?php
-                                            }
+                                        }
                                         ?>
                                     </ul>
                                     <ul class="end">
-                                        <?php  
-                                            foreach ($categorySecondHalf as $categorySecondHalfvalue) {
-                                                ?>
+                                        <?php
+                                        foreach ($categorySecondHalf as $categorySecondHalfvalue) {
+                                        ?>
                                         <li>
                                             <a
                                                 href="shop-grid-right.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
-                                                <img src="assets/imgs/theme/icons/category-1.svg"
+                                                <img src="//<?php echo $categorySecondHalfvalue->categoryImg; ?>"
                                                     alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
                                         </li>
                                         <?php
-                                            }
+                                        }
                                         ?>
                                     </ul>
                                 </div>
