@@ -1,4 +1,8 @@
 <?php
+
+if (session_id() == '') {
+    session_start();
+}
 list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, ceil(count($categoryItemData) / 2));
 
 ?>
@@ -277,10 +281,13 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </div>
                                 </div>
                                 <div class="header-action-icon-2">
-                                    <a href="page-account.html">
+                                    <a href="page-account.php">
                                         <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
                                     </a>
-                                    <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                    <a href="page-account.php"><span class="lable ml-0">Account</span></a>
+                                    <?php
+                                    if ($_SESSION['phone']) {
+                                    ?>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
@@ -296,10 +303,13 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <!-- Wishlist</a></li> -->
                                             <li><a href="page-account.php"><i
                                                         class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
-                                            <li><a href="page-login.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
+                                            <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                     out</a></li>
                                         </ul>
                                     </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

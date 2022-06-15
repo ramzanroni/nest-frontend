@@ -32,7 +32,13 @@ function productQuikView(productID) {
 
 // cartFunction
 
-function addtoCart(productID,productName,productprice,productQuantity,productImage) {
+function addtoCart(
+  productID,
+  productName,
+  productprice,
+  productQuantity,
+  productImage
+) {
   var check = "addtocart";
   $.ajax({
     url: "pages/cartAction.php",
@@ -53,20 +59,46 @@ function addtoCart(productID,productName,productprice,productQuantity,productIma
   });
 }
 
-
-function firstAddtoCart(productID,productName,productprice,productQuantity,productImage)
-{
-  addtoCart(productID, productName, productprice, productQuantity, productImage);
+function firstAddtoCart(
+  productID,
+  productName,
+  productprice,
+  productQuantity,
+  productImage
+) {
+  addtoCart(
+    productID,
+    productName,
+    productprice,
+    productQuantity,
+    productImage
+  );
   var btnId = "#item_" + productID;
   var idbtn = "item_" + productID;
   var inc = "'increment'";
   var dec = "'decrement'";
-  var newBtn = '<input type="hidden" id="getItem_' + productID + '" value="' + productQuantity + '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange('+inc+',' + productID + ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' + productID + '">' + productQuantity + '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange('+dec+','+productID+')"><a><i class="fi-rs-minus"></i></a></div></div>';
+  var newBtn =
+    '<input type="hidden" id="getItem_' +
+    productID +
+    '" value="' +
+    productQuantity +
+    '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange(' +
+    inc +
+    "," +
+    productID +
+    ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' +
+    productID +
+    '">' +
+    productQuantity +
+    '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange(' +
+    dec +
+    "," +
+    productID +
+    ')"><a><i class="fi-rs-minus"></i></a></div></div>';
   $(btnId).html(newBtn);
   var activediv = document.getElementById(idbtn);
   activediv.classList.add("col-12");
 }
-
 
 // cartItemCount
 function cartItem() {
@@ -121,8 +153,8 @@ function cartPopUp() {
         var sum = 0;
         var html = "<ul>";
         for (let i = 0; i < cartData.length; i++) {
-          var pName = "'"+cartData[i].productName+"'";
-          var pImg = "'"+cartData[i].productImage+"'";
+          var pName = "'" + cartData[i].productName + "'";
+          var pImg = "'" + cartData[i].productImage + "'";
           html +=
             '<li><div class="shopping-cart-img"><a href="shop-product-right.php?product_id=' +
             cartData[i].productID +
@@ -136,7 +168,15 @@ function cartPopUp() {
             cartData[i].productQuantity +
             " × </span>" +
             cartData[i].productprice +
-            '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem('+cartData[i].productID+','+pName +','+cartData[i].productprice+','+pImg+',' +
+            '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(' +
+            cartData[i].productID +
+            "," +
+            pName +
+            "," +
+            cartData[i].productprice +
+            "," +
+            pImg +
+            "," +
             i +
             ')"><i class="fi-rs-cross-small"></i></a></div></li>';
           sum = sum + cartData[i].productprice * cartData[i].productQuantity;
@@ -162,9 +202,15 @@ function removeCssClass() {
   }
 }
 // deleteItemFromCart
-function deleteCatItem(product_id, product_name, product_price, product_img, cartIndexID) {
-  var productBtnId = "#item_"+product_id;
-  var productBtnjsID = ".item_"+product_id;
+function deleteCatItem(
+  product_id,
+  product_name,
+  product_price,
+  product_img,
+  cartIndexID
+) {
+  var productBtnId = "#item_" + product_id;
+  var productBtnjsID = ".item_" + product_id;
   // data.parentElement.parentElement.remove();
   // console.log(item.parentElement.parentElement);
   var check = "deleteItemFromCart";
@@ -182,8 +228,8 @@ function deleteCatItem(product_id, product_name, product_price, product_img, car
       var sum = 0;
       var html = "<ul>";
       for (let i = 0; i < cartData.length; i++) {
-        var cartPname = "'" + cartData[i].productName+"'";
-        var cartPimg = "'" + cartData[i].productImage+"'";
+        var cartPname = "'" + cartData[i].productName + "'";
+        var cartPimg = "'" + cartData[i].productImage + "'";
         html +=
           '<li><div class="shopping-cart-img"><a href="shop-product-right.html"><img alt="Nest" src="//' +
           cartData[i].productImage +
@@ -193,7 +239,15 @@ function deleteCatItem(product_id, product_name, product_price, product_img, car
           cartData[i].productQuantity +
           " × </span>" +
           cartData[i].productprice +
-          '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem('+cartData[i].productID+','+cartPname+','+cartData[i].productprice+','+cartPimg+',' +
+          '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(' +
+          cartData[i].productID +
+          "," +
+          cartPname +
+          "," +
+          cartData[i].productprice +
+          "," +
+          cartPimg +
+          "," +
           i +
           ')"><i class="fi-rs-cross-small"></i></a></div></li>';
         sum = sum + cartData[i].productprice * cartData[i].productQuantity;
@@ -205,11 +259,19 @@ function deleteCatItem(product_id, product_name, product_price, product_img, car
         '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.html" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
       $("#cartItem").html(html);
       var checkId = $(productBtnId).html();
-      if (checkId != undefined)
-      {
+      if (checkId != undefined) {
         var btnPname = "'" + product_name + "'";
         var btnPimg = "'" + product_img + "'";
-        var btnHtml = '<div class="add-cart"><a class="add" onclick="firstAddtoCart('+product_id+','+btnPname+','+product_price+',1,'+btnPimg+')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
+        var btnHtml =
+          '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
+          product_id +
+          "," +
+          btnPname +
+          "," +
+          product_price +
+          ",1," +
+          btnPimg +
+          ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(productBtnId).html(btnHtml);
         $(productBtnId).removeClass("col-12");
       }
@@ -319,16 +381,22 @@ function addCartPopup() {
   cartItem();
 }
 
-function CartItemChange(statuspre, cartItemID, itemDescription, itemPrice, itemImg) {
+function CartItemChange(
+  statuspre,
+  cartItemID,
+  itemDescription,
+  itemPrice,
+  itemImg
+) {
   var cartItemField = "#getItem_" + cartItemID;
   var cartCounterId = "#cartCount_" + cartItemID;
-  var newproductBtn = "#item_"+cartItemID;
+  var newproductBtn = "#item_" + cartItemID;
   var cartItemNum = $(cartItemField).val();
   var newItem = "";
-  var status=statuspre.trim();
+  var status = statuspre.trim();
   if (status == "decrement") {
     // if (cartItemNum > 1) {
-      newItem = cartItemNum - 1;
+    newItem = cartItemNum - 1;
     // }
   }
   if (status == "increment") {
@@ -336,67 +404,40 @@ function CartItemChange(statuspre, cartItemID, itemDescription, itemPrice, itemI
   }
   var check = "cartItemUpdateData";
   // if (newItem > 0) {
-    $.ajax({
-      url: "pages/cartAction.php",
-      type: "POST",
+  $.ajax({
+    url: "pages/cartAction.php",
+    type: "POST",
 
-      data: {
-        newItem: newItem,
-        cartItemID: cartItemID,
-        check: check,
-      },
-      success: function (response) {
-        if (newItem != 0)
-        {
-          $(cartItemField).val(newItem);
-          $(cartCounterId).html(newItem);
-        } else {
-
-          var btnPnamenew = "'" + itemDescription + "'";
+    data: {
+      newItem: newItem,
+      cartItemID: cartItemID,
+      check: check,
+    },
+    success: function (response) {
+      if (newItem != 0) {
+        $(cartItemField).val(newItem);
+        $(cartCounterId).html(newItem);
+      } else {
+        var btnPnamenew = "'" + itemDescription + "'";
         var btnPimgnew = "'" + itemImg + "'";
-        var newbtnHtml = '<div class="add-cart"><a class="add" onclick="firstAddtoCart('+cartItemID+','+btnPnamenew+','+itemPrice+',1,'+btnPimgnew+')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
+        var newbtnHtml =
+          '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
+          cartItemID +
+          "," +
+          btnPnamenew +
+          "," +
+          itemPrice +
+          ",1," +
+          btnPimgnew +
+          ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(newproductBtn).html(newbtnHtml);
         $(newproductBtn).removeClass("col-12");
-          }
-        cartItem();
-      },
-    });
+      }
+      cartItem();
+    },
+  });
   // }
 }
-// function CartItemChange(statuspre, cartItemID) {
-//   var cartItemField = "#getItem_" + cartItemID;
-//   var cartCounterId = "#cartCount_" + cartItemID;
-//   var cartItemNum = $(cartItemField).val();
-//   var newItem = "";
-//   var status=statuspre.trim();
-//   if (status == "decrement") {
-//     if (cartItemNum > 1) {
-//       newItem = cartItemNum - 1;
-//     }
-//   }
-//   if (status == "increment") {
-//     newItem = parseInt(cartItemNum) + 1;
-//   }
-//   var check = "cartItemUpdateData";
-//   if (newItem > 0) {
-//     $.ajax({
-//       url: "pages/cartAction.php",
-//       type: "POST",
-
-//       data: {
-//         newItem: newItem,
-//         cartItemID: cartItemID,
-//         check: check,
-//       },
-//       success: function (response) {
-//         $(cartItemField).val(newItem);
-//         $(cartCounterId).html(newItem);
-//         cartItem();
-//         // $("#mainCartDivPage").load(" #mainCartDivPage > *");
-//       },
-//     });
-//   }
-// }
 
 function cartInchrementSingle() {
   var quantityChnageupSingle = parseInt($("#itemQuantitySingle").val());
@@ -481,18 +522,12 @@ function pagination(pageNumber) {
     },
     success: function (response) {
       $("#productItem").html(response);
-      // $(pageID).removeClass("active");
-      // $(".sort-by-dropdown").removeClass("show");
-      // console.log(response);
-      // $("#mainCartDivPage").load(" #mainCartDivPage > *");
     },
   });
 }
 
-
 // categoryProduct
-function categoryProduct(categoryId)
-{
+function categoryProduct(categoryId) {
   var check = "categoryWiseProduct";
   $.ajax({
     url: "pages/productPageAction.php",
@@ -504,6 +539,123 @@ function categoryProduct(categoryId)
     },
     success: function (response) {
       $("#productItemField").html(response);
+    },
+  });
+}
+
+// userLogin
+function timmer() {
+  var fiveMinutes = 60 * 1,
+      display = document.querySelector('#time');
+  startTimer(fiveMinutes, display);
+};
+
+function startTimer(duration, display) {
+  var timer = duration, minutes, seconds;
+  setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+
+      if (--timer < 0) {
+          timer = duration;
+      }
+  }, 1000);
+}
+function userLogin() {
+  var phoneNumber = $("#phoneNumber").val();
+  if ($.isNumeric(phoneNumber)) {
+    var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
+    if (!phoneReg.test(phoneNumber)) {
+      $("#errorNumMessage").html("Please Enter a Valid Number");
+    } else {
+      $("#errorNumMessage").html("");
+      var check = "userPhoneNumberSend";
+      $.ajax({
+        url: "pages/userAction.php",
+        type: "POST",
+
+        data: {
+          phoneNumber:phoneNumber,
+          check: check,
+        },
+        success: function (response) {
+          console.log(response);
+          if (response == "success")
+          {
+            var phone = "'"+phoneNumber+"'";
+            var htmlgetOtp='<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div><a class="btn btn-primary" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><p id="countDown">Resend OTP after: <span id="time"></span>';
+            $("#loginDiv").html(htmlgetOtp);
+            $("#resendField").hide();
+            timmer();
+            setTimeout(function () { 
+              $("#countDown").hide();
+              $("#resendField").show();
+          }, 60000);
+          }
+          else {
+            $("#errorNumMessage").html(response);
+          }
+          
+
+        },
+      });
+    }
+  } else {
+    $("#errorNumMessage").html("Please Enter a Valid Number");
+  }
+}
+
+
+
+
+function resendOTP(phoneNumber)
+{
+  var check = "userPhoneNumberSend";
+      $.ajax({
+        url: "pages/userAction.php",
+        type: "POST",
+
+        data: {
+          phoneNumber:phoneNumber,
+          check: check,
+        },
+        success: function (response) {
+          if (response != "success")
+          {
+            var phone = "'"+phoneNumber+"'";
+            var htmlLogin =' <div class="heading_s1"><h1 class="mb-5">Login</h1> </div><div class="form-group"><input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number*" /><small class="text-danger" id="errorNumMessage">'+response+'</small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="userLogin()">Send</button></div>'
+          $("#loginDiv").html(htmlLogin);
+          }
+          
+
+        },
+      });
+}
+
+
+// checkOTP
+function checkOTP(phone)
+{
+  var otpCode = $("#getOtp").val();
+  var check = "otpCheck";
+  $.ajax({
+    url: "pages/userAction.php",
+    type: "POST",
+
+    data: {
+      otpCode: otpCode,
+      phone:phone,
+      check: check,
+    },
+    success: function (response) {
+      console.log(response);
+      window.location.href = "page-account.php";
+      // $("#productItemField").html(response);
     },
   });
 }
