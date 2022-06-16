@@ -5,6 +5,25 @@ if ($_SESSION['phone'] == '') {
 }
 include 'inc/header.php';
 
+
+// user profile data 
+
+$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . $_SESSION['phone'];
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt(
+    $ch,
+    CURLOPT_HTTPHEADER,
+    array( //header will be here
+        'Content-Type: application/json',
+        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+    )
+);
+$profileInfo = curl_exec($ch);
+curl_close($ch);
+$profileData = json_decode($profileInfo);
+
 ?>
 
 <main class="main pages">
@@ -17,7 +36,7 @@ include 'inc/header.php';
         </div>
     </div>
     <div class="page-content pt-150 pb-150">
-        <div class="container">
+        <div class="container" id="accountDiv">
             <div class="row">
                 <div class="col-lg-10 m-auto">
                     <div class="row">
@@ -195,53 +214,37 @@ include 'inc/header.php';
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>Account Details</h5>
+                                            <small id="accountError" class="text-danger"></small>
                                         </div>
                                         <div class="card-body">
-                                            <p>Already have an account? <a href="page-login.html">Log in instead!</a>
-                                            </p>
-                                            <form method="post" name="enq">
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label>First Name <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="name"
-                                                            type="text" />
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label>Last Name <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="phone" />
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label>Display Name <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="dname"
-                                                            type="text" />
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label>Email Address <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="email"
-                                                            type="email" />
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label>Current Password <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="password"
-                                                            type="password" />
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label>New Password <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="npassword"
-                                                            type="password" />
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label>Confirm Password <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="cpassword"
-                                                            type="password" />
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <button type="submit"
-                                                            class="btn btn-fill-out submit font-weight-bold"
-                                                            name="submit" value="Submit">Save Change</button>
-                                                    </div>
+                                            <!-- <form method="post" name="enq"> -->
+
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label>Full Name <span class="required">*</span></label>
+                                                    <input required="" value="<?php echo $profileData->fullName; ?>"
+                                                        class="form-control" name="fullName" id="fullName" />
                                                 </div>
-                                            </form>
+                                                <div class="form-group col-md-12">
+                                                    <label>Email Address <span class="required">*</span></label>
+                                                    <input required="" value="<?php echo $profileData->email; ?>"
+                                                        class="form-control" name="emailAddress" type="email"
+                                                        id="emailAddress" />
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Address <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="userAddress"
+                                                        value="<?php echo $profileData->address; ?>" type="test"
+                                                        id="userAddress" />
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button type="submit"
+                                                        class="btn btn-fill-out submit font-weight-bold"
+                                                        onclick="updateUserData('<?php echo $_SESSION['phone']; ?>')">Save
+                                                        Change</button>
+                                                </div>
+                                            </div>
+                                            <!-- </form> -->
                                         </div>
                                     </div>
                                 </div>

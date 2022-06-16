@@ -33,17 +33,27 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 
 <body>
 
+    <div class="modal fade custom-modal" id="userlogin" tabindex="-1" aria-labelledby="quickViewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <div class="row" id="modalDiv">
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Quick view -->
-    <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
+    <!-- <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body">
                     <div class="row" id="productView">
-
-                        <!-- input hidden -->
                         <input type="hidden" id="productIdIn">
                         <input type="hidden" id="productNameIn">
                         <input type="hidden" id="productPriceIn">
@@ -51,44 +61,17 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                             <div class="detail-gallery">
                                 <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                                <!-- MAIN SLIDES -->
                                 <div class="product-image-slider">
                                     <figure class="border-radius-10">
                                         <img id="figureImage" src="assets/imgs/shop/product-16-2.jpg"
                                             alt="product image" />
                                     </figure>
-                                    <!-- <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-1.jpg" alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-3.jpg" alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-4.jpg" alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-5.jpg" alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-6.jpg" alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="assets/imgs/shop/product-16-7.jpg" alt="product image" />
-                                    </figure> -->
                                 </div>
-                                <!-- THUMBNAILS -->
                                 <div class="slider-nav-thumbnails">
                                     <div><img id="sliderImg" src="assets/imgs/shop/thumbnail-3.jpg"
                                             alt="product image" /></div>
-                                    <!-- <div><img src="assets/imgs/shop/thumbnail-4.jpg" alt="product image" /></div>
-                                    <div><img src="assets/imgs/shop/thumbnail-5.jpg" alt="product image" /></div>
-                                    <div><img src="assets/imgs/shop/thumbnail-6.jpg" alt="product image" /></div>
-                                    <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image" /></div>
-                                    <div><img src="assets/imgs/shop/thumbnail-8.jpg" alt="product image" /></div>
-                                    <div><img src="assets/imgs/shop/thumbnail-9.jpg" alt="product image" /></div> -->
                                 </div>
                             </div>
-                            <!-- End Gallery -->
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
@@ -106,10 +89,6 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
                                         <span class="current-price text-brand" id='productPrice'>$38</span>
-                                        <!-- <span>
-                                            <span class="save-price font-md color3 ml-15">26% Off</span>
-                                            <span class="old-price font-md ml-15">$52</span>
-                                        </span> -->
                                     </div>
                                 </div>
                                 <div class="detail-extralink mb-30">
@@ -133,13 +112,12 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Detail Info -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <header class="header-area header-style-1 header-height-2">
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
@@ -281,18 +259,36 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </div>
                                 </div>
                                 <div class="header-action-icon-2">
+                                    <?php
+                                    if ($_SESSION['phone']) {
+                                    ?>
                                     <a href="page-account.php">
                                         <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
                                     </a>
                                     <a href="page-account.php"><span class="lable ml-0">Account</span></a>
                                     <?php
+                                    } else {
+                                    ?>
+                                    <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal"
+                                        data-bs-target="#userlogin"><img class="svgInject" alt="Nest"
+                                            src="assets/imgs/theme/icons/icon-user.svg" /></i><span
+                                            class="lable ml-0">Account</span></a>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <!-- <a href="page-account.php">
+                                        <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
+                                    </a>
+                                    <a href="page-account.php"><span class="lable ml-0">Account</span></a> -->
+                                    <?php
                                     if ($_SESSION['phone']) {
                                     ?>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
-                                            <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
+                                            <!-- <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
                                             <li><a href="register.php"><i class="fi fi-rs-user mr-10"></i>Register</a>
-                                            </li>
+                                            </li> -->
                                             <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
                                                     Account</a></li>
                                             <li><a href="page-account.php"><i

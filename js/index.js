@@ -643,19 +643,160 @@ function checkOTP(phone)
 {
   var otpCode = $("#getOtp").val();
   var check = "otpCheck";
+  if (otpCode != '') {
+    $.ajax({
+      url: "pages/userAction.php",
+      type: "POST",
+
+      data: {
+        otpCode: otpCode,
+        phone: phone,
+        check: check,
+      },
+      success: function (response) {
+        console.log(response);
+        if (response == "success")
+        {
+          // window.location.href = "page-account.php";
+          location.reload();
+        }
+        else {
+          $("#errorNumMessage").html(response);
+        }
+        
+        // $("#productItemField").html(response);
+      },
+    });
+  } else {
+    $("#errorNumMessage").html("Please enter OTP number.");
+  }
+}
+
+// updateUserData
+
+function updateUserData(userPhone)
+{
+  var fullName = $("#fullName").val();
+  var emailAddress = $("#emailAddress").val();
+  var userAddress = $("#userAddress").val();
+  var flag = 1;
+  var check = "userProfileUpdate";
+  if (fullName == "") {
+    $("#fullName").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (emailAddress == "") {
+    $("#emailAddress").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (userAddress == "") {
+    $("#userAddress").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (flag == 1)
+  {
+    
+    $.ajax({
+      url: "pages/userAction.php",
+      type: "POST",
+  
+      data: {
+        fullName: fullName,
+        emailAddress: emailAddress,
+        userAddress: userAddress,
+        userPhone:userPhone,
+        check: check,
+      },
+      success: function (response) {
+        if (response == "success")
+        {
+          $("#accountDiv").load(" #accountDiv > *");
+        }
+        else {
+          $("#accountError").html(response);
+        }
+      },
+    });
+  }
+}
+
+// loginUserFororder
+function loginUserFororder()
+{
+  var check="loginpopupview"
   $.ajax({
     url: "pages/userAction.php",
     type: "POST",
 
     data: {
-      otpCode: otpCode,
-      phone:phone,
-      check: check,
+      check: check
     },
     success: function (response) {
-      console.log(response);
-      window.location.href = "page-account.php";
-      // $("#productItemField").html(response);
+      $("#modalDiv").html(response);
     },
   });
+ 
+}
+
+// placeorder
+function placeorder(phoneNumber, token)
+{
+  var paymentMethod = $("input[name='payment_option']:checked").val();
+  var name = $("#name").val();
+  var address = $("#address").val();
+  var area = $("#area").val();
+  var phone = $("#phone").val();
+  var town = $("#town").val();
+  var additionalPhone = $("#additionalPhone").val();
+  var additionalInfo = $("#additionalInfo").val();
+  var flag = 1;
+  var check = 'placeOrder';
+  if (name == "") {
+    $("#name").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (address == "") {
+    $("#address").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (area == "") {
+    $("#area").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (phone == "") {
+    $("#phone").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (town == "") {
+    $("#town").css({ "border": "1px solid red" });
+    flag = 0;
+  }
+  if (flag == 1) {
+    $.ajax({
+      url: "pages/orderAction.php",
+      type: "POST",
+
+      data: {
+        name: name,
+        address: address,
+        area: area,
+        phone: phone,
+        town: town,
+        additionalPhone: additionalPhone,
+        additionalInfo: additionalInfo,
+        paymentMethod: paymentMethod,
+        token: token,
+        check: check
+      },
+      success: function (response) {
+        console.log(response);
+        if (response == "success") {
+        cartItem();
+        window.location.replace("page-account.php");
+          
+        }
+      },
+    });
+  }
+
 }

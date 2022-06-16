@@ -1,12 +1,12 @@
-﻿<?php 
+﻿<?php
 include 'apidata/dataFetch.php';
-include 'inc/header.php'; 
+include 'inc/header.php';
 
 ?>
 <main class="main" id="mainCartDivPage">
-    <?php 
-    $cartData=json_decode($_COOKIE['shopping_cart']);
-    $totalCartItem= count($cartData);
+    <?php
+    $cartData = json_decode($_COOKIE['shopping_cart']);
+    $totalCartItem = count($cartData);
     ?>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -35,12 +35,12 @@ include 'inc/header.php';
                     <table class="table table-wishlist">
                         <thead>
                             <tr class="main-heading">
-                                <th class="custome-checkbox start pl-30">
+                                <!-- <th class="custome-checkbox start pl-30">
                                     <input class="form-check-input" type="checkbox" name="checkbox"
                                         id="exampleCheckbox11" value="">
                                     <label class="form-check-label" for="exampleCheckbox11"></label>
-                                </th>
-                                <th scope="col" colspan="2">Product</th>
+                                </th> -->
+                                <th scope="col" class="start pl-30" colspan="2">Product</th>
                                 <th scope="col">Unit Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Subtotal</th>
@@ -48,30 +48,29 @@ include 'inc/header.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                                   $sum=0;
-                                    foreach ($cartData as $key => $cartproduct) 
-                                    {
-                                        ?>
+                            <?php
+                            $sum = 0;
+                            foreach ($cartData as $key => $cartproduct) {
+                            ?>
                             <tr class="pt-30">
-                                <td class="custome-checkbox pl-30">
+                                <!-- <td class="custome-checkbox pl-30">
                                     <input class="form-check-input" type="checkbox" name="checkbox"
                                         id="exampleCheckbox1" value="">
                                     <label class="form-check-label" for="exampleCheckbox1"></label>
-                                </td>
-                                <td class="image product-thumbnail pt-40"><img
+                                </td> -->
+                                <td class="image product-thumbnail pt-40 start pl-30"><img
                                         src="//<?php echo $cartproduct->productImage; ?>" alt="#"></td>
                                 <td class="product-des product-name">
                                     <h6 class="mb-5"><a class="product-name mb-10 text-heading"
                                             href="shop-product-right.html"><?php echo $cartproduct->productName; ?></a>
                                     </h6>
-                                    <div class="product-rate-cover">
+                                    <!-- <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width:90%">
                                             </div>
                                         </div>
                                         <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <td class="price" data-title="Price">
                                     <h4 class="text-body">৳<?php echo $cartproduct->productprice; ?> </h4>
@@ -92,23 +91,23 @@ include 'inc/header.php';
                                 </td>
                                 <td class="price" data-title="Price">
                                     <h4 class="text-brand" id="totalProductPrice_<?php echo $key; ?>">
-                                        ৳<?php echo $cartproduct->productQuantity*$cartproduct->productprice; ?> </h4>
+                                        ৳<?php echo $cartproduct->productQuantity * $cartproduct->productprice; ?> </h4>
                                 </td>
                                 <td class="action text-center" data-title="Remove"><a
                                         onclick="removeItem(<?php echo $key; ?>)" class="text-body"><i
                                             class="fi-rs-trash"></i></a></td>
                             </tr>
                             <?php
-                            $sum=$sum+$cartproduct->productQuantity*$cartproduct->productprice;
-                                    }
-                                    
-                                ?>
+                                $sum = $sum + $cartproduct->productQuantity * $cartproduct->productprice;
+                            }
+
+                            ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="cart-action d-flex justify-content-between">
-                    <a class="btn "><i class="fi-rs-arrow-left mr-10"></i>Continue Shopping</a>
+                    <a class="btn" href="index.php"><i class="fi-rs-arrow-left mr-10"></i>Continue Shopping</a>
                     <a onclick="updateCart(<?php echo $totalCartItem; ?>)" class="btn  mr-10 mb-sm-15"><i
                             class="fi-rs-refresh mr-10"></i>Update Cart</a>
                 </div>
