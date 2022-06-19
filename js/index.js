@@ -1,5 +1,52 @@
+function alertMessage(message)
+{
+  $('.alert').addClass("show");
+    $('.alert').removeClass("hide");
+  $('.alert').addClass("showAlert");
+  $("#errorMessage").html(message);
+    setTimeout(function(){
+      $('.alert').removeClass("show");
+      $('.alert').addClass("hide");
+    },5000);
+  
+}
+
+function alertMessageSuccess(message)
+{
+  $('.alertSuccess').addClass("show");
+    $('.alertSuccess').removeClass("hide");
+  $('.alertSuccess').addClass("showAlert");
+  $("#errorMessageSuccess").html(message);
+    setTimeout(function(){
+      $('.alertSuccess').removeClass("show");
+      $('.alertSuccess').addClass("hide");
+    },5000);
+  
+}
+
+
+function preloader(){
+  $("#preloader-active").delay(100).fadeOut("slow");
+  $("body").delay(100).css({
+      overflow: "visible"
+  });
+  $("#onloadModal").modal("show");
+};
+
+
+
+
+$('.close-btn').click(function(){
+  $('.alertSuccess').removeClass("show");
+  $('.alertSuccess').addClass("hide");
+});
+
+
 $(document).ready(function () {
   cartItem();
+  $("#searchBox").hide();
+  // $("#preloader-active").hide();
+  
 });
 
 function productQuikView(productID) {
@@ -98,6 +145,7 @@ function firstAddtoCart(
   $(btnId).html(newBtn);
   var activediv = document.getElementById(idbtn);
   activediv.classList.add("col-12");
+  alertMessageSuccess("Product Cart Success..");
 }
 
 // cartItemCount
@@ -224,6 +272,7 @@ function deleteCatItem(
     },
     success: function (response) {
       cartItem();
+      alertMessageSuccess("Cart Product Delete Success..");
       var cartData = JSON.parse(response);
       var sum = 0;
       var html = "<ul>";
@@ -231,9 +280,9 @@ function deleteCatItem(
         var cartPname = "'" + cartData[i].productName + "'";
         var cartPimg = "'" + cartData[i].productImage + "'";
         html +=
-          '<li><div class="shopping-cart-img"><a href="shop-product-right.html"><img alt="Nest" src="//' +
+          '<li><div class="shopping-cart-img"><a href="shop-product-right.php"><img alt="Nest" src="//' +
           cartData[i].productImage +
-          '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.html">' +
+          '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php">' +
           cartData[i].productName +
           "</a></h4>   <h4><span>" +
           cartData[i].productQuantity +
@@ -256,7 +305,7 @@ function deleteCatItem(
       html +=
         '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
         sum +
-        '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.html" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
+        '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
       $("#cartItem").html(html);
       var checkId = $(productBtnId).html();
       if (checkId != undefined) {
@@ -274,6 +323,7 @@ function deleteCatItem(
           ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(productBtnId).html(btnHtml);
         $(productBtnId).removeClass("col-12");
+
       }
     },
   });
@@ -316,6 +366,7 @@ function removeItem(removeId) {
     success: function (response) {
       cartItem();
       $("#mainCartDivPage").load(" #mainCartDivPage > *");
+      alertMessageSuccess("Remove Cart Success..");
     },
   });
 }
@@ -347,6 +398,7 @@ function updateCart(totalItem) {
       // console.log(response);
       $("#mainCartDivPage").load(" #mainCartDivPage > *");
       cartItem();
+      alertMessageSuccess("Update Cart Success..");
     },
   });
 }
@@ -434,6 +486,7 @@ function CartItemChange(
         $(newproductBtn).removeClass("col-12");
       }
       cartItem();
+      alertMessageSuccess("Save Success..");
     },
   });
   // }
@@ -462,7 +515,9 @@ function addtoCartSingle(productID, productName, productPrice, productImage) {
     productQuantity,
     productImage
   );
+  alertMessageSuccess("Save Success..");
 }
+
 $(document).ready(function () {
   $("#limitValue li").on("click", function () {
     var limit = $(this).attr("data-id");
@@ -520,7 +575,11 @@ function pagination(pageNumber) {
       pageNumber: pageNumber,
       check: check,
     },
+    beforeSend: function() {
+      $("#preloader-active").show();
+   },
     success: function (response) {
+      $("#preloader-active").hide();
       $("#productItem").html(response);
     },
   });
@@ -629,10 +688,10 @@ function resendOTP(phoneNumber)
           {
             var phone = "'"+phoneNumber+"'";
             var htmlLogin =' <div class="heading_s1"><h1 class="mb-5">Login</h1> </div><div class="form-group"><input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number*" /><small class="text-danger" id="errorNumMessage">'+response+'</small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="userLogin()">Send</button></div>'
-          $("#loginDiv").html(htmlLogin);
+            $("#loginDiv").html(htmlLogin);
+            alertMessage("Some thing is wrong..!");
           }
-          
-
+          alertMessageSuccess("OTP Send Success..");
         },
       });
 }
@@ -710,9 +769,11 @@ function updateUserData(userPhone)
       success: function (response) {
         if (response == "success")
         {
+          alertMessageSuccess("Update Saved.");
           $("#accountDiv").load(" #accountDiv > *");
         }
         else {
+          alertMessage("Somthing is wrong");
           $("#accountError").html(response);
         }
       },
@@ -791,12 +852,70 @@ function placeorder(phoneNumber, token)
       success: function (response) {
         console.log(response);
         if (response == "success") {
-        cartItem();
+          cartItem();
+          alertMessageSuccess("Oder Place Success.");
         window.location.replace("page-account.php");
           
         }
       },
     });
   }
+}
+
+// searchItem
+function searchItem(productSearchItem)
+{
+  var categoryName = $("#category_name").val();
+  var check = "searchItem";
+  if (productSearchItem.length > 2)
+  {
+    $.ajax({
+      url: "pages/searchAction.php",
+      type: "POST",
+  
+      data: {
+        categoryName: categoryName,
+        productSearchItem:productSearchItem,
+        check: check
+      },
+      success: function (response) {
+        $("#searchBox").fadeIn("slow");
+        $("#searchBox").html(response);
+
+        window.addEventListener('click', function(e){   
+          if (document.getElementById('searchBox').contains(e.target)){
+          } else {
+            $("#searchBox").hide();
+          }
+        });
+
+
+      },
+    });
+  }
+  else {
+    $("#searchBox").html("");
+  }
+}
+
+function viewAllItem(categoryId, itemString)
+{
+  window.location.replace("/nest-frontend/shop-grid-right.php?product_name="+itemString+"&category="+categoryId);
+  // var check = "viewAllItem";
+  // $.ajax({
+  //   url: "pages/searchAction.php",
+  //   type: "POST",
+
+  //   data: {
+  //     categoryId: categoryId,
+  //     itemString:itemString,
+  //     check: check
+  //   },
+  //   success: function (response) {
+  //     $('#myTabContent').html(response);
+
+  //   },
+  // });
+
 
 }

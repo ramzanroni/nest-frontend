@@ -5,7 +5,7 @@ include 'inc/header.php';
 
 ?>
 <main class="main">
-    <div class="container mb-30">
+    <div class="container mb-30" id="myTabContent">
         <div class="row flex-row-reverse">
             <div class="col-lg-4-5">
                 <section class="home-slider position-relative mb-30">

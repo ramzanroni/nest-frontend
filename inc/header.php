@@ -46,6 +46,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             </div>
         </div>
     </div>
+
+
+
     <!-- Quick view -->
     <!-- <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
         aria-hidden="true">
@@ -187,6 +190,23 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             </div>
         </div>
         <div class="header-middle header-middle-ptb-1 d-none d-lg-block sticky-bar">
+
+            <div class="alert hide">
+                <span class="fi-rs-exclamation-circle"></span>
+                <span class="msg" id="errorMessage"></span>
+                <!-- <div class="close-btn">
+                    <span><i class="fi-rs-cross-small"></i></span>
+                </div> -->
+            </div>
+
+            <div class="alertSuccess hide">
+                <span class="fi-rs-exclamation-circle"></span>
+                <span class="msg" id="errorMessageSuccess"></span>
+                <!-- <div class="close-btn">
+                    <span><i class="fi-rs-cross-small"></i></span>
+                </div> -->
+            </div>
+
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1">
@@ -195,7 +215,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     <div class="header-right">
                         <div class="search-style-2">
                             <form action="#">
-                                <select class="select-active">
+                                <select class="select-active" id="category_name">
                                     <option value="">All Categories</option>
 
                                     <?php
@@ -207,8 +227,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     }
                                     ?>
                                 </select>
-                                <input type="text" placeholder="Search for items..." />
+                                <input type="text" onkeyup="searchItem(this.value)" placeholder="Search for items..." />
                             </form>
+                        </div>
+                        <div class="search-box col-12" id="searchBox">
                         </div>
                         <div class="header-action-right">
                             <div class="header-action-2">
@@ -253,7 +275,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <span class="pro-count blue" id="cartCount">0</span>
                                     </a>
                                     <a href="shop-cart.php"><span class="lable">Cart</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2" id="cartItem"
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItem"
                                         onmouseleave="removeCssClass()">
 
                                     </div>
@@ -317,7 +339,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             <div class="container">
                 <div class="header-wrap header-space-between">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                        <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
@@ -399,7 +421,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <a href="page-about.php">About</a>
                                     </li>
                                     <li>
-                                        <a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
+                                        <a href="shop-grid-right.php">Shop <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                             <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
@@ -570,7 +592,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 </a>
                             </div> -->
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="shop-cart.php">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
                                     <span class="pro-count white">2</span>
                                 </a>
@@ -620,6 +642,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             </div>
         </div>
     </header>
+
+    <!-- alert -->
+
     <div class="mobile-header-active mobile-header-wrapper-style">
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
