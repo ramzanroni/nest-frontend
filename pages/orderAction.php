@@ -14,7 +14,7 @@ if ($_POST['check'] == "placeOrder") {
     foreach ($cartCookiesProduct as $cartValue) {
         $itemInfoArr[] = (object)array('productID' => $cartValue->productID, 'productQuantity' => $cartValue->productQuantity);
     }
-    $itemInfo = json_encode($itemInfoArr);
+    $itemInfo = $itemInfoArr;
 
 
     $post = array(  //data array from user side
@@ -30,7 +30,10 @@ if ($_POST['check'] == "placeOrder") {
         "itemInfo" => $itemInfo
 
     );
+
     $data = json_encode($post); // json encoded
+    // print_r($data);
+    // exit();
     $url = "http://192.168.0.116/neonbazar_api/order_action.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -51,5 +54,6 @@ if ($_POST['check'] == "placeOrder") {
     if (isset($_COOKIE['shopping_cart'])) {
         setcookie('shopping_cart', "", time() - 3600, "/");
     }
-    echo $response->message;
+    // echo $response->message;
+    print_r($response);
 }

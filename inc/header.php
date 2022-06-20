@@ -122,6 +122,13 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         </div>
     </div> -->
     <header class="header-area header-style-1 header-height-2">
+        <div class="alertSuccess hide">
+            <span class="fi-rs-exclamation-circle"></span>
+            <span class="msg" id="errorMessageSuccess"></span>
+            <!-- <div class="close-btn">
+                    <span><i class="fi-rs-cross-small"></i></span>
+                </div> -->
+        </div>
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
         </div>
@@ -189,23 +196,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 </div>
             </div>
         </div>
-        <div class="header-middle header-middle-ptb-1 d-none d-lg-block sticky-bar">
-
-            <div class="alert hide">
-                <span class="fi-rs-exclamation-circle"></span>
-                <span class="msg" id="errorMessage"></span>
-                <!-- <div class="close-btn">
-                    <span><i class="fi-rs-cross-small"></i></span>
-                </div> -->
-            </div>
-
-            <div class="alertSuccess hide">
-                <span class="fi-rs-exclamation-circle"></span>
-                <span class="msg" id="errorMessageSuccess"></span>
-                <!-- <div class="close-btn">
-                    <span><i class="fi-rs-cross-small"></i></span>
-                </div> -->
-            </div>
+        <div id="web-sticky" class="header-middle header-middle-ptb-1 d-none d-lg-block sticky-bar">
 
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
@@ -335,7 +326,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 </div>
             </div>
         </div>
-        <div class="header-bottom header-bottom-bg-color">
+        <div id="mobile-sticky" class="header-bottom header-bottom-bg-color ">
             <div class="container">
                 <div class="header-wrap header-space-between">
                     <div class="logo logo-width-1 d-block d-lg-none">
@@ -591,49 +582,15 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <span class="pro-count white">4</span>
                                 </a>
                             </div> -->
-                            <div class="header-action-icon-2">
+                            <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                 <a class="mini-cart-icon" href="shop-cart.php">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
-                                    <span class="pro-count white">2</span>
+                                    <span class="pro-count blue" id="cartCountMobile">0</span>
                                 </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest"
-                                                        src="assets/imgs/shop/thumbnail-3.jpg" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
-                                                <h3><span>1 × </span>$800.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest"
-                                                        src="assets/imgs/shop/thumbnail-4.jpg" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                                <h3><span>1 × </span>$3500.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$383.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="shop-cart.php">View cart</a>
-                                            <a href="shop-checkout.php">Checkout</a>
-                                        </div>
-                                    </div>
+                                <a href="shop-cart.php"><span class="lable">Cart</span></a>
+                                <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItemMobile"
+                                    onmouseleave="removeCssClass()">
+
                                 </div>
                             </div>
                         </div>
@@ -808,24 +765,45 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     <div class="single-mobile-header-info">
                         <a href="page-contact.php"><i class="fi-rs-marker"></i> Our location </a>
                     </div>
+
+                    <?php
+                    if ($_SESSION['phone'] == "") {
+                    ?>
                     <div class="single-mobile-header-info">
-                        <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
+                        <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal"
+                            data-bs-target="#userlogin"><i class="fi-rs-user"></i><span
+                                class="lable ml-0">Account</span></a>
+                    </div>
+
+                    <?php
+                    } else {
+                    ?>
+                    <div class="single-mobile-header-info">
+                        <a href="page-account.php"><i class="fi-rs-user"></i>Account</a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                        <a href="logout.php"><i class="fi-rs-sign-out"></i></i>Sign Out </a>
                     </div>
+                    <?php
+                    }
+                    ?>
+
                 </div>
-                <div class="mobile-social-icon mb-50">
-                    <h6 class="mb-15">Follow Us</h6>
-                    <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-                    <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-                    <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-                    <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
-                    <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+                <div class="single-mobile-header-info">
+                    <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
                 </div>
-                <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
             </div>
+            <div class="mobile-social-icon mb-50">
+                <h6 class="mb-15">Follow Us</h6>
+                <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
+                <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
+                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
+                <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
+                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+            </div>
+            <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
         </div>
+    </div>
     </div>
     <!--End header-->
     <!-- fixed cart -->

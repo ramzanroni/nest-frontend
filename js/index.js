@@ -1,52 +1,76 @@
-function alertMessage(message)
-{
-  $('.alert').addClass("show");
-    $('.alert').removeClass("hide");
-  $('.alert').addClass("showAlert");
-  $("#errorMessage").html(message);
-    setTimeout(function(){
-      $('.alert').removeClass("show");
-      $('.alert').addClass("hide");
-    },5000);
-  
-}
+$(window).on("orientationchange", function (event) {
+  cartItem();
+  cartPopUp();
+});
+var defultCurrentSize = screen.width;
+$(window).resize(function () {
+  var currentSize = screen.width;
+  // console.log("current" + currentSize);
+  if (currentSize < 991 && defultCurrentSize < 991) {
+    // console.log("no need small");
+  } else if (currentSize > 991 && defultCurrentSize > 991) {
+    // console.log("no need big");
+  } else {
+    cartItem();
+    cartPopUp();
+    defultCurrentSize = currentSize;
+    console.log("need change");
+  }
 
-function alertMessageSuccess(message)
-{
-  $('.alertSuccess').addClass("show");
-    $('.alertSuccess').removeClass("hide");
-  $('.alertSuccess').addClass("showAlert");
-  $("#errorMessageSuccess").html(message);
-    setTimeout(function(){
-      $('.alertSuccess').removeClass("show");
-      $('.alertSuccess').addClass("hide");
-    },5000);
-  
-}
+  //   if (screen.width < 991) {
+  //     console.log('<991');
 
-
-function preloader(){
-  $("#preloader-active").delay(100).fadeOut("slow");
-  $("body").delay(100).css({
-      overflow: "visible"
-  });
-  $("#onloadModal").modal("show");
-};
-
-
-
-
-$('.close-btn').click(function(){
-  $('.alertSuccess').removeClass("show");
-  $('.alertSuccess').addClass("hide");
+  //     $("#web-sticky").removeClass('sticky-bar');
+  //     $("#mobile-sticky").addClass('sticky-bar');
+  // }
+  // if (screen.width > 991) {
+  //     console.log('>991');
+  //     $("#web-sticky").addClass('sticky-bar');
+  //     $("#mobile-sticky").removeClass('sticky-bar');
+  // }
 });
 
+function alertMessage(message) {
+  $(".alert").addClass("show");
+  $(".alert").removeClass("hide");
+  $(".alert").addClass("showAlert");
+  $("#errorMessage").html(message);
+  setTimeout(function () {
+    $(".alert").css({ display: "block !important" });
+    $(".alert").removeClass("show");
+    $(".alert").addClass("hide");
+  }, 2000);
+}
+
+function alertMessageSuccess(message) {
+  $(".alertSuccess").addClass("show");
+  $(".alertSuccess").removeClass("hide");
+  $(".alertSuccess").addClass("showAlert");
+  $("#errorMessageSuccess").html(message);
+  setTimeout(function () {
+    $(".alertSuccess").css({ display: "block !important" });
+    $(".alertSuccess").removeClass("show");
+    $(".alertSuccess").addClass("hide");
+  }, 2000);
+}
+
+function preloader() {
+  $("#preloader-active").delay(100).fadeOut("slow");
+  $("body").delay(100).css({
+    overflow: "visible",
+  });
+  $("#onloadModal").modal("show");
+}
+
+$(".close-btn").click(function () {
+  $(".alertSuccess").removeClass("show");
+  $(".alertSuccess").addClass("hide");
+});
 
 $(document).ready(function () {
   cartItem();
   $("#searchBox").hide();
   // $("#preloader-active").hide();
-  
 });
 
 function productQuikView(productID) {
@@ -150,6 +174,7 @@ function firstAddtoCart(
 
 // cartItemCount
 function cartItem() {
+  var mobile = screen.width < 990 ? "Mobile" : "";
   var check = "countCartItem";
   $.ajax({
     url: "pages/cartAction.php",
@@ -159,7 +184,8 @@ function cartItem() {
       check: check,
     },
     success: function (response) {
-      $("#cartCount").html(response);
+      // console.log($("#cartCount"+mobile));
+      $("#cartCount" + mobile).html(response);
       $("#numberofCartItem").html(response);
       totalCartSum();
     },
@@ -183,11 +209,14 @@ function totalCartSum() {
 // CartPopUp
 
 function cartPopUp() {
+  var mobile = screen.width < 991 ? "Mobile" : "";
   var isCardActive = document.querySelector(".active-card");
   if (!isCardActive) {
-    var active = document.getElementById("cartItem");
+    var active = document.getElementById("cartItem" + mobile);
     active.classList.add("active-card");
     var check = "cartItemView";
+    // console.log("working");
+
     $.ajax({
       url: "pages/cartAction.php",
       type: "POST",
@@ -211,8 +240,8 @@ function cartPopUp() {
             '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php?product_id=' +
             cartData[i].productID +
             '">' +
-            cartData[i].productName +
-            "</a></h4>   <h4><span>" +
+            cartData[i].productName.substring(0, 15) +
+            "...</a></h4>   <h4><span>" +
             cartData[i].productQuantity +
             " × </span>" +
             cartData[i].productprice +
@@ -234,7 +263,8 @@ function cartPopUp() {
           '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
           sum +
           '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
-        $("#cartItem").html(html);
+        $("#cartItem" + mobile).html(html);
+        console.log("ok");
       },
     });
   }
@@ -243,9 +273,11 @@ function cartPopUp() {
 // removeCssClass
 
 function removeCssClass() {
+  var mobile = screen.width < 991 ? "Mobile" : "";
+
   var isCardActive = document.querySelector(".active-card");
   if (isCardActive) {
-    var active = document.getElementById("cartItem");
+    var active = document.getElementById("cartItem" + mobile);
     active.classList.remove("active-card");
   }
 }
@@ -257,6 +289,8 @@ function deleteCatItem(
   product_img,
   cartIndexID
 ) {
+  var mobile = screen.width < 990 ? "Mobile" : "";
+
   var productBtnId = "#item_" + product_id;
   var productBtnjsID = ".item_" + product_id;
   // data.parentElement.parentElement.remove();
@@ -283,8 +317,8 @@ function deleteCatItem(
           '<li><div class="shopping-cart-img"><a href="shop-product-right.php"><img alt="Nest" src="//' +
           cartData[i].productImage +
           '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php">' +
-          cartData[i].productName +
-          "</a></h4>   <h4><span>" +
+          cartData[i].productName.substring(0, 15) +
+          "...</a></h4>   <h4><span>" +
           cartData[i].productQuantity +
           " × </span>" +
           cartData[i].productprice +
@@ -306,7 +340,7 @@ function deleteCatItem(
         '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
         sum +
         '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
-      $("#cartItem").html(html);
+      $("#cartItem" + mobile).html(html);
       var checkId = $(productBtnId).html();
       if (checkId != undefined) {
         var btnPname = "'" + product_name + "'";
@@ -323,7 +357,6 @@ function deleteCatItem(
           ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(productBtnId).html(btnHtml);
         $(productBtnId).removeClass("col-12");
-
       }
     },
   });
@@ -575,9 +608,9 @@ function pagination(pageNumber) {
       pageNumber: pageNumber,
       check: check,
     },
-    beforeSend: function() {
+    beforeSend: function () {
       $("#preloader-active").show();
-   },
+    },
     success: function (response) {
       $("#preloader-active").hide();
       $("#productItem").html(response);
@@ -596,7 +629,12 @@ function categoryProduct(categoryId) {
       categoryId: categoryId,
       check: check,
     },
+    beforeSend: function () {
+      $("#preloader-active").show();
+    },
+
     success: function (response) {
+      $("#preloader-active").hide();
       $("#productItemField").html(response);
     },
   });
@@ -604,25 +642,27 @@ function categoryProduct(categoryId) {
 
 // userLogin
 function timmer() {
-  var fiveMinutes = 60 * 1,
-      display = document.querySelector('#time');
+  var fiveMinutes = 60 * 2,
+    display = document.querySelector("#time");
   startTimer(fiveMinutes, display);
-};
+}
 
 function startTimer(duration, display) {
-  var timer = duration, minutes, seconds;
+  var timer = duration,
+    minutes,
+    seconds;
   setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = minutes + ":" + seconds;
+    display.textContent = minutes + ":" + seconds;
 
-      if (--timer < 0) {
-          timer = duration;
-      }
+    if (--timer < 0) {
+      timer = duration;
+    }
   }, 1000);
 }
 function userLogin() {
@@ -639,28 +679,29 @@ function userLogin() {
         type: "POST",
 
         data: {
-          phoneNumber:phoneNumber,
+          phoneNumber: phoneNumber,
           check: check,
         },
         success: function (response) {
           console.log(response);
-          if (response == "success")
-          {
-            var phone = "'"+phoneNumber+"'";
-            var htmlgetOtp='<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div><a class="btn btn-primary" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><p id="countDown">Resend OTP after: <span id="time"></span>';
+          if (response == "success") {
+            var phone = "'" + phoneNumber + "'";
+            var htmlgetOtp =
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
+              phone +
+              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
+              phone +
+              ')">Log in</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
-            setTimeout(function () { 
+            setTimeout(function () {
               $("#countDown").hide();
               $("#resendField").show();
-          }, 60000);
-          }
-          else {
+            }, 60000);
+          } else {
             $("#errorNumMessage").html(response);
           }
-          
-
         },
       });
     }
@@ -669,40 +710,46 @@ function userLogin() {
   }
 }
 
-
-
-
-function resendOTP(phoneNumber)
-{
+function resendOTP(phoneNumber) {
   var check = "userPhoneNumberSend";
-      $.ajax({
-        url: "pages/userAction.php",
-        type: "POST",
+  $.ajax({
+    url: "pages/userAction.php",
+    type: "POST",
 
-        data: {
-          phoneNumber:phoneNumber,
-          check: check,
-        },
-        success: function (response) {
-          if (response != "success")
-          {
-            var phone = "'"+phoneNumber+"'";
-            var htmlLogin =' <div class="heading_s1"><h1 class="mb-5">Login</h1> </div><div class="form-group"><input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number*" /><small class="text-danger" id="errorNumMessage">'+response+'</small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="userLogin()">Send</button></div>'
-            $("#loginDiv").html(htmlLogin);
-            alertMessage("Some thing is wrong..!");
-          }
-          alertMessageSuccess("OTP Send Success..");
-        },
-      });
+    data: {
+      phoneNumber: phoneNumber,
+      check: check,
+    },
+    success: function (response) {
+      if (response == "success") {
+        var phone = "'" + phoneNumber + "'";
+        var htmlLogin =
+          '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send!  <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
+          phone +
+          ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
+          phone +
+          ')">Log in</button></div>';
+        // console.log(htmlLogin);
+        $("#loginDiv").html(htmlLogin);
+
+        $("#resendField").hide();
+        timmer();
+        setTimeout(function () {
+          $("#countDown").hide();
+          $("#resendField").show();
+        }, 60000);
+        // alertMessage("Some thing is wrong..!");
+      }
+      // alertMessageSuccess("OTP Send Success..");
+    },
+  });
 }
 
-
 // checkOTP
-function checkOTP(phone)
-{
+function checkOTP(phone) {
   var otpCode = $("#getOtp").val();
   var check = "otpCheck";
-  if (otpCode != '') {
+  if (otpCode != "") {
     $.ajax({
       url: "pages/userAction.php",
       type: "POST",
@@ -714,15 +761,13 @@ function checkOTP(phone)
       },
       success: function (response) {
         console.log(response);
-        if (response == "success")
-        {
+        if (response == "success") {
           // window.location.href = "page-account.php";
           location.reload();
-        }
-        else {
+        } else {
           $("#errorNumMessage").html(response);
         }
-        
+
         // $("#productItemField").html(response);
       },
     });
@@ -733,46 +778,41 @@ function checkOTP(phone)
 
 // updateUserData
 
-function updateUserData(userPhone)
-{
+function updateUserData(userPhone) {
   var fullName = $("#fullName").val();
   var emailAddress = $("#emailAddress").val();
   var userAddress = $("#userAddress").val();
   var flag = 1;
   var check = "userProfileUpdate";
   if (fullName == "") {
-    $("#fullName").css({ "border": "1px solid red" });
+    $("#fullName").css({ border: "1px solid red" });
     flag = 0;
   }
   if (emailAddress == "") {
-    $("#emailAddress").css({ "border": "1px solid red" });
+    $("#emailAddress").css({ border: "1px solid red" });
     flag = 0;
   }
   if (userAddress == "") {
-    $("#userAddress").css({ "border": "1px solid red" });
+    $("#userAddress").css({ border: "1px solid red" });
     flag = 0;
   }
-  if (flag == 1)
-  {
-    
+  if (flag == 1) {
     $.ajax({
       url: "pages/userAction.php",
       type: "POST",
-  
+
       data: {
         fullName: fullName,
         emailAddress: emailAddress,
         userAddress: userAddress,
-        userPhone:userPhone,
+        userPhone: userPhone,
         check: check,
       },
       success: function (response) {
-        if (response == "success")
-        {
+        if (response == "success") {
           alertMessageSuccess("Update Saved.");
           $("#accountDiv").load(" #accountDiv > *");
-        }
-        else {
+        } else {
           alertMessage("Somthing is wrong");
           $("#accountError").html(response);
         }
@@ -782,26 +822,23 @@ function updateUserData(userPhone)
 }
 
 // loginUserFororder
-function loginUserFororder()
-{
-  var check="loginpopupview"
+function loginUserFororder() {
+  var check = "loginpopupview";
   $.ajax({
     url: "pages/userAction.php",
     type: "POST",
 
     data: {
-      check: check
+      check: check,
     },
     success: function (response) {
       $("#modalDiv").html(response);
     },
   });
- 
 }
 
 // placeorder
-function placeorder(phoneNumber, token)
-{
+function placeorder(phoneNumber, token) {
   var paymentMethod = $("input[name='payment_option']:checked").val();
   var name = $("#name").val();
   var address = $("#address").val();
@@ -811,25 +848,25 @@ function placeorder(phoneNumber, token)
   var additionalPhone = $("#additionalPhone").val();
   var additionalInfo = $("#additionalInfo").val();
   var flag = 1;
-  var check = 'placeOrder';
+  var check = "placeOrder";
   if (name == "") {
-    $("#name").css({ "border": "1px solid red" });
+    $("#name").css({ border: "1px solid red" });
     flag = 0;
   }
   if (address == "") {
-    $("#address").css({ "border": "1px solid red" });
+    $("#address").css({ border: "1px solid red" });
     flag = 0;
   }
   if (area == "") {
-    $("#area").css({ "border": "1px solid red" });
+    $("#area").css({ border: "1px solid red" });
     flag = 0;
   }
   if (phone == "") {
-    $("#phone").css({ "border": "1px solid red" });
+    $("#phone").css({ border: "1px solid red" });
     flag = 0;
   }
   if (town == "") {
-    $("#town").css({ "border": "1px solid red" });
+    $("#town").css({ border: "1px solid red" });
     flag = 0;
   }
   if (flag == 1) {
@@ -847,60 +884,58 @@ function placeorder(phoneNumber, token)
         additionalInfo: additionalInfo,
         paymentMethod: paymentMethod,
         token: token,
-        check: check
+        check: check,
       },
       success: function (response) {
         console.log(response);
-        if (response == "success") {
-          cartItem();
-          alertMessageSuccess("Oder Place Success.");
-        window.location.replace("page-account.php");
-          
-        }
+        // if (response == "success") {
+        //   cartItem();
+        //   alertMessageSuccess("Oder Place Success.");
+        //   window.location.replace("page-account.php");
+        // }
       },
     });
   }
 }
 
 // searchItem
-function searchItem(productSearchItem)
-{
+function searchItem(productSearchItem) {
   var categoryName = $("#category_name").val();
   var check = "searchItem";
-  if (productSearchItem.length > 2)
-  {
+  if (productSearchItem.length > 2) {
     $.ajax({
       url: "pages/searchAction.php",
       type: "POST",
-  
+
       data: {
         categoryName: categoryName,
-        productSearchItem:productSearchItem,
-        check: check
+        productSearchItem: productSearchItem,
+        check: check,
       },
       success: function (response) {
         $("#searchBox").fadeIn("slow");
         $("#searchBox").html(response);
 
-        window.addEventListener('click', function(e){   
-          if (document.getElementById('searchBox').contains(e.target)){
+        window.addEventListener("click", function (e) {
+          if (document.getElementById("searchBox").contains(e.target)) {
           } else {
             $("#searchBox").hide();
           }
         });
-
-
       },
     });
-  }
-  else {
+  } else {
     $("#searchBox").html("");
   }
 }
 
-function viewAllItem(categoryId, itemString)
-{
-  window.location.replace("/nest-frontend/shop-grid-right.php?product_name="+itemString+"&category="+categoryId);
+function viewAllItem(categoryId, itemString) {
+  window.location.replace(
+    "/nest-frontend/shop-grid-right.php?product_name=" +
+      itemString +
+      "&category=" +
+      categoryId
+  );
   // var check = "viewAllItem";
   // $.ajax({
   //   url: "pages/searchAction.php",
@@ -916,6 +951,4 @@ function viewAllItem(categoryId, itemString)
 
   //   },
   // });
-
-
 }

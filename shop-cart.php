@@ -107,7 +107,8 @@ include 'inc/header.php';
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="cart-action d-flex justify-content-between">
-                    <a class="btn" href="index.php"><i class="fi-rs-arrow-left mr-10"></i>Continue Shopping</a>
+                    <a class="btn  mr-10 mb-sm-15" href="index.php"><i class="fi-rs-arrow-left mr-10"></i>Continue
+                        Shopping</a>
                     <a onclick="updateCart(<?php echo $totalCartItem; ?>)" class="btn  mr-10 mb-sm-15"><i
                             class="fi-rs-refresh mr-10"></i>Update Cart</a>
                 </div>

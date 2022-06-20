@@ -11,15 +11,28 @@
     /*-----------------
         Menu Stick
     -----------------*/
-    var header = $(".sticky-bar");
     var win = $(window);
     win.on("scroll", function () {
         var scroll = win.scrollTop();
+
+        var header = $(".sticky-bar");
         if (scroll < 200) {
             header.removeClass("stick");
             $(".header-style-2 .categories-dropdown-active-large").removeClass("open");
             $(".header-style-2 .categories-button-active").removeClass("open");
         } else {
+        if (screen.width < 991) { 
+            // console.log('<991');
+            
+            $("#web-sticky").removeClass('sticky-bar');
+            $("#mobile-sticky").addClass('sticky-bar');
+        }
+        if (screen.width > 991) { 
+            // console.log('>991');
+            $("#web-sticky").addClass('sticky-bar');
+            $("#mobile-sticky").removeClass('sticky-bar');
+        }
+
             header.addClass("stick");
         }
     });
