@@ -7092,6 +7092,7 @@ h6.post-title {
 
 .logo.logo-width-1 {
   margin-right: 70px;
+  
 }
 
 .logo.logo-width-1 a img {
@@ -11287,7 +11288,7 @@ footer .hotline img {
   }
   .logo.logo-width-1 {
     margin-right: 0;
-    /* position: absolute; */
+    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -11538,16 +11539,70 @@ footer .hotline img {
   .custom-modal .modal-dialog {
     max-width: 720px !important;
   }
+  .header-wrap.header-space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  .mobile-promotion {
+  /* .mobile-promotion {
     display: block;
     padding: 7px 0;
     text-align: center;
     background: #83b735;
     color: #fff;
+  } */
+  .mobile-promotion {
+    display: block;
+    padding: 0px 0;
+    text-align: center;
+    background: #83b735;
+    color: #fff;
+    /* margin-bottom: 0px; */
+}
+  .logo.logo-width-1 {
+    margin-right: 70px;
+    position: absolute;
+    left: 45%;
   }
+  .header-wrap.header-space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    /* margin-top: 20px; */
+}
+.logo.logo-width-1 a img {
+  width: 75px;
+  min-width: 61px;
+}
+.header-action-2 .header-action-icon-2 > a span.pro-count {
+  position: absolute;
+  right: -7px;
+  top: 1px;
+  color: #ffffff;
+  height: 18px;
+  width: 15px;
+  border-radius: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.header-action-2 .header-action-icon-2 > a img {
+  width: 83%;
+  max-width: 20px;
+}
+.burger-icon {
+  position: relative;
+  width: 21px;
+  height: 19px;
+  cursor: pointer;
+  -webkit-transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 }
 
 /*Mobile landscape*/
@@ -12629,4 +12684,131 @@ scrollbar-width: none;  /* Firefox */
   position: absolute;
     top: 32px;
     left: 10px;
+}
+
+.icontext {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: top;
+  -ms-flex-align: top;
+  align-items: top;
+}
+.align-items-start {
+  -webkit-box-align: start !important;
+  -ms-flex-align: start !important;
+  align-items: flex-start !important;
+}
+
+.icontext .icon {
+  position: relative;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.icontext span {
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+}
+.icon-sm {
+  width: 48px;
+  height: 48px;
+  line-height: 48px !important;
+  font-size: 20px;
+}
+.icon-xs, .icon-sm, .icon-md, .icon-lg {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+}
+.bg-primary-light {
+  background-color: rgba(59, 183, 126, 0.2) !important;
+}
+
+.material-icons {
+  vertical-align: unset;
+}
+.text-primary {
+  color: #3BB77E !important;
+}
+.material-icons {
+  font-family: "Material Icons Round";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 22px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 0.9;
+  text-transform: none;
+  letter-spacing: normal;
+  -ms-word-wrap: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+.dlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+[class*="dlist"] {
+  margin-bottom: 5px;
+}
+
+.dlist dt {
+  width: 150px;
+  font-weight: normal;
+}
+.dlist dd {
+  margin-left: 30px;
+  vertical-align: baseline;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin-bottom: 0;
+  text-align: right;
+}
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+a.itemside {
+  color: initial;
+  text-decoration: none;
+}
+.itemside {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.itemside .aside, .itemside .left {
+  position: relative;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }

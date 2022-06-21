@@ -55,7 +55,6 @@ if ($_POST['check'] == "otpCheck") {
     $server_output = curl_exec($ch); //output will be here
     curl_close($ch);
     $response = json_decode($server_output);
-    // print_r($response);
     if ($response->message == "success") {
 
         if (session_id() == '') {

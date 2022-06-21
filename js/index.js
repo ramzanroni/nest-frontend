@@ -761,6 +761,7 @@ function checkOTP(phone) {
       },
       success: function (response) {
         console.log(response);
+
         if (response == "success") {
           // window.location.href = "page-account.php";
           location.reload();
@@ -887,12 +888,14 @@ function placeorder(phoneNumber, token) {
         check: check,
       },
       success: function (response) {
-        console.log(response);
-        // if (response == "success") {
-        //   cartItem();
-        //   alertMessageSuccess("Oder Place Success.");
-        //   window.location.replace("page-account.php");
-        // }
+        // console.log(response);
+        if (response == "success") {
+          alertMessageSuccess("Order Place Success.");
+          setTimeout(function () {
+            cartItem();
+            window.location.replace("page-account.php");
+          }, 1000);
+        }
       },
     });
   }
@@ -951,4 +954,25 @@ function viewAllItem(categoryId, itemString) {
 
   //   },
   // });
+}
+
+// viewOrderDetails
+function viewOrderDetails(orderNumber) {
+  var check = "checkorderditails";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
+
+    data: {
+      orderNumber: orderNumber,
+      check: check,
+    },
+    success: function (response) {
+      $("#orderdata").html(response);
+    },
+  });
+}
+
+function orderDiv() {
+  $("#orders").load(" #orders > *");
 }

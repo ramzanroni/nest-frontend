@@ -24,6 +24,26 @@ $profileInfo = curl_exec($ch);
 curl_close($ch);
 $profileData = json_decode($profileInfo);
 
+
+// order details
+
+
+$url = "http://192.168.0.116/neonbazar_api/order_view.php?token=" . $_SESSION['token'];
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt(
+    $ch,
+    CURLOPT_HTTPHEADER,
+    array( //header will be here
+        'Content-Type: application/json',
+        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+    )
+);
+$orderInfo = curl_exec($ch);
+curl_close($ch);
+$orderData = json_decode($orderInfo);
+
 ?>
 
 <main class="main pages">
@@ -51,8 +71,8 @@ $profileData = json_decode($profileInfo);
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders"
-                                            role="tab" aria-controls="orders" aria-selected="false"><i
-                                                class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                            role="tab" aria-controls="orders" onclick="orderDiv()"
+                                            aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab"
@@ -96,50 +116,66 @@ $profileData = json_decode($profileInfo);
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3 class="mb-0">Your Orders</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Order</th>
-                                                            <th>Date</th>
-                                                            <th>Status</th>
-                                                            <th>Total</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>#1357</td>
-                                                            <td>March 45, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$125.00 for 2 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2468</td>
-                                                            <td>June 29, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$364.00 for 5 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2366</td>
-                                                            <td>August 02, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$280.00 for 3 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+
+                                    <div id="orderdata">
+                                        <?php
+
+                                        ?>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="mb-0">Your Orders</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Order</th>
+                                                                <th>Date</th>
+                                                                <th>Status</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            foreach ($orderData as $orderValue) {
+                                                            ?>
+                                                            <tr>
+                                                                <td><?php echo $orderValue->orderno; ?></td>
+                                                                <td><?php echo $orderValue->orddate; ?></td>
+                                                                <td><?php
+                                                                        if ($orderValue->so_status == 0) {
+                                                                        ?>
+                                                                    <span
+                                                                        class="badge rounded-pill alert-warning text-warning">Pending</span>
+                                                                    <?php
+                                                                        } elseif ($orderValue->so_status == 1) {
+                                                                        ?>
+                                                                    <span
+                                                                        class="badge rounded-pill alert-success text-success">Accept</span>
+                                                                    <?php
+                                                                        }
+                                                                        ?>
+                                                                </td>
+                                                                <td><button
+                                                                        onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)"
+                                                                        class="btn btn-small btn-success ">View</button>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="tab-pane fade" id="orderinfo">
+                                        Hello
+                                    </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="track-orders" role="tabpanel"
                                     aria-labelledby="track-orders-tab">
                                     <div class="card">
