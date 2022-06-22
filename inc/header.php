@@ -606,7 +606,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
                 <div class="mobile-header-logo">
-                    <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                    <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
                 </div>
                 <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                     <button class="close-style search-close">
@@ -619,28 +619,33 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 <div class="mobile-search search-style-3 mobile-header-border">
                     <form action="#">
                         <input type="text" onkeyup="searchProductMobile(this.value)" placeholder="Search for items…" />
-                        <button type="submit"><i class="fi-rs-search"></i></button>
+                        <!-- <button type="submit"><i class="fi-rs-search"></i></button> -->
                     </form>
                 </div>
-                <div class="search-box col-12" id="searchResultBox">
+                <div class="mobile-menu-wrap mobile-header-border search-box-mobile" id="searchResultBox">
                 </div>
                 <div class="mobile-menu-wrap mobile-header-border">
                     <!-- mobile menu start -->
                     <nav>
                         <ul class="mobile-menu font-heading">
-                            <!-- <li class="menu-item-has-children">
-                                <a href="index.php">Home</a>
+                            <li class="menu-item-has-children">
+                                <a>Category</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
-                                    <li><a href="index-5.html">Home 5</a></li>
-                                    <li><a href="index-6.html">Home 6</a></li>
-                                </ul> -->
+                                    <?php
+
+                                    foreach ($categoryItemData as $categoryValueMobile) {
+                                    ?>
+                                    <li><a
+                                            href="shop-grid-right.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
+                                    </li>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop-grid-right.html">shop</a>
+                                <a>shop</a>
                                 <ul class="dropdown">
                                     <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>

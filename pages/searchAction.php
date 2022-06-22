@@ -2,7 +2,12 @@
 if ($_POST['check'] == "searchItem") {
     $categoryId = $_POST['categoryName'];
     $productSearchItem = $_POST['productSearchItem'];
-    $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($productSearchItem) . '&category=' . $categoryId; //url will be here
+    if ($categoryId == "") {
+        $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($productSearchItem) . '&category=';
+    } else {
+        $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($productSearchItem) . '&category=' . $categoryId; //url will be here
+    }
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -22,7 +27,7 @@ if ($_POST['check'] == "searchItem") {
 ?>
 <?php
     $i = 1;
-    if ($totalProduct > 1) {
+    if ($totalProduct > 0) {
         foreach ($searchData as $itemValue) {
             if ($i % 2 != 0) {
                 echo '<div class="row">';
@@ -56,11 +61,13 @@ if ($_POST['check'] == "searchItem") {
 
         ?>
 <div class="row">
-    <div class="col-12 text-center p-3 border-top">
+    <div class="col-12 text-center p-3">
         <a onclick="viewAllItem('<?php echo $categoryId; ?>','<?php echo  $productSearchItem; ?>')">Show All</a>
     </div>
 </div>
 <?php
+    } else {
+        echo "Nothing found.";
     }
     ?>
 <?php
@@ -193,5 +200,54 @@ if ($_POST['check'] == "viewAllItem") {
         ?>
 </div>
 <?php
+}
+
+if ($_POST['check'] == "searchItemMobile") {
+    $searchString = $_POST['searchString'];
+    $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($searchString) . '&category='; //url will be here
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt(
+        $ch,
+        CURLOPT_HTTPHEADER,
+        array( //header will be here
+            'Content-Type: application/json',
+            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        )
+    );
+    $categoryInfo = curl_exec($ch);
+    curl_close($ch);
+    $searchData = json_decode($categoryInfo);
+    $totalProduct = count($searchData);
+    if ($totalProduct > 0) {
+    ?>
+<div class="col-12">
+    <?php
+            $productSliceArr = array_slice($searchData, 0, 10, true);
+            foreach ($productSliceArr as $searchItemValue) {
+            ?>
+    <div class="row border-bottom p-2">
+        <div class="col-3 p-2 float-start">
+            <img src="//<?php echo $searchItemValue->img; ?>" alt="" width="40px" height="40px">
+        </div>
+        <div class="col-7 float-end pt-10">
+            <a href="shop-product-right.php?product_id=<?php echo $searchItemValue->stockid; ?>"
+                class="h6"><?php echo $searchItemValue->description; ?></a><br>
+            <span
+                class="bg-brand mt-10 pt-1 pb-1 pr-10 pl-10 text-white border-radius-10">৳<?php echo $searchItemValue->webprice; ?></span>
+        </div>
+    </div>
+    <?php
+            }
+            ?>
+</div>
+<div class="col-12 text-center p-3 border-bottom">
+    <a onclick="viewAllItemMobile('<?php echo  $searchString; ?>')">Show All</a>
+</div>
+<?php
+    } else {
+        echo "No product found..!";
+    }
 }
 ?>

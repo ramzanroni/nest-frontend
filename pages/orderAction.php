@@ -132,7 +132,7 @@ if ($_POST['check'] == "checkorderditails") {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="table_detail">
                             <thead>
                                 <tr>
                                     <th width="40%">Product</th>
@@ -144,9 +144,10 @@ if ($_POST['check'] == "checkorderditails") {
                             <tbody>
                                 <?php
                                     $total = 0;
+                                    $flag = 1;
                                     foreach ($orderDetails as $orderItemValue) {
                                     ?>
-                                <tr>
+                                <tr onclick="showHideRow('hidden_row<?php echo $flag; ?>', <?php echo $flag; ?>)">
                                     <td>
                                         <a class="itemside"
                                             href="http://localhost/nest-frontend/shop-product-right.php?product_id=<?php echo $orderItemValue->stockid; ?>">
@@ -162,8 +163,16 @@ if ($_POST['check'] == "checkorderditails") {
                                     <td class="text-end">৳
                                         <?php echo ($orderItemValue->unitprice * $orderItemValue->quantity); ?></td>
                                 </tr>
+                                <tr id="hidden_row<?php echo $flag; ?>" class="hidden_row">
+                                    <td colspan=4 id="itemDetails<?php echo $flag; ?>">
+                                        Person-1 is 24 years old and
+                                        he is a computer programmer
+                                        he earns 60000 per month
+                                    </td>
+                                </tr>
                                 <?php
                                         $total = $total + ($orderItemValue->unitprice * $orderItemValue->quantity);
+                                        $flag++;
                                     }
                                     ?>
 

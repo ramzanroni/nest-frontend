@@ -70,6 +70,8 @@ $(".close-btn").click(function () {
 $(document).ready(function () {
   cartItem();
   $("#searchBox").hide();
+  $("#searchResultBox").hide();
+
   // $("#preloader-active").hide();
 });
 
@@ -928,7 +930,7 @@ function searchItem(productSearchItem) {
       },
     });
   } else {
-    $("#searchBox").html("");
+    $("#searchBox").hide();
   }
 }
 
@@ -975,4 +977,49 @@ function viewOrderDetails(orderNumber) {
 
 function orderDiv() {
   $("#orders").load(" #orders > *");
+}
+
+function showHideRow(row, flagid) {
+  $("#" + row).toggle();
+  $("#itemDetails" + flagid).html("working" + flagid);
+}
+
+// searchProductMobile
+function searchProductMobile(searchString) {
+  var check = "searchItemMobile";
+  if (searchString.length > 2) {
+    $.ajax({
+      url: "pages/searchAction.php",
+      type: "POST",
+
+      data: {
+        searchString: searchString,
+        check: check,
+      },
+      success: function (response) {
+        if (response != "") {
+          $("#searchResultBox").fadeIn("slow");
+          $("#searchResultBox").html(response);
+        }
+
+        window.addEventListener("click", function (e) {
+          if (document.getElementById("searchResultBox").contains(e.target)) {
+          } else {
+            $("#searchResultBox").hide();
+          }
+        });
+      },
+    });
+  } else {
+    $("#searchResultBox").hide("");
+  }
+  // $("#searchResultBox").html(searchString);
+}
+
+function viewAllItemMobile(searchSrt) {
+  window.location.replace(
+    "/nest-frontend/shop-grid-right.php?product_name=" +
+      searchSrt +
+      "&category="
+  );
 }
