@@ -979,11 +979,6 @@ function orderDiv() {
   $("#orders").load(" #orders > *");
 }
 
-function showHideRow(row, flagid) {
-  $("#" + row).toggle();
-  $("#itemDetails" + flagid).html("working" + flagid);
-}
-
 // searchProductMobile
 function searchProductMobile(searchString) {
   var check = "searchItemMobile";
@@ -1022,4 +1017,20 @@ function viewAllItemMobile(searchSrt) {
       searchSrt +
       "&category="
   );
+}
+
+function showHideRow(row, flagid) {
+  $("#" + row).toggle();
+  var check = "itemDetails";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
+
+    data: {
+      check: check,
+    },
+    success: function (response) {
+      $("#itemDetails" + flagid).html(response);
+    },
+  });
 }
