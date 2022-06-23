@@ -228,45 +228,48 @@ function cartPopUp() {
       },
       success: function (response) {
         var cartData = JSON.parse(response);
-        // console.log(cartData);
-        var sum = 0;
-        var html = "<ul>";
-        for (let i = 0; i < cartData.length; i++) {
-          var pName = "'" + cartData[i].productName + "'";
-          var pImg = "'" + cartData[i].productImage + "'";
+        if (cartData.length > 0) {
+          // console.log(cartData);
+          var sum = 0;
+          var html = "<ul>";
+          for (let i = 0; i < cartData.length; i++) {
+            var pName = "'" + cartData[i].productName + "'";
+            var pImg = "'" + cartData[i].productImage + "'";
+            html +=
+              '<li><div class="shopping-cart-img"><a href="shop-product-right.php?product_id=' +
+              cartData[i].productID +
+              '"><img alt="Nest" src="//' +
+              cartData[i].productImage +
+              '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php?product_id=' +
+              cartData[i].productID +
+              '">' +
+              cartData[i].productName.substring(0, 15) +
+              "...</a></h4>   <h4><span>" +
+              cartData[i].productQuantity +
+              " × </span>" +
+              cartData[i].productprice +
+              '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(' +
+              cartData[i].productID +
+              "," +
+              pName +
+              "," +
+              cartData[i].productprice +
+              "," +
+              pImg +
+              "," +
+              i +
+              ')"><i class="fi-rs-cross-small"></i></a></div></li>';
+            sum = sum + cartData[i].productprice * cartData[i].productQuantity;
+          }
+          html += "</ul>";
           html +=
-            '<li><div class="shopping-cart-img"><a href="shop-product-right.php?product_id=' +
-            cartData[i].productID +
-            '"><img alt="Nest" src="//' +
-            cartData[i].productImage +
-            '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php?product_id=' +
-            cartData[i].productID +
-            '">' +
-            cartData[i].productName.substring(0, 15) +
-            "...</a></h4>   <h4><span>" +
-            cartData[i].productQuantity +
-            " × </span>" +
-            cartData[i].productprice +
-            '</h4></div><div class="shopping-cart-delete"><a onclick="deleteCatItem(' +
-            cartData[i].productID +
-            "," +
-            pName +
-            "," +
-            cartData[i].productprice +
-            "," +
-            pImg +
-            "," +
-            i +
-            ')"><i class="fi-rs-cross-small"></i></a></div></li>';
-          sum = sum + cartData[i].productprice * cartData[i].productQuantity;
+            '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
+            sum +
+            '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
+        } else {
+          var html = "No product in your cart.";
         }
-        html += "</ul>";
-        html +=
-          '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
-          sum +
-          '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
         $("#cartItem" + mobile).html(html);
-        console.log("ok");
       },
     });
   }
@@ -1019,7 +1022,7 @@ function viewAllItemMobile(searchSrt) {
   );
 }
 
-function showHideRow(row, flagid) {
+function showHideRow(row, flagid, orderProductID, orderNumber) {
   $("#" + row).toggle();
   var check = "itemDetails";
   $.ajax({
@@ -1027,10 +1030,100 @@ function showHideRow(row, flagid) {
     type: "POST",
 
     data: {
+      orderProductID: orderProductID,
+      orderNumber: orderNumber,
       check: check,
     },
     success: function (response) {
       $("#itemDetails" + flagid).html(response);
     },
   });
+}
+
+// OrderCancel
+
+function OrderCancel(orderId) {
+  var check = "cancelFullOrder";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
+
+    data: {
+      orderId: orderId,
+      check: check,
+    },
+    success: function (response) {
+      if (response == "success") {
+        alertMessageSuccess("Order Cancel Success.");
+        $("#orderdata").load(" #orderdata > *");
+      }
+    },
+  });
+}
+
+// deleteOrderItem
+function deleteOrderItem(itemId) {
+  var check = "deleteOrderItem";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
+
+    data: {
+      itemId: itemId,
+      check: check,
+    },
+    success: function (response) {
+      if (response == "success") {
+        alertMessageSuccess("Item Success.");
+        $("#" + itemId).hide();
+      }
+    },
+  });
+}
+
+// updatePhone
+function updatePhone()
+{
+  var newPhone = $("#newPhone").val();
+  if ($.isNumeric(newPhone)) {
+    var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
+    if (!phoneReg.test(newPhone)) {
+      $("#phoneError").html("Please Enter a Valid Number");
+    } else {
+      $("#phoneError").html("");
+      var check = "userPhoneUpOTP";
+      $.ajax({
+        url: "pages/userAction.php",
+        type: "POST",
+
+        data: {
+          newPhone: newPhone,
+          check: check,
+        },
+        success: function (response) {
+          console.log(response);
+          if (response == "success") {
+            var phone = "'" + newPhone + "'";
+            var htmlgetOtp =
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"           placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
+              phone +
+              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
+              phone +
+              ')">Log in</button></div>';
+            $("#loginDiv").html(htmlgetOtp);
+            $("#phoneField").hide();
+            timmer();
+            setTimeout(function () {
+              $("#countDown").hide();
+              $("#phoneField").show();
+            }, 60000);
+          } else {
+            $("#phoneError").html(response);
+          }
+        },
+      });
+    }
+  } else {
+    $("#errorNumMessage").html("Please Enter a Valid Number");
+  }
 }

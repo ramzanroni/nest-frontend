@@ -3369,8 +3369,12 @@ table {
   margin-bottom: 1.5rem;
   border-collapse: collapse;
   vertical-align: middle;
+  font-size: 13px;
+  color: #495058 !important;
 }
-
+table thead {
+  background: #f7f8f9;
+}
 table td,
 table th {
   padding: 10px 20px;
@@ -3382,7 +3386,9 @@ table thead > tr > th {
   vertical-align: middle;
   border-bottom: 0;
 }
-
+.table-light {
+  color: #495058 !important;
+}
 table p {
   margin-bottom: 0;
 }
@@ -13077,6 +13083,25 @@ footer .hotline img {
   }
   .archive-header-3 .archive-header-3-inner {
     display: block;
+  }
+
+  .table-responsive table {
+    min-width: unset;
+  }
+  .table-responsive table td {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .table-responsive table td::before {
+    content: attr(data-title) " ";
+    float: left;
+    text-transform: capitalize;
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  .table-responsive table thead {
+    display: none;
   }
 }
 

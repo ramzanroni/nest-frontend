@@ -477,7 +477,7 @@ if (isset($_GET['category_id'])) {
                     </ul>
                 </div>
                 <!-- Fillter By Price -->
-                <div class="sidebar-widget price_range range mb-30">
+                <!-- <div class="sidebar-widget price_range range mb-30">
                     <h5 class="section-title style-1 mb-30">Fill by price</h5>
                     <div class="price-filter">
                         <div class="price-filter-inner">
@@ -529,7 +529,7 @@ if (isset($_GET['category_id'])) {
                     </div>
                     <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
                         Fillter</a>
-                </div>
+                </div> -->
                 <!-- Product sidebar Widget -->
                 <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                     <h5 class="section-title style-1 mb-30">New products</h5>
