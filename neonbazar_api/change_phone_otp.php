@@ -19,12 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($findData == 1) {
                 date_default_timezone_set("Asia/Dhaka");
-                if (session_id() == '') {
-                    session_start();
-                }
                 if (array_key_exists("phoneNumber", $data)) {
                     $phoneNumber = $data->phoneNumber;
-                    $findRecord = "SELECT * FROM `temp_otp` WHERE `phone`='$phoneNumber' AND `flag`=''";
+                    $findRecord = "SELECT * FROM `temp_otp` WHERE `phone`='$phoneNumber'";
                     $statement = $conn->prepare($findRecord);
                     $statement->execute();
                     $number_of_rows = $statement->rowCount();
@@ -32,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $otpNumber = rand(100000, 999999);
                         $date = strtotime(date('Y-m-d H:i:s'));
                         $expDate = date('Y-m-d H:i:s', strtotime('+2 minutes', $date));
-
-                        $addPhone = "INSERT INTO `temp_otp`(`phone`, `otp`, `expair_at`, `counter`,`flag`) VALUES ('$phoneNumber','$otpNumber','$expDate',1,'')";
+                        $addPhone = "INSERT INTO `temp_otp`(`phone`, `otp`, `expair_at`, `counter`, `flag`) VALUES ('$phoneNumber','$otpNumber','$expDate',1,'chnagephone')";
                         $insertStatement = $conn->prepare($addPhone);
                         $insertStatement->execute();
 
@@ -94,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 if (array_key_exists("optNumber", $data)) {
                     $otp = $data->optNumber;
-                    $phone = $data->phone;
-                    $checkValidity = "SELECT * FROM `temp_otp` WHERE `phone`='$phone' AND `otp`='$otp' AND `flag`=''";
+                    $phonenew = $data->phoneNew;
+                    $phoneold = $data->phoneOld;
+
+                    $checkValidity = "SELECT * FROM `temp_otp` WHERE `phone`='$phonenew' AND `otp`='$otp' AND `flag`='chnagephone'";
 
                     $validityStatement = $conn->prepare($checkValidity);
                     $validityStatement->execute();
@@ -103,51 +101,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($countData > 0) {
 
                         $currnetTime = date('Y-m-d H:i:s');
-                        $checkExpair = "SELECT * FROM `temp_otp` WHERE `phone`='$phone' AND `otp`='$otp' AND `expair_at`>= '$currnetTime' AND `flag`=''";
+                        $checkExpair = "SELECT * FROM `temp_otp` WHERE `phone`='$phonenew' AND `otp`='$otp' AND `expair_at`>= '$currnetTime' AND `flag`='chnagephone'";
                         $checkExpairStatement = $conn->prepare($checkExpair);
                         $checkExpairStatement->execute();
                         $countExpari = $checkExpairStatement->rowCount();
                         if ($countExpari > 0) {
                             // delete and insert
-                            $deleteOtp = "DELETE FROM `temp_otp` WHERE `phone`='$phone'";
+                            $deleteOtp = "DELETE FROM `temp_otp` WHERE `phone`='$phonenew' AND `flag`='chnagephone'";
                             $deleteOtpStatement = $conn->prepare($deleteOtp);
                             $deleteOtpStatement->execute();
 
-                            $checkuser = "SELECT * FROM `users` WHERE `phone`='$phone'";
-                            $userCheckStatement = $conn->prepare($checkuser);
-                            $userCheckStatement->execute();
-                            $userCheckCount = $userCheckStatement->rowCount();
-
-                            if ($userCheckCount == 0) {
-                                // insert user 
-                                $dateTime = date('Y-m-d H:i:s');
-                                $token = base64_encode($phone . $dateTime);
-                                $insertUser = "INSERT INTO `users`(`userid`, `password`,`phone`, `address1`,`user_token`) VALUES ('','','$phone','','$token')";
-
-                                $inserUserStatement = $conn->prepare($insertUser);
-                                $inserUserStatement->execute();
-                                echo json_encode(
-                                    array(
-                                        'message' => "success",
-                                        'userPhone' => $phone,
-                                        'userToken' => $token
-                                    )
-                                );
-                            } else {
-                                // select user
-                                $selectUserData = "SELECT * FROM `users` WHERE `phone`='$phone'";
-                                $userdataStatement = $conn->prepare($selectUserData);
-                                $userdataStatement->execute();
-                                $userData = $userdataStatement->fetch();
-
-                                echo json_encode(
-                                    array(
-                                        'message' => "success",
-                                        'userPhone' => $phone,
-                                        'userToken' => $userData['user_token']
-                                    )
-                                );
-                            }
+                            // updatePhone
+                            $phoneUpdateSQL = "UPDATE `users` SET `phone`='$phonenew' WHERE `phone`='$phoneold'";
+                            $updateStatement = $conn->prepare($phoneUpdateSQL);
+                            $updateStatement->execute();
+                            echo json_encode(
+                                array(
+                                    'message' => "success"
+                                )
+                            );
                         } else {
                             echo json_encode(
                                 array(

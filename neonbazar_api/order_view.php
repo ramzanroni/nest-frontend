@@ -1,8 +1,6 @@
 <?php
 include 'connection.php';
 
-$API_Key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ";
-
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
@@ -11,7 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $allHeaders = getallheaders();
     if ($allHeaders['Content-Type'] == 'application/json') {
         if (!empty($allHeaders['Authorization'])) {
-            if ($API_Key == $allHeaders['Authorization']) {
+            $apitoken = $allHeaders['Authorization'];
+            $findAPI = "SELECT * FROM api WHERE api_key='$apitoken'";
+            $findAPIStatement = $conn->prepare($findAPI);
+            $findAPIStatement->execute();
+            $findData = $findAPIStatement->rowCount();
+
+            if ($findData == 1) {
                 if ($_GET['token'] != '') {
                     $token = $_GET['token'];
                     $orderInfo = "SELECT salesorders.orderno AS 'orderno', salesorders.orddate AS 'orddate', salesorders.so_status AS 'so_status' FROM salesorders INNER JOIN users ON users.id = salesorders.debtorno WHERE users.user_token='$token' ORDER BY salesorders.orddate DESC";
