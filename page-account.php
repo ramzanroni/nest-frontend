@@ -1,14 +1,16 @@
 ﻿<?php
-session_start();
-if ($_SESSION['phone'] == '') {
-    header("Location: login.php");
-}
 include 'inc/header.php';
+// include 'inc/function.php';
+session_start();
+if (getPhone() == '') {
+    header("Location: index.php");
+}
+
 
 
 // user profile data 
 
-$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . $_SESSION['phone'];
+$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . getPhone();
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -17,7 +19,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        'Authorization: ' . APIKEY,
     )
 );
 $profileInfo = curl_exec($ch);
@@ -28,7 +30,7 @@ $profileData = json_decode($profileInfo);
 // order details
 
 
-$url = "http://192.168.0.116/neonbazar_api/order_view.php?token=" . $_SESSION['token'];
+$url = "http://192.168.0.116/neonbazar_api/order_view.php?token=" . getToken();
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -37,7 +39,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        'Authorization: ' . APIKEY,
     )
 );
 $orderInfo = curl_exec($ch);
@@ -90,12 +92,12 @@ $orderData = json_decode($orderInfo);
                                 <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="mb-0"><?php echo $_SESSION['phone']; ?></h3>
+                                            <h3 class="mb-0"><?php echo getPhone(); ?></h3>
                                         </div>
                                         <div class="card-body">
                                             <p>
                                                 From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
-                                                manage your <a data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo $_SESSION['phone']; ?>')">Change Your Phone Number</a>
+                                                manage your <a data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo getPhone(); ?>')">Change Your Phone Number</a>
                                             </p>
                                         </div>
                                     </div>
@@ -251,26 +253,11 @@ $orderData = json_decode($orderInfo);
                                                     <input required="" class="form-control" name="userAddress" value="<?php echo $profileData->address; ?>" type="text" id="userAddress" />
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" onclick="updateUserData('<?php echo $_SESSION['phone']; ?>')">Save
+                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" onclick="updateUserData('<?php echo getPhone(); ?>')">Save
                                                         Change</button>
                                                 </div>
                                             </div>
                                             <!-- </form> -->
-                                        </div>
-                                    </div>
-                                    <div class="card border mt-4 p-3">
-                                        <div class="card-header">
-                                            <h5>Change Phone</h5>
-                                        </div>
-                                        <div class="card-body" id="phoneField">
-                                            <div class="form-group col-md-12">
-                                                <label>Phone <span class="required">*</span></label>
-                                                <input required="" class="form-control" name="newPhone" value="<?php echo $_SESSION['phone']; ?>" type="text" id="newPhone" />
-                                                <small id="phoneError" class="text-danger"></small>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <button type="submit" class="btn btn-fill-out submit font-weight-bold" onclick="updatePhone()">Send OTP</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

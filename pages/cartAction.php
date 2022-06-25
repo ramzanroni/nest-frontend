@@ -1,4 +1,5 @@
 <?php
+include '../inc/function.php';
 if ($_POST['check'] == 'addtocart') {
     $productID = $_POST['productID'];
     $productName = $_POST['productName'];

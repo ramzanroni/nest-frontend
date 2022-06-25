@@ -14,7 +14,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        'Authorization: ' . APIKEY,
     )
 );
 $productInfo = curl_exec($ch);
@@ -32,7 +32,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        'Authorization: ' . APIKEY,
     )
 );
 $relatedProduct = curl_exec($ch);
@@ -67,9 +67,9 @@ $relatedProductData = json_decode($relatedProduct);
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
                                             ?>
-                                            <figure class="border-radius-10">
-                                                <img src="//<?php echo $multiImgValue; ?>" alt="product image" />
-                                            </figure>
+                                                <figure class="border-radius-10">
+                                                    <img src="//<?php echo $multiImgValue; ?>" alt="product image" />
+                                                </figure>
                                             <?php
                                             }
                                             ?>
@@ -97,7 +97,7 @@ $relatedProductData = json_decode($relatedProduct);
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
                                             ?>
-                                            <div><img src="//<?php echo $multiImgValue; ?>" alt="product image" /></div>
+                                                <div><img src="//<?php echo $multiImgValue; ?>" alt="product image" /></div>
                                             <?php
                                             }
                                             ?>
@@ -132,8 +132,7 @@ $relatedProductData = json_decode($relatedProduct);
                                         </div> -->
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <span
-                                                    class="current-price text-brand">৳<?php echo $productData[0]->webprice; ?></span>
+                                                <span class="current-price text-brand">৳<?php echo $productData[0]->webprice; ?></span>
                                                 <!-- <span>
                                                     <span class="save-price font-md color3 ml-15">26% Off</span>
                                                     <span class="old-price font-md ml-15">$52</span>
@@ -160,18 +159,12 @@ $relatedProductData = json_decode($relatedProduct);
                                                 <!-- <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                                 <input type="text" name="quantity" class="qty-val" value="1" min="1">
                                                 <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a> -->
-                                                <a onclick="cartDecrementSingle()" class="qty-down"><i
-                                                        class="fi-rs-angle-small-down"></i></a>
-                                                <input type="text" name="quantity" id="itemQuantitySingle"
-                                                    class="qty-val" value="1" min="1">
-                                                <a onclick="cartInchrementSingle()" class="qty-up"><i
-                                                        class="fi-rs-angle-small-up"></i></a>
+                                                <a onclick="cartDecrementSingle()" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                                <input type="text" name="quantity" id="itemQuantitySingle" class="qty-val" value="1" min="1">
+                                                <a onclick="cartInchrementSingle()" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                             </div>
                                             <div class="product-extra-link2">
-                                                <button
-                                                    onclick="addtoCartSingle(<?php echo $productData[0]->stockid; ?>,'<?php echo $productData[0]->description; ?>',<?php echo $productData[0]->webprice; ?>,'<?php echo $productData[0]->img; ?>' )"
-                                                    type="submit" class="button button-add-to-cart"><i
-                                                        class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                <button onclick="addtoCartSingle(<?php echo $productData[0]->stockid; ?>,'<?php echo $productData[0]->description; ?>',<?php echo $productData[0]->webprice; ?>,'<?php echo $productData[0]->img; ?>' )" type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                 <!-- <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                     href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn hover-up"
@@ -186,8 +179,7 @@ $relatedProductData = json_decode($relatedProduct);
                                             </ul>
                                             <ul class="float-start">
                                                 <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                                <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#"
-                                                        rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
+                                                <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
                                                 <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span>
                                                 </li>
                                             </ul>
@@ -200,20 +192,16 @@ $relatedProductData = json_decode($relatedProduct);
                                 <div class="tab-style3">
                                     <ul class="nav nav-tabs text-uppercase">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
-                                                href="#Description">Description</a>
+                                            <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab"
-                                                href="#Additional-info">Additional info</a>
+                                            <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab"
-                                                href="#Vendor-info">Vendor</a>
+                                            <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab"
-                                                href="#Reviews">Reviews (3)</a>
+                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content shop_info_tab entry-main-content">
@@ -361,11 +349,9 @@ $relatedProductData = json_decode($relatedProduct);
                                                 </div>
                                             </div>
                                             <ul class="contact-infor mb-50">
-                                                <li><img src="assets/imgs/theme/icons/icon-location.svg"
-                                                        alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave
+                                                <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave
                                                         undefined Kent, Utah 53127 United States</span></li>
-                                                <li><img src="assets/imgs/theme/icons/icon-contact.svg"
-                                                        alt="" /><strong>Contact Seller:</strong><span>(+91) -
+                                                <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact Seller:</strong><span>(+91) -
                                                         540-025-553</span></li>
                                             </ul>
                                             <div class="d-flex mb-55">
@@ -399,26 +385,20 @@ $relatedProductData = json_decode($relatedProduct);
                                                     <div class="col-lg-8">
                                                         <h4 class="mb-30">Customer questions & answers</h4>
                                                         <div class="comment-list">
-                                                            <div
-                                                                class="single-comment justify-content-between d-flex mb-30">
+                                                            <div class="single-comment justify-content-between d-flex mb-30">
                                                                 <div class="user justify-content-between d-flex">
                                                                     <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-2.png"
-                                                                            alt="" />
-                                                                        <a href="#"
-                                                                            class="font-heading text-brand">Sienna</a>
+                                                                        <img src="assets/imgs/blog/author-2.png" alt="" />
+                                                                        <a href="#" class="font-heading text-brand">Sienna</a>
                                                                     </div>
                                                                     <div class="desc">
-                                                                        <div
-                                                                            class="d-flex justify-content-between mb-10">
+                                                                        <div class="d-flex justify-content-between mb-10">
                                                                             <div class="d-flex align-items-center">
-                                                                                <span
-                                                                                    class="font-xs text-muted">December
+                                                                                <span class="font-xs text-muted">December
                                                                                     4, 2022 at 3:12 pm </span>
                                                                             </div>
                                                                             <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating"
-                                                                                    style="width: 100%"></div>
+                                                                                <div class="product-rating" style="width: 100%"></div>
                                                                             </div>
                                                                         </div>
                                                                         <p class="mb-10">Lorem ipsum dolor sit amet,
@@ -427,32 +407,25 @@ $relatedProductData = json_decode($relatedProduct);
                                                                             obcaecati quos voluptate nesciunt facilis
                                                                             itaque modi commodi dignissimos sequi
                                                                             repudiandae minus ab deleniti totam officia
-                                                                            id incidunt? <a href="#"
-                                                                                class="reply">Reply</a>
+                                                                            id incidunt? <a href="#" class="reply">Reply</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div
-                                                                class="single-comment justify-content-between d-flex mb-30 ml-30">
+                                                            <div class="single-comment justify-content-between d-flex mb-30 ml-30">
                                                                 <div class="user justify-content-between d-flex">
                                                                     <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-3.png"
-                                                                            alt="" />
-                                                                        <a href="#"
-                                                                            class="font-heading text-brand">Brenna</a>
+                                                                        <img src="assets/imgs/blog/author-3.png" alt="" />
+                                                                        <a href="#" class="font-heading text-brand">Brenna</a>
                                                                     </div>
                                                                     <div class="desc">
-                                                                        <div
-                                                                            class="d-flex justify-content-between mb-10">
+                                                                        <div class="d-flex justify-content-between mb-10">
                                                                             <div class="d-flex align-items-center">
-                                                                                <span
-                                                                                    class="font-xs text-muted">December
+                                                                                <span class="font-xs text-muted">December
                                                                                     4, 2022 at 3:12 pm </span>
                                                                             </div>
                                                                             <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating"
-                                                                                    style="width: 80%"></div>
+                                                                                <div class="product-rating" style="width: 80%"></div>
                                                                             </div>
                                                                         </div>
                                                                         <p class="mb-10">Lorem ipsum dolor sit amet,
@@ -461,8 +434,7 @@ $relatedProductData = json_decode($relatedProduct);
                                                                             obcaecati quos voluptate nesciunt facilis
                                                                             itaque modi commodi dignissimos sequi
                                                                             repudiandae minus ab deleniti totam officia
-                                                                            id incidunt? <a href="#"
-                                                                                class="reply">Reply</a>
+                                                                            id incidunt? <a href="#" class="reply">Reply</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -470,22 +442,17 @@ $relatedProductData = json_decode($relatedProduct);
                                                             <div class="single-comment justify-content-between d-flex">
                                                                 <div class="user justify-content-between d-flex">
                                                                     <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-4.png"
-                                                                            alt="" />
-                                                                        <a href="#"
-                                                                            class="font-heading text-brand">Gemma</a>
+                                                                        <img src="assets/imgs/blog/author-4.png" alt="" />
+                                                                        <a href="#" class="font-heading text-brand">Gemma</a>
                                                                     </div>
                                                                     <div class="desc">
-                                                                        <div
-                                                                            class="d-flex justify-content-between mb-10">
+                                                                        <div class="d-flex justify-content-between mb-10">
                                                                             <div class="d-flex align-items-center">
-                                                                                <span
-                                                                                    class="font-xs text-muted">December
+                                                                                <span class="font-xs text-muted">December
                                                                                     4, 2022 at 3:12 pm </span>
                                                                             </div>
                                                                             <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating"
-                                                                                    style="width: 80%"></div>
+                                                                                <div class="product-rating" style="width: 80%"></div>
                                                                             </div>
                                                                         </div>
                                                                         <p class="mb-10">Lorem ipsum dolor sit amet,
@@ -494,8 +461,7 @@ $relatedProductData = json_decode($relatedProduct);
                                                                             obcaecati quos voluptate nesciunt facilis
                                                                             itaque modi commodi dignissimos sequi
                                                                             repudiandae minus ab deleniti totam officia
-                                                                            id incidunt? <a href="#"
-                                                                                class="reply">Reply</a>
+                                                                            id incidunt? <a href="#" class="reply">Reply</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -512,37 +478,27 @@ $relatedProductData = json_decode($relatedProduct);
                                                         </div>
                                                         <div class="progress">
                                                             <span>5 star</span>
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100">50%
+                                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
                                                             </div>
                                                         </div>
                                                         <div class="progress">
                                                             <span>4 star</span>
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                                aria-valuemax="100">25%
+                                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%
                                                             </div>
                                                         </div>
                                                         <div class="progress">
                                                             <span>3 star</span>
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 45%" aria-valuenow="45" aria-valuemin="0"
-                                                                aria-valuemax="100">45%
+                                                            <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%
                                                             </div>
                                                         </div>
                                                         <div class="progress">
                                                             <span>2 star</span>
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 65%" aria-valuenow="65" aria-valuemin="0"
-                                                                aria-valuemax="100">65%
+                                                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%
                                                             </div>
                                                         </div>
                                                         <div class="progress mb-30">
                                                             <span>1 star</span>
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-                                                                aria-valuemax="100">85%
+                                                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%
                                                             </div>
                                                         </div>
                                                         <a href="#" class="font-xs text-muted">How are ratings
@@ -556,41 +512,31 @@ $relatedProductData = json_decode($relatedProduct);
                                                 <div class="product-rate d-inline-block mb-30"></div>
                                                 <div class="row">
                                                     <div class="col-lg-8 col-md-12">
-                                                        <form class="form-contact comment_form" action="#"
-                                                            id="commentForm">
+                                                        <form class="form-contact comment_form" action="#" id="commentForm">
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="form-group">
-                                                                        <textarea class="form-control w-100"
-                                                                            name="comment" id="comment" cols="30"
-                                                                            rows="9"
-                                                                            placeholder="Write Comment"></textarea>
+                                                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
-                                                                        <input class="form-control" name="name"
-                                                                            id="name" type="text" placeholder="Name" />
+                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
-                                                                        <input class="form-control" name="email"
-                                                                            id="email" type="email"
-                                                                            placeholder="Email" />
+                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <div class="form-group">
-                                                                        <input class="form-control" name="website"
-                                                                            id="website" type="text"
-                                                                            placeholder="Website" />
+                                                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <button type="submit"
-                                                                    class="button button-contactForm">Submit
+                                                                <button type="submit" class="button button-contactForm">Submit
                                                                     Review</button>
                                                             </div>
                                                         </form>
@@ -612,22 +558,17 @@ $relatedProductData = json_decode($relatedProduct);
                                         foreach ($relatedProductData as $key => $reladetproductValue) {
 
                                         ?>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6 mt-2">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>"
-                                                            tabindex="
+                                            <div class="col-lg-3 col-md-4 col-12 col-sm-6 mt-2">
+                                                <div class="product-cart-wrap hover-up">
+                                                    <div class="product-img-action-wrap">
+                                                        <div class="product-img product-img-zoom">
+                                                            <a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>" tabindex="
                                                             0">
-                                                            <img class="default-img"
-                                                                src="//<?php echo $reladetproductValue->img; ?>"
-                                                                alt="" />
-                                                            <img class="hover-img"
-                                                                src="//<?php echo $reladetproductValue->img; ?>"
-                                                                alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- <div class="product-action-1">
+                                                                <img class="default-img" src="//<?php echo $reladetproductValue->img; ?>" alt="" />
+                                                                <img class="hover-img" src="//<?php echo $reladetproductValue->img; ?>" alt="" />
+                                                            </a>
+                                                        </div>
+                                                        <!-- <div class="product-action-1">
                                                         <a aria-label="Quick view" class="action-btn small hover-up"
                                                             data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
                                                                 class="fi-rs-search"></i></a>
@@ -638,28 +579,26 @@ $relatedProductData = json_decode($relatedProduct);
                                                             href="shop-compare.html" tabindex="0"><i
                                                                 class="fi-rs-shuffle"></i></a>
                                                     </div> -->
-                                                    <!-- <div class="product-badges product-badges-position product-badges-mrg">
+                                                        <!-- <div class="product-badges product-badges-position product-badges-mrg">
                                                             <span class="hot">Hot</span>
                                                         </div> -->
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>"
-                                                            tabindex="0"><?php echo $reladetproductValue->description; ?></a>
-                                                    </h2>
-                                                    <div class="product-rate-cover product-badges">
-                                                        <span
-                                                            class="font-small ml-5 text-muted hot"><?php echo $reladetproductValue->units; ?></span>
                                                     </div>
-                                                    <!-- <div class="rating-result" title="90%">
+                                                    <div class="product-content-wrap">
+                                                        <h2><a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>" tabindex="0"><?php echo $reladetproductValue->description; ?></a>
+                                                        </h2>
+                                                        <div class="product-rate-cover product-badges">
+                                                            <span class="font-small ml-5 text-muted hot"><?php echo $reladetproductValue->units; ?></span>
+                                                        </div>
+                                                        <!-- <div class="rating-result" title="90%">
                                                         <span> </span>
                                                     </div> -->
-                                                    <div class="product-price">
-                                                        <span>৳<?php echo $reladetproductValue->webprice; ?> </span>
-                                                        <!-- <span class="old-price">$245.8</span> -->
+                                                        <div class="product-price">
+                                                            <span>৳<?php echo $reladetproductValue->webprice; ?> </span>
+                                                            <!-- <span class="old-price">$245.8</span> -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         <?php
                                         }
                                         ?>
@@ -797,12 +736,10 @@ $relatedProductData = json_decode($relatedProduct);
 
                                 foreach ($categoryItemData as $categoryValue) {
                                 ?>
-                                <li>
-                                    <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>">
-                                        <img src="//<?php echo $categoryValue->categoryImg; ?>"
-                                            alt="" /><?php echo $categoryValue->categoryName; ?></a><span
-                                        class="count"><?php echo $categoryValue->item; ?></span>
-                                </li>
+                                    <li>
+                                        <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>">
+                                            <img src="//<?php echo $categoryValue->categoryImg; ?>" alt="" /><?php echo $categoryValue->categoryName; ?></a><span class="count"><?php echo $categoryValue->item; ?></span>
+                                    </li>
                                 <?php
                                 }
                                 ?>
@@ -835,10 +772,8 @@ $relatedProductData = json_decode($relatedProduct);
                                 <div class="price-filter-inner">
                                     <div id="slider-range" class="mb-20"></div>
                                     <div class="d-flex justify-content-between">
-                                        <div class="caption">From: <strong id="slider-range-value1"
-                                                class="text-brand"></strong></div>
-                                        <div class="caption">To: <strong id="slider-range-value2"
-                                                class="text-brand"></strong></div>
+                                        <div class="caption">From: <strong id="slider-range-value1" class="text-brand"></strong></div>
+                                        <div class="caption">To: <strong id="slider-range-value2" class="text-brand"></strong></div>
                                     </div>
                                 </div>
                             </div>
@@ -846,42 +781,35 @@ $relatedProductData = json_decode($relatedProduct);
                                 <div class="list-group-item mb-10 mt-10">
                                     <label class="fw-900">Color</label>
                                     <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox1" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
                                         <label class="form-check-label" for="exampleCheckbox1"><span>Red
                                                 (56)</span></label>
                                         <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox2" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="" />
                                         <label class="form-check-label" for="exampleCheckbox2"><span>Green
                                                 (78)</span></label>
                                         <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox3" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" value="" />
                                         <label class="form-check-label" for="exampleCheckbox3"><span>Blue
                                                 (54)</span></label>
                                     </div>
                                     <label class="fw-900 mt-15">Item Condition</label>
                                     <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox11" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" value="" />
                                         <label class="form-check-label" for="exampleCheckbox11"><span>New
                                                 (1506)</span></label>
                                         <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox21" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21" value="" />
                                         <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished
                                                 (27)</span></label>
                                         <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                            id="exampleCheckbox31" value="" />
+                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31" value="" />
                                         <label class="form-check-label" for="exampleCheckbox31"><span>Used
                                                 (45)</span></label>
                                     </div>
                                 </div>
                             </div>
-                            <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i
-                                    class="fi-rs-filter mr-5"></i>
+                            <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
                                 Fillter</a>
                         </div>
                         <!-- Product sidebar Widget -->

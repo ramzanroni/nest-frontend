@@ -678,6 +678,7 @@ function userLogin() {
     } else {
       $("#errorNumMessage").html("");
       var check = "userPhoneNumberSend";
+      console.log(phoneNumber);
       $.ajax({
         url: "pages/userAction.php",
         type: "POST",

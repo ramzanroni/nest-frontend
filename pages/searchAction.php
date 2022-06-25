@@ -1,4 +1,5 @@
 <?php
+include '../inc/function.php';
 if ($_POST['check'] == "searchItem") {
     $categoryId = $_POST['categoryName'];
     $productSearchItem = $_POST['productSearchItem'];
@@ -16,7 +17,7 @@ if ($_POST['check'] == "searchItem") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $categoryInfo = curl_exec($ch);
@@ -25,7 +26,7 @@ if ($_POST['check'] == "searchItem") {
     $totalProduct = count($searchData);
     // print_r($searchData);
 ?>
-<?php
+    <?php
     $i = 1;
     if ($totalProduct > 0) {
         foreach ($searchData as $itemValue) {
@@ -34,21 +35,19 @@ if ($_POST['check'] == "searchItem") {
             }
     ?>
 
-<div class="col-6 p-2 serchItemBox">
-    <div class="col-3 p-2 float-start">
-        <img src="//<?php echo $itemValue->img; ?>" alt="" width="80px" height="80px">
-    </div>
-    <div class="col-7 float-end">
-        <a href="shop-product-right.php?product_id=<?php echo $itemValue->stockid; ?>"
-            class="h6"><?php echo $itemValue->description; ?></a><br>
-        <span
-            class="bg-brand pt-1 pb-1 pr-10 pl-10 text-white border-radius-10"><?php echo $itemValue->webprice; ?></span>
-    </div>
-</div>
+            <div class="col-6 p-2 serchItemBox">
+                <div class="col-3 p-2 float-start">
+                    <img src="//<?php echo $itemValue->img; ?>" alt="" width="80px" height="80px">
+                </div>
+                <div class="col-7 float-end">
+                    <a href="shop-product-right.php?product_id=<?php echo $itemValue->stockid; ?>" class="h6"><?php echo $itemValue->description; ?></a><br>
+                    <span class="bg-brand pt-1 pb-1 pr-10 pl-10 text-white border-radius-10"><?php echo $itemValue->webprice; ?></span>
+                </div>
+            </div>
 
 
-<!-- <div class="col-7 p-2 float-start">Hello</div> -->
-<?php
+            <!-- <div class="col-7 p-2 float-start">Hello</div> -->
+        <?php
             if ($i % 2 == 0) {
                 echo '</div>';
             }
@@ -60,12 +59,12 @@ if ($_POST['check'] == "searchItem") {
         }
 
         ?>
-<div class="row">
-    <div class="col-12 text-center p-3">
-        <a onclick="viewAllItem('<?php echo $categoryId; ?>','<?php echo  $productSearchItem; ?>')">Show All</a>
-    </div>
-</div>
-<?php
+        <div class="row">
+            <div class="col-12 text-center p-3">
+                <a onclick="viewAllItem('<?php echo $categoryId; ?>','<?php echo  $productSearchItem; ?>')">Show All</a>
+            </div>
+        </div>
+    <?php
     } else {
         echo "Nothing found.";
     }
@@ -85,7 +84,7 @@ if ($_POST['check'] == "viewAllItem") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $categoryInfo = curl_exec($ch);
@@ -93,55 +92,53 @@ if ($_POST['check'] == "viewAllItem") {
     $searchData = json_decode($categoryInfo);
     $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
 ?>
-<div class="row product-grid mt-10" id="myTabContent">
-    <?php
+    <div class="row product-grid mt-10" id="myTabContent">
+        <?php
         foreach ($searchData as $productData) {
         ?>
-    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-        <?php
+            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                <?php
                 $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
                 $cartItem = count($cartCookiesProduct);
                 ?>
-        <div class="product-cart-wrap mb-30">
-            <div class="product-img-action-wrap">
-                <div class="product-img product-img-zoom">
-                    <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
-                        <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
-                    </a>
-                </div>
-            </div>
-            <div class="product-content-wrap">
-                <div class="product-category">
-                    <a
-                        href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
-                </div>
-                <h2><a
-                        href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+                <div class="product-cart-wrap mb-30">
+                    <div class="product-img-action-wrap">
+                        <div class="product-img product-img-zoom">
+                            <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
+                                <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-content-wrap">
+                        <div class="product-category">
+                            <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
+                        </div>
+                        <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
 
-                    <!-- <div class="product-badges">
+                            <!-- <div class="product-badges">
                                                     <small><span
                                                         class="hot"><?php echo $productData->units; ?></span></small>
                                                 </div> -->
-                </h2>
-                <div class="product-rate-cover product-badges">
-                    <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
-                </div>
-                <!-- <div class="product-rate-cover">
+                        </h2>
+                        <div class="product-rate-cover product-badges">
+                            <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
+                        </div>
+                        <!-- <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
                                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                                             </div> -->
-                <!-- <div>
+                        <!-- <div>
                                                     <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
                                                 </div> -->
-                <div class="product-card-bottom">
-                    <div class="product-price">
-                        <span>৳<?php echo $productData->webprice; ?></span>
-                        <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
-                    </div>
-                    <!-- <span id="carBtnId_<?php echo $productData->stockid; ?>"> -->
-                    <?php
+                        <div class="product-card-bottom">
+                            <div class="product-price">
+                                <span>৳<?php echo $productData->webprice; ?></span>
+                                <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
+                            </div>
+                            <!-- <span id="carBtnId_<?php echo $productData->stockid; ?>"> -->
+                            <?php
                             $cartProductID = '';
                             $numberOfItem = '';
                             $catIndex = '';
@@ -154,52 +151,46 @@ if ($_POST['check'] == "viewAllItem") {
                             }
                             if ($cartProductID == '') {
                             ?>
-                    <div id="item_<?= $productData->stockid ?>">
-                        <div class="add-cart">
-                            <a class="add"
-                                onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i
-                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                        </div>
-                    </div>
-                    <?php
+                                <div id="item_<?= $productData->stockid ?>">
+                                    <div class="add-cart">
+                                        <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                    </div>
+                                </div>
+                            <?php
                             } else {
                             ?>
-                    <div class="col-12" id="item_<?= $productData->stockid ?>">
-                        <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>"
-                            value="<?php echo $numberOfItem; ?>">
-                        <div class="col-10 float-end after-cart">
-                            <div class="col-2 float-end increment"
-                                onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                <a><i class="fi-rs-plus"></i></a>
-                            </div>
-                            <div class="col-4 float-end middle">
-                                <a><i class="fi-rs-shopping-cart"></i>
-                                    <span
-                                        id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                </a>
-                            </div>
-                            <div class="col-2 float-end add decrement"
-                                onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                <a><i class="fi-rs-minus"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="col-12" id="item_<?= $productData->stockid ?>">
+                                    <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>" value="<?php echo $numberOfItem; ?>">
+                                    <div class="col-10 float-end after-cart">
+                                        <div class="col-2 float-end increment" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
+                                            <a><i class="fi-rs-plus"></i></a>
+                                        </div>
+                                        <div class="col-4 float-end middle">
+                                            <a><i class="fi-rs-shopping-cart"></i>
+                                                <span id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 float-end add decrement" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
+                                            <a><i class="fi-rs-minus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <?php
+                            <?php
                             }
                             ?>
-                    <!-- </span> -->
+                            <!-- </span> -->
 
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <?php
+        <?php
         }
         ?>
-</div>
-<?php
+    </div>
+    <?php
 }
 
 if ($_POST['check'] == "searchItemMobile") {
@@ -213,7 +204,7 @@ if ($_POST['check'] == "searchItemMobile") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $categoryInfo = curl_exec($ch);
@@ -222,29 +213,27 @@ if ($_POST['check'] == "searchItemMobile") {
     $totalProduct = count($searchData);
     if ($totalProduct > 0) {
     ?>
-<div class="col-12">
-    <?php
+        <div class="col-12">
+            <?php
             $productSliceArr = array_slice($searchData, 0, 10, true);
             foreach ($productSliceArr as $searchItemValue) {
             ?>
-    <div class="row border-bottom p-2">
-        <div class="col-3 p-2 float-start">
-            <img src="//<?php echo $searchItemValue->img; ?>" alt="" width="40px" height="40px">
-        </div>
-        <div class="col-7 float-end pt-10">
-            <a href="shop-product-right.php?product_id=<?php echo $searchItemValue->stockid; ?>"
-                class="h6"><?php echo $searchItemValue->description; ?></a><br>
-            <span
-                class="bg-brand mt-10 pt-1 pb-1 pr-10 pl-10 text-white border-radius-10">৳<?php echo $searchItemValue->webprice; ?></span>
-        </div>
-    </div>
-    <?php
+                <div class="row border-bottom p-2">
+                    <div class="col-3 p-2 float-start">
+                        <img src="//<?php echo $searchItemValue->img; ?>" alt="" width="40px" height="40px">
+                    </div>
+                    <div class="col-7 float-end pt-10">
+                        <a href="shop-product-right.php?product_id=<?php echo $searchItemValue->stockid; ?>" class="h6"><?php echo $searchItemValue->description; ?></a><br>
+                        <span class="bg-brand mt-10 pt-1 pb-1 pr-10 pl-10 text-white border-radius-10">৳<?php echo $searchItemValue->webprice; ?></span>
+                    </div>
+                </div>
+            <?php
             }
             ?>
-</div>
-<div class="col-12 text-center p-3 border-bottom">
-    <a onclick="viewAllItemMobile('<?php echo  $searchString; ?>')">Show All</a>
-</div>
+        </div>
+        <div class="col-12 text-center p-3 border-bottom">
+            <a onclick="viewAllItemMobile('<?php echo  $searchString; ?>')">Show All</a>
+        </div>
 <?php
     } else {
         echo "No product found..!";

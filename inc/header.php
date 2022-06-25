@@ -1,5 +1,5 @@
 <?php
-
+include 'function.php';
 if (session_id() == '') {
     session_start();
 }
@@ -269,7 +269,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 </div>
                                 <div class="header-action-icon-2">
                                     <?php
-                                    if ($_SESSION['phone']) {
+                                    if (getPhone() != '') {
                                     ?>
                                         <a href="page-account.php">
                                             <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
@@ -288,7 +288,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </a>
                                     <a href="page-account.php"><span class="lable ml-0">Account</span></a> -->
                                     <?php
-                                    if ($_SESSION['phone']) {
+                                    if (getPhone() != '') {
                                     ?>
                                         <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                             <ul>
@@ -758,7 +758,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     </div>
 
                     <?php
-                    if ($_SESSION['phone'] == "") {
+                    if (getPhone() == "") {
                     ?>
                         <div class="single-mobile-header-info">
                             <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal" data-bs-target="#userlogin"><i class="fi-rs-user"></i><span class="lable ml-0">Account</span></a>

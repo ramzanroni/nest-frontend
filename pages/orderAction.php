@@ -1,4 +1,5 @@
 <?php
+include '../inc/function.php';
 if ($_POST['check'] == "placeOrder") {
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -41,7 +42,7 @@ if ($_POST['check'] == "placeOrder") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -69,7 +70,7 @@ if ($_POST['check'] == "checkorderditails") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $itemInfo = curl_exec($ch);
@@ -235,7 +236,7 @@ if ($_POST['check'] == "itemDetails") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $itemInfo = curl_exec($ch);
@@ -314,7 +315,7 @@ if ($_POST['check'] == "cancelFullOrder") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $updateInfo = curl_exec($ch);
@@ -334,7 +335,7 @@ if ($_POST['check'] == "deleteOrderItem") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             'Content-Type: application/json',
-            'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+            'Authorization: ' . APIKEY,
         )
     );
     $updateInfo = curl_exec($ch);

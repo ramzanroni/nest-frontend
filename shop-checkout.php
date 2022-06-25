@@ -2,7 +2,7 @@
 include 'inc/header.php';
 // user profile data 
 
-$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . $_SESSION['phone'];
+$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . getPhone();
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -11,7 +11,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTg4OTU1MjIsImp0aSI6IlRQSTVmdFFUeU5MR1ZLenFOZlVhYThyRURpdEJkRmpIS0ErUGVFMTFjMTg9IiwiaXNzIjoicHVsc2VzZXJ2aWNlc2JkLmNvbSIsImRhdGEiOnsidXNlcklkIjoiMjg4MTUiLCJ1c2VyTGV2ZWwiOjJ9fQ.wQ5AQR-fIGRZgt3CN9-W6v4PkvTIvNVP8HzCOiHHeKwcd8NT1R1Dxz_XpJH9jOa7CsDzCYBklEPRtQus11NiEQ',
+        'Authorization: ' . APIKEY,
     )
 );
 $profileInfo = curl_exec($ch);
@@ -100,18 +100,15 @@ $profileData = json_decode($profileInfo);
                     <!-- <form method="post"> -->
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <input type="text" required="" name="name" value="<?php echo $profileData->fullName; ?>"
-                                id="name" placeholder="Enter Full Name *">
+                            <input type="text" required="" name="name" value="<?php echo $profileData->fullName; ?>" id="name" placeholder="Enter Full Name *">
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" name="address" value="<?php echo $profileData->address; ?>" id="address"
-                                required="" placeholder="Enter Delivery Address *">
+                            <input type="text" name="address" value="<?php echo $profileData->address; ?>" id="address" required="" placeholder="Enter Delivery Address *">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <input type="text" name="town" id="town" required=""
-                                placeholder="Enter Delivery Town/City *">
+                            <input type="text" name="town" id="town" required="" placeholder="Enter Delivery Town/City *">
                         </div>
                         <div class="form-group col-lg-6">
                             <input type="text" name="area" required="" id="area" placeholder="Enter Delivery Area *">
@@ -119,12 +116,10 @@ $profileData = json_decode($profileInfo);
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <input required="" type="text" value="<?php echo $profileData->phone; ?>" name="phone"
-                                id="phone" placeholder="Enter Phone *">
+                            <input required="" type="text" value="<?php echo $profileData->phone; ?>" name="phone" id="phone" placeholder="Enter Phone *">
                         </div>
                         <div class="form-group col-lg-6">
-                            <input required="" type="text" name="additionalPhone" id="additionalPhone"
-                                placeholder="Enter Additional Phone">
+                            <input required="" type="text" name="additionalPhone" id="additionalPhone" placeholder="Enter Additional Phone">
                         </div>
                     </div>
                     <div class="form-group mb-30">
@@ -147,30 +142,28 @@ $profileData = json_decode($profileInfo);
                                 $totalSum = 0;
                                 foreach ($cartData as $key => $product) {
                                 ?>
-                                <tr>
-                                    <td class="image product-thumbnail"><img
-                                            src="//<?php echo $product->productImage; ?>" alt="#"></td>
-                                    <td>
-                                        <h6 class="w-160 mb-5"><a href="shop-product-full.html"
-                                                class="text-heading"><?php echo $product->productName; ?></a></h6>
-                                        </span>
-                                        <!-- <div class="product-rate-cover">
+                                    <tr>
+                                        <td class="image product-thumbnail"><img src="//<?php echo $product->productImage; ?>" alt="#"></td>
+                                        <td>
+                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading"><?php echo $product->productName; ?></a></h6>
+                                            </span>
+                                            <!-- <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width:90%">
                                                 </div>
                                             </div>
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div> -->
-                                    </td>
-                                    <td>
-                                        <h6 class="text-muted pl-20 pr-20">x <?php echo $product->productQuantity; ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-brand">
-                                            ৳<?php echo $product->productQuantity * $product->productprice; ?></h4>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <h6 class="text-muted pl-20 pr-20">x <?php echo $product->productQuantity; ?>
+                                            </h6>
+                                        </td>
+                                        <td>
+                                            <h4 class="text-brand">
+                                                ৳<?php echo $product->productQuantity * $product->productprice; ?></h4>
+                                        </td>
+                                    </tr>
                                 <?php
                                     $totalSum = $totalSum + $product->productQuantity * $product->productprice;
                                 }
@@ -192,10 +185,8 @@ $profileData = json_decode($profileInfo);
                                 data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
                         </div> -->
                         <div class="custome-radio">
-                            <input class="form-check-input" required="" type="radio" name="payment_option"
-                                value="Cash on delivery" id="exampleRadios4" checked="">
-                            <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
-                                data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
+                            <input class="form-check-input" required="" type="radio" name="payment_option" value="Cash on delivery" id="exampleRadios4" checked="">
+                            <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                         </div>
                         <!-- <div class="custome-radio">
                             <input class="form-check-input" required="" type="radio" name="payment_option"
@@ -211,19 +202,16 @@ $profileData = json_decode($profileInfo);
                         <img src="assets/imgs/theme/icons/payment-zapper.svg" alt="">
                     </div>
                     <?php
-                    if ($_SESSION['phone'] != '') {
+                    if (getPhone() != '') {
                     ?>
-                    <a class="btn btn-fill-out btn-block mt-30" style="<?php if ($totalCartItem == 0) {
+                        <a class="btn btn-fill-out btn-block mt-30" style="<?php if ($totalCartItem == 0) {
                                                                                 echo "pointer-events: none;";
-                                                                            } ?>"
-                        onclick="placeorder('<?php echo $_SESSION['phone']; ?>', '<?php echo $_SESSION['token']; ?>')">Place
-                        an Order<i class="fi-rs-sign-out ml-15"></i></a>
+                                                                            } ?>" onclick="placeorder('<?php echo getPhone(); ?>', '<?php echo getToken(); ?>')">Place
+                            an Order<i class="fi-rs-sign-out ml-15"></i></a>
                     <?php
                     } else {
                     ?>
-                    <a aria-label="Quick view" onclick="loginUserFororder()" class="btn btn-fill-out btn-block mt-30"
-                        data-bs-toggle="modal" data-bs-target="#userlogin">Place an Order</i><i
-                            class="fi-rs-sign-out ml-15"></i></a>
+                        <a aria-label="Quick view" onclick="loginUserFororder()" class="btn btn-fill-out btn-block mt-30" data-bs-toggle="modal" data-bs-target="#userlogin">Place an Order</i><i class="fi-rs-sign-out ml-15"></i></a>
                     <?php
                     }
                     ?>

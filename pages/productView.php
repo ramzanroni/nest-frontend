@@ -1,4 +1,5 @@
 <?php
+include '../inc/function.php';
 if ($_POST['check']=="quickViewproduct") 
 {
     $productID=$_POST['productID'];
@@ -17,4 +18,3 @@ if ($_POST['check']=="quickViewproduct")
     // $singleProductsArr= json_decode($singleProductsData);
     echo json_encode($singleProductsData);
 }
-?>
