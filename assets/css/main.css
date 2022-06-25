@@ -13503,7 +13503,7 @@ footer .hotline img {
 }
 
 a.itemside {
-  color: initial;
+  color:#83b735;
   text-decoration: none;
 }
 .itemside {
@@ -13515,6 +13515,7 @@ a.itemside {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  
 }
 .itemside .aside,
 .itemside .left {

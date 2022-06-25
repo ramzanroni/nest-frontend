@@ -95,7 +95,7 @@ $orderData = json_decode($orderInfo);
                                         <div class="card-body">
                                             <p>
                                                 From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
-                                                manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
+                                                manage your <a data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo $_SESSION['phone']; ?>')">Change Your Phone Number</a>
                                             </p>
                                         </div>
                                     </div>

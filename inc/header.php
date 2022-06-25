@@ -33,8 +33,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 
 <body>
 
-    <div class="modal fade custom-modal" id="userlogin" tabindex="-1" aria-labelledby="quickViewModalLabel"
-        aria-hidden="true">
+    <div class="modal fade custom-modal" id="userlogin" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -161,8 +160,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <ul>
                                 <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">English <i
-                                            class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
                                             <a href="#"><img src="assets/imgs/theme/flag-fr.png" alt="" />Français</a>
@@ -176,8 +174,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">USD <i
-                                            class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">USD <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
                                             <a href="#"><img src="assets/imgs/theme/flag-fr.png" alt="" />INR</a>
@@ -212,8 +209,8 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <?php
                                     foreach ($categoryItemData as $categoryValue) {
                                     ?>
-                                    <option value="<?php echo $categoryValue->categoryID; ?>">
-                                        <?php echo $categoryValue->categoryName; ?></option>
+                                        <option value="<?php echo $categoryValue->categoryID; ?>">
+                                            <?php echo $categoryValue->categoryName; ?></option>
                                     <?php
                                     }
                                     ?>
@@ -266,8 +263,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <span class="pro-count blue" id="cartCount">0</span>
                                     </a>
                                     <a href="shop-cart.php"><span class="lable">Cart</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItem"
-                                        onmouseleave="removeCssClass()">
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItem" onmouseleave="removeCssClass()">
 
                                     </div>
                                 </div>
@@ -275,17 +271,14 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <?php
                                     if ($_SESSION['phone']) {
                                     ?>
-                                    <a href="page-account.php">
-                                        <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
-                                    </a>
-                                    <a href="page-account.php"><span class="lable ml-0">Account</span></a>
+                                        <a href="page-account.php">
+                                            <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
+                                        </a>
+                                        <a href="page-account.php"><span class="lable ml-0">Account</span></a>
                                     <?php
                                     } else {
                                     ?>
-                                    <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal"
-                                        data-bs-target="#userlogin"><img class="svgInject" alt="Nest"
-                                            src="assets/imgs/theme/icons/icon-user.svg" /></i><span
-                                            class="lable ml-0">Account</span></a>
+                                        <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal" data-bs-target="#userlogin"><img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" /></i><span class="lable ml-0">Account</span></a>
                                     <?php
                                     }
                                     ?>
@@ -297,25 +290,23 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <?php
                                     if ($_SESSION['phone']) {
                                     ?>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
-                                        <ul>
-                                            <!-- <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
+                                        <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
+                                            <ul>
+                                                <!-- <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
                                             <li><a href="register.php"><i class="fi fi-rs-user mr-10"></i>Register</a>
                                             </li> -->
-                                            <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
-                                                    Account</a></li>
-                                            <li><a href="page-account.php"><i
-                                                        class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
-                                            <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
-                                                    Voucher</a></li>
-                                            <!-- <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My -->
-                                            <!-- Wishlist</a></li> -->
-                                            <li><a href="page-account.php"><i
-                                                        class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
-                                            <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                    out</a></li>
-                                        </ul>
-                                    </div>
+                                                <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
+                                                        Account</a></li>
+                                                <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
+                                                <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
+                                                        Voucher</a></li>
+                                                <!-- <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My -->
+                                                <!-- Wishlist</a></li> -->
+                                                <li><a href="page-account.php"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
+                                                <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                        out</a></li>
+                                            </ul>
+                                        </div>
                                     <?php
                                     }
                                     ?>
@@ -344,12 +335,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <?php
                                         foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
                                         ?>
-                                        <li>
-                                            <a
-                                                href="shop-grid-right.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
-                                                <img src="//<?php echo $categoryFirstHalfvalue->categoryImg; ?>"
-                                                    alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
-                                        </li>
+                                            <li>
+                                                <a href="shop-grid-right.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
+                                                    <img src="//<?php echo $categoryFirstHalfvalue->categoryImg; ?>" alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
+                                            </li>
                                         <?php
                                         }
                                         ?>
@@ -358,12 +347,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <?php
                                         foreach ($categorySecondHalf as $categorySecondHalfvalue) {
                                         ?>
-                                        <li>
-                                            <a
-                                                href="shop-grid-right.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
-                                                <img src="//<?php echo $categorySecondHalfvalue->categoryImg; ?>"
-                                                    alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
-                                        </li>
+                                            <li>
+                                                <a href="shop-grid-right.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
+                                                    <img src="//<?php echo $categorySecondHalfvalue->categoryImg; ?>" alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
+                                            </li>
                                         <?php
                                         }
                                         ?>
@@ -498,8 +485,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-34">
                                                 <div class="menu-banner-wrap">
-                                                    <a href="shop-product-right.html"><img
-                                                            src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
+                                                    <a href="shop-product-right.html"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
                                                     <div class="menu-banner-content">
                                                         <h4>Hot deals</h4>
                                                         <h3>
@@ -588,8 +574,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <span class="pro-count blue" id="cartCountMobile">0</span>
                                 </a>
                                 <a href="shop-cart.php"><span class="lable">Cart</span></a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItemMobile"
-                                    onmouseleave="removeCssClass()">
+                                <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItemMobile" onmouseleave="removeCssClass()">
 
                                 </div>
                             </div>
@@ -635,9 +620,8 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 
                                     foreach ($categoryItemData as $categoryValueMobile) {
                                     ?>
-                                    <li><a
-                                            href="shop-grid-right.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
-                                    </li>
+                                        <li><a href="shop-grid-right.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
+                                        </li>
 
                                     <?php
                                     }
@@ -776,21 +760,19 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     <?php
                     if ($_SESSION['phone'] == "") {
                     ?>
-                    <div class="single-mobile-header-info">
-                        <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal"
-                            data-bs-target="#userlogin"><i class="fi-rs-user"></i><span
-                                class="lable ml-0">Account</span></a>
-                    </div>
+                        <div class="single-mobile-header-info">
+                            <a aria-label="Quick view" onclick="loginUserFororder()" data-bs-toggle="modal" data-bs-target="#userlogin"><i class="fi-rs-user"></i><span class="lable ml-0">Account</span></a>
+                        </div>
 
                     <?php
                     } else {
                     ?>
-                    <div class="single-mobile-header-info">
-                        <a href="page-account.php"><i class="fi-rs-user"></i>Account</a>
-                    </div>
-                    <div class="single-mobile-header-info">
-                        <a href="logout.php"><i class="fi-rs-sign-out"></i></i>Sign Out </a>
-                    </div>
+                        <div class="single-mobile-header-info">
+                            <a href="page-account.php"><i class="fi-rs-user"></i>Account</a>
+                        </div>
+                        <div class="single-mobile-header-info">
+                            <a href="logout.php"><i class="fi-rs-sign-out"></i></i>Sign Out </a>
+                        </div>
                     <?php
                     }
                     ?>

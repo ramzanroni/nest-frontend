@@ -228,6 +228,7 @@ function cartPopUp() {
       },
       success: function (response) {
         var cartData = JSON.parse(response);
+        var html = "No product in your cart.";
         if (cartData.length > 0) {
           // console.log(cartData);
           var sum = 0;
@@ -266,9 +267,7 @@ function cartPopUp() {
             '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
             sum +
             '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
-        } else {
-          var html = "No product in your cart.";
-        }
+        } 
         $("#cartItem" + mobile).html(html);
       },
     });
@@ -647,7 +646,7 @@ function categoryProduct(categoryId) {
 
 // userLogin
 function timmer() {
-  var fiveMinutes = 60 * 2,
+  var fiveMinutes = 60 * 1,
     display = document.querySelector("#time");
   startTimer(fiveMinutes, display);
 }
@@ -692,11 +691,7 @@ function userLogin() {
           if (response == "success") {
             var phone = "'" + phoneNumber + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
-              phone +
-              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
-              phone +
-              ')">Log in</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -1105,12 +1100,10 @@ function updatePhone()
           if (response == "success") {
             var phone = "'" + newPhone + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"           placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
-              phone +
-              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"           placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
               phone +
               ')">Log in</button></div>';
-            $("#loginDiv").html(htmlgetOtp);
+            $("#phoneField").html(htmlgetOtp);
             $("#phoneField").hide();
             timmer();
             setTimeout(function () {
@@ -1126,4 +1119,121 @@ function updatePhone()
   } else {
     $("#errorNumMessage").html("Please Enter a Valid Number");
   }
+}
+
+// changePhone
+function changePhone(oldPhone)
+{
+  // var oldPhone = "'" + oldPhoneNum + "'";
+  var html='<input id="oldphone" type="text" value="'+oldPhone+'"><div class="container"><div class="row"><div class="col-xl-12 col-lg-12 col-md-12 m-auto"><div class="row"><div class="col-lg-6 pr-30 d-none d-lg-block"><img class="border-radius-15" src="assets/imgs/page/login-1.png" alt=""></div><div class="col-lg-6 col-md-8"><div class="login_wrap widget-taber-content background-white"> <div class="padding_eight_all bg-white" id="loginDiv"><div class="heading_s1"><h1 class="mb-5">Change Phone Number</h1></div><div class="form-group"> <input type="text" required="" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter your new phone number*"><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="sendOTP()">Send</button></div> </div></div></div> </div></div></div></div>';
+  $("#modalDiv").html(html);
+}
+
+function sendOTP()
+{
+  var check = "userPhoneUpOTP";
+  var newPhone = $("#newPhoneNumber").val();
+  var hh = "oooo";
+  if ($.isNumeric(newPhone)) {
+    var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
+    if (!phoneReg.test(newPhone)) {
+      $("#errorNumMessage").html("Please Enter a Valid Number");
+    } else {
+      $("#errorNumMessage").html("");
+      $.ajax({
+        url: "pages/userAction.php",
+        type: "POST",
+    
+        data: {
+          newPhone: newPhone,
+          check: check,
+        },
+        success: function (response) {
+          if (response == "success") {
+            var phoneNumber = "'" + newPhone + "'";
+            var htmlgetOtp =
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP('+phoneNumber+
+              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP('+phoneNumber +')">Log in</button></div>';
+            $("#loginDiv").html(htmlgetOtp);
+            $("#resendField").hide();
+            timmer();
+            setTimeout(function () {
+              $("#countDown").hide();
+              $("#resendField").show();
+            }, 60000);
+          } else {
+            $("#errorNumMessage").html(response);
+          }
+        },
+      });
+    }
+  }
+}
+
+function PhoneResendOTP(updatePhone)
+{
+
+  // console.log(updatePhone);
+  var newPhone = updatePhone;
+  var check = "userPhoneUpOTP";
+  $.ajax({
+    url: "pages/userAction.php",
+    type: "POST",
+
+    data: {
+      newPhone: newPhone,
+      check: check,
+    },
+    success: function (response) {
+      if (response == 'success')
+      {
+        var phoneNumber = "'" + newPhone + "'";
+         var htmlgetOtp =
+          '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP('+phoneNumber +')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP('+phoneNumber+')">Log in</button></div>';
+        $("#loginDiv").html(htmlgetOtp);
+        $("#resendField").hide();
+        timmer();
+        setTimeout(function () {
+          $("#countDown").hide();
+          $("#resendField").show();
+        }, 60000);
+        }
+     
+    },
+  });
+}
+
+function checkNewOTP(newNumber)
+{
+  var oldNumber = $("#oldphone").val();
+  var otp = $("#userOTP").val();
+  var check = "checkUpdateOTP";
+  if (otp != "") {
+    $.ajax({
+      url: "pages/userAction.php",
+      type: "POST",
+
+      data: {
+        otp: otp,
+        newNumber: newNumber,
+        oldNumber: oldNumber,
+        check: check,
+      },
+      success: function (response) {
+        console.log(response);
+
+        if (response == "success") {
+          window.location.href = "logout.php";
+          // location.reload('logout.php');
+        } else {
+          $("#errorNumMessage").html(response);
+        }
+
+        // $("#productItemField").html(response);
+      },
+    });
+  } else {
+    $("#errorNumMessage").html("Please enter OTP number.");
+  }
+
 }
