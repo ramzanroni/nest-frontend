@@ -1031,6 +1031,7 @@ function showHideRow(row, flagid, orderProductID, orderNumber) {
       check: check,
     },
     success: function (response) {
+      console.log(response);
       $("#itemDetails" + flagid).html(response);
     },
   });

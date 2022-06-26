@@ -227,7 +227,7 @@ if ($_POST['check'] == "itemDetails") {
     $orderProductID = $_POST['orderProductID'];
     $orderNumber = $_POST['orderNumber'];
 
-    $url = "http://192.168.0.116/neonbazar_api/order_item.php?item_id=" . $orderProductID;
+    $url = "http://192.168.0.116/neonbazar_api/order_item.php?item_id=" . $orderProductID . "&order_id=" . $orderNumber;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
