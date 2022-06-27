@@ -105,10 +105,10 @@ if (isset($_GET['category_id'])) {
                                 <input type="hidden" id="getLimit" value="<?php echo $limit; ?>">
                                 <div class="sort-by-dropdown">
                                     <ul id="limitValue">
-                                        <li data-id="2"><a>2</a></li>
-                                        <li data-id="3"><a>3</a></li>
-                                        <li data-id="4"><a>4</a></li>
-                                        <li data-id="5"><a>5</a></li>
+                                        <li data-id="50"><a>50</a></li>
+                                        <li data-id="100"><a>100</a></li>
+                                        <li data-id="200"><a>200</a></li>
+                                        <li data-id="300"><a>300</a></li>
                                     </ul>
                                 </div>
                             </div>
