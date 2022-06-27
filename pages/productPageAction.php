@@ -212,8 +212,7 @@ if ($_POST['check'] == "paginationProduct") {
     $categoryItemInfo = curl_exec($ch);
     curl_close($ch);
     $categoryDataCount = json_decode($categoryItemInfo);
-    $totalCategoryItem = $categoryDataCount[0]->totalItem;
-?>
+    $totalCategoryItem = $categoryDataCount[0]->totalItem; ?>
 
     <div class="row product-grid" id="myTabContent">
         <?php
@@ -237,30 +236,14 @@ if ($_POST['check'] == "paginationProduct") {
                             <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
                         </div>
                         <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
-
-                            <!-- <div class="product-badges">
-                                                    <small><span
-                                                        class="hot"><?php echo $productData->units; ?></span></small>
-                                                </div> -->
                         </h2>
                         <div class="product-rate-cover product-badges">
                             <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
                         </div>
-                        <!-- <div class="product-rate-cover">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width: 90%"></div>
-                                                </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div> -->
-                        <!-- <div>
-                                                    <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
-                                                </div> -->
                         <div class="product-card-bottom">
                             <div class="product-price">
                                 <span>৳<?php echo $productData->webprice; ?></span>
-                                <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
                             </div>
-                            <!-- <span id="carBtnId_<?php echo $productData->stockid; ?>"> -->
                             <?php
                             $cartProductID = '';
                             $numberOfItem = '';
@@ -302,8 +285,6 @@ if ($_POST['check'] == "paginationProduct") {
                             <?php
                             }
                             ?>
-                            <!-- </span> -->
-
                         </div>
                     </div>
                 </div>
@@ -322,31 +303,132 @@ if ($_POST['check'] == "paginationProduct") {
                     $previousPage = $currentPage - 1;
                     $perpageItem = $limit;
                     $numberOfpage = ceil($totalCategoryItem / $perpageItem);
+                    if ($numberOfpage <= 5) {
+                        if ($pageNumber > 1) {
                     ?>
-                    <li class="page-item">
-                        <a class="page-link" onclick="pagination(<?php if ($pageNumber > 1) {
-                                                                        echo $pageNumber - 1;
-                                                                    } else {
-                                                                        echo 1;
-                                                                    }  ?>)"><i class="fi-rs-arrow-small-left"></i></a>
-                    </li>
-                    <?php
-                    for ($i = 1; $i <= $numberOfpage; $i++) { ?>
-                        <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == $pageNumber) {
-                                                                                    echo 'active';
-                                                                                } ?>">
-                            <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pagination(<?php if ($pageNumber > 1) {
+
+                                                                                echo $pageNumber - 1;
+                                                                            } else {
+                                                                                echo 1;
+                                                                            }  ?>)"><i class="fi-rs-arrow-small-left"></i></a>
+                            </li>
+                        <?php
+                        }
+                        for ($i = 1; $i <= $numberOfpage; $i++) { ?>
+                            <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == $pageNumber) {
+                                                                                        echo 'active';
+                                                                                    } ?>">
+                                <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                            </li>
+                        <?php
+                        }
+                        if ($pageNumber != $numberOfpage) {
+                        ?>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pagination(<?php if ($numberOfpage != $pageNumber) {
+                                                                                echo $pageNumber + 1;
+                                                                            } else {
+                                                                                echo $pageNumber;
+                                                                            } ?>)"><i class="fi-rs-arrow-small-right"></i></a>
+                            </li>
+                        <?php }
+                    } else {
+                        if ($pageNumber > 1) {
+
+                        ?>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pagination(<?php if ($pageNumber > 1) {
+                                                                                echo $pageNumber - 1;
+                                                                            } else {
+                                                                                echo 1;
+                                                                            }  ?>)"><i class="fi-rs-arrow-small-left"></i></a>
+                            </li>
+                        <?php
+                        }
+                        if (!($numberOfpage >= $pageNumber + 2)) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber - 4; ?>" class="page-item">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber - 4; ?>)"><?php echo $pageNumber - 4; ?></a>
+                            </li>
+                        <?php } ?>
+                        <?php
+                        if (!($numberOfpage >= $pageNumber + 1)) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber - 3; ?>" class="page-item">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber - 3; ?>)"><?php echo $pageNumber - 3; ?></a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if ($pageNumber - 2 > 0) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber - 2; ?>" class="page-item <?php if ($pageNumber - 2 == $pageNumber) {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber - 2; ?>)"><?php echo $pageNumber - 2; ?></a>
+                            </li>
+                        <?php }
+                        if ($pageNumber - 1 > 0) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber - 1; ?>" class="page-item <?php if ($pageNumber - 1 == $pageNumber) {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                <a class="page-link" onclick="pagination(<?php echo  $pageNumber - 1; ?>)"><?php echo  $pageNumber - 1; ?></a>
+                            </li>
+                        <?php } ?>
+                        <li id="pagination_<?php echo  $pageNumber; ?>" class="page-item <?php if ($pageNumber == $pageNumber) {
+                                                                                                echo 'active';
+                                                                                            } ?>">
+                            <a class="page-link" onclick="pagination(<?php echo $pageNumber; ?>)"><?php echo $pageNumber; ?></a>
                         </li>
+                        <?php
+                        if ($numberOfpage >= $pageNumber + 1) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber + 1; ?>" class="page-item <?php if ($pageNumber + 1 == $pageNumber) {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber + 1; ?>)"><?php echo $pageNumber + 1; ?></a>
+                            </li>
+                        <?php
+                        }
+                        if ($numberOfpage >= $pageNumber + 2) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber + 2; ?>" class="page-item <?php if ($pageNumber + 2 == $pageNumber) {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber + 2; ?>)"><?php echo $pageNumber + 2; ?></a>
+                            </li>
+                        <?php } ?>
+                        <?php
+                        if ($pageNumber <= 2) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber + 3; ?>" class="page-item">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber + 3; ?>)"><?php echo $pageNumber + 3; ?></a>
+                            </li>
+                        <?php } ?>
+                        <?php
+                        if ($pageNumber <= 1) {
+                        ?>
+                            <li id="pagination_<?php echo $pageNumber + 4; ?>" class="page-item">
+                                <a class="page-link" onclick="pagination(<?php echo $pageNumber + 4; ?>)"><?php echo $pageNumber + 4; ?></a>
+                            </li>
+                        <?php }
+                        if ($pageNumber != $numberOfpage) { ?>
+
+                            <li class="page-item">
+                                <a class="page-link" onclick="pagination(<?php if ($numberOfpage != $pageNumber) {
+                                                                                echo $pageNumber + 1;
+                                                                            } else {
+                                                                                echo $pageNumber;
+                                                                            } ?>)"><i class="fi-rs-arrow-small-right"></i></a>
+                            </li>
                     <?php
+                        }
                     }
                     ?>
-                    <li class="page-item">
-                        <a class="page-link" onclick="pagination(<?php if ($numberOfpage != $pageNumber) {
-                                                                        echo $pageNumber + 1;
-                                                                    } else {
-                                                                        echo $pageNumber;
-                                                                    } ?>)"><i class="fi-rs-arrow-small-right"></i></a>
-                    </li>
                 </ul>
             </nav>
         </div>

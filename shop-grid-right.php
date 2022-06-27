@@ -109,7 +109,6 @@ if (isset($_GET['category_id'])) {
                                         <li data-id="3"><a>3</a></li>
                                         <li data-id="4"><a>4</a></li>
                                         <li data-id="5"><a>5</a></li>
-                                        <li data-id="All"><a>All</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -229,25 +228,55 @@ if (isset($_GET['category_id'])) {
                                     $previousPage = $currentPage - 1;
                                     $perpageItem = $limit;
                                     $numberOfpage = ceil($totalCategoryItem / $perpageItem);
+                                    if ($numberOfpage <= 5 && $numberOfpage > 1) {
                                     ?>
-                                    <li class="page-item">
-                                        <a class="page-link" onclick="pagination(1)"><i class="fi-rs-arrow-small-left"></i></a>
-                                    </li>
-                                    <?php
-                                    for ($i = 1; $i <= $numberOfpage; $i++) {
+                                        <!-- <li class="page-item">
+                                            <a class="page-link" onclick="pagination(1)"><i class="fi-rs-arrow-small-left"></i></a>
+                                        </li> -->
+                                        <?php
 
+                                        for ($i = 1; $i <= $numberOfpage; $i++) {
+
+                                        ?>
+                                            <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
+                                                                                                        echo 'active';
+                                                                                                    } ?>">
+                                                <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                            </li>
+                                        <?php
+                                        }
+
+                                        ?>
+                                        <li class="page-item">
+                                            <a class="page-link" onclick="pagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
+                                        </li>
+                                    <?php
+                                    } elseif ($numberOfpage > 5) {
                                     ?>
-                                        <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
-                                                                                                    echo 'active';
-                                                                                                } ?>">
-                                            <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                        <!-- <li class="page-item">
+                                            <a class="page-link" onclick="pagination(1)"><i class="fi-rs-arrow-small-left"></i></a>
+                                        </li> -->
+                                        <?php
+
+                                        for ($i = 1; $i <= 5; $i++) {
+
+                                        ?>
+                                            <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
+                                                                                                        echo 'active';
+                                                                                                    } ?>">
+                                                <a class="page-link" onclick="pagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                            </li>
+                                        <?php
+                                        }
+
+                                        ?>
+                                        <li class="page-item">
+                                            <a class="page-link" onclick="pagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
                                         </li>
                                     <?php
                                     }
+
                                     ?>
-                                    <li class="page-item">
-                                        <a class="page-link" onclick="pagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
-                                    </li>
                                 </ul>
                             </nav>
                         </div>
