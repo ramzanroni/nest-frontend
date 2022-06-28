@@ -13242,7 +13242,7 @@ footer .hotline img {
 }
 
 .cartbox {
-  max-height: 500px;
+  max-height: 400px;
   overflow-y: auto;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */

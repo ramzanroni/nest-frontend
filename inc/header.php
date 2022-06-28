@@ -263,7 +263,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         <span class="pro-count blue" id="cartCount">0</span>
                                     </a>
                                     <a href="shop-cart.php"><span class="lable">Cart</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 cartbox" id="cartItem" onmouseleave="removeCssClass()">
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2" id="cartItem" onmouseleave="removeCssClass()">
 
                                     </div>
                                 </div>

@@ -60,36 +60,6 @@ include 'inc/header.php';
                             <?php
                             }
                             ?>
-                            <!-- <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two"
-                                    type="button" role="tab" aria-controls="tab-two" aria-selected="false">Milks &
-                                    Dairies</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab"
-                                    data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three"
-                                    aria-selected="false">Coffes & Teas</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-four" data-bs-toggle="tab"
-                                    data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four"
-                                    aria-selected="false">Pet Foods</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-five" data-bs-toggle="tab"
-                                    data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five"
-                                    aria-selected="false">Meats</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-six" data-bs-toggle="tab" data-bs-target="#tab-six"
-                                    type="button" role="tab" aria-controls="tab-six"
-                                    aria-selected="false">Vegetables</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-seven" data-bs-toggle="tab"
-                                    data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven"
-                                    aria-selected="false">Fruits</button>
-                            </li> -->
                         </ul>
                     </div>
                     <!--End nav-tabs-->
@@ -119,30 +89,14 @@ include 'inc/header.php';
                                                     <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
                                                 </div>
                                                 <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
-
-                                                    <!-- <div class="product-badges">
-                                                    <small><span
-                                                        class="hot"><?php echo $productData->units; ?></span></small>
-                                                </div> -->
                                                 </h2>
                                                 <div class="product-rate-cover product-badges">
                                                     <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
                                                 </div>
-                                                <!-- <div class="product-rate-cover">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width: 90%"></div>
-                                                </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div> -->
-                                                <!-- <div>
-                                                    <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
-                                                </div> -->
                                                 <div class="product-card-bottom">
                                                     <div class="product-price">
                                                         <span>৳<?php echo $productData->webprice; ?></span>
-                                                        <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
                                                     </div>
-                                                    <!-- <span id="carBtnId_<?php echo $productData->stockid; ?>"> -->
                                                     <?php
                                                     $cartProductID = '';
                                                     $numberOfItem = '';
@@ -158,7 +112,7 @@ include 'inc/header.php';
                                                     ?>
                                                         <div id="item_<?= $productData->stockid ?>">
                                                             <div class="add-cart">
-                                                                <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                                <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo urlencode($productData->description); ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                             </div>
                                                         </div>
                                                     <?php
