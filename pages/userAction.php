@@ -29,6 +29,89 @@ if ($_POST['check'] == "userPhoneNumberSend") {
     echo $response->message;
 }
 
+if ($_POST['check'] == "forRegistration") {
+    $phone = $_POST['phoneNumber'];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://192.168.0.116/metroapi/v1/controller/sms.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"newPhone\": \"$phone\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            "postman-token: 0f270d41-1e08-7365-4c29-cdfc8f1e686b"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo json_encode($response);
+    }
+}
+
+if ($_POST['check'] == "userRegistration") {
+    $phone = $_POST['phone'];
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $otp = $_POST['otp'];
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://192.168.0.116/metroapi/v1/controller/sms.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"name\":\"$name\",\n\t\"address\":\"$address\",\n\t\"newOtp\":\"$otp\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            "postman-token: fb74123d-0239-d4db-a79c-3a116a503e14"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $output = json_decode($response);
+        if ($output->success == true) {
+            $phone = $output->data->userdata->userPhone;
+            $token = $output->data->userdata->userToken;
+            $info = array(
+                'phone' => $phone,
+                'token' => $token
+            );
+            $userInfo = json_encode($info);
+            setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
+            echo 'success';
+        } else {
+            echo $output->message[0];
+        }
+    }
+}
+
 if ($_POST['check'] == "otpCheck") {
     $otpCode = $_POST['otpCode'];
     $phone = $_POST['phone'];
@@ -134,16 +217,28 @@ if ($_POST['check'] == "loginpopupview") {
                             <div class="padding_eight_all bg-white" id="loginDiv">
                                 <div class="heading_s1">
                                     <h1 class="mb-5">Login</h1>
-                                    <!-- <p class="mb-30">Don't have an account? <a href="page-register.html">Create
-                                                here</a></p> -->
+                                    <p class="mb-30">Don't have an account? <a onclick="registrationInterface()" href="#">Create
+                                            here</a></p>
                                 </div>
                                 <!-- <form method="post"> -->
                                 <div class="form-group">
-                                    <input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number*" />
+                                    <input type="text" required="" id="userName" name="userName" placeholder="Name*" />
+                                    <small class="text-danger" id="errorName"></small>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" required="" id="userAddress" name="userAddress" placeholder="Address*" />
+                                    <small class="text-danger" id="errorAddress"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Phone number*" />
                                     <small class="text-danger" id="errorNumMessage"></small>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="userLogin()">Send</button>
+                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login" id="login" onclick="userLogin()">Send</button>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="signUp" id="signUp" onclick="userSignup()">Sign Up</button>
                                 </div>
                                 <!-- </form> -->
                             </div>

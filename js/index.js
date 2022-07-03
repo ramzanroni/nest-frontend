@@ -677,8 +677,108 @@ function startTimer(duration, display) {
     }
   }, 1000);
 }
-function userLogin() {
+
+function userSignup() {
+  var flag = 0;
   var phoneNumber = $("#phoneNumber").val();
+  if ($.isNumeric(phoneNumber)) {
+    var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
+    if (!phoneReg.test(phoneNumber)) {
+      $("#errorNumMessage").html("Please Enter a Valid Number");
+      flag = 1;
+    } else {
+      $("#errorNumMessage").html("");
+    }
+  } else {
+    $("#errorNumMessage").html("Phone number can't be null and osnly numeric number formate acceptable.");
+    flag = 1;
+  }
+  var phoneNumber = $("#phoneNumber").val();
+  var userName = $("#userName").val();
+  var userAddress = $("#userAddress").val();
+  if (userName == '') {
+    $("#errorName").html('Name field can not be null');
+    flag = 1;
+  } else {
+    $("#errorName").html('');
+  }
+  if (userAddress == '') {
+    $("#errorAddress").html('Address field can not be null');
+    flag = 1;
+  } else {
+    $("#errorAddress").html('');
+  }
+  if (flag == 0)
+  {
+    var check = "forRegistration";
+      $.ajax({
+        url: "pages/userAction.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+          phoneNumber: phoneNumber,
+          check: check,
+        },
+        success: function (response) {
+          var result = JSON.parse(response);
+          if (result.success == true) {
+            var phone = "'" + phoneNumber + "'";
+            var Name = "'" + userName + "'";
+            var Address = "'" + userAddress + "'";
+            var htmlgetOtp =
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+')">Send</button></div>';
+            $("#loginDiv").html(htmlgetOtp);
+            $("#resendField").hide();
+            timmer();
+            setTimeout(function () {
+              $("#countDown").hide();
+              $("#resendField").show();
+            }, 60000);
+          } else {
+            $("#errorNumMessage").html(result.message);
+          }
+          
+        },
+      });
+  }
+}
+
+function createAccount(phone, name, address)
+{
+  var otp = $("#getOtp").val();
+  var check = "userRegistration";
+  if (otp == "") {
+    $("#errorNumMessage").html("Please provide your OTP code.");
+  }
+  else {
+    $.ajax({
+      url: "pages/userAction.php",
+      type: "POST",
+
+      data: {
+        phone: phone,
+        name: name,
+        address: address,
+        otp: otp,
+        check:check
+      },
+      success: function (response) {
+        if (response == "success") {
+          // window.location.href = "page-account.php";
+          location.reload();
+        } else {
+          $("#errorNumMessage").html(response);
+           setTimeout(function () {
+             loginUserFororder();
+            }, 2000);
+        }
+      },
+    });
+  }
+}
+
+function userLogin() {
+
   if ($.isNumeric(phoneNumber)) {
     var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
     if (!phoneReg.test(phoneNumber)) {
@@ -686,7 +786,6 @@ function userLogin() {
     } else {
       $("#errorNumMessage").html("");
       var check = "userPhoneNumberSend";
-      console.log(phoneNumber);
       $.ajax({
         url: "pages/userAction.php",
         type: "POST",
@@ -717,6 +816,7 @@ function userLogin() {
   } else {
     $("#errorNumMessage").html("Please Enter a Valid Number");
   }
+  
 }
 
 function resendOTP(phoneNumber) {
@@ -843,8 +943,20 @@ function loginUserFororder() {
     },
     success: function (response) {
       $("#modalDiv").html(response);
+      $("#userName").hide();
+      $("#userAddress").hide();
+      $("#signUp").hide();
+
     },
   });
+}
+
+function registrationInterface()
+{
+  $("#userName").show();
+  $("#userAddress").show();
+  $("#signUp").show();
+  $("#login").hide();
 }
 
 // placeorder

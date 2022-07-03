@@ -80,7 +80,7 @@ include 'inc/header.php';
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
-                                                        <img class="default-img" src="<?php if ($productData->img != '') {
+                                                        <img class="default-img"  src="<?php if ($productData->img != '') {
                                                                                             echo "//" . $productData->img;
                                                                                         } else {
                                                                                             echo 'assets/imgs/product.png';
