@@ -100,26 +100,28 @@ $profileData = json_decode($profileInfo);
                     <!-- <form method="post"> -->
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <input type="text" required="" name="name" value="<?php echo $profileData->fullName; ?>" id="name" placeholder="Enter Full Name *">
+                            <input type="text" required="" name="name" value="<?php echo $profileData->fullName; ?>" id="name" placeholder="Full Name *">
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" name="address" value="<?php echo $profileData->address; ?>" id="address" required="" placeholder="Enter Delivery Address *">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-6">
-                            <input type="text" name="town" id="town" required="" placeholder="Enter Delivery Town/City *">
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input type="text" name="area" required="" id="area" placeholder="Enter Delivery Area *">
+                            <input type="text" name="address" value="<?php echo $profileData->address; ?>" id="address" required="" placeholder="Delivery Address *">
                         </div>
                     </div>
                     <div class="row">
+
                         <div class="form-group col-lg-6">
-                            <input required="" type="text" value="<?php echo $profileData->phone; ?>" name="phone" id="phone" placeholder="Enter Phone *">
+                            <input type="text" name="area" required="" id="area" placeholder="Delivery Area *">
                         </div>
                         <div class="form-group col-lg-6">
-                            <input required="" type="text" name="additionalPhone" id="additionalPhone" placeholder="Enter Additional Phone">
+                            <input type="text" name="town" id="town" required="" placeholder=" Delivery Town/City *">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <input required="" type="text" value="<?php echo $profileData->phone; ?>" name="phone" id="phone" placeholder="Phone *">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input required="" type="text" name="additionalPhone" id="additionalPhone" placeholder="Additional Phone">
                         </div>
                     </div>
                     <div class="form-group mb-30">

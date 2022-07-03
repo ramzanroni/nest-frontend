@@ -13255,7 +13255,10 @@ footer .hotline img {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
+.default-img{
+  width: 181px;
+  height: 181px;
+}
 /* alert */
 
 /* success */

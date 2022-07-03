@@ -2,7 +2,7 @@
 include 'apidata/dataFetch.php';
 include 'inc/header.php';
 
-// single product api data 
+// category product api data 
 if (isset($_GET['category_id'])) {
     $category_id = $_GET['category_id'];
     $limit = 2;
@@ -29,8 +29,8 @@ if (isset($_GET['category_id'])) {
     curl_close($ch);
     $categoryData = json_decode($categoryInfo);
     $totalProduct = count($categoryData);
-
-
+    // print_r($categoryData);
+    $categoryName = $categoryData[0]->category;
     //total item of this category
     $url = 'http://192.168.0.116/neonbazar_api/total_number_of_item_category_wise.php?category_id=' . $category_id;
     $ch = curl_init();
@@ -58,10 +58,10 @@ if (isset($_GET['category_id'])) {
                             <h1 class="mb-15">Snack</h1>
                             <div class="breadcrumb">
                                 <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                                <span></span> Shop <span></span> Snack
+                                <span></span> Shop<span></span> <?php echo $categoryName; ?>
                             </div>
                         </div>
-                        <div class="col-xl-9 text-end d-none d-xl-block">
+                        <!-- <div class="col-xl-9 text-end d-none d-xl-block">
                             <ul class="tags-list">
                                 <li class="hover-up">
                                     <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Cabbage</a>
@@ -79,7 +79,7 @@ if (isset($_GET['category_id'])) {
                                     <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Spinach</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -105,10 +105,10 @@ if (isset($_GET['category_id'])) {
                                 <input type="hidden" id="getLimit" value="<?php echo $limit; ?>">
                                 <div class="sort-by-dropdown">
                                     <ul id="limitValue">
-                                        <li data-id="2"><a>2</a></li>
-                                        <li data-id="3"><a>3</a></li>
+                                        <li data-id="20"><a>20</a></li>
                                         <li data-id="30"><a>30</a></li>
-                                        <li data-id="60"><a>60</a></li>
+                                        <li data-id="40"><a>40</a></li>
+                                        <li data-id="50"><a>50</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@ if (isset($_GET['category_id'])) {
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
+                                                <a href="shop-product-right.php?product_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
                                             </div>
                                             <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
                                             </h2>

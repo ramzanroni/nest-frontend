@@ -1,5 +1,7 @@
 ﻿<?php
+include 'apidata/dataFetch.php';
 include 'inc/header.php';
+
 // include 'inc/function.php';
 session_start();
 if (getPhone() == '') {

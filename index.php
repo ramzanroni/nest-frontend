@@ -80,13 +80,17 @@ include 'inc/header.php';
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
-                                                        <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
+                                                        <img class="default-img" src="<?php if ($productData->img != '') {
+                                                                                            echo "//" . $productData->img;
+                                                                                        } else {
+                                                                                            echo 'assets/imgs/product.png';
+                                                                                        } ?>" alt="" />
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
+                                                    <a href="shop-grid-right.php?category_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
                                                 </div>
                                                 <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
                                                 </h2>
@@ -112,7 +116,7 @@ include 'inc/header.php';
                                                     ?>
                                                         <div id="item_<?= $productData->stockid ?>">
                                                             <div class="add-cart">
-                                                                <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo urlencode($productData->description); ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                                <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                             </div>
                                                         </div>
                                                     <?php

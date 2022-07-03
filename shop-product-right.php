@@ -43,9 +43,8 @@ $relatedProductData = json_decode($relatedProduct);
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> <a href="shop-grid-right.html">Vegetables & tubers</a> <span></span> Seeds of Change
-                Organic
+                <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <span></span> <a href="shop-product-right.php?product_id=<?php echo $productData[0]->stockid; ?>"><?php echo $productData[0]->description; ?></a>
             </div>
         </div>
     </div>
