@@ -726,7 +726,7 @@ function userSignup() {
             var Name = "'" + userName + "'";
             var Address = "'" + userAddress + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+')">Send</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+')">Send</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -778,7 +778,7 @@ function createAccount(phone, name, address)
 }
 
 function userLogin() {
-
+  var phoneNumber = $("#phoneNumber").val();
   if ($.isNumeric(phoneNumber)) {
     var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
     if (!phoneReg.test(phoneNumber)) {
@@ -799,7 +799,7 @@ function userLogin() {
           if (response == "success") {
             var phone = "'" + phoneNumber + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -832,14 +832,15 @@ function resendOTP(phoneNumber) {
     success: function (response) {
       if (response == "success") {
         var phone = "'" + phoneNumber + "'";
-        var htmlLogin =
-          '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp"              placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send!  <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
-          phone +
-          ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
-          phone +
-          ')">Log in</button></div>';
+        // var htmlLogin =
+        //   '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send!  <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
+        //   phone +
+        //   ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
+        //   phone +
+        //   ')">Log in</button></div>';
+        var htmlLogin = '<span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span>';
         // console.log(htmlLogin);
-        $("#loginDiv").html(htmlLogin);
+        $("#resendDiv").html(htmlLogin);
 
         $("#resendField").hide();
         timmer();
@@ -1247,7 +1248,7 @@ function updatePhone()
 function changePhone(oldPhone)
 {
   // var oldPhone = "'" + oldPhoneNum + "'";
-  var html='<input id="oldphone" type="text" value="'+oldPhone+'"><div class="container"><div class="row"><div class="col-xl-12 col-lg-12 col-md-12 m-auto"><div class="row"><div class="col-lg-6 pr-30 d-none d-lg-block"><img class="border-radius-15" src="assets/imgs/page/login-1.png" alt=""></div><div class="col-lg-6 col-md-8"><div class="login_wrap widget-taber-content background-white"> <div class="padding_eight_all bg-white" id="loginDiv"><div class="heading_s1"><h1 class="mb-5">Change Phone Number</h1></div><div class="form-group"> <input type="text" required="" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter your new phone number*"><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="sendOTP()">Send</button></div> </div></div></div> </div></div></div></div>';
+  var html='<input id="oldphone" type="hidden" value="'+oldPhone+'"><div class="container"><div class="row"><div class="col-xl-12 col-lg-12 col-md-12 m-auto"><div class="row"><div class="col-lg-6 pr-30 d-none d-lg-block"><img class="border-radius-15" src="assets/imgs/page/login-1.png" alt=""></div><div class="col-lg-6 col-md-8"><div class="login_wrap widget-taber-content background-white"> <div class="padding_eight_all bg-white" id="loginDiv"><div class="heading_s1"><h1 class="mb-5">Change Phone Number</h1></div><div class="form-group"> <input type="text" required="" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter your new phone number*"><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="sendOTP()">Send</button></div> </div></div></div> </div></div></div></div>';
   $("#modalDiv").html(html);
 }
 

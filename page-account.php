@@ -99,7 +99,7 @@ $orderData = json_decode($orderInfo);
                                         <div class="card-body">
                                             <p>
                                                 From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
-                                                manage your <a data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo getPhone(); ?>')">Change Your Phone Number</a>
+                                                manage your <a href="#" data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo getPhone(); ?>')">Change Your Phone Number</a>
                                             </p>
                                         </div>
                                     </div>
