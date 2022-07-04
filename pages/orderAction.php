@@ -85,13 +85,6 @@ if ($_POST['check'] == "checkorderditails") {
             </div>
         </div>
         <div class="card">
-            <header class="card-header">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
-                        <small class="text-muted">Order ID: <?php echo $orderNumber; ?></small>
-                    </div>
-                </div>
-            </header>
             <!-- card-header end// -->
             <div class="card-body">
                 <div class="row mb-50 mt-20 order-info-wrap">
@@ -139,7 +132,6 @@ if ($_POST['check'] == "checkorderditails") {
                                     }
                                     ?>
                                 </p>
-                                <!-- <a href="#">Download info</a> -->
                             </div>
                         </article>
                     </div>
@@ -151,10 +143,13 @@ if ($_POST['check'] == "checkorderditails") {
                             <table class="table" id="table_detail">
                                 <thead>
                                     <tr>
-                                        <th width="40%">Product</th>
-                                        <th width="20%" class="text-end">Unit Price</th>
-                                        <th width="20%" class="text-end">Quantity</th>
-                                        <th width="20%" class="text-end">Total</th>
+                                        <th width="20%">Product</th>
+                                        <th width="13%" class="text-end">Unit Price</th>
+                                        <th width="13%" class="text-end">Order Qty</th>
+                                        <th width="13%" class="text-end">Delivery Qty</th>
+                                        <th width="13%" class="text-end">Shipping Qty</th>
+                                        <th width="13%" class="text-end">Total</th>
+                                        <th width="15%" class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,7 +158,7 @@ if ($_POST['check'] == "checkorderditails") {
                                     $flag = 1;
                                     foreach ($orderDetails->item as $orderItemValue) {
                                     ?>
-                                        <tr onclick="showHideRow('hidden_row<?php echo $flag; ?>', <?php echo $flag; ?>,<?php echo $orderItemValue->orderlineno; ?>,<?php echo $orderNumber; ?>)">
+                                        <tr>
                                             <td>
                                                 <a class="itemside" href="http://localhost/nest-frontend/shop-product-right.php?product_id=<?php echo $orderItemValue->stockid; ?>">
                                                     <div class="left">
@@ -174,11 +169,19 @@ if ($_POST['check'] == "checkorderditails") {
                                             </td>
                                             <td class="text-end">৳<?php echo $orderItemValue->unitprice; ?></td>
                                             <td class="text-end"><?php echo $orderItemValue->quantity; ?></td>
+                                            <td class="text-end"><?php echo $orderItemValue->quantity; ?></td>
+                                            <td class="text-end"><?php echo $orderItemValue->quantity; ?></td>
                                             <td class="text-end">৳
-                                                <?php echo ($orderItemValue->unitprice * $orderItemValue->quantity); ?></td>
+                                                <?php echo ($orderItemValue->unitprice * $orderItemValue->quantity); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <button onclick="deleteOrderItem(<?php echo $orderProductID; ?>)" class="btn btn-info btn-sm">Cancel</button>
+                                                <!-- <button id="<?php echo $orderProductID; ?>" class="btn bg-danger btn-small float-end" onclick="deleteOrderItem(<?php echo $orderProductID; ?>)">Cancel</button> -->
+                                                <i style="cursor:pointer;" onclick="showHideRow('hidden_row<?php echo $flag; ?>', <?php echo $flag; ?>,<?php echo $orderItemValue->orderlineno; ?>,<?php echo $orderNumber; ?>)" class="fi-rs-angle-down ml-10 mr-10"></i>
+                                            </td>
                                         </tr>
                                         <tr id="hidden_row<?php echo $flag; ?>" class="hidden_row">
-                                            <td colspan=4 id="itemDetails<?php echo $flag; ?>">
+                                            <td colspan=7 id="itemDetails<?php echo $flag; ?>">
                                             </td>
                                         </tr>
                                     <?php
@@ -188,7 +191,7 @@ if ($_POST['check'] == "checkorderditails") {
                                     ?>
 
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="6">
                                             <article class="float-end">
                                                 <dl class="dlist">
                                                     <dt>Subtotal:</dt>
@@ -246,61 +249,187 @@ if ($_POST['check'] == "itemDetails") {
 ?>
     <!-- <div class="row">
     <div class="col-12 col-md-10 hh-grayBox pt45 pb20"> -->
-    <div class="row pt-10 justify-content-center">
-        <?php
-        if ($itemDetails[0]->completed == 3) {
-        ?>
-            <div class="order-tracking justify-content-center">
-                <p class="badge rounded-pill alert-danger text-danger">Canceled</p>
+    <div class="row shadow-none p-3 mb-5 bg-light rounded">
+        <div class="col-md-12">
+            <div class="col-md-2 align-middle float-start">
+                <h6 class="mb-1">Package ID: #12345</h6>
+                <p class="mb-1">Qty: 10</p>
+            </div>
+            <div class="col-md-8 float-start">
+                <div class="row pt-10 justify-content-center">
 
-            </div>
-        <?php
-        } else {
+                    <?php
+                    if ($itemDetails[0]->completed == 3) {
+                    ?>
+                        <div class="order-tracking justify-content-center">
+                            <p class="badge rounded-pill alert-danger text-danger">Canceled</p>
 
-        ?>
-            <div class="order-tracking <?php if ($itemDetails[0]->completed >= 0) {
-                                            echo "completed";
-                                        } ?>">
-                <span class="is-complete"></span>
-                <p>Packaging</p>
-                <!-- <p>Ordered<br><span>Mon, June 24</span></p> -->
-            </div>
-            <div class="order-tracking <?php if ($itemDetails[0]->completed >= 1) {
-                                            echo "completed";
-                                        } ?>">
-                <span class="is-complete"></span>
-                <p>Shipped</p>
-                <!-- <p>Shipped<br><span>Tue, June 25</span></p> -->
-            </div>
-            <div class="order-tracking <?php if ($itemDetails[0]->completed >= 2) {
-                                            echo "completed";
-                                        } ?>">
-                <span class="is-complete"></span>
-                <p>Delivered</p>
-                <!-- <p>Delivered<br><span>Fri, June 28</span></p> -->
-            </div>
-            <!-- <div class="order-tracking">
-            <span class="is-complete"></span>
-            <p>Delivered<br><span>Fri, June 28</span></p>
-        </div> -->
+                        </div>
+                    <?php
+                    } else {
 
-        <?php
-        }
-        ?>
+                    ?>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 0) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Packaging</p> -->
+                            <p>Ordered<br><span>Mon, June 24</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 1) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Shipped</p> -->
+                            <p>Shipped<br><span>Tue, June 25</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 2) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Delivered</p> -->
+                            <p>Delivered<br><span>Fri, June 28</span></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <?php
+            if ($itemDetails[0]->completed != 3) {
+            ?>
+                <div class="col-md-2 float-end">
+                    <button id="<?php echo $orderProductID; ?>" class="btn bg-danger btn-small float-end mt-10 mb-10 mr-10" onclick="deleteOrderItem(<?php echo $orderProductID; ?>)">Cancel Item</button>
+                </div>
+
+
+            <?php
+            }
+            ?>
+        </div>
     </div>
-    <!-- <div class="row"> -->
-    <?php
+    <div class="row shadow-none p-3 mb-5 bg-light rounded">
+        <div class="col-md-12">
+            <div class="col-md-2 float-start">
+                <h6 class="mb-1">Package ID: #12345</h6>
+                <p class="mb-1">Qty: 10</p>
+            </div>
+            <div class="col-md-8 float-start">
+                <div class="row pt-10 justify-content-center">
 
-    if ($itemDetails[0]->completed != 3) {
-    ?>
-        <button id="<?php echo $orderProductID; ?>" class="btn bg-danger btn-small float-end mt-10 mb-10 mr-10" onclick="deleteOrderItem(<?php echo $orderProductID; ?>)">Cancel Item</button>
-    <?php
-    }
-    ?>
+                    <?php
+                    if ($itemDetails[0]->completed == 3) {
+                    ?>
+                        <div class="order-tracking justify-content-center">
+                            <p class="badge rounded-pill alert-danger text-danger">Canceled</p>
 
-    <!-- </div> -->
-    <!-- </div>
-</div> -->
+                        </div>
+                    <?php
+                    } else {
+
+                    ?>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 0) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Packaging</p> -->
+                            <p>Ordered<br><span>Mon, June 24</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 1) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Shipped</p> -->
+                            <p>Shipped<br><span>Tue, June 25</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 2) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Delivered</p> -->
+                            <p>Delivered<br><span>Fri, June 28</span></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <?php
+            if ($itemDetails[0]->completed != 3) {
+            ?>
+                <div class="col-md-2 float-end">
+                    <button id="<?php echo $orderProductID; ?>" class="btn bg-danger btn-small float-end mt-10 mb-10 mr-10" onclick="deleteOrderItem(<?php echo $orderProductID; ?>)">Cancel Item</button>
+                </div>
+
+
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+    <div class="row shadow-none p-3 mb-5 bg-light rounded">
+        <div class="col-md-12">
+            <div class="col-md-2 float-start">
+                <h6 class="mb-1">Package ID: #12345</h6>
+                <p class="mb-1">Qty: 10</p>
+            </div>
+            <div class="col-md-8 float-start">
+                <div class="row pt-10 justify-content-center">
+
+                    <?php
+                    if ($itemDetails[0]->completed == 3) {
+                    ?>
+                        <div class="order-tracking justify-content-center">
+                            <p class="badge rounded-pill alert-danger text-danger">Canceled</p>
+
+                        </div>
+                    <?php
+                    } else {
+
+                    ?>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 0) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Packaging</p> -->
+                            <p>Ordered<br><span>Mon, June 24</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 1) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Shipped</p> -->
+                            <p>Shipped<br><span>Tue, June 25</span></p>
+                        </div>
+                        <div class="order-tracking <?php if ($itemDetails[0]->completed >= 2) {
+                                                        echo "completed";
+                                                    } ?>">
+                            <span class="is-complete"></span>
+                            <!-- <p>Delivered</p> -->
+                            <p>Delivered<br><span>Fri, June 28</span></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <?php
+            if ($itemDetails[0]->completed != 3) {
+            ?>
+                <div class="col-md-2 float-end">
+                    <button id="<?php echo $orderProductID; ?>" class="btn bg-danger btn-small float-end mt-10 mb-10 mr-10" onclick="deleteOrderItem(<?php echo $orderProductID; ?>)">Cancel Item</button>
+                </div>
+
+
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+
 <?php
 }
 

@@ -109,10 +109,8 @@
                             </li>
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call
                                     Us:</strong><span>(+91) - 540-025-124553</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-email-2.svg"
-                                    alt="" /><strong>Email:</strong><span>sale@Nest.com</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-clock.svg"
-                                    alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="" /><strong>Email:</strong><span>sale@Nest.com</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-clock.svg" alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
                         </ul>
                     </div>
                 </div>
@@ -168,8 +166,7 @@
                     <h4 class="widget-title">Install App</h4>
                     <p class="wow fadeIn animated">From App Store or Google Play</p>
                     <div class="download-app">
-                        <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active"
-                                src="assets/imgs/theme/app-store.jpg" alt="" /></a>
+                        <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active" src="assets/imgs/theme/app-store.jpg" alt="" /></a>
                         <a href="#" class="hover-up mb-sm-2"><img src="assets/imgs/theme/google-play.jpg" alt="" /></a>
                     </div>
                     <p class="mb-20">Secured Payment Gateways</p>
@@ -247,6 +244,7 @@
 <!-- Template  JS -->
 <script src="./assets/js/main.js?v=5.3"></script>
 <script src="./assets/js/shop.js?v=5.3"></script>
+
 </body>
 
 </html>

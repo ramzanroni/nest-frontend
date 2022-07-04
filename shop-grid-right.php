@@ -31,6 +31,7 @@ if (isset($_GET['category_id'])) {
     $totalProduct = count($categoryData);
     // print_r($categoryData);
     $categoryName = $categoryData[0]->category;
+
     //total item of this category
     $url = 'http://192.168.0.116/neonbazar_api/total_number_of_item_category_wise.php?category_id=' . $category_id;
     $ch = curl_init();
@@ -55,31 +56,12 @@ if (isset($_GET['category_id'])) {
                 <div class="archive-header">
                     <div class="row align-items-center">
                         <div class="col-xl-3">
-                            <h1 class="mb-15">Snack</h1>
+                            <h1 class="mb-15"> <?php echo $categoryName; ?></h1>
                             <div class="breadcrumb">
                                 <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                                 <span></span> Shop<span></span> <?php echo $categoryName; ?>
                             </div>
                         </div>
-                        <!-- <div class="col-xl-9 text-end d-none d-xl-block">
-                            <ul class="tags-list">
-                                <li class="hover-up">
-                                    <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Cabbage</a>
-                                </li>
-                                <li class="hover-up active">
-                                    <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Broccoli</a>
-                                </li>
-                                <li class="hover-up">
-                                    <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Artichoke</a>
-                                </li>
-                                <li class="hover-up">
-                                    <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Celery</a>
-                                </li>
-                                <li class="hover-up mr-0">
-                                    <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Spinach</a>
-                                </li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -443,22 +425,7 @@ if (isset($_GET['category_id'])) {
                     </section>
                 </div>
                 <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
-                    <div class="sidebar-widget widget-category-2 mb-30">
-                        <h5 class="section-title style-1 mb-30">Category</h5>
-                        <ul>
-                            <?php
-
-                            foreach ($categoryItemData as $categoryValue) {
-                            ?>
-                                <li>
-                                    <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>">
-                                        <img src="//<?php echo $categoryValue->categoryImg; ?>" alt="" /><?php echo $categoryValue->categoryName; ?></a><span class="count"><?php echo $categoryValue->item; ?></span>
-                                </li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
-                    </div>
+                    <?php include_once('component/category-component.php'); ?>
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                         <h5 class="section-title style-1 mb-30">New products</h5>

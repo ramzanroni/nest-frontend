@@ -13588,13 +13588,14 @@ a.itemside {
 }
 .order-tracking p {
   color: #a4a4a4;
-  font-size: 16px;
+  font-size: 12px;
   margin-top: 8px;
   margin-bottom: 0;
   line-height: 20px;
+
 }
 .order-tracking p span {
-  font-size: 14px;
+  font-size: 10 px;
 }
 .order-tracking.completed p {
   color: #000;

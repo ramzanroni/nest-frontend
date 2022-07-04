@@ -62,24 +62,25 @@ $orderData = json_decode($orderInfo);
     <div class="page-content pt-150 pb-150">
         <div class="container" id="accountDiv">
             <div class="row">
-                <div class="col-lg-10 m-auto">
+                <div class="col-lg-10 col-sm-12 m-auto">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-12">
                             <div class="dashboard-menu">
                                 <ul class="nav flex-column" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                                        <a class="nav-link active" id="orders-tab" data-bs-toggle="tab" href="#orders" onclick="orderDiv()" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" onclick="orderDiv()" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                        <a class="nav-link " id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Change Phone</a>
                                     </li>
-                                    <li class="nav-item">
+
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i class="fi-rs-shopping-cart-check mr-10"></i>Track
                                             Your Order</a>
-                                    </li>
-                                    <li class="nav-item">
+                                    </li> -->
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                     </li>
@@ -91,20 +92,20 @@ $orderData = json_decode($orderInfo);
                         </div>
                         <div class="col-md-9">
                             <div class="tab-content account dashboard-content">
-                                <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                <div class="tab-pane fade " id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0"><?php echo getPhone(); ?></h3>
                                         </div>
                                         <div class="card-body">
                                             <p>
-                                                From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
+                                                From your account dashboard. you can easily check &amp; view your <a data-bs-toggle="tab" role="tab" aria-controls="dashboard" aria-selected="false" href="#orders">recent orders</a>,<br />
                                                 manage your <a href="#" data-bs-toggle="modal" data-bs-target="#userlogin" onclick="changePhone('<?php echo getPhone(); ?>')">Change Your Phone Number</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                <div class="tab-pane active fade show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
 
                                     <div id="orderdata">
                                         <?php
@@ -119,10 +120,10 @@ $orderData = json_decode($orderInfo);
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Actions</th>
+                                                                <th class="text-center">Order</th>
+                                                                <th class="text-center">Date</th>
+                                                                <th class="text-center">Status</th>
+                                                                <th class="text-center">Actions</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -130,30 +131,33 @@ $orderData = json_decode($orderInfo);
                                                             foreach ($orderData as $orderValue) {
                                                             ?>
                                                                 <tr>
-                                                                    <td><?php echo $orderValue->orderno; ?></td>
-                                                                    <td><?php echo $orderValue->orddate; ?></td>
-                                                                    <td><?php
-                                                                        if ($orderValue->so_status == 0) {
-                                                                        ?>
+                                                                    <td class="text-center"><?php echo $orderValue->orderno; ?></td>
+                                                                    <td class="text-center"><?php echo $orderValue->orddate; ?></td>
+                                                                    <td class="text-center"><?php
+                                                                                            if ($orderValue->so_status == 0) {
+                                                                                            ?>
                                                                             <span class="badge rounded-pill alert-warning text-warning">Pending</span>
                                                                         <?php
-                                                                        } elseif ($orderValue->so_status == 1) {
+                                                                                            } elseif ($orderValue->so_status == 1) {
                                                                         ?>
                                                                             <span class="badge rounded-pill alert-success text-success">Accept</span>
                                                                         <?php
-                                                                        } elseif ($orderValue->so_status == 3) {
+                                                                                            } elseif ($orderValue->so_status == 3) {
                                                                         ?>
                                                                             <span class="badge rounded-pill alert-danger text-danger">Canceled</span>
                                                                         <?php
-                                                                        }
+                                                                                            }
                                                                         ?>
                                                                     </td>
-                                                                    <td><button onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)" class="float-start btn btn-small btn-success  m-2">View</button>
-                                                                        <?php if ($orderValue->so_status == 0 || $orderValue->so_status == 1) {
-                                                                        ?>
-                                                                            <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-warning ">Cancel</button>
-                                                                        <?php
-                                                                        } ?>
+                                                                    <td class="text-center">
+                                                                        <span class="text-center">
+                                                                            <button onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)" class="float-start btn btn-small btn-success  m-2">View</button>
+                                                                            <?php if ($orderValue->so_status == 0 || $orderValue->so_status == 1) {
+                                                                            ?>
+                                                                                <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-warning ">Cancel</button>
+                                                                        </span>
+                                                                    <?php
+                                                                            } ?>
                                                                     </td>
                                                                 </tr>
                                                             <?php
@@ -170,7 +174,7 @@ $orderData = json_decode($orderInfo);
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
+                                <!-- <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0">Orders tracking</h3>
@@ -196,8 +200,8 @@ $orderData = json_decode($orderInfo);
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                </div> -->
+                                <!-- <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="card mb-3 mb-lg-0">
@@ -231,7 +235,7 @@ $orderData = json_decode($orderInfo);
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
                                     <div class="card mb-4 border p-3">
                                         <div class="card-header">
@@ -271,4 +275,14 @@ $orderData = json_decode($orderInfo);
         </div>
     </div>
 </main>
+<?php
+$pageLavelScript = '<script>
+    $(document).ready(function() {
+        console.log("ready!");
+        orderDiv();
+    });
+</script>';
+?>
+
+
 <?php include 'inc/footer.php'; ?>
