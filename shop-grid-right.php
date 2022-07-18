@@ -1,6 +1,7 @@
 ﻿<?php
 include 'apidata/dataFetch.php';
 include 'inc/header.php';
+include 'inc/apiendpoint.php';
 
 // category product api data 
 if (isset($_GET['category_id'])) {
@@ -13,42 +14,65 @@ if (isset($_GET['category_id'])) {
     if ($_COOKIE['sort_by']) {
         $sortby = $_COOKIE['sort_by'];
     }
-    $url = 'http://192.168.0.116/neonbazar_api/category_wise_product.php?category_id=' . $category_id . '&limit=' . $limit . '&sort_by=' . $sortby; //url will be here
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryInfo = curl_exec($ch);
-    curl_close($ch);
-    $categoryData = json_decode($categoryInfo);
-    $totalProduct = count($categoryData);
-    // print_r($categoryData);
-    $categoryName = $categoryData[0]->category;
+    $curl = curl_init();
 
-    //total item of this category
-    $url = 'http://192.168.0.116/neonbazar_api/total_number_of_item_category_wise.php?category_id=' . $category_id;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryItemInfo = curl_exec($ch);
-    curl_close($ch);
-    $categoryDataCount = json_decode($categoryItemInfo);
-    $totalCategoryItem = $categoryDataCount[0]->totalItem;
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $category_id . "&limit=" . $limit . "&start=1&sort_by=" . $sortby,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $cateoryProduct = json_decode($response);
+        $categoryData = $cateoryProduct->data->products;
+        // $totalProduct = $cateoryProduct->data->rows_returned;
+        $categoryName = $cateoryProduct->data->products[0]->category;
+    }
+
+    // total product 
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $category_id . "&limit=All&start=1&sort_by=" . $sortby,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $cateoryProduct = json_decode($response);
+        $totalProduct = $cateoryProduct->data->rows_returned;
+    }
+
 ?>
     <main class="main">
         <div class="page-header mt-30 mb-50">
@@ -71,7 +95,7 @@ if (isset($_GET['category_id'])) {
                 <div class="col-lg-4-5">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand"><?php echo $totalCategoryItem; ?></strong> items for you!
+                            <p>We found <strong class="text-brand"><?php echo $totalProduct; ?></strong> items for you!
                             </p>
                         </div>
                         <div class="sort-by-product-area">
@@ -87,10 +111,10 @@ if (isset($_GET['category_id'])) {
                                 <input type="hidden" id="getLimit" value="<?php echo $limit; ?>">
                                 <div class="sort-by-dropdown">
                                     <ul id="limitValue">
-                                        <li data-id="20"><a>20</a></li>
-                                        <li data-id="30"><a>30</a></li>
-                                        <li data-id="40"><a>40</a></li>
-                                        <li data-id="50"><a>50</a></li>
+                                        <li data-id="2"><a>2</a></li>
+                                        <li data-id="3"><a>3</a></li>
+                                        <li data-id="4"><a>4</a></li>
+                                        <li data-id="5"><a>5</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -126,12 +150,9 @@ if (isset($_GET['category_id'])) {
                                             <div class="product-img product-img-zoom">
                                                 <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
                                                     <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
-                                                    <!-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> -->
+                                                    <img class="hover-img" src="//<?php echo $productData->img; ?>" alt="" />
                                                 </a>
                                             </div>
-                                            <!-- <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot"><?php echo $productData->units; ?></span>
-                                    </div> -->
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
@@ -142,16 +163,9 @@ if (isset($_GET['category_id'])) {
                                             <div class="product-rate-cover product-badges">
                                                 <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
                                             </div>
-                                            <!-- <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div> -->
                                             <div class="product-card-bottom">
                                                 <div class="product-price">
                                                     <span>৳<?php echo $productData->webprice; ?></span>
-                                                    <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
                                                 </div>
                                                 <?php
                                                 $cartProductID = '';
@@ -209,7 +223,7 @@ if (isset($_GET['category_id'])) {
                                     $nextPage = $currentPage + 1;
                                     $previousPage = $currentPage - 1;
                                     $perpageItem = $limit;
-                                    $numberOfpage = ceil($totalCategoryItem / $perpageItem);
+                                    $numberOfpage = ceil($totalProduct / $perpageItem);
                                     if ($numberOfpage <= 5 && $numberOfpage > 1) {
                                     ?>
                                         <?php
@@ -515,76 +529,7 @@ if (isset($_GET['category']) && isset($_GET['product_name'])) {
                             <?php
                             $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
                             foreach ($searchData as $productData) {
-                            ?>
-                                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                    <div class="product-cart-wrap mb-30">
-                                        <div class="product-img-action-wrap">
-                                            <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
-                                                    <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
-                                                    <!-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> -->
-                                                </a>
-                                            </div>
-                                            <!-- <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot"><?php echo $productData->units; ?></span>
-                                    </div> -->
-                                        </div>
-                                        <div class="product-content-wrap">
-                                            <div class="product-category">
-                                                <a href="shop-grid-right.html"><?php echo $productData->category; ?></a>
-                                            </div>
-                                            <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
-                                            </h2>
-                                            <div class="product-rate-cover product-badges">
-                                                <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
-                                            </div>
-                                            <div class="product-card-bottom">
-                                                <div class="product-price">
-                                                    <span>৳<?php echo $productData->webprice; ?></span>
-                                                </div>
-                                                <?php
-                                                $cartProductID = '';
-                                                $numberOfItem = '';
-                                                foreach ($cartCookiesProduct as $cartKey => $itemValue) {
-                                                    if ($itemValue->productID == $productData->stockid) {
-                                                        $cartProductID = $itemValue->productID;
-                                                        $numberOfItem = $itemValue->productQuantity;
-                                                    }
-                                                }
-                                                if ($cartProductID == '') {
-                                                ?>
-                                                    <div id="item_<?= $productData->stockid ?>">
-                                                        <div class="add-cart">
-                                                            <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>' )"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                                        </div>
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col-12" id="item_<?= $productData->stockid ?>">
-                                                        <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>" value="<?php echo $numberOfItem; ?>">
-                                                        <div class="col-10 float-end after-cart">
-                                                            <div class="col-2 float-end increment" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>)">
-                                                                <a><i class="fi-rs-plus"></i></a>
-                                                            </div>
-                                                            <div class="col-4 float-end middle">
-                                                                <a><i class="fi-rs-shopping-cart"></i>
-                                                                    <span id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-2 float-end add decrement" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>)">
-                                                                <a><i class="fi-rs-minus"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
+                                include 'component/product-component.php';
                             }
                             ?>
                         </div>

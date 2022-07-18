@@ -1,32 +1,40 @@
 <?php
 include '../inc/function.php';
+include '../inc/apiendpoint.php';
 if ($_POST['check'] == "userPhoneNumberSend") {
     $phoneNumber = $_POST['phoneNumber'];
-    $post = array(  //data array from user side
+    $curl = curl_init();
 
-        "phoneNumber" => $phoneNumber
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/sms.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"newPhone\": \"$phoneNumber\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json"
+        ),
+    ));
 
-    );
-    $data = json_encode($post); // json encoded
-    $url = "http://192.168.0.116/neonbazar_api/user_send_otp.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $server_output = curl_exec($ch); //output will be here
-    curl_close($ch);
-    $response = json_decode($server_output);
-    // print_r($response);
-    echo $response->message;
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        if ($result->success == true) {
+            echo "success";
+        } else {
+            echo $result->message[0];
+        }
+    }
 }
 
 if ($_POST['check'] == "forRegistration") {
@@ -35,7 +43,7 @@ if ($_POST['check'] == "forRegistration") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://192.168.0.116/metroapi/v1/controller/sms.php",
+        CURLOPT_URL => APIENDPOINT . "sms.php",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -45,8 +53,7 @@ if ($_POST['check'] == "forRegistration") {
         CURLOPT_POSTFIELDS => "{\n\t\"newPhone\": \"$phone\"\n}",
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
-            "content-type: application/json",
-            "postman-token: 0f270d41-1e08-7365-4c29-cdfc8f1e686b"
+            "content-type: application/json"
         ),
     ));
 
@@ -72,7 +79,7 @@ if ($_POST['check'] == "userRegistration") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://192.168.0.116/metroapi/v1/controller/sms.php",
+        CURLOPT_URL => APIENDPOINT . "sms.php",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -115,54 +122,96 @@ if ($_POST['check'] == "userRegistration") {
 if ($_POST['check'] == "otpCheck") {
     $otpCode = $_POST['otpCode'];
     $phone = $_POST['phone'];
-    $post = array(  //data array from user side
 
-        "optNumber" => $otpCode,
-        'phone' => $phone
+    $curl = curl_init();
 
-    );
-    $data = json_encode($post); // json encoded
-    $url = "http://192.168.0.116/neonbazar_api/user_send_otp.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $server_output = curl_exec($ch); //output will be here
-    curl_close($ch);
-    $response = json_decode($server_output);
-    if ($response->message == "success") {
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "sms.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"phone\": \"$phone\",\n\t\"otp\": \"$otpCode\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json"
+        ),
+    ));
 
-        if (session_id() == '') {
-            session_start();
-        }
-        $info = array(
-            'phone' => $response->userPhone,
-            'token' => $response->userToken
-        );
-        $userInfo = json_encode($info);
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
 
-        setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
+    curl_close($curl);
 
-
-        // $_SESSION['phone'] = $response->userPhone;
-        // $_SESSION['token'] = $response->userToken;
-        // echo $response->message;
-        // echo $response->userPhone;
-        // echo $response->userToken;
-        // echo session_id();
-        echo 'success';
+    if ($err) {
+        echo "cURL Error #:" . $err;
     } else {
-        echo $response->message;
+        $result = json_decode($response);
+        if ($result->success == true) {
+            $info = array(
+                'phone' => $result->data->userdata[0]->userPhone,
+                'token' => $result->data->userdata[0]->userToken
+            );
+            $userInfo = json_encode($info);
+
+            setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
+            echo 'success';
+        } else {
+            echo $result->message[0];
+        }
     }
+
+
+
+    // $post = array(  //data array from user side
+
+    //     "optNumber" => $otpCode,
+    //     'phone' => $phone
+
+    // );
+    // $data = json_encode($post); // json encoded
+    // $url = "http://192.168.0.116/neonbazar_api/user_send_otp.php";
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_POST, true);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // $server_output = curl_exec($ch); //output will be here
+    // curl_close($ch);
+    // $response = json_decode($server_output);
+    // if ($response->message == "success") {
+
+
+
+    //     $info = array(
+    //         'phone' => $response->userPhone,
+    //         'token' => $response->userToken
+    //     );
+    //     $userInfo = json_encode($info);
+
+    //     setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
+
+
+    //     // $_SESSION['phone'] = $response->userPhone;
+    //     // $_SESSION['token'] = $response->userToken;
+    //     // echo $response->message;
+    //     // echo $response->userPhone;
+    //     // echo $response->userToken;
+    //     // echo session_id();
+    //     echo 'success';
+    // } else {
+    //     echo $response->message;
+    // }
 }
 
 if ($_POST['check'] == "userProfileUpdate") {

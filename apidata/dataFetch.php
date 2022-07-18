@@ -17,8 +17,40 @@ $productsData = curl_exec($ch);
 curl_close($ch);
 $productsArr = json_decode($productsData);
 
-// item with category
 
+// product data 
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => APIENDPOINT . "product.php",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache",
+        "postman-token: 75869b3f-b151-5603-e941-0ea430eb8cc0"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $productData = json_decode($response);
+    $productsArr = $productData->data->products;
+    // print_r($productsArr);
+}
+
+
+// item with category
 $curl = curl_init();
 curl_setopt_array($curl, array(
     CURLOPT_URL => APIENDPOINT . "category.php",

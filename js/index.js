@@ -1157,7 +1157,29 @@ function showHideRow(row, flagid, orderProductID, orderNumber) {
     },
   });
 }
+var packet;
+function showPackageDetails(data, orderNumber, cartonNumber) {
+  var check = "cartonItemDetails";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
 
+    data: {
+      orderNumber: orderNumber,
+      cartonNumber: cartonNumber,
+      check: check,
+    },
+    success: function (response) {
+      $(data).children().toggleClass('fi-rs-angle-down fi-rs-angle-up');
+
+      if ($(data).parent().parent().parent().children().length > 1) {
+        $(data).parent().parent().parent().children().last().remove();
+      } else {
+        $(response).insertAfter($(data).parent().parent());
+      }
+    },
+  });
+}
 // OrderCancel
 
 function OrderCancel(orderId) {

@@ -1,43 +1,70 @@
 ﻿<?php
 include 'apidata/dataFetch.php';
 include 'inc/header.php';
-
+include 'inc/apiendpoint.php';
 // single product api data 
 $product_id = $_GET['product_id'];
+$curl = curl_init();
 
-$url = 'http://192.168.0.116/neonbazar_api/single_product.php?product_id=' . $product_id; //url will be here
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt(
-    $ch,
-    CURLOPT_HTTPHEADER,
-    array( //header will be here
-        'Content-Type: application/json',
-        'Authorization: ' . APIKEY,
-    )
-);
-$productInfo = curl_exec($ch);
-curl_close($ch);
-$productData = json_decode($productInfo);
+curl_setopt_array($curl, array(
+    CURLOPT_URL => APIENDPOINT . "product.php?product_id=" . $product_id,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache",
+        "postman-token: ffaa603f-5133-0577-4183-9c51ce929d6e"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $productInfo = json_decode($response);
+    $productData = $productInfo->data->products;
+}
+
+
 
 //Related product
 
-$url = 'http://192.168.0.116/neonbazar_api/category_wise_product.php?category_id=' . $productData[0]->category_id . '&limit=All'; //url will be here
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt(
-    $ch,
-    CURLOPT_HTTPHEADER,
-    array( //header will be here
-        'Content-Type: application/json',
-        'Authorization: ' . APIKEY,
-    )
-);
-$relatedProduct = curl_exec($ch);
-curl_close($ch);
-$relatedProductData = json_decode($relatedProduct);
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => APIENDPOINT . "product.php?category_id=" . $productData[0]->category_id . "&limit=5&start=1",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache",
+        "postman-token: d7da1c20-3de7-b996-babc-e1f92ff7a428"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $relatedproductInfo = json_decode($response);
+    $relatedProductData = $relatedproductInfo->data->products;
+}
+
+
 ?>
 <main class="main">
     <div class="page-header breadcrumb-wrap">
@@ -554,51 +581,9 @@ $relatedProductData = json_decode($relatedProduct);
                                     <div class="row related-products">
                                         <?php
 
-                                        foreach ($relatedProductData as $key => $reladetproductValue) {
+                                        foreach ($relatedProductData as $productData) {
 
-                                        ?>
-                                            <div class="col-lg-3 col-md-4 col-12 col-sm-6 mt-2">
-                                                <div class="product-cart-wrap hover-up">
-                                                    <div class="product-img-action-wrap">
-                                                        <div class="product-img product-img-zoom">
-                                                            <a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>" tabindex="
-                                                            0">
-                                                                <img class="default-img" src="//<?php echo $reladetproductValue->img; ?>" alt="" />
-                                                                <img class="hover-img" src="//<?php echo $reladetproductValue->img; ?>" alt="" />
-                                                            </a>
-                                                        </div>
-                                                        <!-- <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
-                                                        <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
-                                                            tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
-                                                    </div> -->
-                                                        <!-- <div class="product-badges product-badges-position product-badges-mrg">
-                                                            <span class="hot">Hot</span>
-                                                        </div> -->
-                                                    </div>
-                                                    <div class="product-content-wrap">
-                                                        <h2><a href="shop-product-right.php?product_id=<?php echo $reladetproductValue->stockid; ?>" tabindex="0"><?php echo $reladetproductValue->description; ?></a>
-                                                        </h2>
-                                                        <div class="product-rate-cover product-badges">
-                                                            <span class="font-small ml-5 text-muted hot"><?php echo $reladetproductValue->units; ?></span>
-                                                        </div>
-                                                        <!-- <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div> -->
-                                                        <div class="product-price">
-                                                            <span>৳<?php echo $reladetproductValue->webprice; ?> </span>
-                                                            <!-- <span class="old-price">$245.8</span> -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php
+                                            include 'component/product-component.php';
                                         }
                                         ?>
 

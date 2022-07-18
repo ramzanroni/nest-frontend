@@ -12,7 +12,7 @@ if (getPhone() == '') {
 
 // user profile data 
 
-$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . getPhone();
+$url = "https://demostarter.erp.place/eback/user_profile_data.php?phoneNumber=" . getPhone();
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -21,7 +21,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: ' . APIKEY,
+        'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
     )
 );
 $profileInfo = curl_exec($ch);
@@ -32,7 +32,7 @@ $profileData = json_decode($profileInfo);
 // order details
 
 
-$url = "http://192.168.0.116/neonbazar_api/order_view.php?token=" . getToken();
+$url = "https://demostarter.erp.place/eback/order_view.php?token=" . getToken();
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -41,7 +41,7 @@ curl_setopt(
     CURLOPT_HTTPHEADER,
     array( //header will be here
         'Content-Type: application/json',
-        'Authorization: ' . APIKEY,
+        'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
     )
 );
 $orderInfo = curl_exec($ch);
@@ -128,39 +128,49 @@ $orderData = json_decode($orderInfo);
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                            foreach ($orderData as $orderValue) {
+                                                            if (!isset($orderData->message)) {
+                                                                foreach ($orderData as $orderValue) {
                                                             ?>
-                                                                <tr>
-                                                                    <td class="text-center"><?php echo $orderValue->orderno; ?></td>
-                                                                    <td class="text-center"><?php echo $orderValue->orddate; ?></td>
-                                                                    <td class="text-center"><?php
-                                                                                            if ($orderValue->so_status == 0) {
-                                                                                            ?>
-                                                                            <span class="badge rounded-pill alert-warning text-warning">Pending</span>
-                                                                        <?php
-                                                                                            } elseif ($orderValue->so_status == 1) {
-                                                                        ?>
-                                                                            <span class="badge rounded-pill alert-success text-success">Accept</span>
-                                                                        <?php
-                                                                                            } elseif ($orderValue->so_status == 3) {
-                                                                        ?>
-                                                                            <span class="badge rounded-pill alert-danger text-danger">Canceled</span>
-                                                                        <?php
-                                                                                            }
-                                                                        ?>
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        <span class="text-center">
-                                                                            <button onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)" class="float-start btn btn-small btn-success  m-2">View</button>
-                                                                            <?php if ($orderValue->so_status == 0 || $orderValue->so_status == 1) {
+                                                                    <tr>
+                                                                        <td class="text-center"><?php echo $orderValue->orderno; ?></td>
+                                                                        <td class="text-center"><?php echo $orderValue->orddate; ?></td>
+                                                                        <td class="text-center"><?php
+                                                                                                if ($orderValue->so_status == 0) {
+                                                                                                ?>
+                                                                                <span class="badge rounded-pill alert-warning text-warning">Pending</span>
+                                                                            <?php
+                                                                                                } elseif ($orderValue->so_status == 1) {
                                                                             ?>
-                                                                                <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-warning ">Cancel</button>
-                                                                        </span>
-                                                                    <?php
-                                                                            } ?>
-                                                                    </td>
-                                                                </tr>
+                                                                                <span class="badge rounded-pill alert-success text-success">Accept</span>
+                                                                            <?php
+                                                                                                } elseif ($orderValue->so_status == 2) {
+                                                                            ?>
+                                                                                <span class="badge rounded-pill alert-secondary text-secondary">Rejected</span>
+                                                                            <?php
+                                                                                                } elseif ($orderValue->so_status == 3) {
+                                                                            ?>
+                                                                                <span class="badge rounded-pill alert-danger text-danger">Canceled</span>
+                                                                            <?php
+                                                                                                } elseif ($orderValue->so_status == 4) {
+                                                                            ?>
+                                                                                <span class="badge rounded-pill alert-success text-success">Complete</span>
+                                                                            <?php
+                                                                                                }
+                                                                            ?>
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <span class="text-center">
+                                                                                <button onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)" class="float-start btn btn-small btn-success  m-2">View</button>
+                                                                                <?php if (($orderValue->so_status == 0 || $orderValue->so_status == 1) && $orderValue->so_detail_status != 0) {
+                                                                                ?>
+                                                                                    <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-danger ">Cancel</button>
+                                                                            </span>
+                                                                        <?php
+                                                                                } ?>
+                                                                        </td>
+                                                                    </tr>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </tbody>
