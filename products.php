@@ -284,7 +284,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="product.html">
+                                            <a href="product.php">
                                                 <img src="assets/imgs/banner/banner-5.png" alt="" />
                                             </a>
                                         </div>
@@ -294,7 +294,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="product.html">Seeds of Change Organic Quinoa,
+                                            <h2><a href="product.php">Seeds of Change Organic Quinoa,
                                                     Brown</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -304,7 +304,7 @@ if (isset($_GET['category_id'])) {
                                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                                                <span class="font-small text-muted">By <a href="vendor-details-1.php">NestFood</a></span>
                                             </div>
                                             <div class="product-card-bottom">
                                                 <div class="product-price">
@@ -312,7 +312,7 @@ if (isset($_GET['category_id'])) {
                                                     <span class="old-price">$33.8</span>
                                                 </div>
                                                 <div class="add-cart">
-                                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -323,7 +323,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="product.html">
+                                            <a href="product.php">
                                                 <img src="assets/imgs/banner/banner-6.png" alt="" />
                                             </a>
                                         </div>
@@ -333,7 +333,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="product.html">Perdue Simply Smart Organics
+                                            <h2><a href="product.php">Perdue Simply Smart Organics
                                                     Gluten</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -343,7 +343,7 @@ if (isset($_GET['category_id'])) {
                                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">Old
+                                                <span class="font-small text-muted">By <a href="vendor-details-1.php">Old
                                                         El Paso</a></span>
                                             </div>
                                             <div class="product-card-bottom">
@@ -352,7 +352,7 @@ if (isset($_GET['category_id'])) {
                                                     <span class="old-price">$26.8</span>
                                                 </div>
                                                 <div class="add-cart">
-                                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -363,7 +363,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="product.html">
+                                            <a href="product.php">
                                                 <img src="assets/imgs/banner/banner-7.png" alt="" />
                                             </a>
                                         </div>
@@ -373,7 +373,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="product.html">Signature Wood-Fired Mushroom</a></h2>
+                                            <h2><a href="product.php">Signature Wood-Fired Mushroom</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
@@ -381,7 +381,7 @@ if (isset($_GET['category_id'])) {
                                                 <span class="font-small ml-5 text-muted"> (3.0)</span>
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">Progresso</a></span>
+                                                <span class="font-small text-muted">By <a href="vendor-details-1.php">Progresso</a></span>
                                             </div>
                                             <div class="product-card-bottom">
                                                 <div class="product-price">
@@ -389,7 +389,7 @@ if (isset($_GET['category_id'])) {
                                                     <span class="old-price">$13.8</span>
                                                 </div>
                                                 <div class="add-cart">
-                                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -400,7 +400,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="product.html">
+                                            <a href="product.php">
                                                 <img src="assets/imgs/banner/banner-8.png" alt="" />
                                             </a>
                                         </div>
@@ -410,7 +410,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="product.html">Simply Lemonade with Raspberry
+                                            <h2><a href="product.php">Simply Lemonade with Raspberry
                                                     Juice</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -420,7 +420,7 @@ if (isset($_GET['category_id'])) {
                                                 <span class="font-small ml-5 text-muted"> (3.0)</span>
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">Yoplait</a></span>
+                                                <span class="font-small text-muted">By <a href="vendor-details-1.php">Yoplait</a></span>
                                             </div>
                                             <div class="product-card-bottom">
                                                 <div class="product-price">
@@ -428,7 +428,7 @@ if (isset($_GET['category_id'])) {
                                                     <span class="old-price">$16.8</span>
                                                 </div>
                                                 <div class="add-cart">
-                                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                 </div>
                                             </div>
                                         </div>

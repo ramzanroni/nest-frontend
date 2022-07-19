@@ -192,9 +192,9 @@ if ($err) {
                                             <div class="product-extra-link2">
                                                 <button onclick="addtoCartSingle(<?php echo $productData[0]->stockid; ?>,'<?php echo $productData[0]->description; ?>',<?php echo $productData[0]->webprice; ?>,'<?php echo $productData[0]->img; ?>' )" type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                 <!-- <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    href="shop-wishlist.php"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> -->
+                                                    href="shop-compare.php"><i class="fi-rs-shuffle"></i></a> -->
                                             </div>
                                         </div>
                                         <div class="font-xs">
@@ -364,7 +364,7 @@ if ($err) {
                                                 <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
                                                 <div class="vendor-name ml-15">
                                                     <h6>
-                                                        <a href="vendor-details-2.html">Noodles Co.</a>
+                                                        <a href="vendor-details-2.php">Noodles Co.</a>
                                                     </h6>
                                                     <div class="product-rate-cover text-end">
                                                         <div class="product-rate d-inline-block">
@@ -591,7 +591,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="product.html" tabindex="0">
+                                                        <a href="product.php" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-3-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -603,10 +603,10 @@ if ($err) {
                                                             data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
                                                                 class="fi-rs-search"></i></a>
                                                         <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
+                                                            class="action-btn small hover-up" href="shop-wishlist.php"
                                                             tabindex="0"><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
+                                                            href="shop-compare.php" tabindex="0"><i
                                                                 class="fi-rs-shuffle"></i></a>
                                                     </div>
                                                     <div
@@ -615,7 +615,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="product.html" tabindex="0">Smart Bluetooth
+                                                    <h2><a href="product.php" tabindex="0">Smart Bluetooth
                                                             Speaker</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>
@@ -631,7 +631,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="product.html" tabindex="0">
+                                                        <a href="product.php" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-4-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -643,10 +643,10 @@ if ($err) {
                                                             data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
                                                                 class="fi-rs-search"></i></a>
                                                         <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
+                                                            class="action-btn small hover-up" href="shop-wishlist.php"
                                                             tabindex="0"><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
+                                                            href="shop-compare.php" tabindex="0"><i
                                                                 class="fi-rs-shuffle"></i></a>
                                                     </div>
                                                     <div
@@ -655,7 +655,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="product.html" tabindex="0">HomeSpeak 12UEA
+                                                    <h2><a href="product.php" tabindex="0">HomeSpeak 12UEA
                                                             Goole</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>
@@ -671,7 +671,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up mb-0">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="product.html" tabindex="0">
+                                                        <a href="product.php" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-5-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -683,10 +683,10 @@ if ($err) {
                                                             data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
                                                                 class="fi-rs-search"></i></a>
                                                         <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
+                                                            class="action-btn small hover-up" href="shop-wishlist.php"
                                                             tabindex="0"><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
+                                                            href="shop-compare.php" tabindex="0"><i
                                                                 class="fi-rs-shuffle"></i></a>
                                                     </div>
                                                     <div
@@ -695,7 +695,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="product.html" tabindex="0">Dadua Camera 4K
+                                                    <h2><a href="product.php" tabindex="0">Dadua Camera 4K
                                                             2022EF</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>

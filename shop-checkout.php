@@ -41,7 +41,7 @@ if ($err) {
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Shop
                 <span></span> Checkout
             </div>
@@ -112,7 +112,7 @@ if ($err) {
                                     <tr>
                                         <td class="image product-thumbnail"><img src="//<?php echo $product->productImage; ?>" alt="#"></td>
                                         <td>
-                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading"><?php echo $product->productName; ?></a></h6>
+                                            <h6 class="w-160 mb-5"><a href="shop-product-full.php" class="text-heading"><?php echo $product->productName; ?></a></h6>
                                             </span>
                                         </td>
                                         <td>

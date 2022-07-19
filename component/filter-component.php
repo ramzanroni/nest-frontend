@@ -38,6 +38,6 @@
             </div>
         </div>
     </div>
-    <a href="products.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
+    <a href="products.php" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
         Fillter</a>
 </div>

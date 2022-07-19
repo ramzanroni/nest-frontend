@@ -3,7 +3,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Shop <span></span> Fillter
             </div>
         </div>
@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="image product-thumbnail pt-40"><img src="assets/imgs/shop/product-1-1.jpg" alt="#" /></td>
                                 <td class="product-des product-name">
-                                    <h6><a class="product-name mb-10" href="product.html">Field Roast Chao Cheese Creamy Original</a></h6>
+                                    <h6><a class="product-name mb-10" href="product.php">Field Roast Chao Cheese Creamy Original</a></h6>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -66,7 +66,7 @@
                                 </td>
                                 <td class="image product-thumbnail"><img src="assets/imgs/shop/product-2-1.jpg" alt="#" /></td>
                                 <td class="product-des product-name">
-                                    <h6><a class="product-name mb-10" href="product.html">Blue Diamond Almonds Lightly Salted</a></h6>
+                                    <h6><a class="product-name mb-10" href="product.php">Blue Diamond Almonds Lightly Salted</a></h6>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -94,7 +94,7 @@
                                 </td>
                                 <td class="image product-thumbnail"><img src="assets/imgs/shop/product-3-1.jpg" alt="#" /></td>
                                 <td class="product-des product-name">
-                                    <h6><a class="product-name mb-10" href="product.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
+                                    <h6><a class="product-name mb-10" href="product.php">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -122,7 +122,7 @@
                                 </td>
                                 <td class="image product-thumbnail"><img src="assets/imgs/shop/product-4-1.jpg" alt="#" /></td>
                                 <td class="product-des product-name">
-                                    <h6><a class="product-name mb-10" href="product.html">Angie’s Boomchickapop Sweet & Salty </a></h6>
+                                    <h6><a class="product-name mb-10" href="product.php">Angie’s Boomchickapop Sweet & Salty </a></h6>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -150,7 +150,7 @@
                                 </td>
                                 <td class="image product-thumbnail"><img src="assets/imgs/shop/product-5-1.jpg" alt="#" /></td>
                                 <td class="product-des product-name">
-                                    <h6><a class="product-name mb-10" href="product.html">Foster Farms Takeout Crispy Classic</a></h6>
+                                    <h6><a class="product-name mb-10" href="product.php">Foster Farms Takeout Crispy Classic</a></h6>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>

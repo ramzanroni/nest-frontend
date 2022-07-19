@@ -97,7 +97,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="product.html">
+                                        <a href="product.php">
                                             <img src="assets/imgs/banner/banner-5.png" alt="" />
                                         </a>
                                     </div>
@@ -107,7 +107,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="product.html">Seeds of Change Organic Quinoa, Brown</a>
+                                        <h2><a href="product.php">Seeds of Change Organic Quinoa, Brown</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -116,7 +116,7 @@ include 'inc/header.php';
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">NestFood</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
@@ -124,7 +124,7 @@ include 'inc/header.php';
                                                 <span class="old-price">$33.8</span>
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="product.html">
+                                        <a href="product.php">
                                             <img src="assets/imgs/banner/banner-6.png" alt="" />
                                         </a>
                                     </div>
@@ -145,7 +145,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="product.html">Perdue Simply Smart Organics Gluten</a>
+                                        <h2><a href="product.php">Perdue Simply Smart Organics Gluten</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -154,7 +154,7 @@ include 'inc/header.php';
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Old
+                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Old
                                                     El Paso</a></span>
                                         </div>
                                         <div class="product-card-bottom">
@@ -163,7 +163,7 @@ include 'inc/header.php';
                                                 <span class="old-price">$26.8</span>
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="product.html">
+                                        <a href="product.php">
                                             <img src="assets/imgs/banner/banner-7.png" alt="" />
                                         </a>
                                     </div>
@@ -184,7 +184,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="product.html">Signature Wood-Fired Mushroom</a></h2>
+                                        <h2><a href="product.php">Signature Wood-Fired Mushroom</a></h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
@@ -192,7 +192,7 @@ include 'inc/header.php';
                                             <span class="font-small ml-5 text-muted"> (3.0)</span>
                                         </div>
                                         <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Progresso</a></span>
+                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Progresso</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
@@ -200,7 +200,7 @@ include 'inc/header.php';
                                                 <span class="old-price">$13.8</span>
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="product.html">
+                                        <a href="product.php">
                                             <img src="assets/imgs/banner/banner-8.png" alt="" />
                                         </a>
                                     </div>
@@ -221,7 +221,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="product.html">Simply Lemonade with Raspberry Juice</a>
+                                        <h2><a href="product.php">Simply Lemonade with Raspberry Juice</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -230,7 +230,7 @@ include 'inc/header.php';
                                             <span class="font-small ml-5 text-muted"> (3.0)</span>
                                         </div>
                                         <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Yoplait</a></span>
+                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Yoplait</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
@@ -238,7 +238,7 @@ include 'inc/header.php';
                                                 <span class="old-price">$16.8</span>
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
                                     </div>
@@ -350,11 +350,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-1.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-1.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.php">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -370,11 +370,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-2.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-2.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.php">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -390,11 +390,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-3.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-3.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.php">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -415,11 +415,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-4.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-4.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Organic Cage-Free Grade A Large Brown Eggs</a>
+                                    <a href="product.php">Organic Cage-Free Grade A Large Brown Eggs</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -435,11 +435,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-5.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-5.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Seeds of Change Organic Quinoa, Brown, & Red
+                                    <a href="product.php">Seeds of Change Organic Quinoa, Brown, & Red
                                         Rice</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -456,11 +456,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-6.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-6.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Naturally Flavored Cinnamon Vanilla Light Roast
+                                    <a href="product.php">Naturally Flavored Cinnamon Vanilla Light Roast
                                         Coffee</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -482,11 +482,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-7.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-7.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Pepperidge Farm Farmhouse Hearty White Bread</a>
+                                    <a href="product.php">Pepperidge Farm Farmhouse Hearty White Bread</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -502,11 +502,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-8.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-8.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Organic Frozen Triple Berry Blend</a>
+                                    <a href="product.php">Organic Frozen Triple Berry Blend</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -522,11 +522,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-9.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-9.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Oroweat Country Buttermilk Bread</a>
+                                    <a href="product.php">Oroweat Country Buttermilk Bread</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -547,11 +547,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-10.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-10.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Foster Farms Takeout Crispy Classic Buffalo
+                                    <a href="product.php">Foster Farms Takeout Crispy Classic Buffalo
                                         Wings</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -568,11 +568,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-11.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-11.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">Angie’s Boomchickapop Sweet & Salty Kettle
+                                    <a href="product.php">Angie’s Boomchickapop Sweet & Salty Kettle
                                         Corn</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -589,11 +589,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-12.jpg" alt="" /></a>
+                                <a href="product.php"><img src="assets/imgs/shop/thumbnail-12.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="product.html">All Natural Italian-Style Chicken Meatballs</a>
+                                    <a href="product.php">All Natural Italian-Style Chicken Meatballs</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">

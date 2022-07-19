@@ -11,7 +11,7 @@ include 'inc/header.php';
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Shop
                 <span></span> Cart
             </div>
@@ -60,7 +60,7 @@ include 'inc/header.php';
                                 </td> -->
                                     <td class="image product-thumbnail pt-40 start pl-30"><img src="//<?php echo $cartproduct->productImage; ?>" alt="#"></td>
                                     <td class="product-des product-name">
-                                        <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.html"><?php echo $cartproduct->productName; ?></a>
+                                        <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.php"><?php echo $cartproduct->productName; ?></a>
                                         </h6>
                                         <!-- <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">

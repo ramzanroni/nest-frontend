@@ -19,11 +19,11 @@
             <div class="product-category">
                 <a href="products.php?category_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
             </div>
-            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description . " (" . $productData->units . ")"; ?></a>
             </h2>
-            <div class="product-rate-cover product-badges">
+            <!-- <div class="product-rate-cover product-badges">
                 <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
-            </div>
+            </div> -->
             <div class="product-card-bottom">
                 <div class="product-price">
                     <span>৳<?php echo $productData->webprice; ?></span>

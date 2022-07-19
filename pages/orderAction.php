@@ -108,8 +108,8 @@ if ($_POST['check'] == "checkorderditails") {
     // $itemInfo = curl_exec($ch);
     // curl_close($ch);
     // $orderDetails = json_decode($itemInfo);
-    print_r($orderDetails);
-    exit;
+    // print_r($orderDetails);
+    // exit;
 
 
 
