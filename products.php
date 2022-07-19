@@ -148,7 +148,7 @@ if (isset($_GET['category_id'])) {
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
+                                                <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
                                                     <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
                                                     <img class="hover-img" src="//<?php echo $productData->img; ?>" alt="" />
                                                 </a>
@@ -156,9 +156,9 @@ if (isset($_GET['category_id'])) {
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="shop-product-right.php?product_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
+                                                <a href="product.php?product_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
                                             </div>
-                                            <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+                                            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
                                             </h2>
                                             <div class="product-rate-cover product-badges">
                                                 <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
@@ -274,7 +274,7 @@ if (isset($_GET['category_id'])) {
                     <section class="section-padding pb-5">
                         <div class="section-title">
                             <h3 class="">Deals Of The Day</h3>
-                            <a class="show-all" href="shop-grid-right.html">
+                            <a class="show-all" href="products.php">
                                 All Deals
                                 <i class="fi-rs-angle-right"></i>
                             </a>
@@ -284,7 +284,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-5.png" alt="" />
                                             </a>
                                         </div>
@@ -294,7 +294,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa,
+                                            <h2><a href="product.html">Seeds of Change Organic Quinoa,
                                                     Brown</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -323,7 +323,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-6.png" alt="" />
                                             </a>
                                         </div>
@@ -333,7 +333,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Perdue Simply Smart Organics
+                                            <h2><a href="product.html">Perdue Simply Smart Organics
                                                     Gluten</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -363,7 +363,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-7.png" alt="" />
                                             </a>
                                         </div>
@@ -373,7 +373,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom</a></h2>
+                                            <h2><a href="product.html">Signature Wood-Fired Mushroom</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
@@ -400,7 +400,7 @@ if (isset($_GET['category_id'])) {
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-8.png" alt="" />
                                             </a>
                                         </div>
@@ -410,7 +410,7 @@ if (isset($_GET['category_id'])) {
                                             <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry
+                                            <h2><a href="product.html">Simply Lemonade with Raspberry
                                                     Juice</a>
                                             </h2>
                                             <div class="product-rate-cover">
@@ -439,47 +439,11 @@ if (isset($_GET['category_id'])) {
                     </section>
                 </div>
                 <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
-                    <?php include_once('component/category-component.php'); ?>
+                    <?php include_once('component/category-component.php');
+                    include_once('component/newproduct-component.php');
+                    ?>
                     <!-- Product sidebar Widget -->
-                    <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
-                        <h5 class="section-title style-1 mb-30">New products</h5>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-3.jpg" alt="#" />
-                            </div>
-                            <div class="content pt-10">
-                                <h5><a href="shop-product-detail.html">Chen Cardigan</a></h5>
-                                <p class="price mb-0 mt-5">$99.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-4.jpg" alt="#" />
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="shop-product-detail.html">Chen Sweater</a></h6>
-                                <p class="price mb-0 mt-5">$89.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-5.jpg" alt="#" />
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="shop-product-detail.html">Colorful Jacket</a></h6>
-                                <p class="price mb-0 mt-5">$25</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 60%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
                         <img src="assets/imgs/banner/banner-11.png" alt="" />
                         <div class="banner-text">
@@ -498,25 +462,46 @@ if (isset($_GET['category_id'])) {
 
 <?php
 }
-if (isset($_GET['category']) && isset($_GET['product_name'])) {
+if (isset($_GET['product_name'])) {
 
     $categoryId = $_GET['category'];
     $itemString = $_GET['product_name'];
-    $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($itemString) . '&category=' . $categoryId; //url will be here
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryInfo = curl_exec($ch);
-    curl_close($ch);
-    $searchData = json_decode($categoryInfo);
+
+    if ($categoryId == "") {
+        $url = 'product.php?product_name=' . urlencode($itemString);
+    } else {
+        $url = 'product.php?product_name=' . urlencode($itemString) . '&category=' . $categoryId; //url will be here
+    }
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "postman-token: 4acdffb1-1f44-c966-4053-240a068adcd1"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $searchData = $result->data->products;
+        $totalProduct = $result->data->rows_returned;
+    }
     $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
     // print_r($searchData);
 ?>
@@ -544,7 +529,7 @@ if (isset($_GET['category']) && isset($_GET['product_name'])) {
                             foreach ($categoryItemData as $categoryValue) {
                             ?>
                                 <li>
-                                    <a href="shop-grid-right.php?category_id=<?php echo $categoryValue->categoryID; ?>">
+                                    <a href="products.php?category_id=<?php echo $categoryValue->categoryID; ?>">
                                         <img src="//<?php echo $categoryValue->categoryImg; ?>" alt="" /><?php echo $categoryValue->categoryName; ?></a><span class="count"><?php echo $categoryValue->item; ?></span>
                                 </li>
                             <?php

@@ -69,7 +69,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
                                 <span class="stock-status out-stock"> Sale Off </span>
-                                <h3 class="title-detail"><a href="shop-product-right.html" class="text-heading">Seeds of Change Organic Quinoa, Brown</a></h3>
+                                <h3 class="title-detail"><a href="product.html" class="text-heading">Seeds of Change Organic Quinoa, Brown</a></h3>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
@@ -248,10 +248,10 @@
                                         <ul>
                                             <li>
                                                 <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
+                                                    <a href="product.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
+                                                    <h4><a href="product.html">Daisy Casual Bag</a></h4>
                                                     <h4><span>1 × </span>$800.00</h4>
                                                 </div>
                                                 <div class="shopping-cart-delete">
@@ -260,10 +260,10 @@
                                             </li>
                                             <li>
                                                 <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-2.jpg" /></a>
+                                                    <a href="product.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-2.jpg" /></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
+                                                    <h4><a href="product.html">Corduroy Shirts</a></h4>
                                                     <h4><span>1 × </span>$3200.00</h4>
                                                 </div>
                                                 <div class="shopping-cart-delete">
@@ -320,36 +320,36 @@
                                 <div class="d-flex categori-dropdown-inner">
                                     <ul>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks and Dairies</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks and Dairies</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing & beauty</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing & beauty</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods & Toy</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods & Toy</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a>
                                         </li>
                                     </ul>
                                     <ul class="end">
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-6.svg" alt="" />Wines & Drinks</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-6.svg" alt="" />Wines & Drinks</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-7.svg" alt="" />Fresh Seafood</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-7.svg" alt="" />Fresh Seafood</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-8.svg" alt="" />Fast food</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-8.svg" alt="" />Fast food</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-9.svg" alt="" />Vegetables</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-9.svg" alt="" />Vegetables</a>
                                         </li>
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-10.svg" alt="" />Bread and Juice</a>
+                                            <a href="products.html"> <img src="assets/imgs/theme/icons/category-10.svg" alt="" />Bread and Juice</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -357,18 +357,18 @@
                                     <div class="d-flex categori-dropdown-inner">
                                         <ul>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
                                             </li>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
                                             </li>
                                         </ul>
                                         <ul class="end">
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
                                             </li>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -379,7 +379,7 @@
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
-                                    <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg" alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li>
+                                    <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg" alt="hot deals" /><a href="products.html">Deals</a></li>
                                     <li>
                                         <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -395,9 +395,9 @@
                                         <a href="page-about.html">About</a>
                                     </li>
                                     <li>
-                                        <a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
+                                        <a href="products.html">Shop <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
+                                            <li><a href="products.html">Shop Grid – Right Sidebar</a></li>
                                             <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                             <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
                                             <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
@@ -405,7 +405,7 @@
                                             <li>
                                                 <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
                                                 <ul class="level-menu">
-                                                    <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
+                                                    <li><a href="product.html">Product – Right Sidebar</a></li>
                                                     <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
                                                     <li><a href="shop-product-full.html">Product – No sidebar</a></li>
                                                     <li><a href="shop-product-vendor.html">Product – Vendor Infor</a></li>
@@ -446,39 +446,39 @@
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Fruit & Vegetables</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Meat & Poultry</a></li>
-                                                    <li><a href="shop-product-right.html">Fresh Vegetables</a></li>
-                                                    <li><a href="shop-product-right.html">Herbs & Seasonings</a></li>
-                                                    <li><a href="shop-product-right.html">Cuts & Sprouts</a></li>
-                                                    <li><a href="shop-product-right.html">Exotic Fruits & Veggies</a></li>
-                                                    <li><a href="shop-product-right.html">Packaged Produce</a></li>
+                                                    <li><a href="product.html">Meat & Poultry</a></li>
+                                                    <li><a href="product.html">Fresh Vegetables</a></li>
+                                                    <li><a href="product.html">Herbs & Seasonings</a></li>
+                                                    <li><a href="product.html">Cuts & Sprouts</a></li>
+                                                    <li><a href="product.html">Exotic Fruits & Veggies</a></li>
+                                                    <li><a href="product.html">Packaged Produce</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Breakfast & Dairy</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Milk & Flavoured Milk</a></li>
-                                                    <li><a href="shop-product-right.html">Butter and Margarine</a></li>
-                                                    <li><a href="shop-product-right.html">Eggs Substitutes</a></li>
-                                                    <li><a href="shop-product-right.html">Marmalades</a></li>
-                                                    <li><a href="shop-product-right.html">Sour Cream</a></li>
-                                                    <li><a href="shop-product-right.html">Cheese</a></li>
+                                                    <li><a href="product.html">Milk & Flavoured Milk</a></li>
+                                                    <li><a href="product.html">Butter and Margarine</a></li>
+                                                    <li><a href="product.html">Eggs Substitutes</a></li>
+                                                    <li><a href="product.html">Marmalades</a></li>
+                                                    <li><a href="product.html">Sour Cream</a></li>
+                                                    <li><a href="product.html">Cheese</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Meat & Seafood</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Breakfast Sausage</a></li>
-                                                    <li><a href="shop-product-right.html">Dinner Sausage</a></li>
-                                                    <li><a href="shop-product-right.html">Chicken</a></li>
-                                                    <li><a href="shop-product-right.html">Sliced Deli Meat</a></li>
-                                                    <li><a href="shop-product-right.html">Wild Caught Fillets</a></li>
-                                                    <li><a href="shop-product-right.html">Crab and Shellfish</a></li>
+                                                    <li><a href="product.html">Breakfast Sausage</a></li>
+                                                    <li><a href="product.html">Dinner Sausage</a></li>
+                                                    <li><a href="product.html">Chicken</a></li>
+                                                    <li><a href="product.html">Sliced Deli Meat</a></li>
+                                                    <li><a href="product.html">Wild Caught Fillets</a></li>
+                                                    <li><a href="product.html">Crab and Shellfish</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-34">
                                                 <div class="menu-banner-wrap">
-                                                    <a href="shop-product-right.html"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
+                                                    <a href="product.html"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
                                                     <div class="menu-banner-content">
                                                         <h4>Hot deals</h4>
                                                         <h3>
@@ -489,7 +489,7 @@
                                                             <span class="new-price text-success">Save to 50%</span>
                                                         </div>
                                                         <div class="menu-banner-btn">
-                                                            <a href="shop-product-right.html">Shop now</a>
+                                                            <a href="product.html">Shop now</a>
                                                         </div>
                                                     </div>
                                                     <div class="menu-banner-discount">
@@ -570,10 +570,10 @@
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
+                                                <a href="product.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
+                                                <h4><a href="product.html">Plain Striola Shirts</a></h4>
                                                 <h3><span>1 × </span>$800.00</h3>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -582,10 +582,10 @@
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-4.jpg" /></a>
+                                                <a href="product.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-4.jpg" /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
+                                                <h4><a href="product.html">Macbook Pro 2022</a></h4>
                                                 <h3><span>1 × </span>$3500.00</h3>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -646,9 +646,9 @@
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop-grid-right.html">shop</a>
+                                <a href="products.html">shop</a>
                                 <ul class="dropdown">
-                                    <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
+                                    <li><a href="products.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                     <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
                                     <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
@@ -656,7 +656,7 @@
                                     <li class="menu-item-has-children">
                                         <a href="#">Single Product</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
+                                            <li><a href="product.html">Product – Right Sidebar</a></li>
                                             <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
                                             <li><a href="shop-product-full.html">Product – No sidebar</a></li>
                                             <li><a href="shop-product-vendor.html">Product – Vendor Infor</a></li>
@@ -697,28 +697,28 @@
                                     <li class="menu-item-has-children">
                                         <a href="#">Women's Fashion</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Dresses</a></li>
-                                            <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
-                                            <li><a href="shop-product-right.html">Hoodies & Sweatshirts</a></li>
-                                            <li><a href="shop-product-right.html">Women's Sets</a></li>
+                                            <li><a href="product.html">Dresses</a></li>
+                                            <li><a href="product.html">Blouses & Shirts</a></li>
+                                            <li><a href="product.html">Hoodies & Sweatshirts</a></li>
+                                            <li><a href="product.html">Women's Sets</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Men's Fashion</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Jackets</a></li>
-                                            <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
-                                            <li><a href="shop-product-right.html">Genuine Leather</a></li>
+                                            <li><a href="product.html">Jackets</a></li>
+                                            <li><a href="product.html">Casual Faux Leather</a></li>
+                                            <li><a href="product.html">Genuine Leather</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Technology</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Gaming Laptops</a></li>
-                                            <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
-                                            <li><a href="shop-product-right.html">Tablets</a></li>
-                                            <li><a href="shop-product-right.html">Laptop Accessories</a></li>
-                                            <li><a href="shop-product-right.html">Tablet Accessories</a></li>
+                                            <li><a href="product.html">Gaming Laptops</a></li>
+                                            <li><a href="product.html">Ultraslim Laptops</a></li>
+                                            <li><a href="product.html">Tablets</a></li>
+                                            <li><a href="product.html">Laptop Accessories</a></li>
+                                            <li><a href="product.html">Tablet Accessories</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -881,7 +881,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <div class="product-img-inner">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img class="default-img" src="assets/imgs/shop/product-2-1.jpg" alt="" />
                                             <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" />
                                         </a>
@@ -898,9 +898,9 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="products.html">Hodo Foods</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">Field Roast Chao Cheese Creamy Original</a></h2>
+                                <h2><a href="product.html">Field Roast Chao Cheese Creamy Original</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -924,7 +924,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <div class="product-img-inner">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img class="default-img" src="assets/imgs/shop/product-3-1.jpg" alt="" />
                                             <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="" />
                                         </a>
@@ -941,9 +941,9 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="products.html">Hodo Foods</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">Fresh Organic Mustard Leaves</a></h2>
+                                <h2><a href="product.html">Fresh Organic Mustard Leaves</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -967,7 +967,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <div class="product-img-inner">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img class="default-img" src="assets/imgs/shop/product-4-1.jpg" alt="" />
                                             <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="" />
                                         </a>
@@ -984,9 +984,9 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="products.html">Hodo Foods</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">Organic Green Bell Pepper</a></h2>
+                                <h2><a href="product.html">Organic Green Bell Pepper</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -1010,7 +1010,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <div class="product-img-inner">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img class="default-img" src="assets/imgs/shop/product-5-1.jpg" alt="" />
                                             <img class="hover-img" src="assets/imgs/shop/product-5-2.jpg" alt="" />
                                         </a>
@@ -1024,9 +1024,9 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="products.html">Hodo Foods</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty Kettle Corn</a></h2>
+                                <h2><a href="product.html">Angie’s Boomchickapop Sweet & Salty Kettle Corn</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -1050,7 +1050,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <div class="product-img-inner">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img class="default-img" src="assets/imgs/shop/product-6-1.jpg" alt="" />
                                             <img class="hover-img" src="assets/imgs/shop/product-6-2.jpg" alt="" />
                                         </a>
@@ -1067,9 +1067,9 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="products.html">Hodo Foods</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo Wings</a></h2>
+                                <h2><a href="product.html">Foster Farms Takeout Crispy Classic Buffalo Wings</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -1111,7 +1111,7 @@
                     <section class="section-padding pb-5">
                         <div class="section-title">
                             <h3 class="">Deals Of The Day</h3>
-                            <a class="show-all" href="shop-grid-right.html">
+                            <a class="show-all" href="products.html">
                                 All Deals
                                 <i class="fi-rs-angle-right"></i>
                             </a>
@@ -1121,7 +1121,7 @@
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-5.png" alt="" />
                                             </a>
                                         </div>
@@ -1131,7 +1131,7 @@
                                             <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown</a></h2>
+                                            <h2><a href="product.html">Seeds of Change Organic Quinoa, Brown</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
@@ -1158,7 +1158,7 @@
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-6.png" alt="" />
                                             </a>
                                         </div>
@@ -1168,7 +1168,7 @@
                                             <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten</a></h2>
+                                            <h2><a href="product.html">Perdue Simply Smart Organics Gluten</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
@@ -1195,7 +1195,7 @@
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-7.png" alt="" />
                                             </a>
                                         </div>
@@ -1205,7 +1205,7 @@
                                             <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom</a></h2>
+                                            <h2><a href="product.html">Signature Wood-Fired Mushroom</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
@@ -1232,7 +1232,7 @@
                                 <div class="product-cart-wrap style-2">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
-                                            <a href="shop-product-right.html">
+                                            <a href="product.html">
                                                 <img src="assets/imgs/banner/banner-8.png" alt="" />
                                             </a>
                                         </div>
@@ -1242,7 +1242,7 @@
                                             <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                         </div>
                                         <div class="deals-content">
-                                            <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a></h2>
+                                            <h2><a href="product.html">Simply Lemonade with Raspberry Juice</a></h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
@@ -1274,19 +1274,19 @@
                         <h5 class="section-title style-1 mb-30">Category</h5>
                         <ul>
                             <li>
-                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks & Dairies</a><span class="count">30</span>
+                                <a href="products.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks & Dairies</a><span class="count">30</span>
                             </li>
                             <li>
-                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing</a><span class="count">35</span>
+                                <a href="products.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing</a><span class="count">35</span>
                             </li>
                             <li>
-                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods </a><span class="count">42</span>
+                                <a href="products.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods </a><span class="count">42</span>
                             </li>
                             <li>
-                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a><span class="count">68</span>
+                                <a href="products.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a><span class="count">68</span>
                             </li>
                             <li>
-                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a><span class="count">87</span>
+                                <a href="products.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a><span class="count">87</span>
                             </li>
                         </ul>
                     </div>
@@ -1328,7 +1328,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
+                        <a href="products.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
                     </div>
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">

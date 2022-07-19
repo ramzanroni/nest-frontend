@@ -71,7 +71,7 @@ if ($err) {
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> <a href="shop-product-right.php?product_id=<?php echo $productData[0]->stockid; ?>"><?php echo $productData[0]->description; ?></a>
+                <span></span> <a href="products.php?category_id=<?php echo $productData[0]->category_id; ?>"><?php echo $productData[0]->category; ?></a><span></span><?php echo $productData[0]->description; ?>
             </div>
         </div>
     </div>
@@ -591,7 +591,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
+                                                        <a href="product.html" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-3-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -615,7 +615,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">Smart Bluetooth
+                                                    <h2><a href="product.html" tabindex="0">Smart Bluetooth
                                                             Speaker</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>
@@ -631,7 +631,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
+                                                        <a href="product.html" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-4-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -655,7 +655,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">HomeSpeak 12UEA
+                                                    <h2><a href="product.html" tabindex="0">HomeSpeak 12UEA
                                                             Goole</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>
@@ -671,7 +671,7 @@ if ($err) {
                                             <div class="product-cart-wrap hover-up mb-0">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
+                                                        <a href="product.html" tabindex="0">
                                                             <img class="default-img"
                                                                 src="assets/imgs/shop/product-5-1.jpg" alt="" />
                                                             <img class="hover-img"
@@ -695,7 +695,7 @@ if ($err) {
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">Dadua Camera 4K
+                                                    <h2><a href="product.html" tabindex="0">Dadua Camera 4K
                                                             2022EF</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>

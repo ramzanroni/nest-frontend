@@ -521,16 +521,16 @@ if ($_POST['check'] == "categoryWiseProduct") {
             <div class="product-cart-wrap mb-30">
                 <div class="product-img-action-wrap">
                     <div class="product-img product-img-zoom">
-                        <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
+                        <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
                             <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
                         </a>
                     </div>
                 </div>
                 <div class="product-content-wrap">
                     <div class="product-category">
-                        <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
+                        <a href="products.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
                     </div>
-                    <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+                    <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
                     </h2>
                     <div class="product-rate-cover product-badges">
                         <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>

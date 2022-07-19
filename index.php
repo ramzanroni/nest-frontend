@@ -87,7 +87,7 @@ include 'inc/header.php';
                 <section class="section-padding pb-5">
                     <div class="section-title">
                         <h3 class="">Deals Of The Day</h3>
-                        <a class="show-all" href="shop-grid-right.html">
+                        <a class="show-all" href="products.php">
                             All Deals
                             <i class="fi-rs-angle-right"></i>
                         </a>
@@ -97,7 +97,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img src="assets/imgs/banner/banner-5.png" alt="" />
                                         </a>
                                     </div>
@@ -107,7 +107,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown</a>
+                                        <h2><a href="product.html">Seeds of Change Organic Quinoa, Brown</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -135,7 +135,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img src="assets/imgs/banner/banner-6.png" alt="" />
                                         </a>
                                     </div>
@@ -145,7 +145,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten</a>
+                                        <h2><a href="product.html">Perdue Simply Smart Organics Gluten</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -174,7 +174,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img src="assets/imgs/banner/banner-7.png" alt="" />
                                         </a>
                                     </div>
@@ -184,7 +184,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom</a></h2>
+                                        <h2><a href="product.html">Signature Wood-Fired Mushroom</a></h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
@@ -211,7 +211,7 @@ include 'inc/header.php';
                             <div class="product-cart-wrap style-2">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
-                                        <a href="shop-product-right.html">
+                                        <a href="product.html">
                                             <img src="assets/imgs/banner/banner-8.png" alt="" />
                                         </a>
                                     </div>
@@ -221,7 +221,7 @@ include 'inc/header.php';
                                         <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
                                     </div>
                                     <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a>
+                                        <h2><a href="product.html">Simply Lemonade with Raspberry Juice</a>
                                         </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
@@ -258,7 +258,7 @@ include 'inc/header.php';
                                         Everyday Fresh & <br />Clean with Our<br />
                                         Products
                                     </h4>
-                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="products.php" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +270,7 @@ include 'inc/header.php';
                                         Make your Breakfast<br />
                                         Healthy and Easy
                                     </h4>
-                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="products.php" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +279,7 @@ include 'inc/header.php';
                                 <img src="assets/imgs/banner/banner-3.png" alt="" />
                                 <div class="banner-text">
                                     <h4>The best Organic <br />Products Online</h4>
-                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="products.php" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -316,100 +316,27 @@ include 'inc/header.php';
             <div class="section-title">
                 <div class="title">
                     <h3>Shop by Categories</h3>
-                    <a class="show-all" href="shop-grid-right.html">
-                        All Categories
-                        <i class="fi-rs-angle-right"></i>
-                    </a>
                 </div>
                 <div class="slider-arrow slider-arrow-2 flex-right carausel-8-columns-arrow" id="carausel-8-columns-arrows"></div>
             </div>
             <div class="carausel-8-columns-cover position-relative">
                 <div class="carausel-8-columns" id="carausel-8-columns">
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-1.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Milks and <br />Dairies</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-2.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Wines & <br />
-                                Alcohol</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-3.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Clothing & <br />Beauty</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-4.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Pet Foods <br />& Toy</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-5.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Packaged <br />fast food</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-6.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Baking <br />material</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-7.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Vegetables <br />& tubers</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-8.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Fresh <br />Seafood</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-9.svg" alt="" /></a>
-                        </figure>
-                        <h6>
-                            <a href="shop-grid-right.html">Noodles <br />Rice</a>
-                        </h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-10.svg" alt="" /></a>
-                        </figure>
-                        <h6><a href="shop-grid-right.html">Fastfood</a></h6>
-                    </div>
-                    <div class="card-1">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="assets/imgs/theme/icons/category-11.svg" alt="" /></a>
-                        </figure>
-                        <h6><a href="shop-grid-right.html">Ice cream</a></h6>
-                    </div>
+                    <?php
+                    foreach ($categoryItemData as $categoryItemDataValue) {
+                    ?>
+                        <div class="card-1">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="products.php?category_id=<?php echo $categoryItemDataValue->categoryID; ?>"><img src="//<?php echo $categoryItemDataValue->categoryImg; ?>" alt="" /></a>
+                            </figure>
+                            <h6>
+                                <a href="products.php?category_id=<?php echo $categoryItemDataValue->categoryID; ?>"><?php echo $categoryItemDataValue->categoryName; ?></a>
+                            </h6>
+                        </div>
+                    <?php
+                    }
+
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -423,11 +350,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-1.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-1.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -443,11 +370,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-2.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-2.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -463,11 +390,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-3.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-3.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Nestle Original Coffee-Mate Coffee Creamer</a>
+                                    <a href="product.html">Nestle Original Coffee-Mate Coffee Creamer</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -488,11 +415,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-4.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-4.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Organic Cage-Free Grade A Large Brown Eggs</a>
+                                    <a href="product.html">Organic Cage-Free Grade A Large Brown Eggs</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -508,11 +435,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-5.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-5.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown, & Red
+                                    <a href="product.html">Seeds of Change Organic Quinoa, Brown, & Red
                                         Rice</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -529,11 +456,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-6.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-6.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Naturally Flavored Cinnamon Vanilla Light Roast
+                                    <a href="product.html">Naturally Flavored Cinnamon Vanilla Light Roast
                                         Coffee</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -555,11 +482,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-7.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-7.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Pepperidge Farm Farmhouse Hearty White Bread</a>
+                                    <a href="product.html">Pepperidge Farm Farmhouse Hearty White Bread</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -575,11 +502,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-8.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-8.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Organic Frozen Triple Berry Blend</a>
+                                    <a href="product.html">Organic Frozen Triple Berry Blend</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -595,11 +522,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-9.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-9.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Oroweat Country Buttermilk Bread</a>
+                                    <a href="product.html">Oroweat Country Buttermilk Bread</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -620,11 +547,11 @@ include 'inc/header.php';
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-10.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-10.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo
+                                    <a href="product.html">Foster Farms Takeout Crispy Classic Buffalo
                                         Wings</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -641,11 +568,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-11.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-11.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty Kettle
+                                    <a href="product.html">Angie’s Boomchickapop Sweet & Salty Kettle
                                         Corn</a>
                                 </h6>
                                 <div class="product-rate-cover">
@@ -662,11 +589,11 @@ include 'inc/header.php';
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-12.jpg" alt="" /></a>
+                                <a href="product.html"><img src="assets/imgs/shop/thumbnail-12.jpg" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
                                 <h6>
-                                    <a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a>
+                                    <a href="product.html">All Natural Italian-Style Chicken Meatballs</a>
                                 </h6>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">

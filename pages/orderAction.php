@@ -1,5 +1,6 @@
 <?php
 include '../inc/function.php';
+include '../inc/apiendpoint.php';
 if ($_POST['check'] == "placeOrder") {
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -16,7 +17,7 @@ if ($_POST['check'] == "placeOrder") {
         $itemInfoArr[] = (object)array('productID' => $cartValue->productID, 'unitPrice' => $cartValue->productprice, 'productQuantity' => $cartValue->productQuantity);
     }
     $itemInfo = $itemInfoArr;
-
+    $item = json_encode($itemInfo);
 
     $post = array(  //data array from user side
         "name" => $name,
@@ -32,8 +33,11 @@ if ($_POST['check'] == "placeOrder") {
 
     );
 
+
+
+
     $data = json_encode($post); // json encoded
-    $url = "https://demostarter.erp.place/eback/order_action.php";
+    $url = APIENDPOINT . "createOrder.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -41,8 +45,8 @@ if ($_POST['check'] == "placeOrder") {
         $ch,
         CURLOPT_HTTPHEADER,
         array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
+            "cache-control: no-cache",
+            "content-type: application/json",
         )
     );
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -53,29 +57,61 @@ if ($_POST['check'] == "placeOrder") {
     if (isset($_COOKIE['shopping_cart'])) {
         setcookie('shopping_cart', "", time() - 3600, "/");
     }
-    echo $response->message;
-    // print_r($response);
+
+    if ($response->success == true) {
+        echo 'success';
+    }
 }
 
 if ($_POST['check'] == "checkorderditails") {
     $orderNumber = $_POST['orderNumber'];
     // order details 
+    $curl = curl_init();
 
-    $url = "https://demostarter.erp.place/eback/order_details.php?order_id=7" . $orderNumber;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-        )
-    );
-    $itemInfo = curl_exec($ch);
-    curl_close($ch);
-    $orderDetails = json_decode($itemInfo);
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "orderDetails.php?order_id=" . $orderNumber,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $orderDetails = $result->data->data;
+    }
+
+    // $url = "https://demostarter.erp.place/eback/order_details.php?order_id=7";
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
+    //     )
+    // );
+    // $itemInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $orderDetails = json_decode($itemInfo);
+    print_r($orderDetails);
+    exit;
+
+
 
     // order details 
 
@@ -186,9 +222,9 @@ if ($_POST['check'] == "checkorderditails") {
                                     ?>
                                         <tr>
                                             <td>
-                                                <a class="itemside" href="shop-product-right.php?id=<?php echo $orderItemValue->stockid; ?>">
+                                                <a class="itemside" href="product.php?id=<?php echo $orderItemValue->stockid; ?>">
                                                     <div class="left">
-                                                        <img src="<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
+                                                        <img src="//<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
                                                     </div>
                                                     <div class="info"><?php echo $orderItemValue->description; ?></div>
                                                 </a>
@@ -203,11 +239,11 @@ if ($_POST['check'] == "checkorderditails") {
                                             <td class="text-end">
                                                 <?php if (($orderDetails->info->so_status == 0 || $orderDetails->info->so_status == 1) && $orderItemValue->status == 0) {
                                                 ?>
-                                                    <button onclick="deleteOrderItem(<?php
-                                                                                        echo $orderNumber;
-                                                                                        echo ',';
-                                                                                        echo $orderItemValue->orderlineno;
-                                                                                        ?>)" class="float-end btn btn-small bg-danger p-2 mr-10"><i title="Cancel Item" class="fi-rs-cross"></i></button>
+                                                    <button id="cancel_<?php echo $orderNumber . "_" . $orderItemValue->orderlineno; ?>" onclick="deleteOrderItem(<?php
+                                                                                                                                                                    echo $orderNumber;
+                                                                                                                                                                    echo ',';
+                                                                                                                                                                    echo $orderItemValue->orderlineno;
+                                                                                                                                                                    ?>)" class="float-end btn btn-small bg-danger p-2 mr-10"><i title="Cancel Item" class="fi-rs-cross"></i></button>
                                                 <?php
                                                 } ?>
 
@@ -342,21 +378,51 @@ if ($_POST['check'] == "checkorderditailsOld") {
     $orderNumber = $_POST['orderNumber'];
     // order details 
 
-    $url = "https://demostarter.erp.place/eback/order_details.php?order_id=" . $orderNumber;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $itemInfo = curl_exec($ch);
-    curl_close($ch);
-    $orderDetails = json_decode($itemInfo);
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "orderDetails.php?order_id=" . $orderNumber,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $orderDetails = $result->data->data;
+    }
+
+
+
+
+    // $url = "https://demostarter.erp.place/eback/order_details.php?order_id=" . $orderNumber;
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // $itemInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $orderDetails = json_decode($itemInfo);
 ?>
     <section class="content-main">
         <div class="content-header">
@@ -449,7 +515,7 @@ if ($_POST['check'] == "checkorderditailsOld") {
                                     ?>
                                         <tr>
                                             <td>
-                                                <a class="itemside" href="shop-product-right.php?id=<?php echo $orderItemValue->stockid; ?>">
+                                                <a class="itemside" href="product.php?id=<?php echo $orderItemValue->stockid; ?>">
                                                     <div class="left">
                                                         <img src="<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
                                                     </div>
@@ -565,7 +631,7 @@ if ($_POST['check'] == "cartonItemDetails") {
                         ?>
                             <tr>
                                 <td>
-                                    <a class="itemside" href="shop-product-right.php?id=<?php echo $orderItemValue->stockid; ?>">
+                                    <a class="itemside" href="product.php?id=<?php echo $orderItemValue->stockid; ?>">
                                         <div class="left">
                                             <img src="<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
                                         </div>
@@ -698,42 +764,108 @@ if ($_POST['check'] == "itemDetails") {
 
 if ($_POST['check'] == "cancelFullOrder") {
     $orderId = $_POST['orderId'];
-    $url = "https://demostarter.erp.place/eback/cancel_order.php?order_id=" . $orderId;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $updateInfo = curl_exec($ch);
-    curl_close($ch);
-    $updateStatus = json_decode($updateInfo);
-    echo $updateStatus->message;
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "order.php?order_id=" . $orderId,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        if ($result->success === true) {
+            echo 'success';
+        }
+    }
+
+
+    // $url = "https://demostarter.erp.place/eback/cancel_order.php?order_id=" . $orderId;
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // $updateInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $updateStatus = json_decode($updateInfo);
+    // echo $updateStatus->message;
 }
 
 if ($_POST['check'] == "deleteOrderItem") {
     $itemId = $_POST['lineNo'];
     $orderNumber = $_POST['orderNo'];
-    $url = "https://demostarter.erp.place/eback/delete_order_item.php?order_id=" . $orderNumber . "&item_id=" . $itemId;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $updateInfo = curl_exec($ch);
-    curl_close($ch);
-    $updateStatus = json_decode($updateInfo);
-    echo $updateStatus->message;
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "order.php?item_id=" . $itemId . "&orderID=" . $orderNumber,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        if ($result->success === true) {
+            echo 'success';
+        }
+    }
+
+
+
+
+
+
+
+    // $url = "https://demostarter.erp.place/eback/delete_order_item.php?order_id=" . $orderNumber . "&item_id=" . $itemId;
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // $updateInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $updateStatus = json_decode($updateInfo);
+    // echo $updateStatus->message;
 }
 ?>

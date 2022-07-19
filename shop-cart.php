@@ -52,51 +52,42 @@ include 'inc/header.php';
                             $sum = 0;
                             foreach ($cartData as $key => $cartproduct) {
                             ?>
-                            <tr class="pt-30">
-                                <!-- <td class="custome-checkbox pl-30">
+                                <tr class="pt-30">
+                                    <!-- <td class="custome-checkbox pl-30">
                                     <input class="form-check-input" type="checkbox" name="checkbox"
                                         id="exampleCheckbox1" value="">
                                     <label class="form-check-label" for="exampleCheckbox1"></label>
                                 </td> -->
-                                <td class="image product-thumbnail pt-40 start pl-30"><img
-                                        src="//<?php echo $cartproduct->productImage; ?>" alt="#"></td>
-                                <td class="product-des product-name">
-                                    <h6 class="mb-5"><a class="product-name mb-10 text-heading"
-                                            href="shop-product-right.html"><?php echo $cartproduct->productName; ?></a>
-                                    </h6>
-                                    <!-- <div class="product-rate-cover">
+                                    <td class="image product-thumbnail pt-40 start pl-30"><img src="//<?php echo $cartproduct->productImage; ?>" alt="#"></td>
+                                    <td class="product-des product-name">
+                                        <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.html"><?php echo $cartproduct->productName; ?></a>
+                                        </h6>
+                                        <!-- <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width:90%">
                                             </div>
                                         </div>
                                         <span class="font-small ml-5 text-muted"> (4.0)</span>
                                     </div> -->
-                                </td>
-                                <td class="price" data-title="Price">
-                                    <h4 class="text-body">৳<?php echo $cartproduct->productprice; ?> </h4>
-                                </td>
-                                <td class="text-center detail-info" data-title="Stock">
-                                    <div class="detail-extralink mr-15">
-                                        <div class="detail-qty border radius">
-                                            <a onclick="decrement(<?php echo $key; ?>); changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)"
-                                                class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <input type="text" name="quantity" id="quantityChnage_<?php echo $key; ?>"
-                                                onkeyup="changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)"
-                                                class="qty-val" value="<?php echo $cartproduct->productQuantity; ?>"
-                                                min="1">
-                                            <a onclick="inchrement(<?php echo $key; ?>);changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)"
-                                                class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                    </td>
+                                    <td class="price" data-title="Price">
+                                        <h4 class="text-body">৳<?php echo $cartproduct->productprice; ?> </h4>
+                                    </td>
+                                    <td class="text-center detail-info" data-title="Stock">
+                                        <div class="detail-extralink mr-15">
+                                            <div class="detail-qty border radius">
+                                                <a onclick="decrement(<?php echo $key; ?>); changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                                <input type="text" name="quantity" id="quantityChnage_<?php echo $key; ?>" onkeyup="changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)" class="qty-val" value="<?php echo $cartproduct->productQuantity; ?>" min="1">
+                                                <a onclick="inchrement(<?php echo $key; ?>);changeQuantity(<?php echo $key; ?>, <?php echo $cartproduct->productprice; ?>)" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="price" data-title="Price">
-                                    <h4 class="text-brand" id="totalProductPrice_<?php echo $key; ?>">
-                                        ৳<?php echo $cartproduct->productQuantity * $cartproduct->productprice; ?> </h4>
-                                </td>
-                                <td class="action text-center" data-title="Remove"><a
-                                        onclick="removeItem(<?php echo $key; ?>)" class="text-body"><i
-                                            class="fi-rs-trash"></i></a></td>
-                            </tr>
+                                    </td>
+                                    <td class="price" data-title="Price">
+                                        <h4 class="text-brand" id="totalProductPrice_<?php echo $key; ?>">
+                                            ৳<?php echo $cartproduct->productQuantity * $cartproduct->productprice; ?> </h4>
+                                    </td>
+                                    <td class="action text-center" data-title="Remove"><a onclick="removeItem(<?php echo $key; ?>)" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                                </tr>
                             <?php
                                 $sum = $sum + $cartproduct->productQuantity * $cartproduct->productprice;
                             }
@@ -109,15 +100,13 @@ include 'inc/header.php';
                 <div class="cart-action d-flex justify-content-between">
                     <a class="btn  mr-10 mb-sm-15" href="index.php"><i class="fi-rs-arrow-left mr-10"></i>Continue
                         Shopping</a>
-                    <a onclick="updateCart(<?php echo $totalCartItem; ?>)" class="btn  mr-10 mb-sm-15"><i
-                            class="fi-rs-refresh mr-10"></i>Update Cart</a>
+                    <a onclick="updateCart(<?php echo $totalCartItem; ?>)" class="btn  mr-10 mb-sm-15"><i class="fi-rs-refresh mr-10"></i>Update Cart</a>
                 </div>
                 <div class="row mt-50">
                     <div class="col-lg-7">
                         <div class="calculate-shiping p-40 border-radius-15 border">
                             <h4 class="mb-10">Calculate Shipping</h4>
-                            <p class="mb-30"><span class="font-lg text-muted">Flat rate:</span><strong
-                                    class="text-brand">5%</strong></p>
+                            <p class="mb-30"><span class="font-lg text-muted">Flat rate:</span><strong class="text-brand">5%</strong></p>
                             <form class="field_form shipping_calculator">
                                 <div class="form-row">
                                     <div class="form-group col-lg-12">
@@ -374,8 +363,7 @@ include 'inc/header.php';
                                 </div>
                                 <div class="form-row row">
                                     <div class="form-group col-lg-6">
-                                        <input required="required" placeholder="State / Country" name="name"
-                                            type="text">
+                                        <input required="required" placeholder="State / Country" name="name" type="text">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <input required="required" placeholder="PostCode / ZIP" name="name" type="text">
@@ -390,8 +378,7 @@ include 'inc/header.php';
                             <p class="mb-30"><span class="font-lg text-muted">Using A Promo Code?</p>
                             <form action="#">
                                 <div class="d-flex justify-content-between">
-                                    <input class="font-medium mr-15 coupon" name="Coupon"
-                                        placeholder="Enter Your Coupon">
+                                    <input class="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon">
                                     <button class="btn"><i class="fi-rs-label mr-10"></i>Apply</button>
                                 </div>
                             </form>
@@ -447,8 +434,7 @@ include 'inc/header.php';
                             </tbody>
                         </table>
                     </div>
-                    <a href="shop-checkout.php" class="btn mb-20 w-100">Proceed To CheckOut<i
-                            class="fi-rs-sign-out ml-15"></i></a>
+                    <a href="shop-checkout.php" class="btn mb-20 w-100">Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
                 </div>
             </div>
         </div>

@@ -1,22 +1,37 @@
 ﻿<?php
+include 'apidata/dataFetch.php';
 include 'inc/header.php';
+include 'inc/apiendpoint.php';
 // user profile data 
 
-$url = "http://192.168.0.116/neonbazar_api/user_profile_data.php?phoneNumber=" . getPhone();
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt(
-    $ch,
-    CURLOPT_HTTPHEADER,
-    array( //header will be here
-        'Content-Type: application/json',
-        'Authorization: ' . APIKEY,
-    )
-);
-$profileInfo = curl_exec($ch);
-curl_close($ch);
-$profileData = json_decode($profileInfo);
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/user.php?phoneNumber=" . getPhone(),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache",
+        "postman-token: 85af34ab-aca3-ce4f-6a99-3a1b7f151358"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $result = json_decode($response);
+    $profileData = $result->data->user[0];
+}
 ?>
 <main class="main">
     <?php
@@ -45,55 +60,6 @@ $profileData = json_decode($profileInfo);
         <div class="row">
             <div class="col-lg-7">
                 <div class="row mb-50">
-                    <!-- <div class="col-lg-6 mb-sm-15 mb-lg-0 mb-md-3">
-                        <div class="toggle_info">
-
-
-                            <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-
-
-
-                            <span><i class="fi-rs-user mr-10"></i><span class="text-muted font-lg">Already have an
-                                    account?</span> <a href="#loginform" data-bs-toggle="collapse"
-                                    class="collapsed font-lg" aria-expanded="false">Click here to login</a></span>
-                        </div>
-                        <div class="panel-collapse collapse login_form" id="loginform">
-                            <div class="panel-body">
-                                <p class="mb-30 font-sm">If you have shopped with us before, please enter your details
-                                    below. If you are a new customer, please proceed to the Billing &amp; Shipping
-                                    section.</p>
-                                <form method="post">
-                                    <div class="form-group">
-                                        <input type="text" name="email" placeholder="Username Or Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" placeholder="Password">
-                                    </div>
-                                    <div class="login_footer form-group">
-                                        <div class="chek-form">
-                                            <div class="custome-checkbox">
-                                                <input class="form-check-input" type="checkbox" name="checkbox"
-                                                    id="remember" value="">
-                                                <label class="form-check-label" for="remember"><span>Remember
-                                                        me</span></label>
-                                            </div>
-                                        </div>
-                                        <a href="#">Forgot password?</a>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-md" name="login">Log in</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-lg-6">
-                        <form method="post" class="apply-coupon">
-                            <input type="text" placeholder="Enter Coupon Code...">
-                            <button class="btn  btn-md" name="login">Apply Coupon</button>
-                        </form>
-                    </div> -->
                 </div>
                 <div class="row">
                     <h4 class="mb-30">Delivery Details</h4>
@@ -134,7 +100,6 @@ $profileData = json_decode($profileInfo);
                 <div class="border p-40 cart-totals ml-30 mb-50">
                     <div class="d-flex align-items-end justify-content-between mb-30">
                         <h4>Your Order</h4>
-                        <!-- <h6 class="text-muted">Subtotal: <span class="text-brand">1233</span></h6> -->
                     </div>
                     <div class="divider-2 mb-30"></div>
                     <div class="table-responsive order_table checkout">
@@ -149,13 +114,6 @@ $profileData = json_decode($profileInfo);
                                         <td>
                                             <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading"><?php echo $product->productName; ?></a></h6>
                                             </span>
-                                            <!-- <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width:90%">
-                                                </div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div> -->
                                         </td>
                                         <td>
                                             <h6 class="text-muted pl-20 pr-20">x <?php echo $product->productQuantity; ?>

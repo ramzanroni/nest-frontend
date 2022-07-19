@@ -1,29 +1,64 @@
 <?php
 include '../inc/function.php';
+include '../inc/apiendpoint.php';
 if ($_POST['check'] == "searchItem") {
     $categoryId = $_POST['categoryName'];
     $productSearchItem = $_POST['productSearchItem'];
     if ($categoryId == "") {
-        $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($productSearchItem) . '&category=';
+        $url = 'product.php?product_name=' . urlencode($productSearchItem);
     } else {
-        $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($productSearchItem) . '&category=' . $categoryId; //url will be here
+        $url = 'product.php?product_name=' . urlencode($productSearchItem) . '&category=' . $categoryId; //url will be here
     }
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryInfo = curl_exec($ch);
-    curl_close($ch);
-    $searchData = json_decode($categoryInfo);
-    $totalProduct = count($searchData);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "postman-token: 4acdffb1-1f44-c966-4053-240a068adcd1"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $searchData = $result->data->products;
+        $totalProduct = $result->data->rows_returned;
+    }
+
+
+
+
+
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // $categoryInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $searchData = json_decode($categoryInfo);
+    // $totalProduct = count($searchData);
     // print_r($searchData);
 ?>
     <?php
@@ -40,7 +75,7 @@ if ($_POST['check'] == "searchItem") {
                     <img src="//<?php echo $itemValue->img; ?>" alt="" width="80px" height="80px">
                 </div>
                 <div class="col-7 float-end">
-                    <a href="shop-product-right.php?product_id=<?php echo $itemValue->stockid; ?>" class="h6"><?php echo $itemValue->description; ?></a><br>
+                    <a href="product.php?product_id=<?php echo $itemValue->stockid; ?>" class="h6"><?php echo $itemValue->description; ?></a><br>
                     <span class="bg-brand pt-1 pb-1 pr-10 pl-10 text-white border-radius-10"><?php echo $itemValue->webprice; ?></span>
                 </div>
             </div>
@@ -104,16 +139,16 @@ if ($_POST['check'] == "viewAllItem") {
                 <div class="product-cart-wrap mb-30">
                     <div class="product-img-action-wrap">
                         <div class="product-img product-img-zoom">
-                            <a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>">
+                            <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
                                 <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
                             </a>
                         </div>
                     </div>
                     <div class="product-content-wrap">
                         <div class="product-category">
-                            <a href="shop-grid-right.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
+                            <a href="products.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
                         </div>
-                        <h2><a href="shop-product-right.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+                        <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
 
                             <!-- <div class="product-badges">
                                                     <small><span
@@ -223,7 +258,7 @@ if ($_POST['check'] == "searchItemMobile") {
                         <img src="//<?php echo $searchItemValue->img; ?>" alt="" width="40px" height="40px">
                     </div>
                     <div class="col-7 float-end pt-10">
-                        <a href="shop-product-right.php?product_id=<?php echo $searchItemValue->stockid; ?>" class="h6"><?php echo $searchItemValue->description; ?></a><br>
+                        <a href="product.php?product_id=<?php echo $searchItemValue->stockid; ?>" class="h6"><?php echo $searchItemValue->description; ?></a><br>
                         <span class="bg-brand mt-10 pt-1 pb-1 pr-10 pl-10 text-white border-radius-10">৳<?php echo $searchItemValue->webprice; ?></span>
                     </div>
                 </div>

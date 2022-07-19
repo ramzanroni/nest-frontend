@@ -23,7 +23,9 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
     <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/plugins/slider-range.css" />
+
     <link rel="stylesheet" href="assets/css/main.css?v=5.3" />
+    <link rel="stylesheet" href="assets/css/external.css" />
     <?php echo $pageLavelCss; ?>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
@@ -79,7 +81,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
                                 <span class="stock-status out-stock" id='units'> Sale Off </span>
-                                <h3 class="title-detail"><a href="shop-product-right.html" class="text-heading"
+                                <h3 class="title-detail"><a href="product.html" class="text-heading"
                                         id="name"></a></h3>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
@@ -138,10 +140,24 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="page-about.php">About Us</a></li>
-                                <li><a href="page-account.php">My Account</a></li>
-                                <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
-                                <li><a href="shop-order.php">Order Tracking</a></li>
+                                <?php
+                                if (getPhone() != '') {
+                                ?>
+                                    <li><a href="page-account.php">My Account</a></li>
+                                    <li><a href="page-account.php">Order Tracking</a></li>
+                                    <li><a href="page-about.php">About Us</a></li>
+
+                                <?php
+                                } else {
+                                ?>
+                                    <li><a onclick="loginUserFororder()" data-bs-toggle="modal" data-bs-target="#userlogin">My Account</a></li>
+                                    <li> <a onclick="loginUserFororder()" data-bs-toggle="modal" data-bs-target="#userlogin">Order Tracking</a></li>
+                                    <li><a href="page-about.php">About Us</a></li>
+                                <?php
+                                }
+                                ?>
+
+
                             </ul>
                         </div>
                     </div>
@@ -159,35 +175,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
                             <ul>
-                                <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
-                                <li>
-                                    <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
-                                    <ul class="language-dropdown">
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-fr.png" alt="" />Français</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-dt.png" alt="" />Deutsch</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-ru.png" alt="" />Pусский</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="language-dropdown-active" href="#">USD <i class="fi-rs-angle-small-down"></i></a>
-                                    <ul class="language-dropdown">
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-fr.png" alt="" />INR</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-dt.png" alt="" />MBP</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/imgs/theme/flag-ru.png" alt="" />EU</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li>Need help? Call Us: + 1800 900</li>
                             </ul>
                         </div>
                     </div>
@@ -223,7 +211,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         </div>
                         <div class="header-action-right">
                             <div class="header-action-2">
-                                <div class="search-location">
+                                <!-- <div class="search-location">
                                     <form action="#">
                                         <select class="select-active">
                                             <option>Your Location</option>
@@ -242,7 +230,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <option>New York</option>
                                         </select>
                                     </form>
-                                </div>
+                                </div> -->
                                 <!-- <div class="header-action-icon-2">
                                     <a href="shop-compare.html">
                                         <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
@@ -299,11 +287,11 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                 <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
                                                         Account</a></li>
                                                 <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
-                                                <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
-                                                        Voucher</a></li>
+                                                <!-- <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
+                                                        Voucher</a></li> -->
                                                 <!-- <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My -->
                                                 <!-- Wishlist</a></li> -->
-                                                <li><a href="page-account.php"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
+                                                <!-- <li><a href="page-account.php"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li> -->
                                                 <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                         out</a></li>
                                             </ul>
@@ -337,7 +325,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
                                         ?>
                                             <li>
-                                                <a href="shop-grid-right.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
+                                                <a href="products.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
                                                     <img src="//<?php echo $categoryFirstHalfvalue->categoryImg; ?>" alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
                                             </li>
                                         <?php
@@ -349,7 +337,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         foreach ($categorySecondHalf as $categorySecondHalfvalue) {
                                         ?>
                                             <li>
-                                                <a href="shop-grid-right.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
+                                                <a href="products.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
                                                     <img src="//<?php echo $categorySecondHalfvalue->categoryImg; ?>" alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
                                             </li>
                                         <?php
@@ -361,18 +349,18 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <div class="d-flex categori-dropdown-inner">
                                         <ul>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
                                             </li>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
                                             </li>
                                         </ul>
                                         <ul class="end">
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
                                             </li>
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
+                                                <a href="products.html"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -384,7 +372,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <nav>
                                 <ul>
                                     <!-- <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg" -->
-                                    <!-- alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li> -->
+                                    <!-- alt="hot deals" /><a href="products.html">Deals</a></li> -->
                                     <!-- <li>
                                         <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -399,10 +387,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <li>
                                         <a href="page-about.php">About</a>
                                     </li>
-                                    <li>
-                                        <a href="shop-grid-right.php">Shop <i class="fi-rs-angle-down"></i></a>
+                                    <!-- <li>
+                                        <a href="products.php">Shop <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
+                                            <li><a href="products.html">Shop Grid – Right Sidebar</a></li>
                                             <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                             <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
                                             <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
@@ -410,7 +398,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <li>
                                                 <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
                                                 <ul class="level-menu">
-                                                    <li><a href="shop-product-right.html">Product – Right Sidebar</a>
+                                                    <li><a href="product.html">Product – Right Sidebar</a>
                                                     </li>
                                                     <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
                                                     <li><a href="shop-product-full.html">Product – No sidebar</a></li>
@@ -419,7 +407,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                 </ul>
                                             </li>
                                             <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                            <!-- <li><a href="shop-wishlist.php">Shop – Wishlist</a></li> -->
+                                            <li><a href="shop-wishlist.php">Shop – Wishlist</a></li>
                                             <li><a href="shop-cart.php">Shop – Cart</a></li>
                                             <li><a href="shop-checkout.php">Shop – Checkout</a></li>
                                             <li><a href="shop-compare.php">Shop – Compare</a></li>
@@ -435,7 +423,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <!-- <li>
                                         <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -447,46 +435,46 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <li><a href="vendor-guide.html">Vendor Guide</a></li>
                                         </ul>
                                     </li> -->
-                                    <li class="position-static">
+                                    <!-- <li class="position-static">
                                         <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Fruit & Vegetables</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Meat & Poultry</a></li>
-                                                    <li><a href="shop-product-right.html">Fresh Vegetables</a></li>
-                                                    <li><a href="shop-product-right.html">Herbs & Seasonings</a></li>
-                                                    <li><a href="shop-product-right.html">Cuts & Sprouts</a></li>
-                                                    <li><a href="shop-product-right.html">Exotic Fruits & Veggies</a>
+                                                    <li><a href="product.html">Meat & Poultry</a></li>
+                                                    <li><a href="product.html">Fresh Vegetables</a></li>
+                                                    <li><a href="product.html">Herbs & Seasonings</a></li>
+                                                    <li><a href="product.html">Cuts & Sprouts</a></li>
+                                                    <li><a href="product.html">Exotic Fruits & Veggies</a>
                                                     </li>
-                                                    <li><a href="shop-product-right.html">Packaged Produce</a></li>
+                                                    <li><a href="product.html">Packaged Produce</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Breakfast & Dairy</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Milk & Flavoured Milk</a></li>
-                                                    <li><a href="shop-product-right.html">Butter and Margarine</a></li>
-                                                    <li><a href="shop-product-right.html">Eggs Substitutes</a></li>
-                                                    <li><a href="shop-product-right.html">Marmalades</a></li>
-                                                    <li><a href="shop-product-right.html">Sour Cream</a></li>
-                                                    <li><a href="shop-product-right.html">Cheese</a></li>
+                                                    <li><a href="product.html">Milk & Flavoured Milk</a></li>
+                                                    <li><a href="product.html">Butter and Margarine</a></li>
+                                                    <li><a href="product.html">Eggs Substitutes</a></li>
+                                                    <li><a href="product.html">Marmalades</a></li>
+                                                    <li><a href="product.html">Sour Cream</a></li>
+                                                    <li><a href="product.html">Cheese</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Meat & Seafood</a>
                                                 <ul>
-                                                    <li><a href="shop-product-right.html">Breakfast Sausage</a></li>
-                                                    <li><a href="shop-product-right.html">Dinner Sausage</a></li>
-                                                    <li><a href="shop-product-right.html">Chicken</a></li>
-                                                    <li><a href="shop-product-right.html">Sliced Deli Meat</a></li>
-                                                    <li><a href="shop-product-right.html">Wild Caught Fillets</a></li>
-                                                    <li><a href="shop-product-right.html">Crab and Shellfish</a></li>
+                                                    <li><a href="product.html">Breakfast Sausage</a></li>
+                                                    <li><a href="product.html">Dinner Sausage</a></li>
+                                                    <li><a href="product.html">Chicken</a></li>
+                                                    <li><a href="product.html">Sliced Deli Meat</a></li>
+                                                    <li><a href="product.html">Wild Caught Fillets</a></li>
+                                                    <li><a href="product.html">Crab and Shellfish</a></li>
                                                 </ul>
                                             </li>
                                             <li class="sub-mega-menu sub-mega-menu-width-34">
                                                 <div class="menu-banner-wrap">
-                                                    <a href="shop-product-right.html"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
+                                                    <a href="product.html"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
                                                     <div class="menu-banner-content">
                                                         <h4>Hot deals</h4>
                                                         <h3>
@@ -497,7 +485,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                             <span class="new-price text-success">Save to 50%</span>
                                                         </div>
                                                         <div class="menu-banner-btn">
-                                                            <a href="shop-product-right.html">Shop now</a>
+                                                            <a href="product.html">Shop now</a>
                                                         </div>
                                                     </div>
                                                     <div class="menu-banner-discount">
@@ -509,7 +497,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <!-- <li>
                                         <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -621,7 +609,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 
                                     foreach ($categoryItemData as $categoryValueMobile) {
                                     ?>
-                                        <li><a href="shop-grid-right.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
+                                        <li><a href="products.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
                                         </li>
 
                                     <?php
@@ -632,7 +620,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <li class="menu-item-has-children">
                                 <a>shop</a>
                                 <ul class="dropdown">
-                                    <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
+                                    <li><a href="products.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                     <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
                                     <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
@@ -640,7 +628,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <li class="menu-item-has-children">
                                         <a href="#">Single Product</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
+                                            <li><a href="product.html">Product – Right Sidebar</a></li>
                                             <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
                                             <li><a href="shop-product-full.html">Product – No sidebar</a></li>
                                             <li><a href="shop-product-vendor.html">Product – Vendor Infor</a></li>
@@ -681,28 +669,28 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <li class="menu-item-has-children">
                                         <a href="#">Women's Fashion</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Dresses</a></li>
-                                            <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
-                                            <li><a href="shop-product-right.html">Hoodies & Sweatshirts</a></li>
-                                            <li><a href="shop-product-right.html">Women's Sets</a></li>
+                                            <li><a href="product.html">Dresses</a></li>
+                                            <li><a href="product.html">Blouses & Shirts</a></li>
+                                            <li><a href="product.html">Hoodies & Sweatshirts</a></li>
+                                            <li><a href="product.html">Women's Sets</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Men's Fashion</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Jackets</a></li>
-                                            <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
-                                            <li><a href="shop-product-right.html">Genuine Leather</a></li>
+                                            <li><a href="product.html">Jackets</a></li>
+                                            <li><a href="product.html">Casual Faux Leather</a></li>
+                                            <li><a href="product.html">Genuine Leather</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Technology</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Gaming Laptops</a></li>
-                                            <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
-                                            <li><a href="shop-product-right.html">Tablets</a></li>
-                                            <li><a href="shop-product-right.html">Laptop Accessories</a></li>
-                                            <li><a href="shop-product-right.html">Tablet Accessories</a></li>
+                                            <li><a href="product.html">Gaming Laptops</a></li>
+                                            <li><a href="product.html">Ultraslim Laptops</a></li>
+                                            <li><a href="product.html">Tablets</a></li>
+                                            <li><a href="product.html">Laptop Accessories</a></li>
+                                            <li><a href="product.html">Tablet Accessories</a></li>
                                         </ul>
                                     </li>
                                 </ul>

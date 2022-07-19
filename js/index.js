@@ -59,8 +59,8 @@ $(document).ready(function () {
   cartItem();
   $("#searchBox").hide();
   $("#searchResultBox").hide();
-
-  // $("#preloader-active").hide();
+  preloader();
+  $("#preloader-active").hide();
 });
 
 function productQuikView(productID) {
@@ -239,11 +239,11 @@ function cartPopUp() {
             var pName = "'" + cartData[i].productName + "'";
             var pImg = "'" + cartData[i].productImage + "'";
             html +=
-              '<li><div class="shopping-cart-img"><a href="shop-product-right.php?product_id=' +
+              '<li><div class="shopping-cart-img"><a href="product.php?product_id=' +
               cartData[i].productID +
               '"><img alt="Nest" src="//' +
               cartData[i].productImage +
-              '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php?product_id=' +
+              '" /></a></div><div class="shopping-cart-title"><h4><a href="product.php?product_id=' +
               cartData[i].productID +
               '">' +
               cartData[i].productName.substring(0, 15) +
@@ -320,9 +320,9 @@ function deleteCatItem(
         var cartPname = "'" + cartData[i].productName + "'";
         var cartPimg = "'" + cartData[i].productImage + "'";
         html +=
-          '<li><div class="shopping-cart-img"><a href="shop-product-right.php"><img alt="Nest" src="//' +
+          '<li><div class="shopping-cart-img"><a href="product.php"><img alt="Nest" src="//' +
           cartData[i].productImage +
-          '" /></a></div><div class="shopping-cart-title"><h4><a href="shop-product-right.php">' +
+          '" /></a></div><div class="shopping-cart-title"><h4><a href="product.php">' +
           cartData[i].productName.substring(0, 15) +
           "...</a></h4>   <h4><span>" +
           cartData[i].productQuantity +
@@ -1010,7 +1010,7 @@ function placeorder(phoneNumber, token) {
         check: check,
       },
       success: function (response) {
-        // console.log(response);
+        console.log(response);
         if (response == "success") {
           alertMessageSuccess("Order Place Success.");
           setTimeout(function () {
@@ -1056,7 +1056,7 @@ function searchItem(productSearchItem) {
 
 function viewAllItem(categoryId, itemString) {
   window.location.replace(
-    "/nest-frontend/shop-grid-right.php?product_name=" +
+    "/nest-frontend/products.php?product_name=" +
       itemString +
       "&category=" +
       categoryId
@@ -1133,7 +1133,7 @@ function searchProductMobile(searchString) {
 
 function viewAllItemMobile(searchSrt) {
   window.location.replace(
-    "/nest-frontend/shop-grid-right.php?product_name=" +
+    "/nest-frontend/products.php?product_name=" +
       searchSrt +
       "&category="
   );
@@ -1202,20 +1202,24 @@ function OrderCancel(orderId) {
 }
 
 // deleteOrderItem
-function deleteOrderItem(itemId) {
+function deleteOrderItem(orderNo,lineNo) {
   var check = "deleteOrderItem";
+  var btnID = "cancel_" + orderNo + "_" + lineNo;
   $.ajax({
     url: "pages/orderAction.php",
     type: "POST",
 
     data: {
-      itemId: itemId,
+      orderNo: orderNo,
+      lineNo:lineNo,
       check: check,
     },
     success: function (response) {
+      console.log(response);
+
       if (response == "success") {
-        alertMessageSuccess("Item Success.");
-        $("#" + itemId).hide();
+        alertMessageSuccess("Item Cancel Success.");
+        $("#" + btnID).hide();
       }
     },
   });
