@@ -1225,6 +1225,26 @@ function deleteOrderItem(orderNo,lineNo) {
   });
 }
 
+// CancelCartoonDelivery
+
+function CancelCartoonDelivery(orderNumber, orderlineno)
+{
+  var check = "CancelCartoonDelivery";
+  $.ajax({
+    url: "pages/orderAction.php",
+    type: "POST",
+
+    data: {
+      orderNumber: orderNumber,
+      orderlineno:orderlineno,
+      check: check,
+    },
+    success: function (response) {
+      console.log(response);
+    },
+  });
+}
+
 // updatePhone
 function updatePhone()
 {

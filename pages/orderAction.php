@@ -115,21 +115,52 @@ if ($_POST['check'] == "checkorderditails") {
 
     // order details 
 
-    $url = "https://demostarter.erp.place/eback/order_carton.php?order_id=" . $orderNumber;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-        )
-    );
-    $itemCartonInfo = curl_exec($ch);
-    curl_close($ch);
-    $orderCartonDetails = json_decode($itemCartonInfo);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "carton.php?order_id=" . $orderNumber,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $orderCartonDetails = $result->data->carton;
+    }
+
+
+
+
+    // $url = "https://demostarter.erp.place/eback/order_carton.php?order_id=" . $orderNumber;
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
+    //     )
+    // );
+    // $itemCartonInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $orderCartonDetails = json_decode($itemCartonInfo);
 ?>
     <section class="content-main">
         <div class="content-header">
@@ -374,6 +405,37 @@ if ($_POST['check'] == "checkorderditails") {
 <?php
 }
 
+if ($_POST['check'] == "CancelCartoonDelivery") {
+    $orderNumber = $_POST['orderNumber'];
+    $orderlineno = $_POST['orderlineno'];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "carton.php?orderNumber=" . $orderNumber . "&orderlineno=" . $orderlineno,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo $response;
+    }
+}
+
 if ($_POST['check'] == "checkorderditailsOld") {
     $orderNumber = $_POST['orderNumber'];
     // order details 
@@ -593,22 +655,56 @@ if ($_POST['check'] == "cartonItemDetails") {
     $cartonNumber = $_POST['cartonNumber'];
     $orderNumber = $_POST['orderNumber'];
 
-    $url = "https://demostarter.erp.place/eback/carton_item.php?order_id=" . $orderNumber . "&carton_id=" . $cartonNumber;
+    $curl = curl_init();
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-        )
-    );
-    $itemInfo = curl_exec($ch);
-    curl_close($ch);
-    $itemDetails = json_decode($itemInfo);
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "carton.php?orderId=" . $orderNumber . "&carton_id=" . $cartonNumber,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "postman-token: 65185f08-3147-690a-fdc9-b43524973713"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $itemDetails = $result->data->cartonItem;
+    }
+
+
+
+
+
+
+    // $url = "https://demostarter.erp.place/eback/carton_item.php?order_id=" . $orderNumber . "&carton_id=" . $cartonNumber;
+
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
+    //     )
+    // );
+    // $itemInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $itemDetails = json_decode($itemInfo);
+    // print_r($itemDetail);
 
 ?>
     <div class="row cartonDetails">
@@ -633,21 +729,21 @@ if ($_POST['check'] == "cartonItemDetails") {
                                 <td>
                                     <a class="itemside" href="product.php?id=<?php echo $orderItemValue->stockid; ?>">
                                         <div class="left">
-                                            <img src="<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
+                                            <img src="//<?php echo $orderItemValue->img; ?>" width="40" height="40" class="img-xs" alt="Item" />
                                         </div>
                                         <div class="info"><?php echo $orderItemValue->description; ?></div>
                                     </a>
                                 </td>
 
-                                <td class="text-end"><?php echo $orderItemValue->qtyinvoiced; ?></td>
+                                <td class="text-end"><?php echo $orderItemValue->unitprice; ?></td>
                                 <td class="text-end"><?php echo $orderItemValue->qty; ?></td>
                                 <td class="text-end">৳
-                                    <?php echo ($orderItemValue->unitprice * $orderItemValue->quantity); ?>
+                                    <?php echo ($orderItemValue->unitprice * $orderItemValue->qty); ?>
                                 </td>
 
                             </tr>
                         <?php
-                            $total = $total + ($orderItemValue->unitprice * $orderItemValue->quantity);
+                            $total = $total + ($orderItemValue->unitprice * $orderItemValue->qty);
                             $flag++;
                         }
                         ?>
@@ -684,7 +780,7 @@ if ($_POST['check'] == "itemDetails") {
     $orderProductID = $_POST['orderProductID'];
     $orderNumber = $_POST['orderNumber'];
 
-    $url = "https://demostarter.erp.place/eback/order_item.php?order_id=" . $orderNumber . "&item_id=" . $orderProductID;
+    //$url = "https://demostarter.erp.place/eback/order_item.php?order_id=" . $orderNumber . "&item_id=" . $orderProductID;
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
