@@ -504,11 +504,69 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     }
                 }
             }
+        } elseif (isset($jsonData->login_id)) {
+            if ($jsonData->login_id == '') {
+                $response = new Response();
+                $response->setHttpStatusCode(400);
+                $response->setSuccess(false);
+                $response->addMessage("Login ID can be blank");
+                $response->send();
+                exit;
+            }
+            $login_id = $jsonData->login_id;
+            try {
+                $selectUser = $readDB->prepare('SELECT * FROM users WHERE login_id=:login_id');
+                $selectUser->BindParam(':login_id', $login_id, PDO::PARAM_STR);
+                $selectUser->execute();
+                $rowCount = $selectUser->rowCount();
+                if ($rowCount === 1) {
+                    $smsArray = array();
+                    while ($row = $selectUser->fetch(PDO::FETCH_ASSOC)) {
+                        $sms = new SMS($row['phone'], $row['user_token']);
+                        $smsArray[] = $sms->returnSmsArray();
+                    }
+                    $returnData = array();
+                    $returnData['rows_returned'] = $rowCount;
+                    $returnData['userdata'] = $smsArray;
+                    $response = new Response();
+                    $response->setHttpStatusCode(200);
+                    $response->setSuccess(true);
+                    $response->toCache(true);
+                    $response->setData($returnData);
+                    $response->send();
+                    exit;
+                } else {
+                    $response = new Response();
+                    $response->setHttpStatusCode(400);
+                    $response->setSuccess(false);
+                    $response->addMessage("New user");
+                    $response->send();
+                    exit;
+                }
+            } catch (SmsException $ex) {
+                $response = new Response();
+                $response->setHttpStatusCode(500);
+                $response->setSuccess(false);
+                $response->addMessage($ex->getMessage());
+                $response->send();
+                exit;
+            } catch (PDOException $ex) {
+                error_log("Database query error - " . $ex, 1);
+                $response = new Response();
+                $response->setHttpStatusCode(500);
+                $response->setSuccess(false);
+                $response->addMessage("Failed to get task");
+                $response->send();
+                exit();
+            }
         } else {
             $phone = $jsonData->newUserPhone;
             $address = $jsonData->address;
             $name = $jsonData->name;
             $otp = $jsonData->newOtp;
+            $email = $jsonData->email;
+            $login_media = $jsonData->login_media;
+            $login_id = $jsonData->login_id;
             $flag = '';
             $userInfo = new Register($phone, $name, $address, $otp);
             $validPhone = $userInfo->getNewUserPhone();
@@ -560,10 +618,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $password = '';
                         $email = '';
                         $customerid = '';
+
                         // $address1 = '';
                         $token = base64_encode($phone . $dateTime);
                         $smsInfo = new SMS($jsonData->phone, $token);
-                        $insertUser = $writeDB->prepare('INSERT INTO users(userid, password,realname, customerid,phone, email, address1,user_token) VALUES (:userid,:password, :realname,:customerid, :phone, :email, :address1,:token)');
+                        $insertUser = $writeDB->prepare('INSERT INTO users(userid, password,realname, customerid,phone, email, address1, login_media, login_id, user_token) VALUES (:userid,:password, :realname,:customerid, :phone, :email, :address1, :login_media, :login_id, :token)');
                         $insertUser->bindParam('userid', $userid, PDO::PARAM_STR);
                         $insertUser->bindParam('password', $password, PDO::PARAM_STR);
                         $insertUser->bindParam('realname', $validName, PDO::PARAM_STR);
@@ -571,6 +630,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $insertUser->bindParam('phone', $validPhone, PDO::PARAM_STR);
                         $insertUser->bindParam('email', $email, PDO::PARAM_STR);
                         $insertUser->bindParam('address1', $validAddress, PDO::PARAM_STR);
+                        $insertUser->bindParam('login_media', $login_media, PDO::PARAM_STR);
+                        $insertUser->bindParam('login_id', $login_id, PDO::PARAM_STR);
                         $insertUser->bindParam('token', $token, PDO::PARAM_STR);
                         $insertUser->execute();
                         $rowCount = $insertUser->rowCount();

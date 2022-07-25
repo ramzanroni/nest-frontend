@@ -931,7 +931,12 @@ function updateUserData(userPhone) {
     });
   }
 }
-
+function test(name, email, emailID)
+{
+  alert(name);
+  alert(email);
+  alert(emailID);
+}
 // loginUserFororder
 function loginUserFororder() {
   var check = "loginpopupview";

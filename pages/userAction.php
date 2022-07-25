@@ -13,7 +13,7 @@ if ($_POST['check'] == "userPhoneNumberSend") {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"newPhone\": \"$phoneNumber\"\n}",
+        CURLOPT_POSTFIELDS => "{\n\t\"phone\": \"$phoneNumber\"\n}",
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
             "content-type: application/json"
@@ -86,11 +86,10 @@ if ($_POST['check'] == "userRegistration") {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"name\":\"$name\",\n\t\"address\":\"$address\",\n\t\"newOtp\":\"$otp\"\n}",
+        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \" $address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"sasd@gmail.com\",\n\t\"login_media\":\"1\",\n\t\"login_id\": \"12311\"\n}",
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
-            "content-type: application/json",
-            "postman-token: fb74123d-0239-d4db-a79c-3a116a503e14"
+            "content-type: application/json"
         ),
     ));
 
@@ -253,6 +252,7 @@ if ($_POST['check'] == "userProfileUpdate") {
 }
 
 if ($_POST['check'] == "loginpopupview") {
+    include '../config.php';
 ?>
     <div class="container">
         <div class="row">
@@ -290,6 +290,9 @@ if ($_POST['check'] == "loginpopupview") {
                                     <button type="submit" class="btn btn-heading btn-block hover-up" name="signUp" id="signUp" onclick="userSignup()">Sign Up</button>
                                 </div>
                                 <!-- </form> -->
+                                <?php
+                                echo "<a id='gmailLogin' href='" . $client->createAuthUrl() . "'><img src='assets/imgs/login-google.png'></a>";
+                                ?>
                             </div>
                         </div>
                     </div>
