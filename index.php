@@ -15,9 +15,7 @@ if (isset($_GET['code'])) {
     $email =  $google_account_info->email;
     $name =  $google_account_info->name;
     $emailID = $google_account_info->id;
-    // echo "<pre>";
-    print_r($google_account_info);
-    echo "<script type='text/javascript'>test('$email', '$name', '$emailID');</script>";
+    echo "<script type='text/javascript'>$(document).ready(function () {checkEmail('$email', '$name', '$emailID');});</script>";
 
     // now you can use this profile info to create account in your website and make user logged in.
 }

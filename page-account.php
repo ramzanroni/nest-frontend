@@ -16,7 +16,7 @@ if (getPhone() == '') {
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/user.php?phoneNumber=" . getPhone(),
+    CURLOPT_URL => APIENDPOINT . "user.php?phoneNumber=" . getPhone(),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -49,7 +49,7 @@ if ($err) {
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/order.php?token=MDE3NjcyNzA2NTMyMDIyLTA3LTE3IDE3OjE5OjIz",
+    CURLOPT_URL => APIENDPOINT . "order.php?token=" . getToken(),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -208,7 +208,7 @@ if ($err) {
                                                                             <button onclick="viewOrderDetails(<?php echo $orderValue->orderno; ?>)" class="float-start btn btn-small btn-success  m-2">View</button>
                                                                             <?php if (($orderValue->so_status == 0 || $orderValue->so_status == 1)) {
                                                                             ?>
-                                                                                <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-danger ">Cancel</button>
+                                                                                <button onclick="OrderCancel(<?php echo $orderValue->orderno; ?>)" class="float-start m-2 btn btn-small bg-danger "><i title="Cancel Order" class="fi-rs-cross"></i></button>
                                                                         </span>
                                                                     <?php
                                                                             } ?>

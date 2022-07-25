@@ -7722,7 +7722,7 @@ h6.post-title {
   left: 0;
   -webkit-transition: all .3s ease 0s;
   transition: all .3s ease 0s;
-  border-bottom: 2px solid #FDC040;
+  /* border-bottom: 2px solid #FDC040; */
   background: #fff;
 }
 

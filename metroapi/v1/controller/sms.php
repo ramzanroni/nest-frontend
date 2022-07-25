@@ -504,7 +504,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     }
                 }
             }
-        } elseif (isset($jsonData->login_id)) {
+        } elseif (isset($jsonData->login_id) && !isset($jsonData->newUserPhone)) {
             if ($jsonData->login_id == '') {
                 $response = new Response();
                 $response->setHttpStatusCode(400);
@@ -616,7 +616,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $dateTime = date('Y-m-d H:i:s');
                         $userid = '';
                         $password = '';
-                        $email = '';
                         $customerid = '';
 
                         // $address1 = '';

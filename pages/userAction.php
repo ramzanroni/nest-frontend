@@ -37,6 +37,53 @@ if ($_POST['check'] == "userPhoneNumberSend") {
     }
 }
 
+if ($_POST['check'] == "checkEmail") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $emailID = $_POST['emailID'];
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "sms.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"login_id\":\"$emailID\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $output = json_decode($response);
+
+        if ($output->success == true) {
+            $phone = $output->data->userdata[0]->userPhone;
+            $token = $output->data->userdata[0]->userToken;
+            $info = array(
+                'phone' => $phone,
+                'token' => $token
+            );
+            $userInfo = json_encode($info);
+            setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
+            echo 'success';
+        } else {
+            echo $output->message[0];
+        }
+    }
+}
+
 if ($_POST['check'] == "forRegistration") {
     $phone = $_POST['phoneNumber'];
 
@@ -74,8 +121,9 @@ if ($_POST['check'] == "userRegistration") {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $otp = $_POST['otp'];
-
-
+    $emailAdd = $_POST['emailAdd'];
+    $emailIdData = $_POST['emailIdData'];
+    $mediaData = $_POST['mediaData'];
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -86,7 +134,7 @@ if ($_POST['check'] == "userRegistration") {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \" $address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"sasd@gmail.com\",\n\t\"login_media\":\"1\",\n\t\"login_id\": \"12311\"\n}",
+        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \" $address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"$emailAdd\",\n\t\"login_media\":\"$mediaData\",\n\t\"login_id\": \"$emailIdData\"\n}",
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
             "content-type: application/json"
@@ -218,36 +266,39 @@ if ($_POST['check'] == "userProfileUpdate") {
     $emailAddress = $_POST['emailAddress'];
     $userAddress = $_POST['userAddress'];
     $userPhone = $_POST['userPhone'];
-    $post = array(  //data array from user side
 
-        "phoneNumber" => $userPhone,
-        'fullName' => $fullName,
-        'emailAddress' => $emailAddress,
-        'userAddress' => $userAddress
+    $curl = curl_init();
 
-    );
-    $data = json_encode($post); // json encoded
-    $url = "http://192.168.0.116/neonbazar_api/user_profile_update.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $server_output = curl_exec($ch); //output will be here
-    curl_close($ch);
-    $response = json_decode($server_output);
-    if ($response->message == 'success') {
-        echo "success";
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "user.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "PUT",
+        CURLOPT_POSTFIELDS => "\n\t{\n\t\"phoneNumber\":\"$userPhone\",\n\t\"fullName\": \"$fullName\",\n\t\"emailAddress\":\"$emailAddress\",\n\t\"userAddress\": \"$userAddress\"\n}\n",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            "postman-token: 359a2995-48f7-4287-89ac-c69881f08d91"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
     } else {
-        echo $response->message;
+        $result = json_decode($response);
+        if ($result->success == true) {
+            echo "success";
+        } else {
+            echo $result->message[0];
+        }
     }
 }
 
@@ -283,6 +334,9 @@ if ($_POST['check'] == "loginpopupview") {
                                     <input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Phone number*" />
                                     <small class="text-danger" id="errorNumMessage"></small>
                                 </div>
+                                <input type="hidden" name="email" id="email">
+                                <input type="hidden" name="emailID" id="emailID">
+                                <input type="hidden" name="media" id="media">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-heading btn-block hover-up" name="login" id="login" onclick="userLogin()">Send</button>
                                 </div>

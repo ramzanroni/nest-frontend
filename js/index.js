@@ -61,6 +61,7 @@ $(document).ready(function () {
   $("#searchResultBox").hide();
   preloader();
   $("#preloader-active").hide();
+  
 });
 
 function productQuikView(productID) {
@@ -696,6 +697,9 @@ function userSignup() {
   var phoneNumber = $("#phoneNumber").val();
   var userName = $("#userName").val();
   var userAddress = $("#userAddress").val();
+  var email = $("#email").val();
+  var emailID = $("#emailID").val();
+  var media = $("#media").val();
   if (userName == '') {
     $("#errorName").html('Name field can not be null');
     flag = 1;
@@ -725,8 +729,11 @@ function userSignup() {
             var phone = "'" + phoneNumber + "'";
             var Name = "'" + userName + "'";
             var Address = "'" + userAddress + "'";
+            var emailAdd = "'" + email + "'";
+            var emailIdData = "'" + emailID + "'";
+            var mediaData = "'" + media + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+')">Send</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+','+emailAdd+','+emailIdData+','+mediaData+')">Send</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -743,13 +750,14 @@ function userSignup() {
   }
 }
 
-function createAccount(phone, name, address)
+function createAccount(phone, name, address, emailAdd, emailIdData,mediaData)
 {
   var otp = $("#getOtp").val();
   var check = "userRegistration";
   if (otp == "") {
     $("#errorNumMessage").html("Please provide your OTP code.");
   }
+  
   else {
     $.ajax({
       url: "pages/userAction.php",
@@ -760,12 +768,16 @@ function createAccount(phone, name, address)
         name: name,
         address: address,
         otp: otp,
+        emailAdd: emailAdd,
+        emailIdData: emailIdData,
+        mediaData:mediaData,
         check:check
       },
       success: function (response) {
         if (response == "success") {
           // window.location.href = "page-account.php";
-          location.reload();
+          // location.reload();
+          location.replace('index.php');
         } else {
           $("#errorNumMessage").html(response);
            setTimeout(function () {
@@ -931,11 +943,54 @@ function updateUserData(userPhone) {
     });
   }
 }
-function test(name, email, emailID)
+function checkEmail(email, name, emailID)
 {
-  alert(name);
-  alert(email);
-  alert(emailID);
+  var check = "checkEmail";
+  $.ajax({
+    url: "pages/userAction.php",
+    type: "POST",
+
+    data: {
+      check: check,
+      name: name,
+      email: email,
+      emailID:emailID
+    },
+    success: function (response) {
+      if (response == "success") {
+        location.replace('index.php');
+      } else {
+
+        $('#userlogin').modal('show');
+        emailRegister(name, email, emailID);
+      }
+
+    },
+  });
+}
+function emailRegister(name, email, emailID)
+{
+  var check = "loginpopupview";
+  $.ajax({
+    url: "pages/userAction.php",
+    type: "POST",
+
+    data: {
+      check: check,
+    },
+    success: function (response) {
+      $("#modalDiv").html(response);
+      $("#userName").show();
+      $("#userName").val(name);
+      $("#email").val(email);
+      $("#emailID").val(emailID);
+      $("#media").val(2);
+      $("#userAddress").show();
+      $("#signUp").show();
+      $("#login").hide();
+      $("#gmailLogin").hide();
+    },
+  });
 }
 // loginUserFororder
 function loginUserFororder() {
