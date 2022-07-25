@@ -358,30 +358,38 @@ if ($_POST['check'] == "loginpopupview") {
 }
 if ($_POST['check'] == "userPhoneUpOTP") {
     $newPhone = $_POST['newPhone'];
-    $post = array(  //data array from user side
+    $curl = curl_init();
 
-        "phoneNumber" => $newPhone
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "changeOtp.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"phoneNumber\":\"$newPhone\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json"
+        ),
+    ));
 
-    );
-    $data = json_encode($post); // json encoded
-    $url = "http://192.168.0.116/neonbazar_api/change_phone_otp.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $server_output = curl_exec($ch); //output will be here
-    curl_close($ch);
-    $response = json_decode($server_output);
-    echo $response->message;
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        if ($result->success == true) {
+            echo "success";
+        } else {
+            echo $result->message[0];
+        }
+    }
 }
 
 if ($_POST['check'] == "checkUpdateOTP") {
@@ -389,31 +397,37 @@ if ($_POST['check'] == "checkUpdateOTP") {
     $otp = $_POST['otp'];
     $newNumber = $_POST['newNumber'];
     $oldNumber = $_POST['oldNumber'];
-    $post = array(  //data array from user side
+    $curl = curl_init();
 
-        "optNumber" => $otp,
-        "phoneNew" => $newNumber,
-        "phoneOld" => $oldNumber
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . "changeOtp.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"optNumber\":\" $otp\",\n\t\"phoneNew\": \"$newNumber\",\n\t\"phoneOld\":\"$oldNumber\"\n\t\n}",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json"
+        ),
+    ));
 
-    );
-    $data = json_encode($post); // json encoded
-    $url = "http://192.168.0.116/neonbazar_api/change_phone_otp.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $server_output = curl_exec($ch); //output will be here
-    curl_close($ch);
-    $response = json_decode($server_output);
-    echo $response->message;
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        if ($result->success == true) {
+            echo "success";
+        } else {
+            echo $result->message[0];
+        }
+    }
 }
 ?>
