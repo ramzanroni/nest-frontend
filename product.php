@@ -88,7 +88,11 @@ if ($err) {
                                         <!-- MAIN SLIDES -->
                                         <div class="product-image-slider">
                                             <figure class="border-radius-10">
-                                                <img src="//<?php echo $productData[0]->img; ?>" alt="product image" />
+                                                <img src="<?php if ($productData[0]->img == '') {
+                                                                echo './assets/imgs/product.png';
+                                                            } else {
+                                                                echo '//' . $productData[0]->img;
+                                                            } ?>" alt="product image" />
                                             </figure>
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
@@ -118,7 +122,11 @@ if ($err) {
                                         </div>
                                         <!-- THUMBNAILS -->
                                         <div class="slider-nav-thumbnails">
-                                            <div><img src="//<?php echo $productData[0]->img; ?>" alt="product image" />
+                                            <div><img src="<?php if ($productData[0]->img == '') {
+                                                                echo './assets/imgs/product.png';
+                                                            } else {
+                                                                echo '//' . $productData[0]->img;
+                                                            } ?>" alt="product image" />
                                             </div>
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
