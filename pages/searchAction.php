@@ -22,8 +22,7 @@ if ($_POST['check'] == "searchItem") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 4acdffb1-1f44-c966-4053-240a068adcd1"
+            "cache-control: no-cache"
         ),
     ));
 
@@ -229,23 +228,68 @@ if ($_POST['check'] == "viewAllItem") {
 }
 
 if ($_POST['check'] == "searchItemMobile") {
-    $searchString = $_POST['searchString'];
-    $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($searchString) . '&category='; //url will be here
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryInfo = curl_exec($ch);
-    curl_close($ch);
-    $searchData = json_decode($categoryInfo);
-    $totalProduct = count($searchData);
+
+    $categoryId = '';
+    $productSearchItem = $_POST['searchString'];
+    if ($categoryId == "") {
+        $url = 'product.php?product_name=' . urlencode($productSearchItem);
+    } else {
+        $url = 'product.php?product_name=' . urlencode($productSearchItem) . '&category=' . $categoryId; //url will be here
+    }
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => APIENDPOINT . $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        $result = json_decode($response);
+        $searchData = $result->data->products;
+        $totalProduct = $result->data->rows_returned;
+    }
+
+
+
+    // $searchString = $_POST['searchString'];
+
+
+
+
+
+    // $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($searchString) . '&category='; //url will be here
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    // curl_setopt(
+    //     $ch,
+    //     CURLOPT_HTTPHEADER,
+    //     array( //header will be here
+    //         'Content-Type: application/json',
+    //         'Authorization: ' . APIKEY,
+    //     )
+    // );
+    // $categoryInfo = curl_exec($ch);
+    // curl_close($ch);
+    // $searchData = json_decode($categoryInfo);
+    // $totalProduct = count($searchData);
     if ($totalProduct > 0) {
     ?>
         <div class="col-12">
@@ -267,7 +311,7 @@ if ($_POST['check'] == "searchItemMobile") {
             ?>
         </div>
         <div class="col-12 text-center p-3 border-bottom">
-            <a onclick="viewAllItemMobile('<?php echo  $searchString; ?>')">Show All</a>
+            <a onclick="viewAllItemMobile('<?php echo  $productSearchItem; ?>')">Show All</a>
         </div>
 <?php
     } else {

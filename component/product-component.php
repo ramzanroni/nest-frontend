@@ -4,8 +4,8 @@
     $cartItem = count($cartCookiesProduct);
     ?>
     <div class="product-cart-wrap mb-30">
-        <div class="product-img-action-wrap">
-            <div class="product-img product-img-zoom">
+        <div class="product-img-action-wrap text-center">
+            <div class="product-img product-img-zoom text-center">
                 <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
                     <img class="default-img" src="<?php if ($productData->img != '') {
                                                         echo "//" . $productData->img;
@@ -19,15 +19,14 @@
             <div class="product-category">
                 <a href="products.php?category_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
             </div>
-            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description . " (" . $productData->units . ")"; ?></a>
+            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
             </h2>
-            <!-- <div class="product-rate-cover product-badges">
-                <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
-            </div> -->
+            <div class="product-price">
+                <span>৳<?php echo $productData->webprice; ?></span>
+                <span class="float-end text-dark"><?php echo "UoM " . $productData->units; ?></span>
+            </div>
             <div class="product-card-bottom">
-                <div class="product-price">
-                    <span>৳<?php echo $productData->webprice; ?></span>
-                </div>
+
                 <?php
                 $cartProductID = '';
                 $numberOfItem = '';
@@ -41,17 +40,26 @@
                 }
                 if ($cartProductID == '') {
                 ?>
-                    <div id="item_<?= $productData->stockid ?>">
+                    <div id="item_<?= $productData->stockid ?>" class="divsize">
                         <div class="add-cart">
-                            <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                            <a class="add divsize" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                         </div>
                     </div>
                 <?php
                 } else {
                 ?>
-                    <div class="col-12" id="item_<?= $productData->stockid ?>">
+                    <div id="item_<?= $productData->stockid ?>" class="d-flex divsize">
                         <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>" value="<?php echo $numberOfItem; ?>">
-                        <div class="col-10 float-end after-cart">
+                        <div class="add-cart">
+                            <a class="add" style="border-radius: 5px 0px 0px 5px;" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')"><i class="fi-rs-minus"></i> </a>
+                        </div>
+                        <div class="add-cart midCart">
+                            <a class="add middlediv" style="border-radius: 0 !important;"><i class="fi-rs-shopping-cart mr-5"></i><span id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span> </a>
+                        </div>
+                        <div class="add-cart">
+                            <a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')"><i class="fi-rs-plus"></i></a>
+                        </div>
+                        <!-- <div class="col-10 float-end after-cart">
                             <div class="col-2 float-end increment" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
                                 <a><i class="fi-rs-plus"></i></a>
                             </div>
@@ -63,7 +71,7 @@
                             <div class="col-2 float-end add decrement" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
                                 <a><i class="fi-rs-minus"></i></a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 <?php

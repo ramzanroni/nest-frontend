@@ -1,5 +1,12 @@
 /*# sourceMappingURL=main.css.map */
 
+:root {
+    --primary-color: #83b735;
+    --secondary-color: #438e44;
+    --primary-text-color: #ffffff;
+
+}
+
 .after-cart {
     text-align: center;
     color: white;
@@ -13,8 +20,8 @@
 .decrement {
     /* border-left: 2px solid; */
     cursor: pointer;
-    background-color: #def9ec;
-    color: #83b735;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 14px;
@@ -25,8 +32,8 @@
 .increment {
     /* border-right: 2px solid; */
     cursor: pointer;
-    background-color: #def9ec;
-    color: #83b735;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 14px;
@@ -37,8 +44,8 @@
 .middle {
     border-left: 1px solid;
     border-right: 1px solid;
-    background-color: #83b735;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--primary-text-color);
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 14px;
@@ -46,9 +53,9 @@
 }
 
 .increment:hover {
-    background-color: #83b735;
+    background-color: var(--secondary-color);
     border-radius: 0px 4px 4px 0px;
-    color: #fff;
+    color: var(--primary-text-color);
     -webkit-transform: translateY(3px 3px);
     transform: translateY(3px 3px);
     -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
@@ -56,9 +63,9 @@
 }
 
 .decrement:hover {
-    background-color: #83b735;
+    background-color: var(--secondary-color);
     border-radius: 4px 0px 0px 4px;
-    color: #fff;
+    color: var(--primary-text-color);
     -webkit-transform: translateY(3px 3px);
     transform: translateY(3px 3px);
     -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
@@ -348,7 +355,7 @@
 }
 
 .text-primary {
-    color: #3bb77e !important;
+    color: var(--secondary-color) !important;
 }
 
 .material-icons {
@@ -526,4 +533,34 @@ a.itemside {
 
 .order-tracking.completed:before {
     background-color: #83b735;
+}
+
+.bd-example .btn-group {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+}
+
+.bd-example .btn-toolbar+.btn-toolbar {
+    margin-top: .5rem;
+}
+
+.divsize {
+    width: 100%;
+    text-align: center;
+}
+
+.product-cart-wrap .product-card-bottom .add-cart .add.middlediv {
+    background-color: var(--secondary-color);
+}
+
+.product-cart-wrap .product-card-bottom .add-cart .add.middlediv:hover {
+    -webkit-transform: none;
+    transform: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.midCart {
+    flex-grow: 4;
+    background-color: var(--secondary-color);
 }

@@ -31,15 +31,10 @@ include 'inc/header.php';
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="table-responsive shopping-summery">
+                <div class="shopping-summery">
                     <table class="table table-wishlist">
                         <thead>
                             <tr class="main-heading">
-                                <!-- <th class="custome-checkbox start pl-30">
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox11" value="">
-                                    <label class="form-check-label" for="exampleCheckbox11"></label>
-                                </th> -->
                                 <th scope="col" class="start pl-30" colspan="2">Product</th>
                                 <th scope="col">Unit Price</th>
                                 <th scope="col">Quantity</th>
@@ -102,7 +97,7 @@ include 'inc/header.php';
                         Shopping</a>
                     <a onclick="updateCart(<?php echo $totalCartItem; ?>)" class="btn  mr-10 mb-sm-15"><i class="fi-rs-refresh mr-10"></i>Update Cart</a>
                 </div>
-                <div class="row mt-50">
+                <!-- <div class="row mt-50">
                     <div class="col-lg-7">
                         <div class="calculate-shiping p-40 border-radius-15 border">
                             <h4 class="mb-10">Calculate Shipping</h4>
@@ -384,7 +379,7 @@ include 'inc/header.php';
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-4">
                 <div class="border p-md-4 cart-totals ml-30">

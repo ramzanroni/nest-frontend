@@ -42,7 +42,11 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-    echo "cURL Error #:" . $err;
+    echo '<script type="text/javascript">',
+    'curlErrorFunction();',
+    '</script>';
+    // ;
+    //     echo "cURL Error #:" . $err;
 } else {
     $productData = json_decode($response);
     $productsArr = $productData->data->products;

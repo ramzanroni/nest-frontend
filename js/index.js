@@ -44,7 +44,7 @@ function alertMessageSuccess(message) {
 
 function preloader() {
   $("#preloader-active").delay(100).fadeOut("slow");
-  $("body").delay(100).css({
+  $("body").delay(500).css({
     overflow: "visible",
   });
   $("#onloadModal").modal("show");
@@ -140,40 +140,42 @@ function firstAddtoCart(
   var inc = "'increment'";
   var dec = "'decrement'";
   var newproductName = "'" + productName+"'";
-  var newproductimg = "'" + productImage+"'";
-  var newBtn =
-    '<input type="hidden" id="getItem_' +
-    productID +
-    '" value="' +
-    productQuantity +
-    '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange(' +
-    inc +
-    "," +
-    productID +
-    "," +
-    newproductName +
-    "," +
-    productprice +
-    "," +
-    productprice +
-    ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' +
-    productID +
-    '">' +
-    productQuantity +
-    '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange(' +
-    dec +
-    "," +
-    productID +
-    "," +
-    newproductName +
-    "," +
-    productprice +
-    "," +
-    newproductimg +
-    ')"><a><i class="fi-rs-minus"></i></a></div></div>';
+  var newproductimg = "'" + productImage + "'";
+  var newBtn='<input type="hidden" id="getItem_'+productID+'" value="'+productQuantity+'"><div class="add-cart"><a class="add" style="border-radius: 5px 0px 0px 5px;" onclick="CartItemChange('+"'decrement'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-minus"></i> </a></div><div class="add-cart midCart"><a class="add middlediv" style="border-radius: 0 !important;"><i class="fi-rs-shopping-cart mr-5"></i><span id="cartCount_'+productID+'">'+productQuantity+'</span> </a></div><div class="add-cart"><a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange('+"'increment'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-plus"></i></a></div>';
+
+  // var newBtn =
+  //   '<input type="hidden" id="getItem_' +
+  //   productID +
+  //   '" value="' +
+  //   productQuantity +
+  //   '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange(' +
+  //   inc +
+  //   "," +
+  //   productID +
+  //   "," +
+  //   newproductName +
+  //   "," +
+  //   productprice +
+  //   "," +
+  //   productprice +
+  //   ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' +
+  //   productID +
+  //   '">' +
+  //   productQuantity +
+  //   '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange(' +
+  //   dec +
+  //   "," +
+  //   productID +
+  //   "," +
+  //   newproductName +
+  //   "," +
+  //   productprice +
+  //   "," +
+  //   newproductimg +
+  //   ')"><a><i class="fi-rs-minus"></i></a></div></div>';
   $(btnId).html(newBtn);
   var activediv = document.getElementById(idbtn);
-  activediv.classList.add("col-12");
+  activediv.classList.add("d-flex");
   alertMessageSuccess("Product Cart Success..");
 }
 
@@ -513,18 +515,20 @@ function CartItemChange(
 
         var btnPnamenew = "'" + itemDescription + "'";
         var btnPimgnew = "'" + itemImg + "'";
-        var newbtnHtml =
-          '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
-          cartItemID +
-          "," +
-          btnPnamenew +
-          "," +
-          itemPrice +
-          ",1," +
-          btnPimgnew +
-          ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
+        var newbtnHtml='<div class="add-cart"><a class="add divsize" onclick="firstAddtoCart('+cartItemID+','+btnPnamenew+','+itemPrice+',1,'+btnPimgnew+')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div >';
+        
+        // var newbtnHtml =
+        //   '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
+        //   cartItemID +
+        //   "," +
+        //   btnPnamenew +
+        //   "," +
+        //   itemPrice +
+        //   ",1," +
+        //   btnPimgnew +
+        //   ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(newproductBtn).html(newbtnHtml);
-        $(newproductBtn).removeClass("col-12");
+        $(newproductBtn).removeClass("d-flex");
       }
       cartItem();
       alertMessageSuccess("Save Success..");
@@ -1087,7 +1091,7 @@ function placeorder(phoneNumber, token) {
 function searchItem(productSearchItem) {
   var categoryName = $("#category_name").val();
   var check = "searchItem";
-  if (productSearchItem.length > 2) {
+  if (productSearchItem.length > 1) {
     $.ajax({
       url: "pages/searchAction.php",
       type: "POST",
@@ -1115,12 +1119,21 @@ function searchItem(productSearchItem) {
 }
 
 function viewAllItem(categoryId, itemString) {
-  window.location.replace(
-    "/nest-frontend/products.php?product_name=" +
-      itemString +
-      "&category=" +
-      categoryId
-  );
+  if (categoryId == '')
+  {
+    window.location.replace(
+      "/nest-frontend/products.php?product_name=" +
+        itemString 
+    );
+  } else {
+    window.location.replace(
+      "/nest-frontend/products.php?product_name=" +
+        itemString +
+        "&category=" +
+        categoryId
+    );
+    }
+  
   // var check = "viewAllItem";
   // $.ajax({
   //   url: "pages/searchAction.php",
@@ -1162,7 +1175,7 @@ function orderDiv() {
 // searchProductMobile
 function searchProductMobile(searchString) {
   var check = "searchItemMobile";
-  if (searchString.length > 2) {
+  if (searchString.length > 1) {
     $.ajax({
       url: "pages/searchAction.php",
       type: "POST",
@@ -1465,4 +1478,9 @@ function checkNewOTP(newNumber)
     $("#errorNumMessage").html("Please enter OTP number.");
   }
 
+}
+
+function curlErrorFunction()
+{
+  alert("working");
 }
