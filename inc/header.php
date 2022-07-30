@@ -211,41 +211,6 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         </div>
                         <div class="header-action-right">
                             <div class="header-action-2">
-                                <!-- <div class="search-location">
-                                    <form action="#">
-                                        <select class="select-active">
-                                            <option>Your Location</option>
-                                            <option>Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>Arizona</option>
-                                            <option>Delaware</option>
-                                            <option>Florida</option>
-                                            <option>Georgia</option>
-                                            <option>Hawaii</option>
-                                            <option>Indiana</option>
-                                            <option>Maryland</option>
-                                            <option>Nevada</option>
-                                            <option>New Jersey</option>
-                                            <option>New Mexico</option>
-                                            <option>New York</option>
-                                        </select>
-                                    </form>
-                                </div> -->
-                                <!-- <div class="header-action-icon-2">
-                                    <a href="shop-compare.php">
-                                        <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
-                                        <span class="pro-count blue">3</span>
-                                    </a>
-                                    <a href="shop-compare.php"><span class="lable ml-0">Compare</span></a>
-                                </div> -->
-                                <!-- <div class="header-action-icon-2">
-                                    <a href="shop-wishlist.php">
-                                        <img class="svgInject" alt="Nest"
-                                            src="assets/imgs/theme/icons/icon-heart.svg" />
-                                        <span class="pro-count blue">6</span>
-                                    </a>
-                                    <a href="shop-wishlist.php"><span class="lable">Wishlist</span></a>
-                                </div> -->
                                 <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                     <a class="mini-cart-icon" href="shop-cart.php">
                                         <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
@@ -271,27 +236,14 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     <?php
                                     }
                                     ?>
-
-                                    <!-- <a href="page-account.php">
-                                        <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
-                                    </a>
-                                    <a href="page-account.php"><span class="lable ml-0">Account</span></a> -->
                                     <?php
                                     if (getPhone() != '') {
                                     ?>
                                         <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                             <ul>
-                                                <!-- <li><a href="login.php"><i class="fi fi-rs-user mr-10"></i>Login</a></li>
-                                            <li><a href="register.php"><i class="fi fi-rs-user mr-10"></i>Register</a>
-                                            </li> -->
                                                 <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
                                                         Account</a></li>
-                                                <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
-                                                <!-- <li><a href="page-account.php"><i class="fi fi-rs-label mr-10"></i>My
-                                                        Voucher</a></li> -->
-                                                <!-- <li><a href="shop-wishlist.php"><i class="fi fi-rs-heart mr-10"></i>My -->
-                                                <!-- Wishlist</a></li> -->
-                                                <!-- <li><a href="page-account.php"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li> -->
+                                                <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li> -->
                                                 <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                         out</a></li>
                                             </ul>
@@ -345,195 +297,17 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         ?>
                                     </ul>
                                 </div>
-                                <!-- <div class="more_slide_open" style="display: none">
-                                    <div class="d-flex categori-dropdown-inner">
-                                        <ul>
-                                            <li>
-                                                <a href="products.php"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
-                                            </li>
-                                            <li>
-                                                <a href="products.php"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="end">
-                                            <li>
-                                                <a href="products.php"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
-                                            </li>
-                                            <li>
-                                                <a href="products.php"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div> -->
+
                             </div>
                         </div>
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
-                                    <!-- <li class="hot-deals"><img src="assets/imgs/theme/icons/icon-hot.svg" -->
-                                    <!-- alt="hot deals" /><a href="products.php">Deals</a></li> -->
-                                    <!-- <li>
-                                        <a class="active" href="index.php">Home <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index.php">Home 1</a></li>
-                                            <li><a href="index-2.php">Home 2</a></li>
-                                            <li><a href="index-3.php">Home 3</a></li>
-                                            <li><a href="index-4.php">Home 4</a></li>
-                                            <li><a href="index-5.php">Home 5</a></li>
-                                            <li><a href="index-6.php">Home 6</a></li>
-                                        </ul>
-                                    </li> -->
+
                                     <li>
                                         <a href="page-about.php">About</a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="products.php">Shop <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="products.php">Shop Grid – Right Sidebar</a></li>
-                                            <li><a href="shop-grid-left.php">Shop Grid – Left Sidebar</a></li>
-                                            <li><a href="shop-list-right.php">Shop List – Right Sidebar</a></li>
-                                            <li><a href="shop-list-left.php">Shop List – Left Sidebar</a></li>
-                                            <li><a href="shop-fullwidth.php">Shop - Wide</a></li>
-                                            <li>
-                                                <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu">
-                                                    <li><a href="product.php">Product – Right Sidebar</a>
-                                                    </li>
-                                                    <li><a href="shop-product-left.php">Product – Left Sidebar</a></li>
-                                                    <li><a href="shop-product-full.php">Product – No sidebar</a></li>
-                                                    <li><a href="shop-product-vendor.php">Product – Vendor Infor</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-filter.php">Shop – Filter</a></li>
-                                            <li><a href="shop-wishlist.php">Shop – Wishlist</a></li>
-                                            <li><a href="shop-cart.php">Shop – Cart</a></li>
-                                            <li><a href="shop-checkout.php">Shop – Checkout</a></li>
-                                            <li><a href="shop-compare.php">Shop – Compare</a></li>
-                                            <li>
-                                                <a href="#">Shop Invoice<i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu">
-                                                    <li><a href="shop-invoice-1.php">Shop Invoice 1</a></li>
-                                                    <li><a href="shop-invoice-2.php">Shop Invoice 2</a></li>
-                                                    <li><a href="shop-invoice-3.php">Shop Invoice 3</a></li>
-                                                    <li><a href="shop-invoice-4.php">Shop Invoice 4</a></li>
-                                                    <li><a href="shop-invoice-5.php">Shop Invoice 5</a></li>
-                                                    <li><a href="shop-invoice-6.php">Shop Invoice 6</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li>
-                                        <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="vendors-grid.php">Vendors Grid</a></li>
-                                            <li><a href="vendors-list.php">Vendors List</a></li>
-                                            <li><a href="vendor-details-1.php">Vendor Details 01</a></li>
-                                            <li><a href="vendor-details-2.php">Vendor Details 02</a></li>
-                                            <li><a href="vendor-dashboard.php">Vendor Dashboard</a></li>
-                                            <li><a href="vendor-guide.php">Vendor Guide</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li class="position-static">
-                                        <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="mega-menu">
-                                            <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Fruit & Vegetables</a>
-                                                <ul>
-                                                    <li><a href="product.php">Meat & Poultry</a></li>
-                                                    <li><a href="product.php">Fresh Vegetables</a></li>
-                                                    <li><a href="product.php">Herbs & Seasonings</a></li>
-                                                    <li><a href="product.php">Cuts & Sprouts</a></li>
-                                                    <li><a href="product.php">Exotic Fruits & Veggies</a>
-                                                    </li>
-                                                    <li><a href="product.php">Packaged Produce</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Breakfast & Dairy</a>
-                                                <ul>
-                                                    <li><a href="product.php">Milk & Flavoured Milk</a></li>
-                                                    <li><a href="product.php">Butter and Margarine</a></li>
-                                                    <li><a href="product.php">Eggs Substitutes</a></li>
-                                                    <li><a href="product.php">Marmalades</a></li>
-                                                    <li><a href="product.php">Sour Cream</a></li>
-                                                    <li><a href="product.php">Cheese</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Meat & Seafood</a>
-                                                <ul>
-                                                    <li><a href="product.php">Breakfast Sausage</a></li>
-                                                    <li><a href="product.php">Dinner Sausage</a></li>
-                                                    <li><a href="product.php">Chicken</a></li>
-                                                    <li><a href="product.php">Sliced Deli Meat</a></li>
-                                                    <li><a href="product.php">Wild Caught Fillets</a></li>
-                                                    <li><a href="product.php">Crab and Shellfish</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-34">
-                                                <div class="menu-banner-wrap">
-                                                    <a href="product.php"><img src="assets/imgs/banner/banner-menu.png" alt="Nest" /></a>
-                                                    <div class="menu-banner-content">
-                                                        <h4>Hot deals</h4>
-                                                        <h3>
-                                                            Don't miss<br />
-                                                            Trending
-                                                        </h3>
-                                                        <div class="menu-banner-price">
-                                                            <span class="new-price text-success">Save to 50%</span>
-                                                        </div>
-                                                        <div class="menu-banner-btn">
-                                                            <a href="product.php">Shop now</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="menu-banner-discount">
-                                                        <h3>
-                                                            <span>25%</span>
-                                                            off
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li>
-                                        <a href="blog-category-grid.php">Blog <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-category-grid.php">Blog Category Grid</a></li>
-                                            <li><a href="blog-category-list.php">Blog Category List</a></li>
-                                            <li><a href="blog-category-big.php">Blog Category Big</a></li>
-                                            <li><a href="blog-category-fullwidth.php">Blog Category Wide</a></li>
-                                            <li>
-                                                <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu level-menu-modify">
-                                                    <li><a href="blog-post-left.php">Left Sidebar</a></li>
-                                                    <li><a href="blog-post-right.php">Right Sidebar</a></li>
-                                                    <li><a href="blog-post-fullwidth.php">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="page-about.php">About Us</a></li>
-                                            <li><a href="page-contact.php">Contact</a></li>
-                                            <li><a href="page-account.php">My Account</a></li>
-                                            <li><a href="page-login.php">Login</a></li>
-                                            <li><a href="page-register.php">Register</a></li>
-                                            <li><a href="page-forgot-password.php">Forgot password</a></li>
-                                            <li><a href="page-reset-password.php">Reset password</a></li>
-                                            <li><a href="page-purchase-guide.php">Purchase Guide</a></li>
-                                            <li><a href="page-privacy-policy.php">Privacy Policy</a></li>
-                                            <li><a href="page-terms.php">Terms of Service</a></li>
-                                            <li><a href="page-404.php">404 Page</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li>
-                                        <a href="page-contact.php">Contact</a>
-                                    </li> -->
+
                                 </ul>
                             </nav>
                         </div>
@@ -551,12 +325,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     </div>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
-                            <!-- <div class="header-action-icon-2">
-                                <a href="shop-wishlist.php">
-                                    <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
-                                    <span class="pro-count white">4</span>
-                                </a>
-                            </div> -->
+
                             <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                 <a class="mini-cart-icon" href="shop-cart.php">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
@@ -593,7 +362,6 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                 <div class="mobile-search search-style-3 mobile-header-border">
                     <form action="#">
                         <input type="text" onkeyup="searchProductMobile(this.value)" placeholder="Search for items…" />
-                        <!-- <button type="submit"><i class="fi-rs-search"></i></button> -->
                     </form>
                 </div>
                 <div class="mobile-menu-wrap mobile-header-border search-box-mobile" id="searchResultBox">
@@ -618,99 +386,11 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 </ul>
                             </li>
 
-                            <!-- <li class="menu-item-has-children">
-                                <a href="#">Vendors</a>
-                                <ul class="dropdown">
-                                    <li><a href="vendors-grid.php">Vendors Grid</a></li>
-                                    <li><a href="vendors-list.php">Vendors List</a></li>
-                                    <li><a href="vendor-details-1.php">Vendor Details 01</a></li>
-                                    <li><a href="vendor-details-2.php">Vendor Details 02</a></li>
-                                    <li><a href="vendor-dashboard.php">Vendor Dashboard</a></li>
-                                    <li><a href="vendor-guide.php">Vendor Guide</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- <li class="menu-item-has-children">
-                                <a href="#">Mega menu</a>
-                                <ul class="dropdown">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Women's Fashion</a>
-                                        <ul class="dropdown">
-                                            <li><a href="product.php">Dresses</a></li>
-                                            <li><a href="product.php">Blouses & Shirts</a></li>
-                                            <li><a href="product.php">Hoodies & Sweatshirts</a></li>
-                                            <li><a href="product.php">Women's Sets</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Men's Fashion</a>
-                                        <ul class="dropdown">
-                                            <li><a href="product.php">Jackets</a></li>
-                                            <li><a href="product.php">Casual Faux Leather</a></li>
-                                            <li><a href="product.php">Genuine Leather</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Technology</a>
-                                        <ul class="dropdown">
-                                            <li><a href="product.php">Gaming Laptops</a></li>
-                                            <li><a href="product.php">Ultraslim Laptops</a></li>
-                                            <li><a href="product.php">Tablets</a></li>
-                                            <li><a href="product.php">Laptop Accessories</a></li>
-                                            <li><a href="product.php">Tablet Accessories</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> -->
-                            <!-- <li class="menu-item-has-children">
-                                <a href="blog-category-fullwidth.php">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog-category-grid.php">Blog Category Grid</a></li>
-                                    <li><a href="blog-category-list.php">Blog Category List</a></li>
-                                    <li><a href="blog-category-big.php">Blog Category Big</a></li>
-                                    <li><a href="blog-category-fullwidth.php">Blog Category Wide</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Single Product Layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog-post-left.php">Left Sidebar</a></li>
-                                            <li><a href="blog-post-right.php">Right Sidebar</a></li>
-                                            <li><a href="blog-post-fullwidth.php">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="page-about.php">About Us</a></li>
-                                    <li><a href="page-contact.php">Contact</a></li>
-                                    <li><a href="page-account.php">My Account</a></li>
-                                    <li><a href="page-login.php">Login</a></li>
-                                    <li><a href="page-register.php">Register</a></li>
-                                    <li><a href="page-forgot-password.php">Forgot password</a></li>
-                                    <li><a href="page-reset-password.php">Reset password</a></li>
-                                    <li><a href="page-purchase-guide.php">Purchase Guide</a></li>
-                                    <li><a href="page-privacy-policy.php">Privacy Policy</a></li>
-                                    <li><a href="page-terms.php">Terms of Service</a></li>
-                                    <li><a href="page-404.php">404 Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Language</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                    <li><a href="#">Spanish</a></li>
-                                </ul>
-                            </li> -->
                         </ul>
                     </nav>
                     <!-- mobile menu end -->
                 </div>
                 <div class="mobile-header-info-wrap">
-                    <!-- <div class="single-mobile-header-info">
-                        <a href="page-contact.php"><i class="fi-rs-marker"></i> Our location </a>
-                    </div> -->
 
                     <?php
                     if (getPhone() == "") {
@@ -749,16 +429,3 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         </div>
     </div>
     </div>
-    <!--End header-->
-    <!-- fixed cart -->
-    <!-- <div class="wrapper">
-        <div class="inner-fixed">
-            <div class="item" id="item">
-                <i class="fi-rs-shopping-cart mr-5 color-danger"></i><br>
-                <span id="numberofCartItem"></span> Items
-            </div>
-            <div class="total">
-                ৳ <span id="total_Taka"></span>
-            </div>
-        </div>
-    </div> -->

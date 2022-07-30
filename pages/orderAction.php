@@ -94,23 +94,6 @@ if ($_POST['check'] == "checkorderditails") {
         $orderDetails = $result->data->data;
     }
 
-    // $url = "https://demostarter.erp.place/eback/order_details.php?order_id=7";
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-    //     )
-    // );
-    // $itemInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $orderDetails = json_decode($itemInfo);
-    // print_r($orderDetails);
-    // exit;
 
 
 
@@ -147,22 +130,6 @@ if ($_POST['check'] == "checkorderditails") {
 
 
 
-
-    // $url = "https://demostarter.erp.place/eback/order_carton.php?order_id=" . $orderNumber;
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-    //     )
-    // );
-    // $itemCartonInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $orderCartonDetails = json_decode($itemCartonInfo);
 ?>
     <section class="content-main">
         <div class="content-header">
@@ -303,12 +270,7 @@ if ($_POST['check'] == "checkorderditails") {
                                                     <dt>Grand total:</dt>
                                                     <dd><b class="h5">৳<?php echo $total; ?></b></dd>
                                                 </dl>
-                                                <!-- <dl class="dlist">
-                                                    <dt class="text-muted">Status:</dt>
-                                                    <dd>
-                                                        <span class="badge rounded-pill alert-success text-success">Payment done</span>
-                                                    </dd>
-                                                </dl> -->
+
                                             </article>
                                         </td>
                                     </tr>
@@ -323,13 +285,7 @@ if ($_POST['check'] == "checkorderditails") {
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <table class="table" id="table_detail">
-                                <!-- <thead>
-                                    <tr>
-                                        <th width="33%">Package No</th>
-                                        <th width="33%" class="text-end">Status</th>
-                                        <th width="33%" class="text-end">Action</th>
-                                    </tr>
-                                </thead> -->
+
                                 <tbody>
                                     <?php
 
@@ -474,21 +430,6 @@ if ($_POST['check'] == "checkorderditailsOld") {
 
 
 
-    // $url = "https://demostarter.erp.place/eback/order_details.php?order_id=" . $orderNumber;
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $itemInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $orderDetails = json_decode($itemInfo);
 ?>
     <section class="content-main">
         <div class="content-header">
@@ -634,12 +575,7 @@ if ($_POST['check'] == "checkorderditailsOld") {
                                                     <dt>Grand total:</dt>
                                                     <dd><b class="h5">৳<?php echo $total; ?></b></dd>
                                                 </dl>
-                                                <!-- <dl class="dlist">
-                                                    <dt class="text-muted">Status:</dt>
-                                                    <dd>
-                                                        <span class="badge rounded-pill alert-success text-success">Payment done</span>
-                                                    </dd>
-                                                </dl> -->
+
                                             </article>
                                         </td>
                                     </tr>
@@ -688,27 +624,6 @@ if ($_POST['check'] == "cartonItemDetails") {
     }
 
 
-
-
-
-
-    // $url = "https://demostarter.erp.place/eback/carton_item.php?order_id=" . $orderNumber . "&carton_id=" . $cartonNumber;
-
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-    //     )
-    // );
-    // $itemInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $itemDetails = json_decode($itemInfo);
-    // print_r($itemDetail);
 
 ?>
     <div class="row cartonDetails">
@@ -894,24 +809,6 @@ if ($_POST['check'] == "cancelFullOrder") {
             echo 'success';
         }
     }
-
-
-    // $url = "https://demostarter.erp.place/eback/cancel_order.php?order_id=" . $orderId;
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $updateInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $updateStatus = json_decode($updateInfo);
-    // echo $updateStatus->message;
 }
 
 if ($_POST['check'] == "deleteOrderItem") {
@@ -946,28 +843,5 @@ if ($_POST['check'] == "deleteOrderItem") {
             echo 'success';
         }
     }
-
-
-
-
-
-
-
-    // $url = "https://demostarter.erp.place/eback/delete_order_item.php?order_id=" . $orderNumber . "&item_id=" . $itemId;
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $updateInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $updateStatus = json_decode($updateInfo);
-    // echo $updateStatus->message;
 }
 ?>

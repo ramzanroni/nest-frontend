@@ -214,56 +214,6 @@ if ($_POST['check'] == "otpCheck") {
             echo $result->message[0];
         }
     }
-
-
-
-    // $post = array(  //data array from user side
-
-    //     "optNumber" => $otpCode,
-    //     'phone' => $phone
-
-    // );
-    // $data = json_encode($post); // json encoded
-    // $url = "http://192.168.0.116/neonbazar_api/user_send_otp.php";
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_POST, true);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    // $server_output = curl_exec($ch); //output will be here
-    // curl_close($ch);
-    // $response = json_decode($server_output);
-    // if ($response->message == "success") {
-
-
-
-    //     $info = array(
-    //         'phone' => $response->userPhone,
-    //         'token' => $response->userToken
-    //     );
-    //     $userInfo = json_encode($info);
-
-    //     setcookie('userinfo', $userInfo, time() + (86400 * 30), "/");
-
-
-    //     // $_SESSION['phone'] = $response->userPhone;
-    //     // $_SESSION['token'] = $response->userToken;
-    //     // echo $response->message;
-    //     // echo $response->userPhone;
-    //     // echo $response->userToken;
-    //     // echo session_id();
-    //     echo 'success';
-    // } else {
-    //     echo $response->message;
-    // }
 }
 
 if ($_POST['check'] == "userProfileUpdate") {

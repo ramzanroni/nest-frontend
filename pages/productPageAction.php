@@ -493,24 +493,9 @@ if ($_POST['check'] == "categoryWiseProduct") {
 
 
 
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $categoryInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $categoryData = json_decode($categoryInfo);
-    // $totalProduct = count($categoryData);
+
     $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
-    // print_r($categoryData);
-    // exit();
+
     foreach ($categoryData as $productData) {
         include '../component/product-component.php';
     }

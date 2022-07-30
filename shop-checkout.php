@@ -138,22 +138,10 @@ if ($err) {
                 <div class="payment ml-30">
                     <h4 class="mb-30">Payment</h4>
                     <div class="payment_option">
-                        <!-- <div class="custome-radio">
-                            <input class="form-check-input" required="" type="radio" name="payment_option"
-                                value="Direct Bank Transfer" id="exampleRadios3" checked="">
-                            <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
-                                data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
-                        </div> -->
                         <div class="custome-radio">
                             <input class="form-check-input" required="" type="radio" name="payment_option" value="Cash on delivery" id="exampleRadios4" checked="">
                             <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                         </div>
-                        <!-- <div class="custome-radio">
-                            <input class="form-check-input" required="" type="radio" name="payment_option"
-                                value="Online Getway" id="exampleRadios5" checked="">
-                            <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse"
-                                data-target="#paypal" aria-controls="paypal">Online Getway</label>
-                        </div> -->
                     </div>
                     <div class="payment-logo d-flex">
                         <img class="mr-15" src="assets/imgs/theme/icons/payment-paypal.svg" alt="">

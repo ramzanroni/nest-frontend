@@ -30,20 +30,6 @@
                                         <input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number*" />
                                         <small class="text-danger" id="errorNumMessage"></small>
                                     </div>
-
-                                    <!-- <div class="form-group">
-                                        <input required="" type="password" id="password" name="password"
-                                            placeholder="Your password *" />
-                                    </div> -->
-                                    <!-- <div class="login_footer form-group mb-50">
-                                        <div class="chek-form">
-                                                    <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="" value="" />
-                                                        <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                                    </div>
-                                                </div>
-                                        <a class="text-muted" href="#">Forgot password?</a>
-                                    </div> -->
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="userLogin()">Send</button>
                                     </div>

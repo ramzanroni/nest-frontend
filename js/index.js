@@ -143,36 +143,7 @@ function firstAddtoCart(
   var newproductimg = "'" + productImage + "'";
   var newBtn='<input type="hidden" id="getItem_'+productID+'" value="'+productQuantity+'"><div class="add-cart"><a class="add" style="border-radius: 5px 0px 0px 5px;" onclick="CartItemChange('+"'decrement'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-minus"></i> </a></div><div class="add-cart midCart"><a class="add middlediv" style="border-radius: 0 !important;"><i class="fi-rs-shopping-cart mr-5"></i><span id="cartCount_'+productID+'">'+productQuantity+'</span> </a></div><div class="add-cart"><a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange('+"'increment'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-plus"></i></a></div>';
 
-  // var newBtn =
-  //   '<input type="hidden" id="getItem_' +
-  //   productID +
-  //   '" value="' +
-  //   productQuantity +
-  //   '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange(' +
-  //   inc +
-  //   "," +
-  //   productID +
-  //   "," +
-  //   newproductName +
-  //   "," +
-  //   productprice +
-  //   "," +
-  //   productprice +
-  //   ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' +
-  //   productID +
-  //   '">' +
-  //   productQuantity +
-  //   '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange(' +
-  //   dec +
-  //   "," +
-  //   productID +
-  //   "," +
-  //   newproductName +
-  //   "," +
-  //   productprice +
-  //   "," +
-  //   newproductimg +
-  //   ')"><a><i class="fi-rs-minus"></i></a></div></div>';
+
   $(btnId).html(newBtn);
   var activediv = document.getElementById(idbtn);
   activediv.classList.add("d-flex");
@@ -302,8 +273,6 @@ function deleteCatItem(
 
   var productBtnId = "#item_" + product_id;
   var productBtnjsID = ".item_" + product_id;
-  // data.parentElement.parentElement.remove();
-  // console.log(item.parentElement.parentElement);
   var check = "deleteItemFromCart";
   $.ajax({
     url: "pages/cartAction.php",
@@ -517,16 +486,6 @@ function CartItemChange(
         var btnPimgnew = "'" + itemImg + "'";
         var newbtnHtml='<div class="add-cart"><a class="add divsize" onclick="firstAddtoCart('+cartItemID+','+btnPnamenew+','+itemPrice+',1,'+btnPimgnew+')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div >';
         
-        // var newbtnHtml =
-        //   '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
-        //   cartItemID +
-        //   "," +
-        //   btnPnamenew +
-        //   "," +
-        //   itemPrice +
-        //   ",1," +
-        //   btnPimgnew +
-        //   ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
         $(newproductBtn).html(newbtnHtml);
         $(newproductBtn).removeClass("d-flex");
       }
@@ -848,12 +807,6 @@ function resendOTP(phoneNumber) {
     success: function (response) {
       if (response == "success") {
         var phone = "'" + phoneNumber + "'";
-        // var htmlLogin =
-        //   '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send!  <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
-        //   phone +
-        //   ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
-        //   phone +
-        //   ')">Log in</button></div>';
         var htmlLogin = '<span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span>';
         // console.log(htmlLogin);
         $("#resendDiv").html(htmlLogin);
@@ -1144,22 +1097,6 @@ function viewAllItem(categoryId, itemString) {
         categoryId
     );
     }
-  
-  // var check = "viewAllItem";
-  // $.ajax({
-  //   url: "pages/searchAction.php",
-  //   type: "POST",
-
-  //   data: {
-  //     categoryId: categoryId,
-  //     itemString:itemString,
-  //     check: check
-  //   },
-  //   success: function (response) {
-  //     $('#myTabContent').html(response);
-
-  //   },
-  // });
 }
 function clearSearch() {
   $("#searchItemData").val('');

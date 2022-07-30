@@ -131,23 +131,11 @@ if ($_POST['check'] == "viewAllItem") {
                         </div>
                         <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
 
-                            <!-- <div class="product-badges">
-                                                    <small><span
-                                                        class="hot"><?php echo $productData->units; ?></span></small>
-                                                </div> -->
                         </h2>
                         <div class="product-rate-cover product-badges">
                             <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
                         </div>
-                        <!-- <div class="product-rate-cover">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width: 90%"></div>
-                                                </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div> -->
-                        <!-- <div>
-                                                    <span class="font-small text-muted">By <a href="vendor-details-1.php">NestFood</a></span>
-                                                </div> -->
+
                         <div class="product-card-bottom">
                             <div class="product-price">
                                 <span>৳<?php echo $productData->webprice; ?></span>
@@ -255,24 +243,6 @@ if ($_POST['check'] == "searchItemMobile") {
 
 
 
-
-
-    // $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($searchString) . '&category='; //url will be here
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $categoryInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $searchData = json_decode($categoryInfo);
-    // $totalProduct = count($searchData);
     if ($totalProduct > 0) {
     ?>
         <div class="col-12">
