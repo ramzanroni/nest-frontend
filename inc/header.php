@@ -191,7 +191,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form method="POST" onsubmit=" return viewAllProduct()">
+                            <form method="POST" id="allProduct" onsubmit="event.preventDefault(); viewAllProduct();">
                                 <select class="select-active" id="category_name">
                                     <option value="">All Categories</option>
 

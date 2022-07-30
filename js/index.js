@@ -1126,6 +1126,8 @@ function viewAllProduct() {
   viewAllItem(category_name, searchItemData);
 }
 
+
+
 function viewAllItem(categoryId, itemString) {
   console.log(itemString);
   if (categoryId == '')
