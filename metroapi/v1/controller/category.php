@@ -3,7 +3,7 @@ include_once('db.php');
 include_once('../model/categoryModel.php');
 include_once('../model/response.php');
 $allHeaders = getallheaders();
-$apiSecurity = $allHeaders['authorization'];
+$apiSecurity = $allHeaders['Authorization'];
 if ($apiKey != $apiSecurity) {
     $response = new Response();
     $response->setHttpStatusCode(401);
@@ -36,7 +36,7 @@ if (empty($_GET)) {
             $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $categoryID = $row['groupid'];
-                $countItem = $readDB->prepare('SELECT * FROM stockmaster WHERE categoryid=:categoryId');
+                $countItem = $readDB->prepare('SELECT * FROM stockmaster WHERE groupid=:categoryId');
                 $countItem->bindParam(':categoryId', $categoryID, PDO::PARAM_INT);
                 $countItem->execute();
                 $numberofItem = $countItem->rowCount();

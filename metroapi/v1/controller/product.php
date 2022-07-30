@@ -4,8 +4,9 @@ include_once('../model/productModel.php');
 include_once('../model/response.php');
 header('Access-Control-Allow-Origin: *');
 header('Authorization');
+
 $allHeaders = getallheaders();
-$apiSecurity = $allHeaders['authorization'];
+$apiSecurity = $allHeaders['Authorization'];
 if ($apiKey != $apiSecurity) {
     $response = new Response();
     $response->setHttpStatusCode(401);
@@ -27,7 +28,7 @@ try {
     exit;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $mainQuery = 'SELECT stockmaster.stockid AS stockid, stockmaster.description AS description, stockmaster.longdescription AS longdescription, stockmaster.units AS units, stockmaster.discountcategory AS discountcategory, stockmaster.taxcatid AS taxcatid, stockmaster.webprice AS webprice, stockmaster.img AS img, stockgroup.groupname AS category, stockgroup.groupid AS categoryId FROM stockmaster INNER JOIN stockgroup ON stockmaster.categoryid = stockgroup.groupid';
+    $mainQuery = 'SELECT stockmaster.stockid AS stockid, stockmaster.description AS description, stockmaster.longdescription AS longdescription, stockmaster.units AS units, stockmaster.discountcategory AS discountcategory, stockmaster.taxcatid AS taxcatid, stockmaster.webprice AS webprice, stockmaster.img AS img, stockgroup.groupname AS category, stockgroup.groupid AS categoryId FROM stockmaster INNER JOIN stockgroup ON stockmaster.groupid = stockgroup.groupid';
 
     if (array_key_exists('product_id', $_GET)) {
         $product_id = $_GET['product_id'];
@@ -49,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $start = $_GET['start'];
         }
         if ($limit == "All") {
-            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.categoryid=:category_id ORDER BY stockmaster.webprice ' . $condition . '');
+            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid=:category_id ORDER BY stockmaster.webprice ' . $condition . '');
             $query->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
         } else {
-            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.categoryid=:category_id ORDER BY stockmaster.webprice ' . $condition . ' LIMIT ' . $start . ',' . $limit . '');
+            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid=:category_id ORDER BY stockmaster.webprice ' . $condition . ' LIMIT ' . $start . ',' . $limit . '');
             $query->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
         }
     } elseif (array_key_exists('product_name', $_GET)) {
@@ -76,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         if (array_key_exists('category', $_GET)) {
             $category = $_GET['category'];
-            $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury . ' AND stockmaster.categoryid=:category_id');
+            $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury . ' AND stockmaster.groupid=:category_id');
             $query->bindParam(':category_id', $category, PDO::PARAM_INT);
         } else {
             $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury);

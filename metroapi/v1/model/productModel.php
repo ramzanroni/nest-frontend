@@ -106,9 +106,9 @@ class Product
     }
     public function setCategoryID($categoryID)
     {
-        if ($categoryID == null || !is_numeric($categoryID)) {
-            throw new ProductException("Category ID Error");
-        }
+        // if ($categoryID == null || !is_numeric($categoryID)) {
+        //     throw new ProductException("Category ID Error");
+        // }
         $this->_category_id = $categoryID;
     }
     public function setCategory($category)

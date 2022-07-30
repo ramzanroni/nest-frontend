@@ -3,7 +3,7 @@ include_once('db.php');
 include_once('../model/orderDatailsModel.php');
 include_once('../model/response.php');
 $allHeaders = getallheaders();
-$apiSecurity = $allHeaders['authorization'];
+$apiSecurity = $allHeaders['Authorization'];
 if ($apiKey != $apiSecurity) {
     $response = new Response();
     $response->setHttpStatusCode(401);
