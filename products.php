@@ -14,9 +14,8 @@ if (isset($_GET['category_id'])) {
         $sortby = $_COOKIE['sort_by'];
     }
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
-        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $category_id . "&limit=" . $limit . "&start=1&sort_by=" . $sortby,
+        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $category_id . "&limit=" . $limit . "&start=0&sort_by=" . $sortby,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -24,7 +23,7 @@ if (isset($_GET['category_id'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -55,7 +54,7 @@ if (isset($_GET['category_id'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -418,7 +417,7 @@ if (isset($_GET['product_name'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));

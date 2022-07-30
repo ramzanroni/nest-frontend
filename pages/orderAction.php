@@ -77,7 +77,7 @@ if ($_POST['check'] == "checkorderditails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -111,7 +111,7 @@ if ($_POST['check'] == "checkorderditails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -378,7 +378,7 @@ if ($_POST['check'] == "CancelCartoonDelivery") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -410,7 +410,7 @@ if ($_POST['check'] == "checkorderditailsOld") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -606,7 +606,7 @@ if ($_POST['check'] == "cartonItemDetails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -791,7 +791,7 @@ if ($_POST['check'] == "cancelFullOrder") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -825,7 +825,7 @@ if ($_POST['check'] == "deleteOrderItem") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));

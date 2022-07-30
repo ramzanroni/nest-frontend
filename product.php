@@ -15,7 +15,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "authorization:" . APIKEY,
+        "Authorization:" . APIKEY,
         "cache-control: no-cache"
     ),
 ));
@@ -39,7 +39,7 @@ if ($err) {
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => APIENDPOINT . "product.php?category_id=" . $productData[0]->category_id . "&limit=5&start=1",
+    CURLOPT_URL => APIENDPOINT . "product.php?category_id=" . $productData[0]->category_id . "&limit=5&start=0",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -47,7 +47,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "authorization:" . APIKEY,
+        "Authorization:" . APIKEY,
         "cache-control: no-cache"
     ),
 ));

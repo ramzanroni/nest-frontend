@@ -6,7 +6,7 @@ if ($_POST['check'] == "userPhoneNumberSend") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/sms.php",
+        CURLOPT_URL => APIENDPOINT . "sms.php",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -15,7 +15,7 @@ if ($_POST['check'] == "userPhoneNumberSend") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"phone\": \"$phoneNumber\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -54,7 +54,7 @@ if ($_POST['check'] == "checkEmail") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"login_id\":\"$emailID\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -101,7 +101,7 @@ if ($_POST['check'] == "forRegistration") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"newPhone\": \"$phone\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -139,7 +139,7 @@ if ($_POST['check'] == "userRegistration") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \" $address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"$emailAdd\",\n\t\"login_media\":\"$mediaData\",\n\t\"login_id\": \"$emailIdData\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -186,7 +186,7 @@ if ($_POST['check'] == "otpCheck") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"phone\": \"$phone\",\n\t\"otp\": \"$otpCode\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -234,7 +234,7 @@ if ($_POST['check'] == "userProfileUpdate") {
         CURLOPT_CUSTOMREQUEST => "PUT",
         CURLOPT_POSTFIELDS => "\n\t{\n\t\"phoneNumber\":\"$userPhone\",\n\t\"fullName\": \"$fullName\",\n\t\"emailAddress\":\"$emailAddress\",\n\t\"userAddress\": \"$userAddress\"\n}\n",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -325,7 +325,7 @@ if ($_POST['check'] == "userPhoneUpOTP") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"phoneNumber\":\"$newPhone\"\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
@@ -365,7 +365,7 @@ if ($_POST['check'] == "checkUpdateOTP") {
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => "{\n\t\"optNumber\":\" $otp\",\n\t\"phoneNew\": \"$newNumber\",\n\t\"phoneOld\":\"$oldNumber\"\n\t\n}",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache",
             "content-type: application/json"
         ),
