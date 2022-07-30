@@ -77,6 +77,7 @@ if ($_POST['check'] == "checkorderditails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -127,6 +128,7 @@ if ($_POST['check'] == "checkorderditails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -420,6 +422,7 @@ if ($_POST['check'] == "CancelCartoonDelivery") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -451,6 +454,7 @@ if ($_POST['check'] == "checkorderditailsOld") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -666,8 +670,8 @@ if ($_POST['check'] == "cartonItemDetails") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 65185f08-3147-690a-fdc9-b43524973713"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -872,6 +876,7 @@ if ($_POST['check'] == "cancelFullOrder") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -923,6 +928,7 @@ if ($_POST['check'] == "deleteOrderItem") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));

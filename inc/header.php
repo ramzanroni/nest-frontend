@@ -191,7 +191,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="#">
+                            <form method="POST" onsubmit=" return viewAllProduct()">
                                 <select class="select-active" id="category_name">
                                     <option value="">All Categories</option>
 
@@ -204,7 +204,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     }
                                     ?>
                                 </select>
-                                <input type="text" onkeyup="searchItem(this.value)" placeholder="Search for items..." />
+                                <input type="text" id="searchItemData" onkeyup="searchItem(this.value)" placeholder="Search for items..." /><span style="margin-top: 11px;padding-right: 15px;cursor: pointer;" onclick="clearSearch()">x</span>
                             </form>
                         </div>
                         <div class="search-box col-12" id="searchBox">

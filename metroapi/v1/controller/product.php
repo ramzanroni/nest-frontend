@@ -2,6 +2,18 @@
 include_once('db.php');
 include_once('../model/productModel.php');
 include_once('../model/response.php');
+header('Access-Control-Allow-Origin: *');
+header('Authorization');
+$allHeaders = getallheaders();
+$apiSecurity = $allHeaders['authorization'];
+if ($apiKey != $apiSecurity) {
+    $response = new Response();
+    $response->setHttpStatusCode(401);
+    $response->setSuccess(false);
+    $response->addMessage("API Security Key Doesn't exist.");
+    $response->send();
+    exit;
+}
 try {
     $writeDB = DB::connectWriteDB();
     $readDB = DB::connectReadDB();
@@ -86,6 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         $productArray = array();
         $rowCount = $query->rowCount();
+        if ($rowCount === 0) {
+            $response = new Response();
+            $response->setHttpStatusCode(403);
+            $response->setSuccess(false);
+            $response->addMessage("No data found");
+            $response->send();
+            exit;
+        }
         $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $stockID = $row['stockid'];
@@ -97,8 +117,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 // array_push($imgArr, $ip_server . $rowImg['doc_name']);
                 $imgArr[] = $ip_server . $rowImg['doc_name'];
             }
-
-            $product = new Product($row['stockid'], $row['description'], $row['categoryId'], $row['category'], $row['longdescription'], $row['units'], $row['discountcategory'], $row['taxcatid'], $row['webprice'], $ip_server . $row['img'], $imgArr);
+            if ($row['img'] == '') {
+                $img = '';
+            } else {
+                $img = $ip_server . $row['img'];
+            }
+            $product = new Product($row['stockid'], $row['description'], $row['categoryId'], $row['category'], $row['longdescription'], $row['units'], $row['discountcategory'], $row['taxcatid'], $row['webprice'], $img, $imgArr);
             $productArray[] = $product->returnProducrArray();
         }
         $returnArray = array();
@@ -113,12 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response->send();
             exit;
         } else {
-            $response = new Response();
-            $response->setHttpStatusCode(403);
-            $response->setSuccess(false);
-            $response->addMessage("No data found");
-            $response->send();
-            exit;
         }
     } catch (ProductException $ex) {
         $response = new Response();

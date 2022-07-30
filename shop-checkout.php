@@ -8,7 +8,7 @@ include 'inc/apiendpoint.php';
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "http://192.168.0.107/metroapi/v1/controller/user.php?phoneNumber=" . getPhone(),
+    CURLOPT_URL =>  APIENDPOINT . "user.php?phoneNumber=" . getPhone(),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -16,8 +16,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: 85af34ab-aca3-ce4f-6a99-3a1b7f151358"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 

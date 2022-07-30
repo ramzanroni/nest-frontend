@@ -2,7 +2,6 @@
 include 'apidata/dataFetch.php';
 include 'inc/header.php';
 include 'inc/apiendpoint.php';
-
 // category product api data 
 if (isset($_GET['category_id'])) {
     $category_id = $_GET['category_id'];
@@ -25,8 +24,8 @@ if (isset($_GET['category_id'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -56,8 +55,8 @@ if (isset($_GET['category_id'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -419,8 +418,8 @@ if (isset($_GET['product_name'])) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 4acdffb1-1f44-c966-4053-240a068adcd1"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -480,3 +479,9 @@ if (isset($_GET['product_name'])) {
 include 'inc/footer.php';
 
 ?>
+<script>
+    $(document).ready(function() {
+        var searchItem = '<?php echo $_GET['product_name']; ?>';
+        $("#searchItemData").val(searchItem);
+    });
+</script>

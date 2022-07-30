@@ -10,8 +10,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: 2b84e1e1-21f0-dd0b-32d9-9cf7ed95dd96"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 

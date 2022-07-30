@@ -23,8 +23,8 @@ if ($_POST['check'] == "sortingProductList") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -60,8 +60,8 @@ if ($_POST['check'] == "sortingProductList") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -247,8 +247,8 @@ if ($_POST['check'] == "paginationProduct") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
     $response = curl_exec($curl);
@@ -279,8 +279,8 @@ if ($_POST['check'] == "paginationProduct") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 
@@ -468,8 +468,8 @@ if ($_POST['check'] == "categoryWiseProduct") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "authorization:" . APIKEY,
+            "cache-control: no-cache"
         ),
     ));
 

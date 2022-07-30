@@ -4,6 +4,16 @@
 include_once('db.php');
 include_once('../model/userModel.php');
 include_once('../model/response.php');
+$allHeaders = getallheaders();
+$apiSecurity = $allHeaders['authorization'];
+if ($apiKey != $apiSecurity) {
+    $response = new Response();
+    $response->setHttpStatusCode(401);
+    $response->setSuccess(false);
+    $response->addMessage("API Security Key Doesn't exist.");
+    $response->send();
+    exit;
+}
 try {
     $writeDB = DB::connectWriteDB();
     $readDB = DB::connectReadDB();

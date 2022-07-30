@@ -15,8 +15,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: ffaa603f-5133-0577-4183-9c51ce929d6e"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 
@@ -47,8 +47,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: d7da1c20-3de7-b996-babc-e1f92ff7a428"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 

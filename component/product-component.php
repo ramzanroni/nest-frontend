@@ -23,7 +23,7 @@
             </h2>
             <div class="product-price">
                 <span>৳<?php echo $productData->webprice; ?></span>
-                <span class="float-end text-dark"><?php echo "UoM " . $productData->units; ?></span>
+                <span class="float-end"><span class="text-dark" style="color: #adadad !important; font-size: 12px;">UoM </span><?php echo $productData->units; ?></span>
             </div>
             <div class="product-card-bottom">
 

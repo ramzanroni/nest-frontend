@@ -24,8 +24,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: 85af34ab-aca3-ce4f-6a99-3a1b7f151358"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 
@@ -57,8 +57,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "postman-token: 1734107f-d7e5-ee03-79c2-ceb5f8ea0493"
+        "authorization:" . APIKEY,
+        "cache-control: no-cache"
     ),
 ));
 
@@ -75,24 +75,6 @@ if ($err) {
 }
 
 
-
-
-// $url = "https://demostarter.erp.place/eback/order_view.php?token=" . getToken();
-// $ch = curl_init();
-// curl_setopt($ch, CURLOPT_URL, $url);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-// curl_setopt(
-//     $ch,
-//     CURLOPT_HTTPHEADER,
-//     array( //header will be here
-//         'Content-Type: application/json',
-//         'Authorization: ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7reARPlCna_cIAo1LQ88CmCT6LThZozlt6k3Mw8leLY',
-//     )
-// );
-// $orderInfo = curl_exec($ch);
-// curl_close($ch);
-// $orderData = json_decode($orderInfo);
-// print_r($orderData);
 ?>
 
 <main class="main pages">

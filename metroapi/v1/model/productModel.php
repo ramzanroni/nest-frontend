@@ -149,9 +149,9 @@ class Product
     }
     public function setImg($img)
     {
-        if (($img !== null) && (strlen($img) == 0 || strlen($img) > 16777215)) {
-            throw new ProductException("Product Image error");
-        }
+        // if (($img !== null) && (strlen($img) == 0 || strlen($img) > 16777215)) {
+        //     throw new ProductException("Product Image error");
+        // }
         $this->_img = $img;
     }
     // public function setStatus($status)

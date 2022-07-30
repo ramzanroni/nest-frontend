@@ -22,6 +22,7 @@ if ($_POST['check'] == "searchItem") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -40,25 +41,6 @@ if ($_POST['check'] == "searchItem") {
     }
 
 
-
-
-
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt(
-    //     $ch,
-    //     CURLOPT_HTTPHEADER,
-    //     array( //header will be here
-    //         'Content-Type: application/json',
-    //         'Authorization: ' . APIKEY,
-    //     )
-    // );
-    // $categoryInfo = curl_exec($ch);
-    // curl_close($ch);
-    // $searchData = json_decode($categoryInfo);
-    // $totalProduct = count($searchData);
-    // print_r($searchData);
 ?>
     <?php
     $i = 1;
@@ -249,6 +231,7 @@ if ($_POST['check'] == "searchItemMobile") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
+            "authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));

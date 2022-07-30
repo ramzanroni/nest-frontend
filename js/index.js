@@ -1102,6 +1102,7 @@ function searchItem(productSearchItem) {
         check: check,
       },
       success: function (response) {
+        $("#searchItemData").val(productSearchItem);
         $("#searchBox").fadeIn("slow");
         $("#searchBox").html(response);
 
@@ -1118,7 +1119,15 @@ function searchItem(productSearchItem) {
   }
 }
 
+function viewAllProduct() {
+  var searchItemData = $("#searchItemData").val();
+  var category_name = $("#category_name").val();
+  console.log(searchItemData);
+  viewAllItem(category_name, searchItemData);
+}
+
 function viewAllItem(categoryId, itemString) {
+  console.log(itemString);
   if (categoryId == '')
   {
     window.location.replace(
@@ -1150,7 +1159,9 @@ function viewAllItem(categoryId, itemString) {
   //   },
   // });
 }
-
+function clearSearch() {
+  $("#searchItemData").val('');
+}
 // viewOrderDetails
 function viewOrderDetails(orderNumber) {
   var check = "checkorderditails";
