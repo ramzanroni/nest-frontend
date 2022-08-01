@@ -53,6 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $response->send();
                 exit;
             }
+
+            // check user 
+            $checkUser = $readDB->prepare('SELECT * FROM users WHERE phone=:phone');
+            $checkUser->bindParam(':phone', $phoneNumber, PDO::PARAM_STR);
+            $checkUser->execute();
+            $rowCount = $checkUser->rowCount();
+            if ($rowCount === 1) {
+                $response = new Response();
+                $response->setHttpStatusCode(400);
+                $response->setSuccess(false);
+                $response->addMessage("This number has already an account");
+                $response->send();
+                exit;
+            }
+
+
+
+
             date_default_timezone_set("Asia/Dhaka");
             $findRecord = $readDB->prepare('SELECT * FROM temp_otp WHERE phone=:phone');
             $findRecord->BindParam(':phone', $phoneNumber, PDO::PARAM_STR);
@@ -245,4 +263,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $response->send();
         exit();
     }
+} else {
+    $response = new Response();
+    $response->setHttpStatusCode(500);
+    $response->setSuccess(false);
+    $response->addMessage("Request Type Doesn't Allowed");
+    $response->send();
+    exit;
 }

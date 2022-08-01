@@ -2826,7 +2826,7 @@ input.qty-val {
 
 .dashboard-menu ul li a.active {
   color: #fff;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   border-radius: 10px;
 }
 

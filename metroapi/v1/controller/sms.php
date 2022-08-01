@@ -565,7 +565,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $response = new Response();
                 $response->setHttpStatusCode(500);
                 $response->setSuccess(false);
-                $response->addMessage("Failed to get task");
+                $response->addMessage($ex->getMessage());
                 $response->send();
                 exit();
             }
@@ -686,7 +686,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $response = new Response();
         $response->setHttpStatusCode(500);
         $response->setSuccess(false);
-        $response->addMessage("Failed to get task");
+        $response->addMessage($ex->getMessage());
         $response->send();
         exit();
     }

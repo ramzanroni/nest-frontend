@@ -104,7 +104,7 @@ if ($err) {
                                         <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="logout.php"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                        <a class="nav-link" href="logout.php"><i class="fi-rs-sign-out mr-10"></i>Sign Out</a>
                                     </li>
                                 </ul>
                             </div>

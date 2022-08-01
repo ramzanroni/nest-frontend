@@ -243,7 +243,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                             <ul>
                                                 <li><a href="page-account.php"><i class="fi fi-rs-user mr-10"></i>My
                                                         Account</a></li>
-                                                <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li> -->
+                                                <!-- <li><a href="page-account.php"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>  -->
                                                 <li><a href="logout.php"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                         out</a></li>
                                             </ul>
