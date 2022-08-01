@@ -137,7 +137,7 @@ if ($_POST['check'] == "userRegistration") {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \" $address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"$emailAdd\",\n\t\"login_media\":\"$mediaData\",\n\t\"login_id\": \"$emailIdData\"\n}",
+        CURLOPT_POSTFIELDS => "{\n\t\"newUserPhone\": \"$phone\",\n\t\"address\": \"$address\",\n\t\"name\":\"$name\",\n\t\"newOtp\":\"$otp\",\n\t\"email\":\"$emailAdd\",\n\t\"login_media\":\"$mediaData\",\n\t\"login_id\": \"$emailIdData\"\n}",
         CURLOPT_HTTPHEADER => array(
             "Authorization:" . APIKEY,
             "cache-control: no-cache",
@@ -289,9 +289,9 @@ if ($_POST['check'] == "loginpopupview") {
                                     <input type="text" required="" id="phoneNumber" name="phoneNumber" placeholder="Phone number*" />
                                     <small class="text-danger" id="errorNumMessage"></small>
                                 </div>
-                                <input type="hidden" name="email" id="email">
-                                <input type="hidden" name="emailID" id="emailID">
-                                <input type="hidden" name="media" id="media">
+                                <input type="hidden" name="email" id="email" value="">
+                                <input type="hidden" name="emailID" id="emailID" value="">
+                                <input type="hidden" name="media" id="media" value="1">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-heading btn-block hover-up" name="login" id="login" onclick="userLogin()">Send</button>
                                 </div>
