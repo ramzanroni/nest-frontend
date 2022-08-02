@@ -2,8 +2,8 @@
 include '../inc/function.php';
 include '../inc/apiendpoint.php';
 if ($_POST['check'] == "searchItem") {
-    $categoryId = $_POST['categoryName'];
-    $productSearchItem = $_POST['productSearchItem'];
+    $categoryId = trim($_POST['categoryName']);
+    $productSearchItem = trim($_POST['productSearchItem']);
     if ($categoryId == "") {
         $url = 'product.php?product_name=' . urlencode($productSearchItem);
     } else {
@@ -22,7 +22,7 @@ if ($_POST['check'] == "searchItem") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -85,122 +85,15 @@ if ($_POST['check'] == "searchItem") {
         echo "Nothing found.";
     }
     ?>
-<?php
-}
-
-if ($_POST['check'] == "viewAllItem") {
-    $categoryId = $_POST['categoryId'];
-    $itemString = $_POST['itemString'];
-    $url = 'http://192.168.0.116/neonbazar_api/search_product.php?product_name=' . urlencode($itemString) . '&category=' . $categoryId; //url will be here
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt(
-        $ch,
-        CURLOPT_HTTPHEADER,
-        array( //header will be here
-            'Content-Type: application/json',
-            'Authorization: ' . APIKEY,
-        )
-    );
-    $categoryInfo = curl_exec($ch);
-    curl_close($ch);
-    $searchData = json_decode($categoryInfo);
-    $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
-?>
-    <div class="row product-grid mt-10" id="myTabContent">
-        <?php
-        foreach ($searchData as $productData) {
-        ?>
-            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                <?php
-                $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
-                $cartItem = count($cartCookiesProduct);
-                ?>
-                <div class="product-cart-wrap mb-30">
-                    <div class="product-img-action-wrap">
-                        <div class="product-img product-img-zoom">
-                            <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
-                                <img class="default-img" src="//<?php echo $productData->img; ?>" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content-wrap">
-                        <div class="product-category">
-                            <a href="products.php?category_id<?php echo $productData->category; ?>"><?php echo $productData->category; ?></a>
-                        </div>
-                        <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
-
-                        </h2>
-                        <div class="product-rate-cover product-badges">
-                            <span class="font-small ml-5 text-muted hot"><?php echo $productData->units; ?></span>
-                        </div>
-
-                        <div class="product-card-bottom">
-                            <div class="product-price">
-                                <span>৳<?php echo $productData->webprice; ?></span>
-                                <!-- <span class="old-price"><?php echo $item['price']; ?></span> -->
-                            </div>
-                            <!-- <span id="carBtnId_<?php echo $productData->stockid; ?>"> -->
-                            <?php
-                            $cartProductID = '';
-                            $numberOfItem = '';
-                            $catIndex = '';
-                            foreach ($cartCookiesProduct as $cartKey => $itemValue) {
-                                if ($itemValue->productID == $productData->stockid) {
-                                    $cartProductID = $itemValue->productID;
-                                    $numberOfItem = $itemValue->productQuantity;
-                                    $catIndex = $cartKey;
-                                }
-                            }
-                            if ($cartProductID == '') {
-                            ?>
-                                <div id="item_<?= $productData->stockid ?>">
-                                    <div class="add-cart">
-                                        <a class="add" onclick="firstAddtoCart(<?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,1,'<?php echo $productData->img; ?>')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                </div>
-                            <?php
-                            } else {
-                            ?>
-                                <div class="col-12" id="item_<?= $productData->stockid ?>">
-                                    <input type="hidden" id="getItem_<?php echo $productData->stockid; ?>" value="<?php echo $numberOfItem; ?>">
-                                    <div class="col-10 float-end after-cart">
-                                        <div class="col-2 float-end increment" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                            <a><i class="fi-rs-plus"></i></a>
-                                        </div>
-                                        <div class="col-4 float-end middle">
-                                            <a><i class="fi-rs-shopping-cart"></i>
-                                                <span id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                            </a>
-                                        </div>
-                                        <div class="col-2 float-end add decrement" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                            <a><i class="fi-rs-minus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php
-                            }
-                            ?>
-                            <!-- </span> -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <?php
-        }
-        ?>
-    </div>
     <?php
 }
+
+
 
 if ($_POST['check'] == "searchItemMobile") {
 
     $categoryId = '';
-    $productSearchItem = $_POST['searchString'];
+    $productSearchItem = trim($_POST['searchString']);
     if ($categoryId == "") {
         $url = 'product.php?product_name=' . urlencode($productSearchItem);
     } else {

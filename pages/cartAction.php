@@ -1,11 +1,11 @@
 <?php
 include '../inc/function.php';
 if ($_POST['check'] == 'addtocart') {
-    $productID = $_POST['productID'];
-    $productName = $_POST['productName'];
-    $productprice = $_POST['productprice'];
-    $productQuantity = $_POST['productQuantity'];
-    $productImage = $_POST['productImage'];
+    $productID = trim($_POST['productID']);
+    $productName = trim($_POST['productName']);
+    $productprice = trim($_POST['productprice']);
+    $productQuantity = trim($_POST['productQuantity']);
+    $productImage = trim($_POST['productImage']);
     if (isset($_COOKIE['shopping_cart'])) {
         $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
         $cartData = json_decode($cookie_data, true);
@@ -51,7 +51,7 @@ if ($_POST['check'] == "cartItemView") {
 }
 
 if ($_POST['check'] == "deleteItemFromCart") {
-    $cartIndexID = $_POST['cartIndexID'];
+    $cartIndexID = trim($_POST['cartIndexID']);
     if ($_COOKIE['shopping_cart'] != '') {
         $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
         $cartData = json_decode($cookie_data, true);
@@ -81,8 +81,8 @@ if ($_POST['check'] == 'UpdateHoleCart') {
 }
 
 if ($_POST['check'] == 'cartItemUpdateData') {
-    $newItem = $_POST['newItem'];
-    $cartItemID = $_POST['cartItemID'];
+    $newItem = trim($_POST['newItem']);
+    $cartItemID = trim($_POST['cartItemID']);
     if ($newItem == 0) {
         if ($_COOKIE['shopping_cart'] != '') {
             $cookiesIndex = '';

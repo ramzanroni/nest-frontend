@@ -2,15 +2,15 @@
 include '../inc/function.php';
 include '../inc/apiendpoint.php';
 if ($_POST['check'] == "placeOrder") {
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $area = $_POST['area'];
-    $phone = $_POST['phone'];
-    $town = $_POST['town'];
-    $additionalPhone = $_POST['additionalPhone'];
-    $additionalInfo = $_POST['additionalInfo'];
-    $token = $_POST['token'];
-    $paymentMethod = $_POST['paymentMethod'];
+    $name = trim($_POST['name']);
+    $address = trim($_POST['address']);
+    $area = trim($_POST['area']);
+    $phone = trim($_POST['phone']);
+    $town = trim($_POST['town']);
+    $additionalPhone = trim($_POST['additionalPhone']);
+    $additionalInfo = trim($_POST['additionalInfo']);
+    $token = trim($_POST['token']);
+    $paymentMethod = trim($_POST['paymentMethod']);
     $itemInfoArr = array();
     $cartCookiesProduct = json_decode($_COOKIE['shopping_cart']);
     foreach ($cartCookiesProduct as $cartValue) {
@@ -46,6 +46,7 @@ if ($_POST['check'] == "placeOrder") {
         CURLOPT_HTTPHEADER,
         array( //header will be here
             "cache-control: no-cache",
+            "Authorization:" . APIKEY,
             "content-type: application/json",
         )
     );
@@ -54,6 +55,7 @@ if ($_POST['check'] == "placeOrder") {
     $server_output = curl_exec($ch); //output will be here
     curl_close($ch);
     $response = json_decode($server_output);
+    // print_r($response);
     if (isset($_COOKIE['shopping_cart'])) {
         setcookie('shopping_cart', "", time() - 3600, "/");
     }
@@ -64,7 +66,7 @@ if ($_POST['check'] == "placeOrder") {
 }
 
 if ($_POST['check'] == "checkorderditails") {
-    $orderNumber = $_POST['orderNumber'];
+    $orderNumber = trim($_POST['orderNumber']);
     // order details 
     $curl = curl_init();
 
@@ -364,8 +366,8 @@ if ($_POST['check'] == "checkorderditails") {
 }
 
 if ($_POST['check'] == "CancelCartoonDelivery") {
-    $orderNumber = $_POST['orderNumber'];
-    $orderlineno = $_POST['orderlineno'];
+    $orderNumber = trim($_POST['orderNumber']);
+    $orderlineno = trim($_POST['orderlineno']);
 
     $curl = curl_init();
 
@@ -396,7 +398,7 @@ if ($_POST['check'] == "CancelCartoonDelivery") {
 }
 
 if ($_POST['check'] == "checkorderditailsOld") {
-    $orderNumber = $_POST['orderNumber'];
+    $orderNumber = trim($_POST['orderNumber']);
     // order details 
 
     $curl = curl_init();
@@ -592,8 +594,8 @@ if ($_POST['check'] == "checkorderditailsOld") {
 <?php
 }
 if ($_POST['check'] == "cartonItemDetails") {
-    $cartonNumber = $_POST['cartonNumber'];
-    $orderNumber = $_POST['orderNumber'];
+    $cartonNumber = trim($_POST['cartonNumber']);
+    $orderNumber = trim($_POST['orderNumber']);
 
     $curl = curl_init();
 
@@ -696,8 +698,8 @@ if ($_POST['check'] == "cartonItemDetails") {
     <?php
 }
 if ($_POST['check'] == "itemDetails") {
-    $orderProductID = $_POST['orderProductID'];
-    $orderNumber = $_POST['orderNumber'];
+    $orderProductID = trim($_POST['orderProductID']);
+    $orderNumber = trim($_POST['orderNumber']);
 
     //$url = "https://demostarter.erp.place/eback/order_item.php?order_id=" . $orderNumber . "&item_id=" . $orderProductID;
 
@@ -778,7 +780,7 @@ if ($_POST['check'] == "itemDetails") {
 }
 
 if ($_POST['check'] == "cancelFullOrder") {
-    $orderId = $_POST['orderId'];
+    $orderId = trim($_POST['orderId']);
 
     $curl = curl_init();
 
@@ -812,8 +814,8 @@ if ($_POST['check'] == "cancelFullOrder") {
 }
 
 if ($_POST['check'] == "deleteOrderItem") {
-    $itemId = $_POST['lineNo'];
-    $orderNumber = $_POST['orderNo'];
+    $itemId = trim($_POST['lineNo']);
+    $orderNumber = trim($_POST['orderNo']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

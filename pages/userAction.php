@@ -2,7 +2,7 @@
 include '../inc/function.php';
 include '../inc/apiendpoint.php';
 if ($_POST['check'] == "userPhoneNumberSend") {
-    $phoneNumber = $_POST['phoneNumber'];
+    $phoneNumber = trim($_POST['phoneNumber']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -39,9 +39,9 @@ if ($_POST['check'] == "userPhoneNumberSend") {
 }
 
 if ($_POST['check'] == "checkEmail") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $emailID = $_POST['emailID'];
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $emailID = trim($_POST['emailID']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -87,7 +87,7 @@ if ($_POST['check'] == "checkEmail") {
 }
 
 if ($_POST['check'] == "forRegistration") {
-    $phone = $_POST['phoneNumber'];
+    $phone = trim($_POST['phoneNumber']);
 
     $curl = curl_init();
 
@@ -120,13 +120,13 @@ if ($_POST['check'] == "forRegistration") {
 }
 
 if ($_POST['check'] == "userRegistration") {
-    $phone = $_POST['phone'];
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $otp = $_POST['otp'];
-    $emailAdd = $_POST['emailAdd'];
-    $emailIdData = $_POST['emailIdData'];
-    $mediaData = $_POST['mediaData'];
+    $phone = trim($_POST['phone']);
+    $name = trim($_POST['name']);
+    $address = trim($_POST['address']);
+    $otp = trim($_POST['otp']);
+    $emailAdd = trim($_POST['emailAdd']);
+    $emailIdData = trim($_POST['emailIdData']);
+    $mediaData = trim($_POST['mediaData']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -171,8 +171,8 @@ if ($_POST['check'] == "userRegistration") {
 }
 
 if ($_POST['check'] == "otpCheck") {
-    $otpCode = $_POST['otpCode'];
-    $phone = $_POST['phone'];
+    $otpCode = trim($_POST['otpCode']);
+    $phone = trim($_POST['phone']);
 
     $curl = curl_init();
 
@@ -217,10 +217,10 @@ if ($_POST['check'] == "otpCheck") {
 }
 
 if ($_POST['check'] == "userProfileUpdate") {
-    $fullName = $_POST['fullName'];
-    $emailAddress = $_POST['emailAddress'];
-    $userAddress = $_POST['userAddress'];
-    $userPhone = $_POST['userPhone'];
+    $fullName = trim($_POST['fullName']);
+    $emailAddress = trim($_POST['emailAddress']);
+    $userAddress = trim($_POST['userAddress']);
+    $userPhone = trim($_POST['userPhone']);
 
     $curl = curl_init();
 
@@ -272,8 +272,8 @@ if ($_POST['check'] == "loginpopupview") {
                             <div class="padding_eight_all bg-white" id="loginDiv">
                                 <div class="heading_s1">
                                     <h1 class="mb-5">Login</h1>
-                                    <p class="mb-30">Don't have an account? <a onclick="registrationInterface()" href="#">Create
-                                            here</a></p>
+                                    <p class="mb-30">Don't have an account? <a id="regInterface" onclick="registrationInterface()" href="#">Create
+                                            here</a> <a href="#" onclick="loingInterface()" id="loginView">Login</a></p>
                                 </div>
                                 <!-- <form method="post"> -->
                                 <div class="form-group">
@@ -312,7 +312,7 @@ if ($_POST['check'] == "loginpopupview") {
 <?php
 }
 if ($_POST['check'] == "userPhoneUpOTP") {
-    $newPhone = $_POST['newPhone'];
+    $newPhone = trim($_POST['newPhone']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -351,8 +351,8 @@ if ($_POST['check'] == "userPhoneUpOTP") {
 if ($_POST['check'] == "checkUpdateOTP") {
 
     $otp = $_POST['otp'];
-    $newNumber = $_POST['newNumber'];
-    $oldNumber = $_POST['oldNumber'];
+    $newNumber = trim($_POST['newNumber']);
+    $oldNumber = trim($_POST['oldNumber']);
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

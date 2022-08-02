@@ -235,7 +235,7 @@ function cartPopUp() {
         var cartData = JSON.parse(response);
         var html = "No product in your cart.";
         if (cartData.length > 0) {
-          // console.log(cartData);
+          console.log(cartData);
           var sum = 0;
           var html = '<div class="cartbox"><ul>';
           for (let i = 0; i < cartData.length; i++) {
@@ -1012,6 +1012,8 @@ function loginUserFororder() {
       $("#userAddress").hide();
       $("#signUp").hide();
 
+      $("#loginView").hide();
+
     },
   });
 }
@@ -1020,10 +1022,14 @@ function registrationInterface()
 {
   $("#userName").show();
   $("#userAddress").show();
+  $("#loginView").show();
   $("#signUp").show();
   $("#login").hide();
+  $("#regInterface").hide();
 }
-
+function loingInterface() {
+  loginUserFororder();
+}
 // placeorder
 function placeorder(phoneNumber, token) {
   var paymentMethod = $("input[name='payment_option']:checked").val();

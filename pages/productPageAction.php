@@ -2,9 +2,9 @@
 include '../inc/function.php';
 include '../inc/apiendpoint.php';
 if ($_POST['check'] == "sortingProductList") {
-    $limit = $_POST['limitValueData'];
-    $sortby = $_POST['sortByData'];
-    $catID = $_POST['catID'];
+    $limit = trim($_POST['limitValueData']);
+    $sortby = trim($_POST['sortByData']);
+    $catID = trim($_POST['catID']);
     $pageNumber = 1;
 
 
@@ -230,10 +230,10 @@ if ($_POST['check'] == "sortingProductList") {
 
 
 if ($_POST['check'] == "paginationProduct") {
-    $limit = $_POST['limitValueData'];
-    $sortby = $_POST['sortByData'];
-    $catID = $_POST['catID'];
-    $pageNumber = $_POST['pageNumber'];
+    $limit = trim($_POST['limitValueData']);
+    $sortby = trim($_POST['sortByData']);
+    $catID = trim($_POST['catID']);
+    $pageNumber = trim($_POST['pageNumber']);
     $start = $pageNumber * $limit - $limit;
 
     $curl = curl_init();
@@ -449,7 +449,7 @@ if ($_POST['check'] == "paginationProduct") {
 if ($_POST['check'] == "categoryWiseProduct") {
 
 
-    $catID = $_POST['categoryId'];
+    $catID = trim($_POST['categoryId']);
     if ($catID == 0) {
         $url = "product.php";
     } else {
