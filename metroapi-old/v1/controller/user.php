@@ -38,7 +38,7 @@ if (array_key_exists('phoneNumber', $_GET)) {
     }
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         try {
-            $query = $readDB->prepare('SELECT debtorno AS id, cm_id AS userid, NAME AS realname, email, phone1 AS phone, address1 AS address1, user_token AS token, status as active_now, cm_id AS customerid FROM debtorsmaster WHERE phone1 =:phoneNumber');
+            $query = $readDB->prepare('SELECT id, userid, password, realname, customerid, phone, email, address1, active_now, user_token FROM users WHERE  phone=:phoneNumber');
             $query->bindParam(':phoneNumber', $phoneNumber, PDO::PARAM_STR);
             $query->execute();
             $rowCount = $query->rowCount();
@@ -121,7 +121,7 @@ if (array_key_exists('phoneNumber', $_GET)) {
         $userFullname = $userInfo->getFullName();
         $email = $userInfo->getEmail();
         $address = $userInfo->getAddress();
-        $query = $writeDB->prepare('UPDATE debtorsmaster SET name=:fullname,email=:email,address1=:address WHERE phone1=:phone');
+        $query = $writeDB->prepare('UPDATE users SET realname=:fullname,email=:email,address1=:address WHERE phone=:phone');
         $query->bindParam(':fullname', $userFullname, PDO::PARAM_STR);
         $query->bindParam(':email', $email, PDO::PARAM_STR);
         $query->bindParam(':address', $address, PDO::PARAM_STR);

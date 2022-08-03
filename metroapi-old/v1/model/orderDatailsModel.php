@@ -9,23 +9,19 @@ class Item
     private $_stkcode;
     private $_unitprice;
     private $_quantity;
-    private $_qtyshipping;
-    private $_qtyinvoiced;
     private $_description;
     private $_stockid;
     private $_img;
     private $_status;
     // private $_userInfo;
 
-    public function __construct($orderlineno, $orderno, $stkcode, $unitprice, $quantity, $qtyshipping, $qtyinvoiced, $description, $stockid, $img, $status)
+    public function __construct($orderlineno, $orderno, $stkcode, $unitprice, $quantity, $description, $stockid, $img, $status)
     {
         $this->_orderlineno = $orderlineno;
         $this->_orderno = $orderno;
         $this->_stkcode = $stkcode;
         $this->_unitprice = $unitprice;
         $this->_quantity = $quantity;
-        $this->_qtyshipping = $qtyshipping;
-        $this->_qtyinvoiced = $qtyinvoiced;
         $this->_description = $description;
         $this->_stockid = $stockid;
         $this->_img = $img;
@@ -51,16 +47,6 @@ class Item
     public function getUnitprice()
     {
         return $this->_unitprice;
-    }
-
-    public function getQtyshipping()
-    {
-        return $this->_qtyshipping;
-    }
-
-    public function getQtyinvoiced()
-    {
-        return $this->_qtyinvoiced;
     }
 
     public function getQuantity()
@@ -137,24 +123,6 @@ class Item
         return $this;
     }
 
-    public function setQtyshipping($qtyshipping)
-    {
-        if ($qtyshipping === '' || !is_numeric($qtyshipping)) {
-            throw new OrderdetailsException("Item Qtyshipping can not be a string");
-        }
-        $this->_quantity = $qtyshipping;
-        return $this;
-    }
-
-    public function setQtyinvoiced($qtyinvoiced)
-    {
-        if ($qtyinvoiced === '' || !is_numeric($qtyinvoiced)) {
-            throw new OrderdetailsException("Item Qtyinvoiced can not be a string");
-        }
-        $this->qtyinvoiced = $qtyinvoiced;
-        return $this;
-    }
-
     public function setDescription($description)
     {
         $this->_description = $description;
@@ -197,8 +165,6 @@ class Item
         $details['stkcode'] = $this->getStkcode();
         $details['unitprice'] = $this->getUnitprice();
         $details['quantity'] = $this->getQuantity();
-        $details['qtyshipping'] = $this->getQtyshipping();
-        $details['qtyinvoiced'] = $this->getQtyinvoiced();
         $details['description'] = $this->getDescription();
         $details['stockid'] = $this->getStockid();
         $details['img'] = $this->getImg();

@@ -36,39 +36,7 @@ if (array_key_exists('token', $_GET)) {
     }
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
-            $query = $readDB->prepare("SELECT
-                                            s1.orderno AS 'orderno',
-                                            s1.orddate AS 'orddate',
-                                            s1.so_status AS 'so_status',
-                                            (
-                                            SELECT
-                                                COUNT(*)
-                                            FROM
-                                                salesorderdetails sd2
-                                            WHERE
-                                                sd2.orderno = s1.orderno AND sd2.completed = 0
-                                        ) AS 'so_detail_status',
-                                            (
-                                            SELECT
-                                                SUM(d.qty)
-                                            FROM
-                                                carton_list l,
-                                                carton_list_details d,
-                                                carton_status_details s
-                                            WHERE
-                                                l.id = d.cid AND l.delivered = 0 AND l.so = s1.orderno AND d.stockid = salesorderdetails.stkcode AND l.id = s.cid AND s.sid = 2
-                                        ) AS qtyshipping
-                                        FROM
-                                            salesorderdetails,
-                                            salesorders s1
-                                        INNER JOIN debtorsmaster ON debtorsmaster.debtorno = s1.debtorno
-                                        WHERE
-                                            debtorsmaster.user_token = :token
-                                        GROUP BY
-                                            s1.orderno
-                                        ORDER BY
-                                            s1.orddate
-                                        DESC");
+            $query = $readDB->prepare('SELECT salesorders.orderno AS orderno, salesorders.orddate AS orddate, salesorders.so_status AS so_status FROM salesorders INNER JOIN users ON users.id = salesorders.debtorno WHERE users.user_token=:token ORDER BY salesorders.orddate DESC');
             $query->bindParam(':token', $token, PDO::PARAM_STR);
             $query->execute();
             $rowCount = $query->rowCount();

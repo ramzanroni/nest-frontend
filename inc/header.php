@@ -323,9 +323,16 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                             <span class="burger-icon-bottom"></span>
                         </div>
                     </div>
-                    <div class="header-action-right d-block d-lg-none">
-                        <div class="header-action-2">
 
+                    <div class="header-action-right d-block d-lg-none">
+
+                        <div class="header-action-2">
+                            <!-- <div style="width: 100%;" class="header-action-icon-2 burger-icon">
+                                <img style="cursor: pointer;" alt="Nest" src="assets/imgs/theme/icons/icon-search-new.png" />
+                            </div> -->
+                            <a class="mini-cart-icon burger-icon" style="margin-right: 5px;" href="shop-cart.php">
+                                <img alt="Nest" src="assets/imgs/theme/icons/icon-search-new.png" />
+                            </a>
                             <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                 <a class="mini-cart-icon" href="shop-cart.php">
                                     <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />

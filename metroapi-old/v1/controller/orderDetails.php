@@ -36,24 +36,11 @@ if (array_key_exists('order_id', $_GET)) {
     }
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
-            // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
-            $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/images/";
+            $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
 
-            $orderAddress = $readDB->prepare("SELECT
-                                                salesorders.deladd1 AS deladd1,
-                                                salesorders.so_status AS so_status,
-                                                debtorsmaster.name AS realname,
-                                                debtorsmaster.email AS email,
-                                                debtorsmaster.phone1 AS phone
-                                            FROM
-                                                salesorders
-                                            INNER JOIN debtorsmaster ON salesorders.debtorno = debtorsmaster.debtorno
-                                            WHERE
-                                                salesorders.orderno =:order_id");
+            $orderAddress = $readDB->prepare('SELECT salesorders.deladd1 AS deladd1, salesorders.so_status AS so_status, users.realname AS realname, users.email AS email, users.phone AS phone FROM salesorders INNER JOIN users ON salesorders.debtorno = users.id WHERE salesorders.orderno=:order_id');
             $orderAddress->bindParam(':order_id', $order_id, PDO::PARAM_STR);
             $orderAddress->execute();
-            // echo $selectUserData->debugDumpParams();
-
             $addressArray = array();
             while ($rowAdd = $orderAddress->fetch(PDO::FETCH_ASSOC)) {
                 $addressArray['address'] = $rowAdd['deladd1'];
@@ -64,37 +51,9 @@ if (array_key_exists('order_id', $_GET)) {
             }
             // print_r($addressArray);
 
-            $orderdetails = $readDB->prepare("SELECT
-                                                (
-                                                SELECT
-                                                    SUM(d.qty)
-                                                FROM
-                                                    carton_list l,
-                                                    carton_list_details d,
-                                                    carton_status_details s
-                                                WHERE
-                                                    l.id = d.cid AND l.delivered = 0 AND l.so = :order_idi AND d.stockid = salesorderdetails.stkcode  AND l.id = s.cid AND s.sid = 2
-                                            ) AS qtyshipping,
-                                            salesorderdetails.orderlineno AS orderlineno,
-                                            salesorderdetails.orderno AS orderno,
-                                            salesorderdetails.stkcode AS stkcode,
-                                            salesorderdetails.unitprice AS unitprice,
-                                            salesorderdetails.quantity AS quantity,
-                                            salesorderdetails.qtyinvoiced AS qtyinvoiced,
-                                            salesorderdetails.completed AS completed,
-                                            stockmaster.description AS 'description',
-                                            stockmaster.stockid AS 'stockid',
-                                            stockmaster.img AS img
-                                            FROM
-                                                salesorderdetails
-                                            INNER JOIN stockmaster ON stockmaster.stockid = salesorderdetails.stkcode
-                                            WHERE
-                                                salesorderdetails.orderno =:order_id");
-            $orderdetails->bindParam(':order_idi', $order_id, PDO::PARAM_INT);
+            $orderdetails = $readDB->prepare('SELECT  salesorderdetails.orderlineno AS orderlineno, salesorderdetails.orderno AS orderno, salesorderdetails.stkcode AS stkcode, salesorderdetails.unitprice AS unitprice, salesorderdetails.quantity AS quantity,  salesorderdetails.completed AS completed, stockmaster.description AS description,stockmaster.stockid AS stockid, stockmaster.img AS img FROM salesorderdetails INNER JOIN stockmaster ON stockmaster.stockid= salesorderdetails.stkcode WHERE salesorderdetails.orderno=:order_id');
             $orderdetails->bindParam(':order_id', $order_id, PDO::PARAM_INT);
             $orderdetails->execute();
-            //             echo $orderdetails->debugDumpParams();
-            // exit;
             $rowCount = $orderdetails->rowCount();
             if ($rowCount === 0) {
                 $response = new Response();
@@ -106,7 +65,7 @@ if (array_key_exists('order_id', $_GET)) {
             } else {
                 $orderArray = array();
                 while ($row = $orderdetails->fetch(PDO::FETCH_ASSOC)) {
-                    $order = new Item($row['orderlineno'], $row['orderno'], $row['stkcode'], $row['unitprice'], $row['quantity'], $row['qtyshipping'], $row['qtyinvoiced'], $row['description'], $row['stockid'], $ip_server . $row['stockid'] . '.jpg', $row['completed']);
+                    $order = new Item($row['orderlineno'], $row['orderno'], $row['stkcode'], $row['unitprice'], $row['quantity'], $row['description'], $row['stockid'], $ip_server . $row['img'], $row['completed']);
                     $orderArray[] = $order->returnOrderDetailsArray();
                 }
 

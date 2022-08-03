@@ -127,8 +127,10 @@
 }
 
 .default-img {
-    width: 181px;
-    height: 181px;
+    /* width: 181px;
+    height: 181px; */
+    /* padding: 60px; */
+
 }
 
 /* alert */
@@ -248,15 +250,15 @@
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.search-box::-webkit-scrollbar {
+/* .search-box::-webkit-scrollbar {
     display: none;
-}
+} */
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .search-box {
-    -ms-overflow-style: none;
+    /* -ms-overflow-style: none; */
     /* IE and Edge */
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     /* Firefox */
 }
 

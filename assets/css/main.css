@@ -4404,7 +4404,7 @@ table .product-thumbnail img {
 .product-cart-wrap .product-card-bottom .add-cart .add {
   position: relative;
   display: inline-block;
-  padding: 6px 20px 6px 20px;
+  padding: 5px 20px 6px 15px;
   border-radius: 4px;
   background-color: var(--primary-color);
   color: var(--primary-text-color);
@@ -7424,7 +7424,7 @@ h6.post-title {
 }
 
 .header-action-right {
-  display: none;
+  /* display: none; */
 }
 
 .header-action-right .search-location {
@@ -11940,9 +11940,9 @@ footer .hotline img {
     width: 120px;
   }
 
-  .header-style-5 .search-style-2 {
+  /* .header-style-5 .search-style-2 {
     display: none;
-  }
+  } */
 
   .main-menu.main-menu-mrg-1 {
     margin: 0 0 0 15px;
@@ -12118,6 +12118,10 @@ footer .hotline img {
     max-width: 94%;
   }
 
+  .section-padding {
+    padding: 100px 0;
+  }
+
   .hero-slider-1 .single-hero-slider {
     height: 467px;
   }
@@ -12149,11 +12153,38 @@ footer .hotline img {
   .tab-style3 .nav-item {
     margin-bottom: 15px;
   }
+
+  /* .et,
+  .hotline,
+  li.hot-deals,
+  .header-action-2 .header-action-icon-2 span.lable {
+    display: none !important;
+  } */
+
+  .search-style-2 {
+    width: 72%;
+  }
+
+  /* .slick-dots {
+    top: 123%;
+  } */
 }
 
 @media only screen and (max-width: 1024px) {
   .header-style-1 .main-categori-wrap {
     margin-right: 20px;
+  }
+
+  .slick-dots {
+    top: 87%;
+  }
+
+  .search-style-2 {
+    width: 72%;
+  }
+
+  .section-padding {
+    padding: 25px 0;
   }
 
   .product-cart-wrap .product-action-1 a.action-btn {
@@ -12292,6 +12323,10 @@ footer .hotline img {
 @media only screen and (max-width: 480px) {
   .archive-header {
     padding: 30px;
+  }
+
+  .section-padding {
+    padding: 25px 0;
   }
 
   .mobile-promotion {
@@ -12828,6 +12863,10 @@ footer .hotline img {
     margin-bottom: 30px;
   }
 
+  .section-padding {
+    padding: 25px 0;
+  }
+
   .banner-features {
     margin-bottom: 30px;
   }
@@ -12843,6 +12882,10 @@ footer .hotline img {
   .entry-meta .hit-count,
   .entry-meta.meta-2 .font-xs {
     display: none;
+  }
+
+  .section-padding {
+    padding: 25px 0;
   }
 
   .deal {
@@ -12867,6 +12910,10 @@ footer .hotline img {
   .deal .product-title {
     max-width: 100%;
     font-size: 35px;
+  }
+
+  .section-padding {
+    padding: 25px 0;
   }
 }
 

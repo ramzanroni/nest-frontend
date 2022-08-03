@@ -2,6 +2,9 @@
 include_once('db.php');
 include_once('../model/productModel.php');
 include_once('../model/response.php');
+header('Access-Control-Allow-Origin: *');
+header('Authorization');
+
 $allHeaders = getallheaders();
 $apiSecurity = $allHeaders['Authorization'];
 if ($apiKey != $apiSecurity) {
@@ -25,8 +28,7 @@ try {
     exit;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-    $mainQuery = 'SELECT stockmaster.stockid AS stockid, stockmaster.description AS description, stockmaster.longdescription AS longdescription, stockmaster.units AS units, stockmaster.discountcategory AS discountcategory, stockmaster.taxcatid AS taxcatid, stockmaster.webprice AS webprice, stockmaster.img AS img, stockgroup.groupname AS category, stockgroup.groupid AS categoryId FROM stockmaster INNER JOIN stockgroup ON stockmaster.groupid = stockgroup.groupid AND stockmaster.webprice !=0';
+    $mainQuery = 'SELECT stockmaster.stockid AS stockid, stockmaster.description AS description, stockmaster.longdescription AS longdescription, stockmaster.units AS units, stockmaster.discountcategory AS discountcategory, stockmaster.taxcatid AS taxcatid, stockmaster.webprice AS webprice, stockmaster.img AS img, stockgroup.groupname AS category, stockgroup.groupid AS categoryId FROM stockmaster INNER JOIN stockgroup ON stockmaster.groupid = stockgroup.groupid';
 
     if (array_key_exists('product_id', $_GET)) {
         $product_id = $_GET['product_id'];
@@ -92,14 +94,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit();
     }
     try {
+
         $query->execute();
-        // echo $query->debugDumpParams();
-        // exit;
 
         $productArray = array();
         $rowCount = $query->rowCount();
-        // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
-        $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/images/";
+        if ($rowCount === 0) {
+            $response = new Response();
+            $response->setHttpStatusCode(403);
+            $response->setSuccess(false);
+            $response->addMessage("No data found");
+            $response->send();
+            exit;
+        }
+        $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $stockID = $row['stockid'];
             $multipleImg = $readDB->prepare("SELECT * FROM `item_ref_file` WHERE stockid=:stockid");
@@ -111,9 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $imgArr[] = $ip_server . $rowImg['doc_name'];
             }
             if ($row['img'] == '') {
-                $img =  $ip_server . "000.jpg";
+                $img = '';
             } else {
-                $img = $ip_server . $row['stockid'] . '.jpg';
+                $img = $ip_server . $row['img'];
             }
             $product = new Product($row['stockid'], $row['description'], $row['categoryId'], $row['category'], $row['longdescription'], $row['units'], $row['discountcategory'], $row['taxcatid'], $row['webprice'], $img, $imgArr);
             $productArray[] = $product->returnProducrArray();
@@ -130,12 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response->send();
             exit;
         } else {
-            $response = new Response();
-            $response->setHttpStatusCode(403);
-            $response->setSuccess(false);
-            $response->addMessage("No data found");
-            $response->send();
-            exit;
         }
     } catch (ProductException $ex) {
         $response = new Response();

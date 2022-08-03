@@ -24,7 +24,6 @@ try {
     $response->send();
     exit;
 }
-
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     try {
         if ($_SERVER['CONTENT_TYPE'] !== 'application/json') {
@@ -44,22 +43,22 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $response->send();
             exit();
         }
-        $orderNumber = rand(1000, 9999); //// 30 auto order no code
+        $orderNumber = random_int(100000, 999999);
         $newOrder = new CreateOrder($jsonData->name, $jsonData->address, $jsonData->area, $jsonData->phone, $jsonData->town, (isset($jsonData->additionalPhone) ? $jsonData->additionalPhone : null), (isset($jsonData->additionalInfo) ? $jsonData->additionalInfo : null), $jsonData->token, $jsonData->paymentMethod);
 
         // find user
         $token = $newOrder->getToken();
-        $findUserID = $readDB->prepare('SELECT debtorno FROM debtorsmaster WHERE user_token=:token');
+        $findUserID = $readDB->prepare('SELECT * FROM users WHERE user_token=:token');
         $findUserID->bindParam(':token', $token, PDO::PARAM_STR);
         $findUserID->execute();
         $rowCount = $findUserID->rowCount();
         if ($rowCount === 1) {
             $userIDInfo = $findUserID->fetch(PDO::FETCH_ASSOC);
-            $userId = $userIDInfo['debtorno'];
+            $userId = $userIDInfo['id'];
             $delivery_status = 0;
             $orderDate = date("Y-m-d");
             $branchcode = 1;
-            $customerref = "SO: $orderNumber";
+            $customerref = 'SO:1';
             $tag = 1;
             $ordertype = 'DP';
             $shipvia = 1;
@@ -79,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             // $finalAddress = $address . " " . $area . " " . $town;
 
             try {
-                $orderInsert = $writeDB->prepare('INSERT INTO salesorders(orderno, debtorno,comments, branchcode, customerref, tag,  orddate, ordertype, shipvia, deladd1, contactphone, deliverto, deliverblind, fromstkloc, printedpackingslip,delivery_status) VALUES (:orderno, :debtorno, :comments, :branchcode, :customerref, :tag,:orddate,:ordertype, :shipvia,:deladd1,:contactphone,:deliverto,:deliverblind,:fromstkloc,:printedpackingslip,:delivery_status)');
+                $orderInsert = $writeDB->prepare('INSERT INTO salesorders(orderno, debtorno,comments, branchcode, customerref, tag,  orddate, ordertype, shipvia, deladd1, contactphone, deliverto, deliverblind, fromstkloc, printedpackingslip,delivery_status,issue_date) VALUES (:orderno, :debtorno, :comments, :branchcode, :customerref, :tag,:orddate,:ordertype, :shipvia,:deladd1,:contactphone,:deliverto,:deliverblind,:fromstkloc,:printedpackingslip,:delivery_status,:issue_date)');
                 $orderInsert->bindParam(':orderno', $orderNumber, PDO::PARAM_STR);
                 $orderInsert->bindParam(':debtorno', $userId, PDO::PARAM_STR);
                 $orderInsert->bindParam(':comments', $additionalInfo, PDO::PARAM_STR);
@@ -96,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $orderInsert->bindParam(':fromstkloc', $fromstkloc, PDO::PARAM_STR);
                 $orderInsert->bindParam(':printedpackingslip', $printedpackingslip, PDO::PARAM_STR);
                 $orderInsert->bindParam(':delivery_status', $delivery_status, PDO::PARAM_STR);
+                $orderInsert->bindParam(':issue_date', $orderDate, PDO::PARAM_STR);
                 $orderInsert->execute();
                 $rowCount = $orderInsert->rowCount();
                 if ($rowCount === 1) {
@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $stkcode = 0;
                     $discount_amount = 0;
                     $qtyinvoiced = 0;
+                    $org_so_qty = 0;
                     $orderlineno = 1;
                     foreach ($orderItem as $itemValue) {
                         $itemInfo = new OrderItem($itemValue->productID, $itemValue->unitPrice, $itemValue->productQuantity);
@@ -110,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $itemId = $itemInfo->getProductId();
                         $itemQuantity = $itemInfo->getProductQuantity();
                         $unitPrice = $itemInfo->getUnitPrice();
-                        $addItem = $writeDB->prepare('INSERT INTO salesorderdetails(orderlineno, orderno, stkcode, qtyinvoiced, unitprice, quantity,discount_amount) VALUES (:orderlineno,:orderno,:stkcode,:qtyinvoiced,:unitprice,:quantity,:discount_amount)');
+                        $addItem = $writeDB->prepare('INSERT INTO salesorderdetails(orderlineno, orderno, stkcode, qtyinvoiced, unitprice, quantity,discount_amount,org_so_qty) VALUES (:orderlineno,:orderno,:stkcode,:qtyinvoiced,:unitprice,:quantity,:discount_amount,:org_so_qty)');
                         $addItem->bindParam('orderlineno', $orderlineno, PDO::PARAM_STR);
                         $addItem->bindParam('orderno', $orderNumber, PDO::PARAM_STR);
                         $addItem->bindParam('stkcode', $itemId, PDO::PARAM_STR);
@@ -118,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $addItem->bindParam('unitprice', $unitPrice, PDO::PARAM_STR);
                         $addItem->bindParam('quantity', $itemQuantity, PDO::PARAM_STR);
                         $addItem->bindParam('discount_amount', $discount_amount, PDO::PARAM_STR);
+                        $addItem->bindParam('org_so_qty', $org_so_qty, PDO::PARAM_STR);
                         $addItem->execute();
                         $rowCount = $addItem->rowCount();
                         $orderlineno++;

@@ -77,7 +77,7 @@ class Carton
         $carton['id'] = $this->getID();
         $carton['carton_status'] = $this->getCartonStatus();
         $carton['date_packed'] = $this->getDatePacked();
-        $carton['date_shiped'] = $this->getDateShiped();
+        $carton['date_shiped'] = $this->getDatePacked();
         $carton['date_delivered'] = $this->getDateDelivered();
         return $carton;
     }

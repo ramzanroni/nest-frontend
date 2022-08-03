@@ -468,7 +468,7 @@ if ($_POST['check'] == "categoryWiseProduct") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));

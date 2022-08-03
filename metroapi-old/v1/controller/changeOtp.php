@@ -53,6 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $response->send();
                 exit;
             }
+
+            // check user 
+            $checkUser = $readDB->prepare('SELECT * FROM users WHERE phone=:phone');
+            $checkUser->bindParam(':phone', $phoneNumber, PDO::PARAM_STR);
+            $checkUser->execute();
+            $rowCount = $checkUser->rowCount();
+            if ($rowCount === 1) {
+                $response = new Response();
+                $response->setHttpStatusCode(400);
+                $response->setSuccess(false);
+                $response->addMessage("This number has already an account");
+                $response->send();
+                exit;
+            }
+
+
+
+
             date_default_timezone_set("Asia/Dhaka");
             $findRecord = $readDB->prepare('SELECT * FROM temp_otp WHERE phone=:phone');
             $findRecord->BindParam(':phone', $phoneNumber, PDO::PARAM_STR);
@@ -60,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $number_of_rows =  $findRecord->rowCount();
             if ($number_of_rows == 0) {
                 $otpNumber = rand(100000, 999999);
-                $otpNumber = 1234;
                 $flag = 'changephone';
                 $counter = 1;
                 $date = strtotime(date('Y-m-d H:i:s'));
@@ -96,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $counterNew = $findData['counter'] + 1;
                     $date = strtotime(date('Y-m-d H:i:s'));
                     $otpNumber = rand(100000, 999999);
-                    $otpNumber = 1234;
                     $expDate = date('Y-m-d H:i:s', strtotime('+2 minutes', $date));
 
                     $updateCounter = $writeDB->prepare('UPDATE `temp_otp` SET `expair_at`=:expDate, `otp`=:otpNumber,`counter`=:counterNew WHERE `id`=:id');
@@ -128,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $diffrence = round(abs($currnetTime - $expireTime) / 60);
                     if ($diffrence > 180) {
                         $date = strtotime(date('Y-m-d H:i:s'));
-                        $otpNumber = 1234;
+                        $otpNumber = rand(100000, 999999);
                         $expDate = date('Y-m-d H:i:s', strtotime('+60 minutes', $date));
                         $counter = 1;
                         $updateCounter = $writeDB->prepare('UPDATE `temp_otp` SET `expair_at`=:expDate, `otp`=:otpNumber,`counter`=:counter WHERE `id`=:id');
@@ -202,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $deleteOtp->execute();
 
                     // updatePhone
-                    $phoneUpdateSQL = $writeDB->prepare('UPDATE `debtorsmaster` SET `phone1`=:phonenew WHERE `phone1`=:phoneold');
+                    $phoneUpdateSQL = $writeDB->prepare('UPDATE `users` SET `phone`=:phonenew WHERE `phone`=:phoneold');
                     $phoneUpdateSQL->BindParam(':phonenew', $phonenew, PDO::PARAM_STR);
                     $phoneUpdateSQL->BindParam(':phoneold', $phoneold, PDO::PARAM_STR);
                     $phoneUpdateSQL->execute();
@@ -247,4 +263,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $response->send();
         exit();
     }
+} else {
+    $response = new Response();
+    $response->setHttpStatusCode(500);
+    $response->setSuccess(false);
+    $response->addMessage("Request Type Doesn't Allowed");
+    $response->send();
+    exit;
 }
