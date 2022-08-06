@@ -83,87 +83,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         </div>
     </div>
 
-
-
-    <!-- Quick view -->
-    <!-- <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                    <div class="row" id="productView">
-                        <input type="hidden" id="productIdIn">
-                        <input type="hidden" id="productNameIn">
-                        <input type="hidden" id="productPriceIn">
-                        <input type="hidden" name="" id="productImageIn">
-                        <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
-                            <div class="detail-gallery">
-                                <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                                <div class="product-image-slider">
-                                    <figure class="border-radius-10">
-                                        <img id="figureImage" src="assets/imgs/shop/product-16-2.jpg"
-                                            alt="product image" />
-                                    </figure>
-                                </div>
-                                <div class="slider-nav-thumbnails">
-                                    <div><img id="sliderImg" src="assets/imgs/shop/thumbnail-3.jpg"
-                                            alt="product image" /></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="detail-info pr-30 pl-30">
-                                <span class="stock-status out-stock" id='units'> Sale Off </span>
-                                <h3 class="title-detail"><a href="product.php" class="text-heading"
-                                        id="name"></a></h3>
-                                <div class="product-detail-rating">
-                                    <div class="product-rate-cover text-end">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="clearfix product-price-cover">
-                                    <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand" id='productPrice'>$38</span>
-                                    </div>
-                                </div>
-                                <div class="detail-extralink mb-30">
-                                    <div class="detail-qty border radius">
-                                        <a onclick="cartDecrement()" class="qty-down"><i
-                                                class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" id="itemQuantity" class="qty-val" value="1"
-                                            min="1">
-                                        <a onclick="cartInchrement()" class="qty-up"><i
-                                                class="fi-rs-angle-small-up"></i></a>
-                                    </div>
-                                    <div class="product-extra-link2" id="add-to-card-btn">
-                                        <button type="submit" class="button button-add-to-cart"><i
-                                                class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="font-xs">
-                                    <ul>
-                                        <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
-                                        <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <header class="header-area header-style-1 header-height-2">
         <div class="alertSuccess hide">
             <span class="fi-rs-exclamation-circle"></span>
             <span class="msg" id="errorMessageSuccess"></span>
-            <!-- <div class="close-btn">
-                    <span><i class="fi-rs-cross-small"></i></span>
-                </div> -->
         </div>
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
@@ -245,6 +168,10 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                         </div>
                         <div class="header-action-right">
                             <div class="header-action-2">
+                                <div class="mobile-social-icon">
+                                    <a style="background: #365493;" href="https://www.facebook.com/neobazaar20"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt=""></a>
+                                    <a style="background: #CB2027;" href="https://www.youtube.com/channel/UCCppmqczruogeIoCALgpWIQ"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt=""></a>
+                                </div>
                                 <div class="header-action-icon-2" onmouseover="cartPopUp()">
                                     <a class="mini-cart-icon" href="shop-cart.php">
                                         <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />

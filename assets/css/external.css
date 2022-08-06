@@ -129,8 +129,6 @@
 .default-img {
     /* width: 181px;
     height: 181px; */
-    /* padding: 60px; */
-
 }
 
 /* alert */
@@ -256,9 +254,9 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .search-box {
-    /* -ms-overflow-style: none; */
+    -ms-overflow-style: none;
     /* IE and Edge */
-    /* scrollbar-width: none; */
+    scrollbar-width: none;
     /* Firefox */
 }
 
@@ -565,4 +563,27 @@ a.itemside {
 .midCart {
     flex-grow: 4;
     background-color: var(--secondary-color);
+}
+
+.header-style-1 .header-middle-ptb-1 {
+    padding: 0px 0;
+}
+
+.header-top-ptb-1 {
+    color: var(--primary-text-color);
+    background-color: var(--secondary-color);
+}
+
+.header-info>ul>li a {
+    color: var(--primary-text-color);
+}
+
+.header-style-1 .header-top-ptb-1 {
+    padding: 4px 0;
+}
+
+
+
+footer .hotline img {
+    min-width: 20px;
 }

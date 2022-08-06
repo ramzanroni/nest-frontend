@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             // $finalAddress = $address . " " . $area . " " . $town;
 
             try {
-                $orderInsert = $writeDB->prepare('INSERT INTO salesorders(orderno, debtorno,comments, branchcode, customerref, tag,  orddate, ordertype, shipvia, deladd1, contactphone, deliverto, deliverblind, fromstkloc, printedpackingslip,delivery_status) VALUES (:orderno, :debtorno, :comments, :branchcode, :customerref, :tag,:orddate,:ordertype, :shipvia,:deladd1,:contactphone,:deliverto,:deliverblind,:fromstkloc,:printedpackingslip,:delivery_status)');
+                $orderInsert = $writeDB->prepare('INSERT INTO salesorders(orderno, debtorno,comments, branchcode, customerref, tag,  orddate, ordertype, shipvia, deladd1, contactphone, deliverto, deliverblind, fromstkloc, printedpackingslip,delivery_status,issue_date) VALUES (:orderno, :debtorno, :comments, :branchcode, :customerref, :tag,:orddate,:ordertype, :shipvia,:deladd1,:contactphone,:deliverto,:deliverblind,:fromstkloc,:printedpackingslip,:delivery_status,:issue_date)');
                 $orderInsert->bindParam(':orderno', $orderNumber, PDO::PARAM_STR);
                 $orderInsert->bindParam(':debtorno', $userId, PDO::PARAM_STR);
                 $orderInsert->bindParam(':comments', $additionalInfo, PDO::PARAM_STR);
@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $orderInsert->bindParam(':fromstkloc', $fromstkloc, PDO::PARAM_STR);
                 $orderInsert->bindParam(':printedpackingslip', $printedpackingslip, PDO::PARAM_STR);
                 $orderInsert->bindParam(':delivery_status', $delivery_status, PDO::PARAM_STR);
+                $orderInsert->bindParam(':issue_date', $orderDate, PDO::PARAM_STR);
                 $orderInsert->execute();
                 $rowCount = $orderInsert->rowCount();
                 if ($rowCount === 1) {
@@ -103,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $stkcode = 0;
                     $discount_amount = 0;
                     $qtyinvoiced = 0;
+                    $org_so_qty = 0;
                     $orderlineno = 1;
                     foreach ($orderItem as $itemValue) {
                         $itemInfo = new OrderItem($itemValue->productID, $itemValue->unitPrice, $itemValue->productQuantity);
@@ -110,14 +112,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         $itemId = $itemInfo->getProductId();
                         $itemQuantity = $itemInfo->getProductQuantity();
                         $unitPrice = $itemInfo->getUnitPrice();
-                        $addItem = $writeDB->prepare('INSERT INTO salesorderdetails(orderlineno, orderno, stkcode, qtyinvoiced, unitprice, quantity,discount_amount) VALUES (:orderlineno,:orderno,:stkcode,:qtyinvoiced,:unitprice,:quantity,:discount_amount)');
-                        $addItem->bindParam('orderlineno', $orderlineno, PDO::PARAM_STR);
-                        $addItem->bindParam('orderno', $orderNumber, PDO::PARAM_STR);
-                        $addItem->bindParam('stkcode', $itemId, PDO::PARAM_STR);
-                        $addItem->bindParam('qtyinvoiced', $qtyinvoiced, PDO::PARAM_STR);
-                        $addItem->bindParam('unitprice', $unitPrice, PDO::PARAM_STR);
-                        $addItem->bindParam('quantity', $itemQuantity, PDO::PARAM_STR);
-                        $addItem->bindParam('discount_amount', $discount_amount, PDO::PARAM_STR);
+                        $addItem = $writeDB->prepare('INSERT INTO salesorderdetails(orderlineno, orderno, stkcode, qtyinvoiced, unitprice, quantity,discount_amount,org_so_qty) VALUES (:orderlineno,:orderno,:stkcode,:qtyinvoiced,:unitprice,:quantity,:discount_amount,:org_so_qty)');
+                        $addItem->bindParam(':orderlineno', $orderlineno, PDO::PARAM_STR);
+                        $addItem->bindParam(':orderno', $orderNumber, PDO::PARAM_STR);
+                        $addItem->bindParam(':stkcode', $itemId, PDO::PARAM_STR);
+                        $addItem->bindParam(':qtyinvoiced', $qtyinvoiced, PDO::PARAM_STR);
+                        $addItem->bindParam(':unitprice', $unitPrice, PDO::PARAM_STR);
+                        $addItem->bindParam(':quantity', $itemQuantity, PDO::PARAM_STR);
+                        $addItem->bindParam(':discount_amount', $discount_amount, PDO::PARAM_STR);
+                        $addItem->bindParam(':org_so_qty', $org_so_qty, PDO::PARAM_STR);
+
                         $addItem->execute();
                         $rowCount = $addItem->rowCount();
                         $orderlineno++;
