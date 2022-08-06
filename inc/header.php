@@ -305,7 +305,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 <ul>
 
                                     <li>
-                                        <a href="page-about.php">About</a>
+                                        <a href="about.php">About</a>
                                     </li>
 
                                 </ul>

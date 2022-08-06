@@ -1,4 +1,9 @@
-﻿<?php include 'inc/header.php'; ?>
+﻿<?php
+include 'apidata/dataFetch.php';
+include 'inc/header.php';
+include 'inc/apiendpoint.php';
+?>
+<!--End header-->
 <main class="main pages">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -18,9 +23,9 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="pl-25">
-                                <h2 class="mb-30">Welcome to Nest</h2>
-                                <p class="mb-25">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.</p>
-                                <p class="mb-50">Ius ferri velit sanctus cu, sed at soleat accusata. Dictas prompta et Ut placerat legendos interpre.Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante Etiam sit amet orci eget. Quis commodo odio aenean sed adipiscing. Turpis massa tincidunt dui ut ornare lectus. Auctor elit sed vulputate mi sit amet. Commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.</p>
+                                <h2 class="mb-30">Welcome to Neo Bazar</h2>
+                                <p class="mb-25">We believe in a world where you have total freedom to be you, without judgement. To experiment. To express yourself. To be brave and grab life as the extraordinary adventure it is. So we make sure everyone has an equal chance to discover all the amazing things they’re capable of – no matter who they are, where they’re from or what looks they like to boss.</p>
+                                <p class="mb-50">Our audience (AKA you) is wonderfully unique. And we do everything we can to help you find your fit, offering our X Brands – and we’re committed to providing all products</p>
                                 <div class="carausel-3-columns-cover position-relative">
                                     <div id="carausel-3-columns-arrows"></div>
                                     <div class="carausel-3-columns" id="carausel-3-columns">
@@ -194,4 +199,6 @@
         </div>
     </div>
 </main>
-<?php include 'inc/footer.php'; ?>
+<?php
+include 'inc/footer.php';
+?>
