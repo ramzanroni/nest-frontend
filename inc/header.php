@@ -11,7 +11,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Multipurpose eCommerce HTML Template</title>
+    <title>NEO Bazaar</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +35,41 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
 </head>
 
 <body>
+    <?php
+    if (!isset($_COOKIE['first'])) {
+        setcookie('first', true, time() + (86400 * 30), "/");
+    ?>
+        <!-- Modal -->
+        <div class="modal fade custom-modal" id="onloadModal" tabindex="-1" aria-labelledby="onloadModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-body">
+                        <div class="deal" style="background-image: url('assets/imgs/banner/popup-1.png')">
+                            <div class="deal-top">
+                                <h6 class="mb-10 text-brand-2">Deal of the Day</h6>
+                            </div>
+                            <div class="deal-content detail-info">
+                                <h4 class="product-title"><a href="shop-product-right.html" class="text-heading">Organic fruit for your family's health</a></h4>
+                                <div class="clearfix product-price-cover">
+                                    <div class="product-price primary-color float-left">
+                                        <span class="current-price text-brand">$38</span>
+                                        <span>
+                                            <span class="save-price font-md color3 ml-15">26% Off</span>
+                                            <span class="old-price font-md ml-15">$52</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
     <div class="modal fade custom-modal" id="userlogin" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
