@@ -89,11 +89,11 @@
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 <div class="hotline d-lg-inline-flex mr-30">
                     <img src="assets/imgs/theme/icons/phone-call.svg" alt="hotline" />
-                    <p>0185-989-3939<span>Working Hours 8:00 - 22:00</span></p>
+                    <p><a href="tel:01859893939"> 0185-989-3939</a><span>Working Hours 8:00 - 22:00</span></p>
                 </div>
                 <div class="hotline d-lg-inline-flex">
                     <img src="assets/imgs/theme/icons/phone-call.svg" alt="hotline" />
-                    <p>0185-989-3939<span>24/7 Customer Support</span></p>
+                    <p><a href="tel:01859893939"> 0185-989-3939</a><span>24/7 Customer Support</span></p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">

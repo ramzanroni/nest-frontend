@@ -171,7 +171,7 @@ if ($err) {
                     <?php
                     } else {
                     ?>
-                        <a aria-label="Quick view" onclick="loginUserFororder()" class="btn btn-fill-out btn-block mt-30" data-bs-toggle="modal" data-bs-target="#userlogin">Place an Order</i><i class="fi-rs-sign-out ml-15"></i></a>
+                        <a aria-label="Quick view" onclick="loginUserFororder()" class="btn btn-fill-out btn-block mt-30" data-bs-toggle="modal" data-bs-target="#userlogin">Complete Order</i><i class="fi-rs-sign-out ml-15"></i></a>
                     <?php
                     }
                     ?>

@@ -271,7 +271,7 @@ function cartPopUp() {
           html +=
             '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
             sum +
-            '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
+            '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Order</a></div></div>';
         } 
         $("#cartItem" + mobile).html(html);
       },
@@ -348,7 +348,7 @@ function deleteCatItem(
       html +=
         '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
         sum +
-        '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Checkout</a></div></div>';
+        '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Order</a></div></div>';
       $("#cartItem" + mobile).html(html);
       var checkId = $(productBtnId).html();
       if (checkId != undefined) {
