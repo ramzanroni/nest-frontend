@@ -161,7 +161,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                     }
                                     ?>
                                 </select>
-                                <input type="text" id="searchItemData" onkeyup="searchItem(this.value)" placeholder="Search for items..." /><span style="margin-top: 11px;padding-right: 15px;cursor: pointer;" onclick="clearSearch()">x</span>
+                                <input type="text" id="searchItemData" onkeyup="searchItem(this.value)" placeholder="Search for items..." /><span class="cross-btn" onclick="clearSearch()">x</span>
                             </form>
                         </div>
                         <div class="search-box col-12" id="searchBox">

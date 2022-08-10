@@ -7354,7 +7354,7 @@ h6.post-title {
 .header-action-2 .header-action-icon-2>a span.pro-count {
   position: absolute;
   right: -13px;
-  top: 2px;
+  top: 5px;
   color: #ffffff;
   height: 20px;
   width: 20px;
@@ -7544,7 +7544,7 @@ h6.post-title {
 .header-action-2 .header-action-icon-2:hover .cart-dropdown-wrap {
   opacity: 1;
   visibility: visible;
-  top: calc(100% + 10px);
+  top: calc(100% + 0px);
 }
 
 .header-middle-ptb-1 {
@@ -12995,17 +12995,27 @@ nav#menu-container {
 
 .menu-item {
   height: 100%;
-  padding: 0px 10px;
+  padding: 4px 13px;
   display: inline;
   margin: 0 auto;
   line-height: 54px;
   text-decoration: none;
   text-align: center;
+  background: #82b635;
+  border-radius: 4px;
+  color: white;
   white-space: no-wrap;
 }
 
+.menu-item:hover {
+  color: white;
+  background: #438e44;
+}
+
 .active-menu {
-  color: #FDC040 !important;
+  color: #ffff !important;
+  font-weight: bold;
+  background: #438e44;
 }
 
 @media only screen and (max-width: 480px) {

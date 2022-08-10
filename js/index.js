@@ -1112,9 +1112,11 @@ function placeorder(phoneNumber, token) {
 
 // searchItem
 function searchItem(productSearchItem) {
+  
   var categoryName = $("#category_name").val();
   var check = "searchItem";
   if (productSearchItem.length > 1) {
+    $(".cross-btn").css("display", "block");
     $.ajax({
       url: "pages/searchAction.php",
       type: "POST",
@@ -1139,6 +1141,7 @@ function searchItem(productSearchItem) {
     });
   } else {
     $("#searchBox").hide();
+    $(".cross-btn").css("display", "none");
   }
 }
 
@@ -1186,6 +1189,7 @@ function viewAllItem(categoryId, itemString) {
 }
 function clearSearch() {
   $("#searchItemData").val('');
+  $(".cross-btn").css("display", "none");
 }
 // viewOrderDetails
 function viewOrderDetails(orderNumber) {

@@ -82,19 +82,19 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2021, <strong class="text-brand"><a href="index.php">NEO Bazaar</a></strong>
-                    <br />All rights reserved
+                <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand"><a href="index.php">NEO Bazaar</a></strong> By <a href="http://metrosoftbd.net/" style="font-style: italic; color: #828893;" title="Metrosoft Bangladesh LTD">Metrosoft</a>
+                    <br />
                 </p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 <div class="hotline d-lg-inline-flex mr-30">
                     <img src="assets/imgs/theme/icons/phone-call.svg" alt="hotline" />
-                    <p><a href="tel:01859893939"> 0185-989-3939</a><span>Working Hours 8:00 - 22:00</span></p>
-                </div>
-                <div class="hotline d-lg-inline-flex">
-                    <img src="assets/imgs/theme/icons/phone-call.svg" alt="hotline" />
                     <p><a href="tel:01859893939"> 0185-989-3939</a><span>24/7 Customer Support</span></p>
                 </div>
+                <!-- <div class="hotline d-lg-inline-flex">
+                    <img src="assets/imgs/theme/icons/phone-call.svg" alt="hotline" />
+                    <p><a href="tel:01859893939"> 0185-989-3939</a><span>24/7 Customer Support</span></p>
+                </div> -->
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">
@@ -105,7 +105,6 @@
                     <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
                     <a href="https://www.youtube.com/channel/UCCppmqczruogeIoCALgpWIQ"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
                 </div>
-                <p class="font-sm">Up to 15% discount on your first subscribe</p>
             </div>
         </div>
     </div>
