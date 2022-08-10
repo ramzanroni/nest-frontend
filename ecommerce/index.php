@@ -99,7 +99,7 @@ if (isset($_GET['code'])) {
                     <!--End tab-content-->
                 </section>
                 <!--Products Tabs-->
-              
+
                 <!--End Deals-->
                 <section class="banners">
                     <div class="row">

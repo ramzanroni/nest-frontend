@@ -61,8 +61,34 @@ if (isset($_GET['code'])) {
                 <section class="product-tabs section-padding position-relative">
                     <div class="section-title style-2">
                         <h3>Popular Products</h3>
+                        <style>
 
-                        <ul class="nav nav-tabs links" id="myTab" role="tablist">
+                        </style>
+                        <nav id="menu-container" class="arrow">
+                            <div id="btn-nav-previous"><span class="slider-btn slider-prev slick-arrow"><i class="fi-rs-arrow-small-left"></i></span></div>
+                            <div id="btn-nav-next"><span class="slider-btn slider-next slick-arrow"><i class="fi-rs-arrow-small-right"></i></span></div>
+                            <div class="menu-inner-box">
+                                <div class="menu">
+                                    <!-- <a class="menu-item" href="#">Test</a> -->
+                                    <a class="menu-item active-menu" id="nav_0" onclick="categoryProduct(0)">All</a>
+                                    <?php
+                                    foreach ($categoryItemData as $categoryValueitem) {
+                                        if ($categoryValueitem->parent == 0) {
+                                    ?>
+                                            <a class="menu-item" id="nav_<?php echo $categoryValueitem->categoryID; ?>" onclick="categoryProduct(<?php echo $categoryValueitem->categoryID; ?>)"> <?php echo $categoryValueitem->categoryName; ?></a>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+
+                                </div>
+                            </div>
+                        </nav>
+
+                        <!-- <ul class="nav nav-tabs links" id="myTab" role="tablist">
+                            <div id="btn-nav-previous">&lt;</div>
+                            <div id="btn-nav-next">&gt;</div>
+                            <div class="menu-inner-box">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" onclick="categoryProduct(0)" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
                             </li>
@@ -81,7 +107,20 @@ if (isset($_GET['code'])) {
                                 }
                             }
                             ?>
-                        </ul>
+                        </ul> -->
+                        <script>
+                            $('#btn-nav-previous').click(function() {
+                                $(".menu-inner-box").animate({
+                                    scrollLeft: "-=100px"
+                                });
+                            });
+
+                            $('#btn-nav-next').click(function() {
+                                $(".menu-inner-box").animate({
+                                    scrollLeft: "+=100px"
+                                });
+                            });
+                        </script>
                     </div>
                     <!--End nav-tabs-->
                     <div class="tab-content" id="myTabContent">
@@ -344,7 +383,13 @@ if (isset($_GET['code'])) {
                     ?>
                         <div class="card-1">
                             <figure class="img-hover-scale overflow-hidden">
-                                <a href="products.php?category_id=<?php echo $categoryItemDataValue->categoryID; ?>"><img src="//<?php echo $categoryItemDataValue->categoryImg; ?>" alt="" /></a>
+                                <a href="products.php?category_id=
+                                <?php echo $categoryItemDataValue->categoryID; ?>"><img src="<?php if ($categoryItemDataValue->categoryImg != '') {
+                                                                                                    echo '//' . $categoryItemDataValue->categoryImg;
+                                                                                                } else {
+                                                                                                    echo './assets/imgs/product.png';;
+                                                                                                }
+                                                                                                ?>" alt="" /></a>
                             </figure>
                             <h6>
                                 <a href="products.php?category_id=<?php echo $categoryItemDataValue->categoryID; ?>"><?php echo $categoryItemDataValue->categoryName; ?></a>

@@ -144,7 +144,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1">
-                        <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                        <a href="index.php"><img src="assets/imgs/theme/logo.png" alt="logo" /></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
@@ -223,7 +223,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
             <div class="container">
                 <div class="header-wrap header-space-between">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                        <a href="index.php"><img src="assets/imgs/theme/logo.png" alt="logo" /></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
@@ -317,7 +317,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
                 <div class="mobile-header-logo">
-                    <a href="index.php"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                    <a href="index.php"><img src="assets/imgs/theme/logo.png" alt="logo" /></a>
                 </div>
                 <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                     <button class="close-style search-close">

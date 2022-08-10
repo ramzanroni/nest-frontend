@@ -17,6 +17,18 @@ $(window).resize(function () {
     // console.log("need change");
   }
 });
+// scroll
+$('#btn-nav-previous').click(function() {
+  $(".menu-inner-box").animate({
+      scrollLeft: "-=100px"
+  });
+});
+
+$('#btn-nav-next').click(function() {
+  $(".menu-inner-box").animate({
+      scrollLeft: "+=100px"
+  });
+});
 
 function alertMessage(message) {
   $(".alert").addClass("show");
@@ -638,6 +650,7 @@ function pagination(pageNumber) {
 // categoryProduct
 function categoryProduct(categoryId) {
   var check = "categoryWiseProduct";
+  var navID = '#nav_' + categoryId;
   $.ajax({
     url: "pages/productPageAction.php",
     type: "POST",
@@ -652,6 +665,10 @@ function categoryProduct(categoryId) {
 
     success: function (response) {
       $("#preloader-active").hide();
+      var a = document.querySelector('.active-menu');
+      a.classList.remove('active-menu');
+      var b = document.querySelector(navID);
+      b.classList.add('active-menu');     
       $("#productItemField").html(response);
     },
   });
