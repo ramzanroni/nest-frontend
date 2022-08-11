@@ -36,7 +36,7 @@ if ($err) {
         foreach ($categoryData as $categoryValue) {
         ?>
             <li>
-                <a href="products.php?category_id=<?php echo $categoryValue->categoryID; ?>"> <img src="//metroapi/<?php echo $categoryValue->categoryImg; ?>" alt="" /><?php echo $categoryValue->categoryName; ?></a><span class="count"><?php echo $categoryValue->item; ?></span>
+                <a href="products.php?category_id=<?php echo $categoryValue->categoryID; ?>"> <img src="<?php echo $categoryValue->categoryImg; ?>" alt="" /><?php echo $categoryValue->categoryName; ?></a><span class="count"><?php echo $categoryValue->item; ?></span>
             </li>
         <?php
         }

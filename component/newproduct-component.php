@@ -38,7 +38,7 @@ if ($err) {
         <div class="single-post clearfix">
             <div class="image">
                 <img src="<?php if ($newProductValue->img != '') {
-                                echo "//" . $newProductValue->img;
+                                echo $newProductValue->img;
                             } else {
                                 echo 'assets/imgs/product.png';
                             } ?>" alt="#" />

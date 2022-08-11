@@ -256,7 +256,7 @@ function cartPopUp() {
             html +=
               '<li><div class="shopping-cart-img"><a href="product.php?product_id=' +
               cartData[i].productID +
-              '"><img alt="Nest" src="//' +
+              '"><img alt="Nest" src="' +
               cartData[i].productImage +
               '" /></a></div><div class="shopping-cart-title"><h4><a href="product.php?product_id=' +
               cartData[i].productID +
@@ -335,7 +335,7 @@ function deleteCatItem(
         var cartPname = "'" + cartData[i].productName + "'";
         var cartPimg = "'" + cartData[i].productImage + "'";
         html +=
-          '<li><div class="shopping-cart-img"><a href="product.php"><img alt="Nest" src="//' +
+          '<li><div class="shopping-cart-img"><a href="product.php"><img alt="Nest" src="' +
           cartData[i].productImage +
           '" /></a></div><div class="shopping-cart-title"><h4><a href="product.php">' +
           cartData[i].productName.substring(0, 15) +

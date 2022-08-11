@@ -110,7 +110,7 @@ if ($err) {
                                 foreach ($cartData as $key => $product) {
                                 ?>
                                     <tr>
-                                        <td class="image product-thumbnail"><img src="//<?php echo $product->productImage; ?>" alt="#"></td>
+                                        <td class="image product-thumbnail"><img src="<?php echo $product->productImage; ?>" alt="#"></td>
                                         <td>
                                             <h6 class="w-160 mb-5"><a href="shop-product-full.php" class="text-heading"><?php echo $product->productName; ?></a></h6>
                                             </span>

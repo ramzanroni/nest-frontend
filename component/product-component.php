@@ -8,7 +8,7 @@
             <div class="product-img product-img-zoom text-center">
                 <a href="product.php?product_id=<?php echo $productData->stockid; ?>">
                     <img class="default-img" src="<?php if ($productData->img != '') {
-                                                        echo "//" . $productData->img;
+                                                        echo $productData->img;
                                                     } else {
                                                         echo 'assets/imgs/product.png';
                                                     } ?>" alt="" />

@@ -1,5 +1,0 @@
-RewriteEngine On    
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteRule ^tasks/([0-9]+)$ controller/task.php?taskid=$1    [L] 

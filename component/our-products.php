@@ -48,7 +48,7 @@ $outProduct = array_chunk($categoryData, 3, true);
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="product.php?product_id=<?php echo $productValue->stockid; ?>"><img src="<?php if ($productValue->img != '') {
-                                                                                                                        echo "//" . $productValue->img;
+                                                                                                                        echo  $productValue->img;
                                                                                                                     } else {
                                                                                                                         echo 'assets/imgs/product.png';
                                                                                                                     } ?>" alt="" /></a>
@@ -82,7 +82,7 @@ $outProduct = array_chunk($categoryData, 3, true);
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="product.php?product_id=<?php echo $productValue->stockid; ?>"><img src="<?php if ($productValue->img != '') {
-                                                                                                                        echo "//" . $productValue->img;
+                                                                                                                        echo  $productValue->img;
                                                                                                                     } else {
                                                                                                                         echo 'assets/imgs/product.png';
                                                                                                                     } ?>" alt="" /></a>
@@ -116,7 +116,7 @@ $outProduct = array_chunk($categoryData, 3, true);
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="product.php?product_id=<?php echo $productValue->stockid; ?>"><img src="<?php if ($productValue->img != '') {
-                                                                                                                        echo "//" . $productValue->img;
+                                                                                                                        echo $productValue->img;
                                                                                                                     } else {
                                                                                                                         echo 'assets/imgs/product.png';
                                                                                                                     } ?>" alt="" /></a>
@@ -151,7 +151,7 @@ $outProduct = array_chunk($categoryData, 3, true);
                             <figure class="col-md-4 mb-0">
                                 <a href="product.php?product_id=<?php echo $productValue->stockid; ?>"><img src="<?php
                                                                                                                     if ($productValue->img != '') {
-                                                                                                                        echo "//" . $productValue->img;
+                                                                                                                        echo $productValue->img;
                                                                                                                     } else {
                                                                                                                         echo 'assets/imgs/product.png';
                                                                                                                     } ?>" alt="" /></a>

@@ -239,7 +239,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         ?>
                                             <li>
                                                 <a href="products.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
-                                                    <img src="//<?php echo $categoryFirstHalfvalue->categoryImg; ?>" alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
+                                                    <img src="<?php echo $categoryFirstHalfvalue->categoryImg; ?>" alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
                                             </li>
                                         <?php
                                         }
@@ -251,7 +251,7 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                         ?>
                                             <li>
                                                 <a href="products.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
-                                                    <img src="//<?php echo $categorySecondHalfvalue->categoryImg; ?>" alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
+                                                    <img src="<?php echo $categorySecondHalfvalue->categoryImg; ?>" alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
                                             </li>
                                         <?php
                                         }

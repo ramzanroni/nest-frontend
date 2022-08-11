@@ -48,7 +48,7 @@ include 'inc/header.php';
                             foreach ($cartData as $key => $cartproduct) {
                             ?>
                                 <tr class="pt-30">
-                                    <td class="image product-thumbnail pt-40 start pl-30"><img src="//<?php echo $cartproduct->productImage; ?>" alt="#"></td>
+                                    <td class="image product-thumbnail pt-40 start pl-30"><img src="<?php echo $cartproduct->productImage; ?>" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.php"><?php echo $cartproduct->productName; ?></a>
                                         </h6>

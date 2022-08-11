@@ -91,14 +91,14 @@ if ($err) {
                                                 <img src="<?php if ($productData[0]->img == '') {
                                                                 echo './assets/imgs/product.png';
                                                             } else {
-                                                                echo '//' . $productData[0]->img;
+                                                                echo $productData[0]->img;
                                                             } ?>" alt="product image" />
                                             </figure>
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
                                             ?>
                                                 <figure class="border-radius-10">
-                                                    <img src="//<?php echo $multiImgValue; ?>" alt="product image" />
+                                                    <img src="<?php echo $multiImgValue; ?>" alt="product image" />
                                                 </figure>
                                             <?php
                                             }
@@ -109,13 +109,13 @@ if ($err) {
                                             <div><img src="<?php if ($productData[0]->img == '') {
                                                                 echo './assets/imgs/product.png';
                                                             } else {
-                                                                echo '//' . $productData[0]->img;
+                                                                echo $productData[0]->img;
                                                             } ?>" alt="product image" />
                                             </div>
                                             <?php
                                             foreach ($productData[0]->multipleImg as $multiImgValue) {
                                             ?>
-                                                <div><img src="//<?php echo $multiImgValue; ?>" alt="product image" /></div>
+                                                <div><img src="<?php echo $multiImgValue; ?>" alt="product image" /></div>
                                             <?php
                                             }
                                             ?>

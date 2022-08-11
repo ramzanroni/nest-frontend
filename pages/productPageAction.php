@@ -2,9 +2,9 @@
 include '../inc/function.php';
 include '../inc/apiendpoint.php';
 if ($_POST['check'] == "sortingProductList") {
-    $limit = trim($_POST['limitValueData']);
-    $sortby = trim($_POST['sortByData']);
-    $catID = trim($_POST['catID']);
+    $limit = $_POST['limitValueData'];
+    $sortby = $_POST['sortByData'];
+    $catID = $_POST['catID'];
     $pageNumber = 1;
 
 
@@ -23,7 +23,7 @@ if ($_POST['check'] == "sortingProductList") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
+            "Authorization:" . APIKEY,
             "cache-control: no-cache"
         ),
     ));
@@ -60,8 +60,8 @@ if ($_POST['check'] == "sortingProductList") {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-            "authorization:" . APIKEY,
-            "cache-control: no-cache"
+            "cache-control: no-cache",
+            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
         ),
     ));
 
@@ -225,7 +225,6 @@ if ($_POST['check'] == "sortingProductList") {
     </div>
 <?php
 }
-
 
 
 
