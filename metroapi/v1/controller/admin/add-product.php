@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 include_once('../db.php');
 include_once('../../model/admin/addProductModel.php');
 include_once('../../model/response.php');
@@ -46,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
         $product = new AddProduct($jsonData->stockid, $jsonData->code, $jsonData->categoryid, $jsonData->description, $jsonData->longdescription, $jsonData->units, $jsonData->categoryid, $jsonData->webprice, $jsonData->img);
 
-        if (count($jsonData->multipleImg) > 4) {
+        if (count($jsonData->multipleImg) > 5) {
             $response = new Response();
             $response->setHttpStatusCode(400);
             $response->setSuccess(false);
-            $response->addMessage("Multiple image not more then 4");
+            $response->addMessage("Multiple image not more then 5");
             $response->send();
             exit();
         }
@@ -186,6 +189,137 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit();
     } catch (PDOException $ex) {
         error_log("Database query error." . $ex, 0);
+        $response = new Response();
+        $response->setHttpStatusCode(500);
+        $response->setSuccess(false);
+        $response->addMessage($ex->getMessage());
+        $response->send();
+        exit();
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === "PUT") {
+    try {
+        if ($_SERVER['CONTENT_TYPE'] !== 'application/json') {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage("Content type header is not set to JSON");
+            $response->send();
+            exit();
+        }
+        $rawPostData = file_get_contents('php://input');
+        if (!$jsonData = json_decode($rawPostData)) {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage("Request body is not valid JSON");
+            $response->send();
+            exit();
+        }
+        $product = new AddProduct($jsonData->stockid, $jsonData->code, $jsonData->categoryid, $jsonData->description, $jsonData->longdescription, $jsonData->units, $jsonData->categoryid, $jsonData->webprice, $jsonData->img);
+
+        if (count($jsonData->multipleImg) > 5) {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage("Multiple image not more then 5");
+            $response->send();
+            exit();
+        }
+        $stockid = $product->getStockid();
+        $code = $product->getCode();
+        $categoryid = $product->getCategoryid();
+        $description = $product->getDescription();
+        $longdescription = $product->getLongdescription();
+        $units = $product->getUnits();
+        $groupid = $product->getGroupid();
+        $webprice = $product->getWebprice();
+        $img = $product->getImg();
+        // check product
+        $checkProduct = $readDB->prepare('SELECT * FROM `stockmaster` WHERE `stockid`=:stockid');
+        $checkProduct->bindParam(':stockid', $stockid, PDO::PARAM_STR);
+        $checkProduct->execute();
+        $rowCount = $checkProduct->rowCount();
+        if ($rowCount === 1) {
+
+            try {
+                $updateProduct = $writeDB->prepare('UPDATE `stockmaster` SET code=:code, categoryid=:categoryid, description=:description, longdescription=:longdescription, units=:units, groupid=:groupid, webprice=:webprice, img=:img WHERE stockid=:stockid');
+                $updateProduct->bindParam(':code', $code, PDO::PARAM_STR);
+                $updateProduct->bindParam(':categoryid', $categoryid, PDO::PARAM_STR);
+                $updateProduct->bindParam(':description', $description, PDO::PARAM_STR);
+                $updateProduct->bindParam(':longdescription', $longdescription, PDO::PARAM_STR);
+                $updateProduct->bindParam(':units', $units, PDO::PARAM_STR);
+                $updateProduct->bindParam(':groupid', $groupid, PDO::PARAM_STR);
+                $updateProduct->bindParam(':webprice', $webprice, PDO::PARAM_STR);
+                $updateProduct->bindParam(':img', $img, PDO::PARAM_STR);
+                $updateProduct->bindParam(':stockid', $stockid, PDO::PARAM_STR);
+                $updateProduct->execute();
+                $rowCount = $updateProduct->rowCount();
+                // if ($rowCount === 1) {
+                $multipleImage = $jsonData->multipleImg;
+                $checkMultiImg = $writeDB->prepare('SELECT * FROM `item_ref_file` WHERE `stockid`=:stockid');
+                $checkMultiImg->bindParam(':stockid', $stockid, PDO::PARAM_STR);
+                $checkMultiImg->execute();
+                $rowCount = $checkMultiImg->rowCount();
+                if ($rowCount > 1) {
+                    $deleteMultiImg = $writeDB->prepare('DELETE FROM `item_ref_file` WHERE `stockid`=:stockid');
+                    $deleteMultiImg->bindParam(':stockid', $stockid, PDO::PARAM_STR);
+                    $deleteMultiImg->execute();
+                }
+                foreach ($multipleImage as $image) {
+                    $imagename = $image->image;
+                    $addMultiImage = $writeDB->prepare('INSERT INTO item_ref_file(stockid, doc_name) VALUES (:stockid,:doc_name)');
+                    $addMultiImage->bindParam(':stockid', $stockid, PDO::PARAM_STR);
+                    $addMultiImage->bindParam(':doc_name', $imagename, PDO::PARAM_STR);
+                    $addMultiImage->execute();
+                }
+                $response = new Response();
+                $response->setHttpStatusCode(200);
+                $response->setSuccess(true);
+                $response->toCache(true);
+                $response->addMessage('Product Update Success');
+                $response->send();
+                exit;
+                // } else {
+                //     $response = new Response();
+                //     $response->setHttpStatusCode(400);
+                //     $response->setSuccess(false);
+                //     $response->addMessage('Product cannot be updated. Check your given data please and must change something.');
+                //     $response->send();
+                //     exit;
+                // }
+            } catch (PDOException $ex) {
+                error_log("Database query error." . $ex, 0);
+                $response = new Response();
+                $response->setHttpStatusCode(500);
+                $response->setSuccess(false);
+                $response->addMessage($ex->getMessage());
+                $response->send();
+                exit();
+            } catch (ProductException $ex) {
+                $response = new Response();
+                $response->setHttpStatusCode(500);
+                $response->setSuccess(false);
+                $response->addMessage($ex->getMessage());
+                $response->send();
+                exit();
+            }
+        } else {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage("Product Not Found");
+            $response->send();
+            exit();
+        }
+    } catch (PDOException $ex) {
+        error_log("Database query error." . $ex, 0);
+        $response = new Response();
+        $response->setHttpStatusCode(500);
+        $response->setSuccess(false);
+        $response->addMessage($ex->getMessage());
+        $response->send();
+        exit();
+    } catch (ProductException $ex) {
         $response = new Response();
         $response->setHttpStatusCode(500);
         $response->setSuccess(false);

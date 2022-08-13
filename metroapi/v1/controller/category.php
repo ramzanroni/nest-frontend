@@ -28,20 +28,25 @@ if (empty($_GET)) {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
             $web = 1;
-            $query = $readDB->prepare('SELECT groupid, groupname, image FROM stockgroup WHERE web=:web');
+            $query = $readDB->prepare('SELECT groupid, groupname,parent, image FROM stockgroup WHERE web=:web');
             $query->bindParam(':web', $web, PDO::PARAM_INT);
             $query->execute();
             $rowCount = $query->rowCount();
             $categoryArray = array();
             // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
-            $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
+            $ip_server = 'http://' . $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $categoryID = $row['groupid'];
                 $countItem = $readDB->prepare('SELECT * FROM stockmaster WHERE groupid=:categoryId');
                 $countItem->bindParam(':categoryId', $categoryID, PDO::PARAM_INT);
                 $countItem->execute();
                 $numberofItem = $countItem->rowCount();
-                $category = new Category($row['groupid'], $row['groupname'], $ip_server . $row['image'], $numberofItem);
+                if ($row['image'] == '') {
+                    $img = '';
+                } else {
+                    $img = $ip_server . $row['image'];
+                }
+                $category = new Category($row['groupid'], $row['groupname'], $img, $numberofItem, $row['parent']);
                 $categoryArray[] = $category->returnCategoryArray();
             }
             $returnArray = array();

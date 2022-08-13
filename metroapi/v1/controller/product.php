@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $productArray = array();
         $rowCount = $query->rowCount();
         // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
-        $ip_server = $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/images/";
+        $ip_server = 'http://' . $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/images/";
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $stockID = $row['stockid'];
             $multipleImg = $readDB->prepare("SELECT * FROM `item_ref_file` WHERE stockid=:stockid");
