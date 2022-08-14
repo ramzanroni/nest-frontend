@@ -2,9 +2,9 @@
 
 use LDAP\Result;
 
-include_once('../db.php');
-include_once('../../model/admin/addProductModel.php');
-include_once('../../model/response.php');
+include_once('../../db.php');
+include_once('../../../model/admin/addProductModel.php');
+include_once('../../../model/response.php');
 
 $allHeaders = getallheaders();
 $apiSecurity = $allHeaders['Authorization'];
@@ -235,14 +235,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $webprice = $product->getWebprice();
         $img = $product->getImg();
         // check product
-        $checkProduct = $readDB->prepare('SELECT * FROM `stockmaster` WHERE `stockid`=:stockid');
+        $checkProduct = $readDB->prepare('SELECT * FROM stockmaster WHERE stockid=:stockid');
         $checkProduct->bindParam(':stockid', $stockid, PDO::PARAM_STR);
         $checkProduct->execute();
         $rowCount = $checkProduct->rowCount();
         if ($rowCount === 1) {
 
             try {
-                $updateProduct = $writeDB->prepare('UPDATE `stockmaster` SET code=:code, categoryid=:categoryid, description=:description, longdescription=:longdescription, units=:units, groupid=:groupid, webprice=:webprice, img=:img WHERE stockid=:stockid');
+                $updateProduct = $writeDB->prepare('UPDATE stockmaster SET code=:code, categoryid=:categoryid, description=:description, longdescription=:longdescription, units=:units, groupid=:groupid, webprice=:webprice, img=:img WHERE stockid=:stockid');
                 $updateProduct->bindParam(':code', $code, PDO::PARAM_STR);
                 $updateProduct->bindParam(':categoryid', $categoryid, PDO::PARAM_STR);
                 $updateProduct->bindParam(':description', $description, PDO::PARAM_STR);
@@ -256,12 +256,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $rowCount = $updateProduct->rowCount();
                 // if ($rowCount === 1) {
                 $multipleImage = $jsonData->multipleImg;
-                $checkMultiImg = $writeDB->prepare('SELECT * FROM `item_ref_file` WHERE `stockid`=:stockid');
+                $checkMultiImg = $writeDB->prepare('SELECT * FROM item_ref_file WHERE stockid=:stockid');
                 $checkMultiImg->bindParam(':stockid', $stockid, PDO::PARAM_STR);
                 $checkMultiImg->execute();
                 $rowCount = $checkMultiImg->rowCount();
                 if ($rowCount > 1) {
-                    $deleteMultiImg = $writeDB->prepare('DELETE FROM `item_ref_file` WHERE `stockid`=:stockid');
+                    $deleteMultiImg = $writeDB->prepare('DELETE FROM item_ref_file WHERE stockid=:stockid');
                     $deleteMultiImg->bindParam(':stockid', $stockid, PDO::PARAM_STR);
                     $deleteMultiImg->execute();
                 }
@@ -311,6 +311,72 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $response->send();
             exit();
         }
+    } catch (PDOException $ex) {
+        error_log("Database query error." . $ex, 0);
+        $response = new Response();
+        $response->setHttpStatusCode(500);
+        $response->setSuccess(false);
+        $response->addMessage($ex->getMessage());
+        $response->send();
+        exit();
+    } catch (ProductException $ex) {
+        $response = new Response();
+        $response->setHttpStatusCode(500);
+        $response->setSuccess(false);
+        $response->addMessage($ex->getMessage());
+        $response->send();
+        exit();
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+    $id = $_GET['id'];
+    if ($id == '' || !is_numeric($id)) {
+        $response = new Response();
+        $response->setHttpStatusCode(400);
+        $response->setSuccess(false);
+        $response->addMessage('Product id number be numeric and not null.');
+        $response->send();
+        exit();
+    }
+    try {
+        // check product 
+        $checkProduct = $readDB->prepare('SELECT * FROM stockmaster WHERE stockid=:stockid');
+        $checkProduct->bindParam(':stockid', $id, PDO::PARAM_STR);
+        $checkProduct->execute();
+        $rowCount = $checkProduct->rowCount();
+        if ($rowCount == 0) {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage('Product Not found.');
+            $response->send();
+            exit();
+        }
+        // check order 
+        $checkOrder = $readDB->prepare('SELECT * FROM salesorderdetails WHERE stkcode=:stkcode');
+        $checkOrder->bindParam(':stkcode', $id, PDO::PARAM_STR);
+        $checkOrder->execute();
+        $rowCount = $checkOrder->rowCount();
+        if ($rowCount > 0) {
+            $response = new Response();
+            $response->setHttpStatusCode(400);
+            $response->setSuccess(false);
+            $response->addMessage('Delete can not be possible');
+            $response->send();
+            exit();
+        }
+        $deleteProduct = $writeDB->prepare('DELETE FROM stockmaster WHERE stockid=:stockid');
+        $deleteProduct->bindParam(':stockid', $id, PDO::PARAM_STR);
+        $deleteProduct->execute();
+        $deleteFile = $writeDB->prepare('DELETE FROM item_ref_file WHERE stockid=:stockid');
+        $deleteFile->bindParam(':stockid', $id, PDO::PARAM_STR);
+        $deleteFile->execute();
+
+        $response = new Response();
+        $response->setHttpStatusCode(200);
+        $response->setSuccess(true);
+        $response->addMessage("Delete item success.");
+        $response->send();
+        exit();
     } catch (PDOException $ex) {
         error_log("Database query error." . $ex, 0);
         $response = new Response();

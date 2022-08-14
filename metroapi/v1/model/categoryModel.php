@@ -8,13 +8,15 @@ class Category
     private $_categoryName;
     private $_categoryImg;
     private $_item;
+    private $_parent;
 
-    public function __construct($categoryID, $categoryName, $categoryImg, $item)
+    public function __construct($categoryID, $categoryName, $categoryImg, $item, $parent)
     {
         $this->setCategoryID($categoryID);
         $this->setCategoryName($categoryName);
         $this->setCategoryImg($categoryImg);
         $this->setItem($item);
+        $this->setParent($parent);
     }
 
 
@@ -34,6 +36,10 @@ class Category
     {
         return $this->_item;
     }
+    public function getParent()
+    {
+        return $this->_parent;
+    }
 
     public function setCategoryID($categoryID)
     {
@@ -52,9 +58,9 @@ class Category
     }
     public function setCategoryImg($categoryImg)
     {
-        if (($categoryImg !== null) && (strlen($categoryImg) == 0 || strlen($categoryImg) > 16777215)) {
-            throw new CategoryException("Category Image error");
-        }
+        // if (($categoryImg !== null) && (strlen($categoryImg) == 0 || strlen($categoryImg) > 16777215)) {
+        //     throw new CategoryException("Category Image error");
+        // }
         $this->_categoryImg = $categoryImg;
     }
     public function setItem($item)
@@ -63,6 +69,10 @@ class Category
         //     throw new CategoryException("Item Number not null");
         // }
         $this->_item = $item;
+    }
+    public function setParent($parent)
+    {
+        $this->_parent = $parent;
     }
 
 
@@ -73,6 +83,7 @@ class Category
         $category['categoryName'] = $this->getCategoryName();
         $category['categoryImg'] = $this->getCategoryImg();
         $category['item'] = $this->getItem();
+        $category['parent'] = $this->getParent();
         return $category;
     }
 }
