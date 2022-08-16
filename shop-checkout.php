@@ -32,6 +32,39 @@ if ($err) {
     $result = json_decode($response);
     $profileData = $result->data->user[0];
 }
+
+
+// area 
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => APIENDPOINT . "area.php",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "Authorization: " . APIKEY,
+        "cache-control: no-cache"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $result = json_decode($response);
+    $areaData = $result->data->area;
+}
+foreach ($areaData as  $area) {
+    echo $area->id;
+}
 ?>
 <main class="main">
     <?php
@@ -72,16 +105,26 @@ if ($err) {
                             <input type="text" name="address" value="<?php echo $profileData->address; ?>" id="address" required="" placeholder="Delivery Address *">
                         </div>
                     </div>
-                    <div class="row">
-
+                    <div class="row shipping_calculator">
                         <div class="form-group col-lg-6">
-                            <input type="text" name="area" required="" id="area" placeholder="Delivery Area *">
+                            <div class="custom_select">
+                                <select class="form-control select-active" onchange="getDeliveryCharge(this.value)" name="area" id="area">
+                                    <option value="">Select an option...</option>
+                                    <?php
+                                    foreach ($areaData as $area) {
+                                    ?>
+                                        <option value="<?php echo $area->id; ?>"><?php echo $area->deliveryArea; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" name="town" id="town" required="" placeholder=" Delivery Town/City *">
+                            <input required="" type="text" name="town" id="town" placeholder="City / Town *">
                         </div>
-
                     </div>
+
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <input required="" type="text" value="<?php echo $profileData->phone; ?>" name="phone" id="phone" placeholder="Phone *">
@@ -131,8 +174,12 @@ if ($err) {
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-12">
+                        <p class="text-muted pt-2 pb-2 h5" style="text-align: right;">Delivery Charge: ৳ <span class="text-brand" id="deliveryCharge"> 0.00</span></p>
+                    </div>
                     <div class="d-flex align-items-end justify-content-between mb-30 float-end">
-                        <h4 class="text-muted">Subtotal: <span class="text-brand">৳ <?php echo $totalSum; ?></span></h4>
+                        <input type="hidden" id="totalValue" value="<?php echo $totalSum; ?>">
+                        <h4 class="text-muted">Subtotal: ৳ <span class="text-brand" id="totalAmount"><?php echo $totalSum; ?></span></h4>
                     </div>
                 </div>
                 <div class="payment ml-30">

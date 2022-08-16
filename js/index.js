@@ -1053,6 +1053,7 @@ function placeorder(phoneNumber, token) {
   var name = $("#name").val();
   var address = $("#address").val();
   var area = $("#area").val();
+  console.log(area);
   var phone = $("#phone").val();
   var town = $("#town").val();
   var additionalPhone = $("#additionalPhone").val();
@@ -1068,7 +1069,10 @@ function placeorder(phoneNumber, token) {
     flag = 0;
   }
   if (area == "") {
-    $("#area").css({ border: "1px solid red" });
+    alertMessage("Please select area.");
+
+    $("#area").addClass('select2-container-class');
+    
     flag = 0;
   }
   if (phone == "") {
@@ -1109,7 +1113,32 @@ function placeorder(phoneNumber, token) {
     });
   }
 }
+// delivery charge 
+function getDeliveryCharge(id) {
+  if (id != '') {
+    const check = "getDeliveryCharge";
+    $.ajax({
+      url: "pages/orderAction.php",
+      type: "POST",
 
+      data: {
+        id: id,
+        check: check
+      },
+      success: function (response) {
+        $("#deliveryCharge").html(response);
+        var totalValue = $("#totalValue").val();
+
+        $("#totalAmount").html(parseInt(response) + parseInt(totalValue));
+      },
+    });
+  } else {
+    $("#deliveryCharge").html('0.00');
+    var totalValue = $("#totalValue").val();
+
+    $("#totalAmount").html(parseInt(totalValue));
+  }
+}
 // searchItem
 function searchItem(productSearchItem) {
   

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 03, 2022 at 01:14 PM
+-- Generation Time: Aug 08, 2022 at 08:41 PM
 -- Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `eon_bazar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `area`
+--
+
+CREATE TABLE `area` (
+  `id` int(11) NOT NULL,
+  `area_name` varchar(255) NOT NULL,
+  `delivery_charge` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `area`
+--
+
+INSERT INTO `area` (`id`, `area_name`, `delivery_charge`) VALUES
+(1, 'Uttara', 50),
+(2, 'Mirpur', 40),
+(3, 'Azimpur', 20.5),
+(4, 'Airport', 12.6);
 
 -- --------------------------------------------------------
 
@@ -155,8 +177,16 @@ CREATE TABLE `contact_master` (
 
 INSERT INTO `contact_master` (`id`, `code`, `name`, `address1`, `address2`, `address3`, `address4`, `phone1`, `email`, `bid`, `picture`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (20, '20', 'sumon', ' dp', '', '', '', '01737642009', '', '', '', 0, '2022-08-02 13:31:42', 0, NULL),
+(2090, '2090', 'test', '', '', '', '', '01516151212881', '', '', '', 0, '2022-08-08 22:27:32', 0, NULL),
 (4386, '4386', 'Rangpur', '540183', '', '', '', '01767270653', '', '', '', 0, '2022-08-03 16:36:01', 0, NULL),
-(9382, '9382', 'Ramzan Roni', 'Dhaka', '', '', '', '01516158298', '', '', '', 0, '2022-08-03 17:26:30', 0, NULL);
+(5696, '5696', 'test', '', '', '', '', '015161512881', '', '', '', 0, '2022-08-08 22:02:24', 0, NULL),
+(7921, '7921', 'test', '', '', '', '', '015161512881', '', '', '', 0, '2022-08-08 22:22:51', 0, NULL),
+(8639, '8639', 'test', '', '', '', '', '015161512881', '', '', '', 0, '2022-08-08 21:55:39', 0, NULL),
+(9083, '9083', 'test', '', '', '', '', '015161512881', '', '', '', 0, '2022-08-08 22:03:04', 0, NULL),
+(9382, '9382', 'Ramzan Roni', 'Dhaka', '', '', '', '01516158298', '', '', '', 0, '2022-08-03 17:26:30', 0, NULL),
+(9383, '123', 'test', 'address1', 'address2', 'address3', 'address4', '01737642007', 'email@gmail.com', '123', 'image', 1, '2022-08-08 20:40:09', 0, NULL),
+(9384, '123', 'test', 'address1', 'address2', 'address3', 'address4', '01737642008', 'email@gmail.com', '123', 'image', 1, '2022-08-08 21:27:01', 0, NULL),
+(9385, '123', 'Ramzan', 'Dhaka', 'Uttara', 'Dhanmondi', 'Mirpur', '01516158299', 'email@gmail.com', '123', 'image', 1, '2022-08-08 21:28:26', 1, '2022-08-08 16:05:37');
 
 -- --------------------------------------------------------
 
@@ -216,7 +246,12 @@ CREATE TABLE `custbranch` (
 
 INSERT INTO `custbranch` (`branchcode`, `debtorno`, `brname`, `braddress1`, `braddress2`, `braddress3`, `braddress4`, `braddress5`, `braddress6`, `lat`, `lng`, `estdeliverydays`, `area`, `salesman`, `fwddate`, `phoneno`, `faxno`, `contactname`, `email`, `defaultlocation`, `taxgroupid`, `defaultshipvia`, `deliverblind`, `disabletrans`, `brpostaddr1`, `brpostaddr2`, `brpostaddr3`, `brpostaddr4`, `brpostaddr5`, `brpostaddr6`, `specialinstructions`, `custbranchcode`, `branchdistance`, `travelrate`, `businessunit`, `emi`, `esd`, `branchsince`, `branchstatus`, `tag`, `op_bal`, `aggrigate_cr`, `discount_amt`) VALUES
 (1, '4386', 'main', '540183', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01767270653', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-03', 1, 1, 0, 1, 0),
-(2, '9382', 'main', 'Dhaka', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516158298', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-03', 1, 1, 0, 1, 0);
+(2, '9382', 'main', 'Dhaka', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516158298', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-03', 1, 1, 0, 1, 0),
+(4, '6888', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(5, '5946', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(6, '3012', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(7, '7921', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(8, '2090', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516151212881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -281,7 +316,10 @@ CREATE TABLE `debtorsmaster` (
 INSERT INTO `debtorsmaster` (`debtorno`, `cm_id`, `name`, `address1`, `address2`, `address3`, `address4`, `address5`, `address6`, `login_media`, `login_id`, `currcode`, `salestype`, `clientsince`, `holdreason`, `paymentterms`, `discount`, `pymtdiscount`, `lastpaid`, `lastpaiddate`, `creditlimit`, `invaddrbranch`, `discountcode`, `ediinvoices`, `ediorders`, `edireference`, `editransport`, `ediaddress`, `ediserveruser`, `ediserverpwd`, `taxref`, `customerpoline`, `typeid`, `customer_note`, `custcatid1`, `op_bal`, `phone1`, `phone2`, `email`, `created_by`, `created_at`, `updated_at`, `updated_by`, `status`, `bin_no`, `nid_no`, `user_token`) VALUES
 ('20', 20, 'sumon', ' dp', '', '', '', '', '', 1, '', 'BDT', 'DP', '2022-08-02 13:31:42', 1, '30', 0, 0, 0, NULL, 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01767270659', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE3Mzc2NDIwMDkyMDIyLTA4LTAyIDEzOjMxOjQy'),
 ('4386', 4386, 'Rangpur', '540183', '', '', '', '', '', 1, '', 'BDT', 'DP', '2022-08-03 16:36:01', 1, '30', 0, 0, 0, NULL, 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01767270653', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE3NjcyNzA2NTMyMDIyLTA4LTAzIDE2OjM2OjAx'),
-('9382', 9382, 'Ramzan Roni', 'Dhaka', '', '', '', '', '', 1, '', 'BDT', 'DP', '2022-08-03 17:26:30', 1, '30', 0, 0, 0, NULL, 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516158298', '', 'mdramzanroni76@gmail.com', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTgyOTgyMDIyLTA4LTAzIDE3OjI2OjMw');
+('9382', 9382, 'Ramzan Roni', 'Dhaka', '', '', '', '', '', 1, '', 'BDT', 'DP', '2022-08-03 17:26:30', 1, '30', 0, 0, 0, NULL, 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516158298', '', 'mdramzanroni76@gmail.com', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTgyOTgyMDIyLTA4LTAzIDE3OjI2OjMw'),
+('4332', 4332, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 21:49:09', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '015161512872981', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyODcyOTgxMjAyMi0wOC0wOCAxNTo0OTowOQ=='),
+('7921', 7921, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 22:22:51', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '015161512881', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyODgxMjAyMi0wOC0wOCAxNjoyMjo1MQ=='),
+('2090', 2090, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 22:27:32', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516151212881', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyMTI4ODEyMDIyLTA4LTA4IDE2OjI3OjMy');
 
 -- --------------------------------------------------------
 
@@ -294,6 +332,51 @@ CREATE TABLE `item_ref_file` (
   `stockid` varchar(255) NOT NULL,
   `doc_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_ref_file`
+--
+
+INSERT INTO `item_ref_file` (`id`, `stockid`, `doc_name`) VALUES
+(1, '10042', 'image1'),
+(2, '1002', 'image2'),
+(3, '1002', 'image1'),
+(4, '10041', 'image2'),
+(39, '10011', 'nothing'),
+(40, '10011', 'hello'),
+(41, '10011', 'image2'),
+(42, '10011', 'image2'),
+(43, '10011', 'image2'),
+(44, '10041', 'image1'),
+(45, '10041', 'image2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `product_id` varchar(11) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id`, `product_id`, `comment`, `rating`) VALUES
+(1, 'sa', '', 1),
+(2, '12', '212', NULL),
+(3, '23', NULL, 1),
+(4, '1234', '123', NULL),
+(5, '1234', '123', NULL),
+(6, '1234', '123', NULL),
+(7, '1234', NULL, 123),
+(8, '1234', 'ew', 123),
+(9, '1234', '', 123);
 
 -- --------------------------------------------------------
 
@@ -334,7 +417,12 @@ CREATE TABLE `salesorderdetails` (
 INSERT INTO `salesorderdetails` (`orderlineno`, `orderno`, `stkcode`, `qtyinvoiced`, `unitprice`, `quantity`, `qtypaid`, `tax_rate`, `estimate`, `discountpercent`, `actualdispatchdate`, `completed`, `narrative`, `itemdue`, `poline`, `route_id`, `mo_isu_qty`, `mo_isu_seq_qty`, `route_stage`, `mo_rcv_seq_qty`, `discount_amount`, `discount_flag`, `org_so_qty`) VALUES
 (1, 7, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 1, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 1320, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 2643, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 2991, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 5092, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 7319, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 9070, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 9608, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 129776, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 140325, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 148708, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
@@ -344,7 +432,10 @@ INSERT INTO `salesorderdetails` (`orderlineno`, `orderno`, `stkcode`, `qtyinvoic
 (1, 845592, '100902', 0, 111, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 7, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 1320, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(2, 2643, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(2, 2991, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 5092, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(2, 7319, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 129776, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 140325, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 148708, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
@@ -408,7 +499,12 @@ CREATE TABLE `salesorders` (
 INSERT INTO `salesorders` (`orderno`, `debtorno`, `branchcode`, `customerref`, `buyername`, `tag`, `comments`, `orddate`, `ordertype`, `shipvia`, `deladd1`, `deladd2`, `deladd3`, `deladd4`, `deladd5`, `deladd6`, `contactphone`, `contactemail`, `deliverto`, `deliverblind`, `freightcost`, `fromstkloc`, `deliverydate`, `quotedate`, `confirmeddate`, `printedpackingslip`, `datepackingslipprinted`, `quotation`, `assigned`, `salesmancode`, `so_currency`, `so_exchange_rate`, `approved_for_production`, `so_type`, `so_status`, `delivery_status`, `issue_date`) VALUES
 (7, '4', '1', 'SO:1', NULL, 1, 'Nothing', '2022-07-17', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 1, 0, '2022-07-17'),
 (1320, '4386', '1', 'SO: 1320', NULL, 1, 'Nothing', '2022-08-03', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '0000-00-00'),
+(2643, '4386', '1', 'SO: 2643', NULL, 1, 'Nothing', '2022-08-06', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-06'),
+(2991, '9382', '1', 'SO: 2991', NULL, 1, 'test', '2022-08-06', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '01515621312', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-06'),
 (5092, '9382', '1', 'SO: 5092', NULL, 1, '', '2022-08-03', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '0000-00-00'),
+(7319, '4386', '1', 'SO: 7319', NULL, 1, 'Nothing', '2022-08-06', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-06'),
+(9070, '9382', '1', 'SO: 9070', NULL, 1, '', '2022-08-08', 'DP', 1, '603/B shamem saroni, mirput', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-08'),
+(9608, '9382', '1', 'SO: 9608', NULL, 1, '', '2022-08-08', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-08'),
 (129776, '4', '1', 'SO:1', NULL, 1, 'Nothing', '2022-07-19', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-07-19'),
 (140325, '4', '1', 'SO:1', NULL, 1, '', '2022-08-02', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-02'),
 (148708, '4', '1', 'SO:1', NULL, 1, 'Nothing', '2022-08-02', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-02'),
@@ -438,10 +534,14 @@ CREATE TABLE `stockgroup` (
 INSERT INTO `stockgroup` (`groupid`, `groupname`, `parent`, `image`, `web`) VALUES
 (1, 'Undefined', 0, 'images/category-1.svg', 1),
 (2, 'Trims &amp; Accessories', 0, 'images/category-1.svg', 1),
-(3, 'Fabrics', 0, 'images/category-1.svg', 1),
+(3, 'Fabrics', 1, 'images/category-1.svg', 1),
 (4, 'Dyes &amp; Chems', 0, 'images/category-1.svg', 0),
 (5, 'Yarns', 0, 'images/category-1.svg', 1),
-(6, 'Others', 0, 'images/category-1.svg', 1);
+(6, 'Others', 0, 'images/category-1.svg', 1),
+(9, 'test', 0, '', 1),
+(10, 'test1', 0, '', 1),
+(11, 'test2', 0, '', 1),
+(12, 'test3', 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -537,6 +637,7 @@ CREATE TABLE `stockmaster` (
 INSERT INTO `stockmaster` (`stockid`, `code`, `categoryid`, `description`, `longdescription`, `units`, `mbflag`, `lastcurcostdate`, `actualcost`, `lastcost`, `materialcost`, `labourcost`, `overheadcost`, `lowestlevel`, `discontinued`, `controlled`, `eoq`, `volume`, `kgs`, `barcode`, `discountcategory`, `taxcatid`, `taxcatp`, `serialised`, `appendfile`, `perishable`, `decimalplaces`, `nextserialno`, `pansize`, `shrinkfactor`, `netweight`, `productiontime`, `webitem`, `depreciation_rate`, `depreciation_run`, `addncalist`, `brandid`, `groupid`, `subgroupid`, `webprice`, `updatetime`, `tag`, `wip_qty`, `wip_cost`, `stock_gl`, `op_bal`, `op_qty`, `size`, `color`, `style`, `depreciation_act`, `default_store`, `portable`, `length`, `length_unit`, `giid`, `hs_code`, `tarrif_value`, `wip_wtd_rate`, `pz`, `default_expiry_date`, `pzCons`, `mz`, `mzCons`, `min_cm`, `cm_base_price`, `min_inc`, `inc_base_price`, `cm_addi_price`, `inc_addi_price`, `per_carton_qty`, `cost_`, `img`, `est_cost`, `item_type`, `parent_id`, `dia`, `temp_bom_set`) VALUES
 ('1001201031', '1030', '1', 'Stapler Heavy Duty', 'Stapler Heavy Duty', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 2, 1, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Tube forming Machine.jpg', 0, 1, 0, '', 0),
 ('1002', '1002', '1', 'Wood Pencil Blue', 'Wood Pencil Blue', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '1', '', 6, 7, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, '0', 0.000, 0, 0, 1, 2, 2, 1097, '2022-05-14 12:11:35', 1, 0, 0, '', 0, 0, '0', '0', '0', 0, '0', 0, 0, 1, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/50 ton Sheet Metal Press.jpg', 0, 1, 0, '', 0),
+('10041', '122', '1', 'description', 'longdescription', 'units', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 1, 1, 0, 'none', 0, 0, 0, 0, 0, '0.0000', 0, '0', NULL, NULL, NULL, 1, 1, 1, 123, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'imageURL', 0, 1, 0, '', 0),
 ('1005', '1005', '1', 'Pencil Sharpener Small', 'Pencil Sharpener Small', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 1, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Brazing Machine.jpg', 0, 1, 0, '', 0),
 ('1006', '1006', '1', 'Pencil Sharpener Desktop', 'Pencil Sharpener Desktop', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 1, 7878, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Circular Knitting Machine.jpg', 0, 1, 0, '', 0),
 ('1008', '1008', '1', 'File Cover Typ 1', 'File Cover Typ 1', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 2, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Engine Lathe Machine 5.jpg', 0, 1, 0, '', 0),
@@ -627,11 +728,21 @@ CREATE TABLE `user_type` (
 INSERT INTO `user_type` (`id`, `user_id`, `type`, `status`, `create_at`, `create_by`) VALUES
 (3, 20, 'ecm', 1, '2022-08-02 13:31:42', 0),
 (10, 4386, 'ecm', 1, '2022-08-03 16:36:01', 0),
-(11, 9382, 'ecm', 1, '2022-08-03 17:26:30', 0);
+(11, 9382, 'ecm', 1, '2022-08-03 17:26:30', 0),
+(12, 1083, 'ecm', 1, '2022-08-08 22:07:17', 1),
+(16, 3626, 'ecm', 1, '2022-08-08 22:09:04', 0),
+(17, 7921, 'ecm', 1, '2022-08-08 22:22:51', 0),
+(18, 2090, 'ecm', 1, '2022-08-08 22:27:32', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `carton_list`
@@ -679,6 +790,12 @@ ALTER TABLE `item_ref_file`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salesorderdetails`
 --
 ALTER TABLE `salesorderdetails`
@@ -713,16 +830,7 @@ ALTER TABLE `stockgroup`
 -- Indexes for table `stockmaster`
 --
 ALTER TABLE `stockmaster`
-  ADD PRIMARY KEY (`stockid`),
-  ADD UNIQUE KEY `description_2` (`description`),
-  ADD KEY `CategoryID` (`categoryid`),
-  ADD KEY `Description` (`description`),
-  ADD KEY `LastCurCostDate` (`lastcurcostdate`),
-  ADD KEY `MBflag` (`mbflag`),
-  ADD KEY `StockID` (`stockid`,`categoryid`),
-  ADD KEY `Controlled` (`controlled`),
-  ADD KEY `DiscountCategory` (`discountcategory`),
-  ADD KEY `taxcatid` (`taxcatid`);
+  ADD PRIMARY KEY (`stockid`);
 
 --
 -- Indexes for table `temp_otp`
@@ -745,6 +853,12 @@ ALTER TABLE `user_type`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `area`
+--
+ALTER TABLE `area`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `carton_list`
@@ -774,31 +888,37 @@ ALTER TABLE `carton_status_list`
 -- AUTO_INCREMENT for table `contact_master`
 --
 ALTER TABLE `contact_master`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9383;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9386;
 
 --
 -- AUTO_INCREMENT for table `custbranch`
 --
 ALTER TABLE `custbranch`
-  MODIFY `branchcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `branchcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `item_ref_file`
 --
 ALTER TABLE `item_ref_file`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `stockgroup`
 --
 ALTER TABLE `stockgroup`
-  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `temp_otp`
 --
 ALTER TABLE `temp_otp`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -810,7 +930,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

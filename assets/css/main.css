@@ -7541,6 +7541,11 @@ h6.post-title {
   fill: var(--secondary-color);
 }
 
+.select2-container-class {
+  border-radius: 5px;
+  border: 2px solid red;
+}
+
 .header-action-2 .header-action-icon-2:hover .cart-dropdown-wrap {
   opacity: 1;
   visibility: visible;
