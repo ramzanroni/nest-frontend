@@ -11823,7 +11823,7 @@ footer .hotline img {
   .logo.logo-width-1 {
     margin-right: 0;
     position: absolute;
-    left: 45%;
+    left: 8%;
     -webkit-transform: translateX(-50%);
   }
 
@@ -12299,6 +12299,7 @@ footer .hotline img {
 
   .header-style-1 .search-style-2 form {
     max-width: 450px;
+    left: 42%;
   }
 
   .header-action-2 .header-action-icon-2:last-child {
