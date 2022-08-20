@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 08, 2022 at 08:41 PM
+-- Generation Time: Aug 08, 2022 at 07:58 PM
 -- Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -146,6 +146,44 @@ INSERT INTO `carton_status_list` (`id`, `order`, `description`) VALUES
 (2, 2, 'Shipping'),
 (3, 3, 'Deliverd'),
 (4, 4, 'Returend');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chartmaster`
+--
+
+CREATE TABLE `chartmaster` (
+  `accountcode` int(11) NOT NULL,
+  `modify_code` varchar(255) NOT NULL,
+  `accountname` char(50) NOT NULL DEFAULT '',
+  `group_` char(30) NOT NULL DEFAULT '',
+  `accounttype` char(1) DEFAULT NULL,
+  `block_negbal` tinyint(4) DEFAULT NULL COMMENT '0 or Null No Action, 1 Warning, 2 Block',
+  `block_budget` tinyint(4) DEFAULT NULL COMMENT '0 or Null No Action, 1 Warning, 2 Block',
+  `cf` tinyint(4) DEFAULT NULL COMMENT 'Flagged 1 to let this gl item be visible in cash flow statement',
+  `tagfa` tinyint(4) DEFAULT NULL COMMENT 'Flagged 1 if this gl head contains fixed asset expensese',
+  `cashFlowGroup` int(11) DEFAULT 0,
+  `in_cash_flow_type` tinyint(4) NOT NULL DEFAULT 0,
+  `op_bal` double NOT NULL DEFAULT 0,
+  `vectors` text DEFAULT NULL,
+  `display_si` double NOT NULL,
+  `cn_id` int(11) NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `threshold` tinyint(4) NOT NULL,
+  `upper_limit` double NOT NULL,
+  `lower_limit` double NOT NULL,
+  `threshold_flag` tinyint(4) NOT NULL,
+  `currency` varchar(4) NOT NULL DEFAULT 'BDT'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `chartmaster`
+--
+
+INSERT INTO `chartmaster` (`accountcode`, `modify_code`, `accountname`, `group_`, `accounttype`, `block_negbal`, `block_budget`, `cf`, `tagfa`, `cashFlowGroup`, `in_cash_flow_type`, `op_bal`, `vectors`, `display_si`, `cn_id`, `color`, `threshold`, `upper_limit`, `lower_limit`, `threshold_flag`, `currency`) VALUES
+(1000000, '1000000', 'Trade Receivables(AR)-CA', 'Current Assets', 'D', 0, 0, 0, 4, 0, 0, 0, '', 0, 0, '', 0, 0, 0, 0, 'BDT'),
+(60607066, '0', 'accountname1', 'Administrative Expenses', 'D', 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '0', 0, 0, 0, 0, 'BDT');
 
 -- --------------------------------------------------------
 
@@ -538,10 +576,10 @@ INSERT INTO `stockgroup` (`groupid`, `groupname`, `parent`, `image`, `web`) VALU
 (4, 'Dyes &amp; Chems', 0, 'images/category-1.svg', 0),
 (5, 'Yarns', 0, 'images/category-1.svg', 1),
 (6, 'Others', 0, 'images/category-1.svg', 1),
-(9, 'test', 0, '', 1),
-(10, 'test1', 0, '', 1),
-(11, 'test2', 0, '', 1),
-(12, 'test3', 0, '', 1);
+(9, 'test', 0, '1', 1),
+(10, 'test1', 0, '1', 1),
+(11, 'test2', 0, '2', 1),
+(12, 'test3', 0, '1', 1);
 
 -- --------------------------------------------------------
 
@@ -772,6 +810,12 @@ ALTER TABLE `carton_status_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `chartmaster`
+--
+ALTER TABLE `chartmaster`
+  ADD PRIMARY KEY (`accountcode`);
+
+--
 -- Indexes for table `contact_master`
 --
 ALTER TABLE `contact_master`
@@ -885,6 +929,12 @@ ALTER TABLE `carton_status_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `chartmaster`
+--
+ALTER TABLE `chartmaster`
+  MODIFY `accountcode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60607067;
+
+--
 -- AUTO_INCREMENT for table `contact_master`
 --
 ALTER TABLE `contact_master`
@@ -912,7 +962,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `stockgroup`
 --
 ALTER TABLE `stockgroup`
-  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `temp_otp`
