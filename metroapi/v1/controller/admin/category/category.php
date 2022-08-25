@@ -204,18 +204,38 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit;
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $categorys = $readDB->prepare('SELECT * FROM `stockgroup`');
+    if (array_key_exists('id', $_GET)) {
+        $id = $_GET['id'];
+        $categorys = $readDB->prepare('SELECT * FROM `stockgroup` WHERE groupid=:groupid');
+        $categorys->bindParam(':groupid', $id, PDO::PARAM_STR);
+    } elseif (array_key_exists('name', $_GET)) {
+        $name = $_GET['name'];
+        if ($name === '') {
+            $response = new Response();
+            $response->setHttpStatusCode(403);
+            $response->setSuccess(false);
+            $response->addMessage('Category Name missing its not be null. ');
+            $response->send();
+            exit();
+        }
+        $subQry = "SELECT * FROM `stockgroup` WHERE ";
+        $textsearchQury = '';
+
+        $searchKeywordList = explode(' ', $name);
+
+        foreach ($searchKeywordList as $searchKey) {
+            $textsearchQury .= "groupname LIKE '%" . $searchKey . "%' OR ";
+        }
+        $textsearchQury = $subQry . rtrim($textsearchQury, 'OR ');
+        $categorys = $readDB->prepare($textsearchQury);
+    } else {
+        $categorys = $readDB->prepare('SELECT * FROM `stockgroup`');
+    }
     $categorys->execute();
     $rowCount = $categorys->rowCount();
     $categoryArray = array();
     while ($row = $categorys->fetch(PDO::FETCH_ASSOC)) {
-        // echo $row['groupid'];
-        // echo $row['groupname'];
-        // echo $row['parent'];
-        // echo $row['image'];
-        // echo $row['web'];
         $cat = new Categories($row['groupid'], $row['groupname'], $row['parent'], $row['image'],  $row['web']);
-        // $categoryData = new Categories($row['groupid'], $row['groupname'], $row['parent'], $row['image'], $row['web']);
         $categoryArray[] = $cat->returnCategoryArray();
     }
     $returnArray = array();

@@ -5,7 +5,7 @@ class ProductException extends Exception
 class AddProduct
 {
 
-    public function __construct($stockid, $code, $categoryid, $description, $longdescription, $units, $groupid, $webprice, $img)
+    public function __construct($stockid, $code, $categoryid, $description, $longdescription, $units, $groupid, $webprice, $img, $multiImg)
     {
         $this->setStockid($stockid);
         $this->setCode($code);
@@ -16,6 +16,7 @@ class AddProduct
         $this->setGroupid($groupid);
         $this->setWebprice($webprice);
         $this->setImg($img);
+        $this->setMultiImg($multiImg);
     }
 
 
@@ -28,6 +29,7 @@ class AddProduct
     private $groupid;
     private $webprice;
     private $img;
+    private $multiImg;
 
     function setStockid($stockid)
     {
@@ -100,5 +102,31 @@ class AddProduct
     function getImg()
     {
         return $this->img;
+    }
+    function setMultiImg($multiImg)
+    {
+        $this->multiImg = $multiImg;
+    }
+    function getMultiImg()
+    {
+        return $this->multiImg;
+    }
+
+    public function returnProducrArray()
+    {
+        $product = array();
+        $product['stockid'] = $this->getStockid();
+        $product['code'] = $this->getCode();
+        $product['category_id'] = $this->getCategoryID();
+        $product['description'] = $this->getDescription();
+        $product['longdescription'] = $this->getLongdescription();
+        $product['units'] = $this->getUnits();
+        // $product['discountcategory'] = $this->getDiscountcategory();
+
+        $product['webprice'] = $this->getWebprice();
+        $product['img'] = $this->getImg();
+        $product['multipleImg'] = $this->getMultiImg();
+        // $product['status'] = $this->getStatus();
+        return $product;
     }
 }

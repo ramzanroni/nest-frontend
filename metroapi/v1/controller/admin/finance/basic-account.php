@@ -269,8 +269,34 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $response->send();
         exit();
     }
-} elseif ($_SERVER['REQUEST_METHOD']) {
-    $basicAccounts = $readDB->prepare('SELECT accountcode,accountname FROM chartmaster');
+} elseif ($_SERVER['REQUEST_METHOD'] === "GET") {
+    if (array_key_exists('accountcode', $_GET)) {
+        $accountcode = $_GET['accountcode'];
+        $basicAccounts = $readDB->prepare('SELECT accountcode,accountname FROM chartmaster WHERE accountcode=:accountcode');
+        $basicAccounts->bindParam(':accountcode', $accountcode, PDO::PARAM_STR);
+    } elseif (array_key_exists('accountname', $_GET)) {
+        $accountname = $_GET['accountname'];
+        if ($accountname === '') {
+            $response = new Response();
+            $response->setHttpStatusCode(403);
+            $response->setSuccess(false);
+            $response->addMessage('accountname Name missing its not be null. ');
+            $response->send();
+            exit();
+        }
+        $subQry = "SELECT accountcode,accountname FROM chartmaster WHERE ";
+        $textsearchQury = '';
+
+        $searchKeywordList = explode(' ', $accountname);
+
+        foreach ($searchKeywordList as $searchKey) {
+            $textsearchQury .= "accountname LIKE '%" . $searchKey . "%' OR ";
+        }
+        $textsearchQury = $subQry . rtrim($textsearchQury, 'OR ');
+        $basicAccounts = $readDB->prepare($textsearchQury);
+    } else {
+        $basicAccounts = $readDB->prepare('SELECT accountcode,accountname FROM chartmaster');
+    }
     $basicAccounts->execute();
     $rowCount = $basicAccounts->rowCount();
     $basicAccountArray = array();
