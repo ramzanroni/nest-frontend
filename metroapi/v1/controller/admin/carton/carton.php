@@ -325,6 +325,115 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response->send();
             exit;
         }
+    } else {
+        try {
+            $query = $readDB->prepare('SELECT l.id,
+            (
+            SELECT
+                m.description
+            FROM
+                carton_status_details s,
+                carton_list c,
+                carton_status_list m
+            WHERE
+                s.cid = c.id AND c.id = l.id AND s.sid = m.id AND m.id =(
+                SELECT
+                    MAX(s.sid)
+                FROM
+                    carton_status_details s,
+                    carton_list c
+                WHERE
+                    s.cid = c.id AND c.id = l.id
+            )
+        ) AS carton_status,
+        (
+            SELECT
+                s.create_at
+            FROM
+                carton_status_details s,
+                carton_list c
+            WHERE
+                s.cid = c.id AND s.sid = 1 AND c.id = l.id
+        ) AS date_packed,
+        (
+            SELECT
+                s.create_at
+            FROM
+                carton_status_details s,
+                carton_list c
+            WHERE
+                s.cid = c.id AND s.sid = 2 AND c.id = l.id
+        ) AS date_shiped,
+        (
+            SELECT
+                s.create_at
+            FROM
+                carton_status_details s,
+                carton_list c
+            WHERE
+                s.cid = c.id AND s.sid = 3 AND c.id = l.id
+        ) AS date_delivered
+        FROM
+            carton_list l
+        WHERE
+            l.so =:orderID');
+            $query->bindParam(':orderID', $order_id, PDO::PARAM_STR);
+            $query->execute();
+            $rowCount = $query->rowCount();
+            $cartonArray = array();
+            if ($rowCount === 0) {
+                $response = new Response();
+                $response->setHttpStatusCode(200);
+                $response->addMessage('Order not found');
+                $response->setSuccess(false);
+                $response->send();
+                exit;
+            }
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $packetId = $row['id'];
+                $catron_status = $row['carton_status'];
+                // $carton = new Carton($row['id'], $row['carton_status'], $row['date_packed'], $row['date_shiped'], $row['date_delivered']);
+                $cartonDetails = $readDB->prepare('SELECT carton_list_details.qty as qty, salesorderdetails.unitprice as price FROM carton_list_details INNER JOIN salesorderdetails ON carton_list_details.stockid = salesorderdetails.stkcode WHERE carton_list_details.cid=:packetId');
+                $cartonDetails->bindParam(':packetId', $packetId, PDO::PARAM_STR);
+                $cartonDetails->execute();
+                $rowCount = $cartonDetails->rowCount();
+                $totalQty = 0;
+                $totalPrice = 0;
+                if ($rowCount != 0) {
+                    while ($rowCarton = $cartonDetails->fetch(PDO::FETCH_ASSOC)) {
+                        $totalQty = $totalQty + $rowCarton['qty'];
+                        $totalPrice = $totalPrice + $rowCarton['price'];
+                    }
+                }
+                $catron = new CartonPackage($packetId, $catron_status, $totalQty, $totalPrice);
+                $cartonArray[] = $catron->returnCartonArray();
+            }
+            $returnArray = array();
+            $returnArray['row_returned'] = $rowCount;
+            $returnArray['carton'] = $cartonArray;
+            $response = new Response();
+            $response->setHttpStatusCode(200);
+            $response->setSuccess(true);
+            $response->toCache(true);
+            $response->setData($returnArray);
+            $response->send();
+            exit;
+        } catch (PDOException $ex) {
+            error_log("Database query error - " . $ex, 1);
+            $response = new Response();
+            $response->setHttpStatusCode(500);
+            $response->setSuccess(false);
+            $response->addMessage("Failed to get task");
+            $response->send();
+            exit();
+        } catch (CartonPackException $ex) {
+            $response = new Response();
+            $response->setHttpStatusCode(500);
+            $response->setSuccess(false);
+            $response->addMessage($ex->getMessage());
+            $response->send();
+            exit;
+        }
     }
 } else {
     $response = new Response();

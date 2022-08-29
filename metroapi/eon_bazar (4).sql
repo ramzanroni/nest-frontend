@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 08, 2022 at 07:58 PM
+-- Generation Time: Aug 08, 2022 at 02:20 PM
 -- Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -68,7 +68,6 @@ CREATE TABLE `carton_list` (
 INSERT INTO `carton_list` (`id`, `so`, `userid`, `created_at`, `delivered`, `ctn_no`, `qc`, `inv`) VALUES
 (1, 7, 8, '2022-07-04 15:52:47', 1, 1, 1, 2),
 (2, 7, 8, '2022-07-04 15:52:50', 0, 2, 0, 0),
-(7, 7, 8, '2022-07-17 18:51:24', 0, 3, 0, 0),
 (8, 153439, 8, '2022-07-17 18:51:24', 0, 3, 1, 0);
 
 -- --------------------------------------------------------
@@ -93,9 +92,7 @@ INSERT INTO `carton_list_details` (`id`, `cid`, `stockid`, `qty`, `delivered`) V
 (1, 1, '1001201030', 1, 1),
 (2, 1, '1001201031', 1, 1),
 (3, 2, '1001201030', 4, 0),
-(4, 2, '1001201031', 5, 0),
-(15, 7, '1001201030', 3, 0),
-(16, 7, '1001201031', 4, 0);
+(4, 2, '1001201031', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -109,7 +106,7 @@ CREATE TABLE `carton_status_details` (
   `sid` int(11) NOT NULL COMMENT 'carton status id',
   `uid` int(11) NOT NULL COMMENT 'user id',
   `note` varchar(255) NOT NULL COMMENT 'company name ...',
-  `create_at` datetime NOT NULL
+  `create_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -123,7 +120,9 @@ INSERT INTO `carton_status_details` (`id`, `cid`, `sid`, `uid`, `note`, `create_
 (6, 2, 2, 8, 'note', '2022-07-03 16:52:50'),
 (12, 7, 1, 8, 'note', '2022-07-17 18:51:24'),
 (13, 7, 2, 8, 'piked by 8', '2022-07-18 16:38:11'),
-(14, 8, 1, 8, 'note', '2022-07-01 10:52:50');
+(14, 8, 1, 8, 'note', '2022-07-01 10:52:50'),
+(19, 12, 3, 12, 'Deliverd by 12', '2022-08-08 21:15:43'),
+(20, 12, 3, 12, 'Hello', '2022-08-08 21:16:02');
 
 -- --------------------------------------------------------
 
@@ -283,13 +282,22 @@ CREATE TABLE `custbranch` (
 --
 
 INSERT INTO `custbranch` (`branchcode`, `debtorno`, `brname`, `braddress1`, `braddress2`, `braddress3`, `braddress4`, `braddress5`, `braddress6`, `lat`, `lng`, `estdeliverydays`, `area`, `salesman`, `fwddate`, `phoneno`, `faxno`, `contactname`, `email`, `defaultlocation`, `taxgroupid`, `defaultshipvia`, `deliverblind`, `disabletrans`, `brpostaddr1`, `brpostaddr2`, `brpostaddr3`, `brpostaddr4`, `brpostaddr5`, `brpostaddr6`, `specialinstructions`, `custbranchcode`, `branchdistance`, `travelrate`, `businessunit`, `emi`, `esd`, `branchsince`, `branchstatus`, `tag`, `op_bal`, `aggrigate_cr`, `discount_amt`) VALUES
-(1, '4386', 'main', '540183', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01767270653', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-03', 1, 1, 0, 1, 0),
+(1, '123', 'main', '123324', '12', 'sa', 'awsd', 'a', 'sa', 10.020000, 0.250000, 0, 'tre', '1', 0, '01767012354', '', '', 'avb@gmail.com', '1111', 1, 1, 1, 0, 'hgf', 'sa', 'dsa', 'a', 'dsa', 'dsa', 'gfd', '12', 0.125, 0.244, 1, 0, '0000-00-00', '2022-08-23', 1, 1, 0, 1, 0),
 (2, '9382', 'main', 'Dhaka', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516158298', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-03', 1, 1, 0, 1, 0),
 (4, '6888', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
 (5, '5946', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
 (6, '3012', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
 (7, '7921', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '015161512881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
-(8, '2090', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516151212881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0);
+(8, '2090', 'main', '', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01516151212881', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(9, '21', 'main', 'Dhaka', '', '', '', '', '', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(10, '21', 'main', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(11, '21', 'main', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(12, '21', 'main', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(13, '21', 'main', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(14, '22', 'main', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(15, '222', 'main', 'Dhakaa', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 0.000000, 0.000000, 0, '2780', '1', 0, '01789654123', '', '', '', '1010', 1, 1, 1, 0, '', '', '', '', '', '', '', '', 0.000, 0.000, 1, 0, '0000-00-00', '2022-08-08', 1, 1, 0, 1, 0),
+(16, '123', 'main', '123324', '12', 'sa', 'awsd', 'a', 'sa', 10.020000, 0.250000, 0, 'tre', '1', 0, '01767012354', '', '', 'avb@gmail.com', '1111', 1, 1, 1, 0, 'hgf', 'sa', 'dsa', 'a', 'dsa', 'dsa', 'gfd', '12', 0.125, 0.244, 1, 0, '0000-00-00', '2022-08-23', 1, 1, 0, 1, 0),
+(17, '123', 'main', '123324', '12', 'sa', 'awsd', 'a', 'sa', 10.020000, 0.250000, 0, 'tre', '1', 0, '01767012354', '', '', 'avb@gmail.com', '1111', 1, 1, 1, 0, 'hgf', 'sa', 'dsa', 'a', 'dsa', 'dsa', 'gfd', '12', 0.125, 0.244, 1, 0, '0000-00-00', '2022-08-23', 1, 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -357,7 +365,10 @@ INSERT INTO `debtorsmaster` (`debtorno`, `cm_id`, `name`, `address1`, `address2`
 ('9382', 9382, 'Ramzan Roni', 'Dhaka', '', '', '', '', '', 1, '', 'BDT', 'DP', '2022-08-03 17:26:30', 1, '30', 0, 0, 0, NULL, 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516158298', '', 'mdramzanroni76@gmail.com', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTgyOTgyMDIyLTA4LTAzIDE3OjI2OjMw'),
 ('4332', 4332, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 21:49:09', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '015161512872981', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyODcyOTgxMjAyMi0wOC0wOCAxNTo0OTowOQ=='),
 ('7921', 7921, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 22:22:51', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '015161512881', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyODgxMjAyMi0wOC0wOCAxNjoyMjo1MQ=='),
-('2090', 2090, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 22:27:32', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516151212881', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyMTI4ODEyMDIyLTA4LTA4IDE2OjI3OjMy');
+('2090', 2090, 'test', '', '', '', '', '', '', 1, '1', 'BDT', 'DP', '2022-08-08 22:27:32', 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 10000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01516151212881', '', '', 0, '2022-06-30 17:09:09', '0000-00-00 00:00:00', 0, 1, '', '', 'MDE1MTYxNTEyMTI4ODEyMDIyLTA4LTA4IDE2OjI3OjMy'),
+('22', 21, 'Testt', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 1, '1', 'BDT', 'DP', NULL, 1, '30', 0, 0, 0, '0000-00-00 00:00:00', 1000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, NULL, 0, 0, '01789654123', '', 'test@gmail.com', 0, '2022-06-30 12:09:11', '0000-00-00 00:00:00', 0, 1, '', '', '12'),
+('123', 21, 'Testt', 'Dhaka', 'Uttara', 'Sector-7', 'Sector-7', 'House-14', 'Road-31', 1, '1', 'BDT', 'DP', '2022-12-02 00:00:00', 1, '30', 0, 0, 0, '2022-12-02 00:00:00', 1000, 1, '', 1, 1, '', 'email', '', '', '', '', 1, 1, '', 1, 1, '01789654123', '', 'test@gmail.com', 1, '2022-06-30 12:09:11', '2022-12-02 00:00:00', 1, 1, '', '', '12'),
+('222', 21, 'Tes11ttytreeeeeer', 'Dhakaa', 'Uttaraaaaaaa', 'Sector-777', 'House-14', 'Road-1231', 'Noth111nig', 1, '11', 'BDT', 'DP', NULL, 1, '30', 1, 0, 0, '0000-00-00 00:00:00', 1000, 0, '', 0, 0, '', 'email', '', '', '', '', 0, 1, 'note', 0, 0, '01789654123', '', 'test@gmail.com', 0, '2022-06-30 12:09:11', '2022-06-30 12:09:11', 0, 1, '', '', '11322');
 
 -- --------------------------------------------------------
 
@@ -386,7 +397,11 @@ INSERT INTO `item_ref_file` (`id`, `stockid`, `doc_name`) VALUES
 (42, '10011', 'image2'),
 (43, '10011', 'image2'),
 (44, '10041', 'image1'),
-(45, '10041', 'image2');
+(45, '10041', 'image2'),
+(52, '10042', 'image1'),
+(53, '10042', 'image2'),
+(54, '100142', 'image1'),
+(55, '100142', 'image2');
 
 -- --------------------------------------------------------
 
@@ -453,12 +468,13 @@ CREATE TABLE `salesorderdetails` (
 --
 
 INSERT INTO `salesorderdetails` (`orderlineno`, `orderno`, `stkcode`, `qtyinvoiced`, `unitprice`, `quantity`, `qtypaid`, `tax_rate`, `estimate`, `discountpercent`, `actualdispatchdate`, `completed`, `narrative`, `itemdue`, `poline`, `route_id`, `mo_isu_qty`, `mo_isu_seq_qty`, `route_stage`, `mo_rcv_seq_qty`, `discount_amount`, `discount_flag`, `org_so_qty`) VALUES
-(1, 7, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 1, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 7, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 1320, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 2643, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 2991, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 5092, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 7319, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(1, 8766, '100904', 0, 1233, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 9070, '1001201031', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 9608, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (1, 129776, '1001201030', 0, 123, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
@@ -473,13 +489,17 @@ INSERT INTO `salesorderdetails` (`orderlineno`, `orderno`, `stkcode`, `qtyinvoic
 (2, 2643, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 2991, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 5092, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(2, 5547, '1008', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 7319, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(2, 8766, '100901', 0, 124, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 129776, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 140325, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 148708, '1001201031', 0, 13, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 153439, '100906', 0, 7896, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 454689, '1009', 0, 44, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (2, 845592, '1005', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(3, 5547, '1008', 0, 78, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
+(3, 8766, '100902', 0, 111, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (3, 454689, '100901', 0, 124, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (3, 845592, '1002', 0, 1097, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0),
 (4, 845592, '1006', 0, 7878, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, NULL, NULL, NULL, NULL, 0.000, 0.000, NULL, 0.000, 0, 1, 0);
@@ -535,12 +555,14 @@ CREATE TABLE `salesorders` (
 --
 
 INSERT INTO `salesorders` (`orderno`, `debtorno`, `branchcode`, `customerref`, `buyername`, `tag`, `comments`, `orddate`, `ordertype`, `shipvia`, `deladd1`, `deladd2`, `deladd3`, `deladd4`, `deladd5`, `deladd6`, `contactphone`, `contactemail`, `deliverto`, `deliverblind`, `freightcost`, `fromstkloc`, `deliverydate`, `quotedate`, `confirmeddate`, `printedpackingslip`, `datepackingslipprinted`, `quotation`, `assigned`, `salesmancode`, `so_currency`, `so_exchange_rate`, `approved_for_production`, `so_type`, `so_status`, `delivery_status`, `issue_date`) VALUES
-(7, '4', '1', 'SO:1', NULL, 1, 'Nothing', '2022-07-17', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 1, 0, '2022-07-17'),
+(7, '9382\r\n', '1', 'SO:1', NULL, 1, 'Nothing', '2022-07-17', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 1, '2022-07-17'),
 (1320, '4386', '1', 'SO: 1320', NULL, 1, 'Nothing', '2022-08-03', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '0000-00-00'),
 (2643, '4386', '1', 'SO: 2643', NULL, 1, 'Nothing', '2022-08-06', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-06'),
 (2991, '9382', '1', 'SO: 2991', NULL, 1, 'test', '2022-08-06', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '01515621312', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-06'),
 (5092, '9382', '1', 'SO: 5092', NULL, 1, '', '2022-08-03', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '0000-00-00'),
+(5547, '9382', '1', 'SO: 5547', NULL, 1, '', '2022-08-08', 'DP', 1, '603 Shamim Sharani Road, West Shewra para, Mirpur, Dhaka-1216', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 1, 0, '2022-08-08'),
 (7319, '4386', '1', 'SO: 7319', NULL, 1, 'Nothing', '2022-08-06', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-06'),
+(8766, '9382', '1', 'SO: 8766', NULL, 1, '', '2022-08-08', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, '2022-08-08'),
 (9070, '9382', '1', 'SO: 9070', NULL, 1, '', '2022-08-08', 'DP', 1, '603/B shamem saroni, mirput', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-08'),
 (9608, '9382', '1', 'SO: 9608', NULL, 1, '', '2022-08-08', 'DP', 1, 'Dhaka', '', '', NULL, '', '', '', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-08-08'),
 (129776, '4', '1', 'SO:1', NULL, 1, 'Nothing', '2022-07-19', 'DP', 1, 'Shamim saroni', '', '', NULL, '', '', '017167171', NULL, 'main', 1, 0, '1010', NULL, '0000-00-00', '0000-00-00', 0, '0000-00-00', 0, 0, NULL, NULL, NULL, 0, 0, 3, 0, '2022-07-19'),
@@ -674,8 +696,10 @@ CREATE TABLE `stockmaster` (
 
 INSERT INTO `stockmaster` (`stockid`, `code`, `categoryid`, `description`, `longdescription`, `units`, `mbflag`, `lastcurcostdate`, `actualcost`, `lastcost`, `materialcost`, `labourcost`, `overheadcost`, `lowestlevel`, `discontinued`, `controlled`, `eoq`, `volume`, `kgs`, `barcode`, `discountcategory`, `taxcatid`, `taxcatp`, `serialised`, `appendfile`, `perishable`, `decimalplaces`, `nextserialno`, `pansize`, `shrinkfactor`, `netweight`, `productiontime`, `webitem`, `depreciation_rate`, `depreciation_run`, `addncalist`, `brandid`, `groupid`, `subgroupid`, `webprice`, `updatetime`, `tag`, `wip_qty`, `wip_cost`, `stock_gl`, `op_bal`, `op_qty`, `size`, `color`, `style`, `depreciation_act`, `default_store`, `portable`, `length`, `length_unit`, `giid`, `hs_code`, `tarrif_value`, `wip_wtd_rate`, `pz`, `default_expiry_date`, `pzCons`, `mz`, `mzCons`, `min_cm`, `cm_base_price`, `min_inc`, `inc_base_price`, `cm_addi_price`, `inc_addi_price`, `per_carton_qty`, `cost_`, `img`, `est_cost`, `item_type`, `parent_id`, `dia`, `temp_bom_set`) VALUES
 ('1001201031', '1030', '1', 'Stapler Heavy Duty', 'Stapler Heavy Duty', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 2, 1, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Tube forming Machine.jpg', 0, 1, 0, '', 0),
+('100142', '122', '1', 'description', 'longdescription', 'units', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 1, 1, 0, 'none', 0, 0, 0, 0, 0, '0.0000', 0, '0', NULL, NULL, NULL, 1, 1, 1, 123, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'imageURL', 0, 1, 0, '', 0),
 ('1002', '1002', '1', 'Wood Pencil Blue', 'Wood Pencil Blue', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '1', '', 6, 7, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, '0', 0.000, 0, 0, 1, 2, 2, 1097, '2022-05-14 12:11:35', 1, 0, 0, '', 0, 0, '0', '0', '0', 0, '0', 0, 0, 1, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/50 ton Sheet Metal Press.jpg', 0, 1, 0, '', 0),
 ('10041', '122', '1', 'description', 'longdescription', 'units', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 1, 1, 0, 'none', 0, 0, 0, 0, 0, '0.0000', 0, '0', NULL, NULL, NULL, 1, 1, 1, 123, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'imageURL', 0, 1, 0, '', 0),
+('10042', '122', '1', 'description', 'longdescription', 'units', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 1, 1, 0, 'none', 0, 0, 0, 0, 0, '0.0000', 0, '0', NULL, NULL, NULL, 1, 1, 1, 123, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'imageURL', 0, 1, 0, '', 0),
 ('1005', '1005', '1', 'Pencil Sharpener Small', 'Pencil Sharpener Small', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 1, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Brazing Machine.jpg', 0, 1, 0, '', 0),
 ('1006', '1006', '1', 'Pencil Sharpener Desktop', 'Pencil Sharpener Desktop', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 1, 7878, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Circular Knitting Machine.jpg', 0, 1, 0, '', 0),
 ('1008', '1008', '1', 'File Cover Typ 1', 'File Cover Typ 1', 'pcs', 'B', '1800-01-01', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '', '', 5, 0, 0, '', 0, 0, 0, 0, 0, '0.0000', 0, NULL, 0.000, 0, 0, 1, 1, 2, 78, '0000-00-00 00:00:00', 1, 0, 0, NULL, 0, 0, '0', '0', '0', 0, '0', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'images/Engine Lathe Machine 5.jpg', 0, 1, 0, '', 0),
@@ -742,7 +766,7 @@ INSERT INTO `users` (`id`, `userid`, `password`, `realname`, `customerid`, `phon
 (27, '', '', 'Ramzan Roni', '', '01989898988', 'mdramzanroni76@gmail.com', ' Dhaka', 2, '102099315601984128264', '1', 'MDE5ODk4OTg5ODgyMDIyLTA4LTAxIDE0OjQ5OjMy'),
 (28, '', '', 'ridhoy', '', '01789654589', '', 'qwqw', 1, '', '1', 'MDE3ODk2NTQ1ODkyMDIyLTA4LTAxIDE2OjA4OjI0'),
 (29, '', '', 'metro soft', '', '01602141587', 'metrosoftbdltd123@gmail.com', 'Dhaka', 2, '105729799835564658887', '1', 'MDE2MDIxNDE1ODcyMDIyLTA4LTAxIDE2OjA5OjEy'),
-(30, '', '', 'tesst', '', '01857898789', '', 'test', 1, '', '1', 'MDE4NTc4OTg3ODkyMDIyLTA4LTAxIDE2OjEwOjM5');
+(30, 'jowel', '', 'tesst', '', '01857898789', '', 'test', 1, '', '1', 'MDE4NTc4OTg3ODkyMDIyLTA4LTAxIDE2OjEwOjM5');
 
 -- --------------------------------------------------------
 
@@ -771,6 +795,51 @@ INSERT INTO `user_type` (`id`, `user_id`, `type`, `status`, `create_at`, `create
 (16, 3626, 'ecm', 1, '2022-08-08 22:09:04', 0),
 (17, 7921, 'ecm', 1, '2022-08-08 22:22:51', 0),
 (18, 2090, 'ecm', 1, '2022-08-08 22:27:32', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `www_users`
+--
+
+CREATE TABLE `www_users` (
+  `userid` varchar(255) NOT NULL DEFAULT '',
+  `password` text NOT NULL,
+  `realname` varchar(255) NOT NULL DEFAULT '',
+  `customerid` varchar(10) NOT NULL DEFAULT '',
+  `salesman` char(3) NOT NULL,
+  `phone` varchar(30) NOT NULL DEFAULT '',
+  `email` varchar(55) DEFAULT NULL,
+  `defaultlocation` varchar(5) NOT NULL DEFAULT '',
+  `default_cash` int(11) DEFAULT NULL,
+  `fullaccess` int(11) NOT NULL DEFAULT 1,
+  `lastvisitdate` datetime DEFAULT NULL,
+  `branchcode` varchar(10) NOT NULL DEFAULT '',
+  `pagesize` varchar(20) NOT NULL DEFAULT 'A4',
+  `modulesallowed` varchar(20) NOT NULL DEFAULT '',
+  `blocked` tinyint(4) NOT NULL DEFAULT 0,
+  `displayrecordsmax` int(11) NOT NULL DEFAULT 0,
+  `theme` varchar(30) NOT NULL DEFAULT 'fresh',
+  `language` varchar(5) NOT NULL DEFAULT 'en_GB',
+  `default_ip` char(20) DEFAULT '',
+  `default_pricelist` char(2) DEFAULT NULL,
+  `limit_todefaultprice` tinyint(4) DEFAULT NULL,
+  `active_now` varchar(255) NOT NULL DEFAULT '0',
+  `user_workcenter` char(5) DEFAULT '',
+  `tagref` int(11) DEFAULT 1 COMMENT 'Default GL project, if more than 1 then enforce limitation else free during GL entry etc',
+  `userindex` int(11) NOT NULL COMMENT 'user key can be used for systems user, customer, supplier, employes etc agents',
+  `mediaulimit` int(11) DEFAULT 0 COMMENT 'Reference Media Upload Limit',
+  `emp` int(11) DEFAULT 0 COMMENT 'employee index',
+  `external_login` tinyint(4) DEFAULT 0,
+  `default_screen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `www_users`
+--
+
+INSERT INTO `www_users` (`userid`, `password`, `realname`, `customerid`, `salesman`, `phone`, `email`, `defaultlocation`, `default_cash`, `fullaccess`, `lastvisitdate`, `branchcode`, `pagesize`, `modulesallowed`, `blocked`, `displayrecordsmax`, `theme`, `language`, `default_ip`, `default_pricelist`, `limit_todefaultprice`, `active_now`, `user_workcenter`, `tagref`, `userindex`, `mediaulimit`, `emp`, `external_login`, `default_screen`) VALUES
+('jowel', '81dc9bdb52d04dc20036dbd8313ed055', 'Md. Jowel Rana', '1', '', '', '', '1010', 1021050, 23, '2022-08-20 23:22:15', '1', 'A4', '1,1,1,1,1,1,1,1,1,', 0, 50, 'professional', 'en_GB', '', 'DP', 0, '01i00p8rc22f0k6b5fsmprc7bcn8v8ls', '', 1, 4, 0, 0, 0, '');
 
 --
 -- Indexes for dumped tables
@@ -895,6 +964,18 @@ ALTER TABLE `user_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `www_users`
+--
+ALTER TABLE `www_users`
+  ADD PRIMARY KEY (`userindex`),
+  ADD UNIQUE KEY `userid` (`userid`),
+  ADD KEY `CustomerID` (`customerid`),
+  ADD KEY `DefaultLocation` (`defaultlocation`),
+  ADD KEY `workcenter_id` (`user_workcenter`),
+  ADD KEY `tagref` (`tagref`),
+  ADD KEY `default_pricelist` (`default_pricelist`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -908,19 +989,19 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT for table `carton_list`
 --
 ALTER TABLE `carton_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `carton_list_details`
 --
 ALTER TABLE `carton_list_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `carton_status_details`
 --
 ALTER TABLE `carton_status_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `carton_status_list`
@@ -944,13 +1025,13 @@ ALTER TABLE `contact_master`
 -- AUTO_INCREMENT for table `custbranch`
 --
 ALTER TABLE `custbranch`
-  MODIFY `branchcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `branchcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `item_ref_file`
 --
 ALTER TABLE `item_ref_file`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -968,7 +1049,7 @@ ALTER TABLE `stockgroup`
 -- AUTO_INCREMENT for table `temp_otp`
 --
 ALTER TABLE `temp_otp`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -981,6 +1062,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `www_users`
+--
+ALTER TABLE `www_users`
+  MODIFY `userindex` int(11) NOT NULL AUTO_INCREMENT COMMENT 'user key can be used for systems user, customer, supplier, employes etc agents', AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
