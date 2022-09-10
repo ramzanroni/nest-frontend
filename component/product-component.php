@@ -19,13 +19,7 @@
             <div class="product-category">
                 <a href="products.php?category_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
             </div>
-            <h2 class="itemTitle" title="<?php echo $productData->description; ?>"><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php
-                                                                                                                                                            if (strlen($productData->description) > 60) {
-                                                                                                                                                                echo substr($productData->description, 0, 68) . "...";
-                                                                                                                                                            } else {
-                                                                                                                                                                echo $productData->description;
-                                                                                                                                                            }
-                                                                                                                                                            ?></a>
+            <h2 class="itemTitle" title="<?php echo $productData->description; ?>"><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
             </h2>
             <div class="product-price">
                 <span>৳<?php echo $productData->webprice; ?></span>
