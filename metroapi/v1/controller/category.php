@@ -27,20 +27,38 @@ try {
 if (empty($_GET)) {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
+            $dataArr = array();
+            function display_children($parent, $level)
+            {
+                $readDB = DB::connectReadDB();
+                $result = $readDB->prepare('SELECT groupid FROM stockgroup ' . 'WHERE parent="' . $parent . '"');
+                $result->execute();
+                $count = "";
+                global  $dataArr;
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $dataArr[] =  str_repeat(' ', $level) . $row['groupid'];
+                    if ($count != "")
+                        $count .= (1 + display_children($row['groupid'], $level + 1));
+                    else
+                        $count = ", " . (1 + display_children($row['groupid'], $level + 1));
+                }
+                return json_encode($dataArr);
+            }
             $web = 1;
-            $query = $readDB->prepare('SELECT groupid, groupname,parent, image FROM stockgroup WHERE web=:web');
+            $query = $readDB->prepare('SELECT groupid, groupname,parent, image FROM stockgroup WHERE web=:web AND parent=0');
             $query->bindParam(':web', $web, PDO::PARAM_INT);
             $query->execute();
             $rowCount = $query->rowCount();
             $categoryArray = array();
-            // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
             $ip_server = 'http://' . $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $categoryID = $row['groupid'];
-                $countItem = $readDB->prepare('SELECT * FROM stockmaster WHERE groupid=:categoryId');
-                $countItem->bindParam(':categoryId', $categoryID, PDO::PARAM_INT);
+                $dataArr[] = $categoryID;
+                $idarray = json_decode(display_children($categoryID, 0));
+                $countItem = $readDB->prepare('SELECT * FROM stockmaster WHERE groupid IN (' . implode(",", $idarray) . ')');
                 $countItem->execute();
                 $numberofItem = $countItem->rowCount();
+                // $numberofItem = 1;
                 if ($row['image'] == '') {
                     $img = '';
                 } else {
@@ -48,6 +66,7 @@ if (empty($_GET)) {
                 }
                 $category = new Category($row['groupid'], $row['groupname'], $img, $numberofItem, $row['parent']);
                 $categoryArray[] = $category->returnCategoryArray();
+                $dataArr = array();
             }
             $returnArray = array();
             $returnArray['rows_returned'] = $rowCount;
