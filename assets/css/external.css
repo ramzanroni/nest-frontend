@@ -623,3 +623,9 @@ footer .hotline img {
         z-index: 999;
     }
 }
+
+.itemTitle {
+    line-height: 1.5;
+    height: 74px;
+    overflow: hidden;
+}

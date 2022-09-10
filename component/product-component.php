@@ -19,7 +19,7 @@
             <div class="product-category">
                 <a href="products.php?category_id=<?php echo $productData->category_id; ?>"><?php echo $productData->category; ?></a>
             </div>
-            <h2><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
+            <h2 class="itemTitle" title="<?php echo $productData->description; ?>"><a href="product.php?product_id=<?php echo $productData->stockid; ?>"><?php echo $productData->description; ?></a>
             </h2>
             <div class="product-price">
                 <span>৳<?php echo $productData->webprice; ?></span>
@@ -59,19 +59,6 @@
                         <div class="add-cart">
                             <a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')"><i class="fi-rs-plus"></i></a>
                         </div>
-                        <!-- <div class="col-10 float-end after-cart">
-                            <div class="col-2 float-end increment" onclick="CartItemChange('increment', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                <a><i class="fi-rs-plus"></i></a>
-                            </div>
-                            <div class="col-4 float-end middle">
-                                <a><i class="fi-rs-shopping-cart"></i>
-                                    <span id="cartCount_<?php echo $productData->stockid; ?>"><?php echo $numberOfItem; ?></span>
-                                </a>
-                            </div>
-                            <div class="col-2 float-end add decrement" onclick="CartItemChange('decrement', <?php echo $productData->stockid; ?>,'<?php echo $productData->description; ?>',<?php echo $productData->webprice; ?>,'<?php echo $productData->img;  ?>')">
-                                <a><i class="fi-rs-minus"></i></a>
-                            </div>
-                        </div> -->
                     </div>
 
                 <?php
