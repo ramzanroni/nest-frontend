@@ -11,7 +11,6 @@ if ($_POST['check'] == "sortingProductList") {
     setcookie('product_limit', $limit, time() + (86400 * 30), "/");
     setcookie('sort_by', $sortby, time() + (86400 * 30), "/");
 
-
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -61,7 +60,7 @@ if ($_POST['check'] == "sortingProductList") {
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
-            "postman-token: 048401f8-a5b1-86ce-ba6f-ffd0d94ce8b3"
+            "Authorization:" . APIKEY
         ),
     ));
 
@@ -236,9 +235,14 @@ if ($_POST['check'] == "paginationProduct") {
     $start = $pageNumber * $limit - $limit;
 
     $curl = curl_init();
+    if ($catID == '') {
+        $pageurl = "product.php?limit=" . $limit . "&start=" . $start . "&sort_by=" . $sortby;
+    } else {
+        $pageurl = "product.php?category_id=" . $catID . "&limit=" . $limit . "&start=" . $start . "&sort_by=" . $sortby;
+    }
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $catID . "&limit=" . $limit . "&start=" . $start . "&sort_by=" . $sortby,
+        CURLOPT_URL => APIENDPOINT . $pageurl,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -269,8 +273,13 @@ if ($_POST['check'] == "paginationProduct") {
     //total item of this category
     $curl = curl_init();
 
+    if ($catID == '') {
+        $totalpageURL = "product.php?limit=All&start=1&sort_by=" . $sortby;
+    } else {
+        "product.php?category_id=" . $catID . "&limit=All&start=1&sort_by=" . $sortby;
+    }
     curl_setopt_array($curl, array(
-        CURLOPT_URL => APIENDPOINT .  "product.php?category_id=" . $catID . "&limit=All&start=1&sort_by=" . $sortby,
+        CURLOPT_URL => APIENDPOINT . $totalpageURL,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
