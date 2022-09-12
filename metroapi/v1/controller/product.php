@@ -26,6 +26,25 @@ try {
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
+    $dataArr = array();
+    function display_children($parent, $level)
+    {
+        $readDB = DB::connectReadDB();
+        $result = $readDB->prepare('SELECT groupid FROM stockgroup ' . 'WHERE parent="' . $parent . '"');
+        $result->execute();
+        $count = "";
+        global  $dataArr;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $dataArr[] =  str_repeat(' ', $level) . $row['groupid'];
+            if ($count != "")
+                $count .= (1 + display_children($row['groupid'], $level + 1));
+            else
+                $count = ", " . (1 + display_children($row['groupid'], $level + 1));
+        }
+        return json_encode($dataArr);
+    }
+
+
     $mainQuery = 'SELECT stockmaster.stockid AS stockid, stockmaster.description AS description, stockmaster.longdescription AS longdescription, stockmaster.units AS units, stockmaster.discountcategory AS discountcategory, stockmaster.taxcatid AS taxcatid, stockmaster.webprice AS webprice, stockmaster.img AS img, stockgroup.groupname AS category, stockgroup.groupid AS categoryId FROM stockmaster INNER JOIN stockgroup ON stockmaster.groupid = stockgroup.groupid AND stockmaster.webprice !=0';
 
     if (array_key_exists('product_id', $_GET)) {
@@ -34,6 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $query->bindParam(':stockid', $product_id, PDO::PARAM_INT);
     } elseif (array_key_exists('category_id', $_GET) && array_key_exists('limit', $_GET) && array_key_exists('start', $_GET)) {
         $categoryId = $_GET['category_id'];
+        $dataArr[] = $categoryId;
+        $idarray = json_decode(display_children($categoryId, 0));
+
+
         $limit = $_GET['limit'];
         $sort_by = $_GET['sort_by'];
         if ($sort_by == "PriceLowtoHigh") {
@@ -47,12 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             $start = $_GET['start'];
         }
+
+        //groupid IN (' . implode(",", $idarray) . ')'
         if ($limit == "All") {
-            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid=:category_id ORDER BY stockmaster.webprice ' . $condition . '');
-            $query->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid IN (' . implode(",", $idarray) . ') ORDER BY stockmaster.webprice ' . $condition . '');
         } else {
-            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid=:category_id ORDER BY stockmaster.webprice ' . $condition . ' LIMIT ' . $start . ',' . $limit . '');
-            $query->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+            $query = $readDB->prepare($mainQuery . ' WHERE stockmaster.groupid IN (' . implode(",", $idarray) . ') ORDER BY stockmaster.webprice ' . $condition . ' LIMIT ' . $start . ',' . $limit . '');
         }
     } elseif (array_key_exists('product_name', $_GET)) {
         $product_name = $_GET['product_name'];
@@ -75,21 +98,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         if (array_key_exists('category', $_GET)) {
             $category = $_GET['category'];
-            $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury . ' AND stockmaster.groupid=:category_id');
-            $query->bindParam(':category_id', $category, PDO::PARAM_INT);
+            $dataArr[] = $category;
+            $idarray = json_decode(display_children($category, 0));
+            $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury . ' AND stockmaster.groupid IN (' . implode(",", $idarray) . ')');
         } else {
             $query = $readDB->prepare($mainQuery . ' WHERE ' . $textsearchQury);
         }
-    } elseif (empty($_GET)) {
-        $querySQL = $mainQuery;
-        $query = $readDB->prepare($querySQL);
     } else {
-        $response = new Response();
-        $response->setHttpStatusCode(404);
-        $response->setSuccess(false);
-        $response->addMessage('Endpoint not found');
-        $response->send();
-        exit();
+        $start = 0;
+        if (isset($_GET['start'])) {
+            $start = $_GET['start'];
+        }
+        $limit = 5;
+        if (isset($_GET['limit'])) {
+            if ($_GET == "All") {
+                $limit = "All";
+            } else {
+                $limit = $_GET['limit'];
+            }
+        }
+        $condition = "ASC";
+
+
+        if ($limit == "All") {
+            $querySQL = $mainQuery . ' ORDER BY stockmaster.webprice ' . $condition . '';
+        } else {
+            $querySQL = $mainQuery . ' ORDER BY stockmaster.webprice ' . $condition . ' LIMIT ' . $start . ',' . $limit . '';
+        }
+        $query = $readDB->prepare($querySQL);
     }
     try {
         $query->execute();

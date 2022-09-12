@@ -2,12 +2,12 @@
 include '../inc/function.php';
 if ($_POST['check'] == 'addtocart') {
     $productID = trim($_POST['productID']);
-    $productName = trim($_POST['productName']);
+    echo $productName = $_POST['productName'];
     $productprice = trim($_POST['productprice']);
     $productQuantity = trim($_POST['productQuantity']);
     $productImage = trim($_POST['productImage']);
     if (isset($_COOKIE['shopping_cart'])) {
-        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
+        $cookie_data = $_COOKIE['shopping_cart'];
         $cartData = json_decode($cookie_data, true);
     } else {
         $cartData = array();
@@ -30,7 +30,7 @@ if ($_POST['check'] == 'addtocart') {
         );
         $cartData[] = $itemArr;
     }
-
+    print_r($cartData);
     $itemData = json_encode($cartData);
 
     setcookie('shopping_cart', $itemData, time() + (86400 * 30), "/");
@@ -53,7 +53,7 @@ if ($_POST['check'] == "cartItemView") {
 if ($_POST['check'] == "deleteItemFromCart") {
     $cartIndexID = trim($_POST['cartIndexID']);
     if ($_COOKIE['shopping_cart'] != '') {
-        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
+        $cookie_data = $_COOKIE['shopping_cart'];
         $cartData = json_decode($cookie_data, true);
         unset($cartData[$cartIndexID]);
         $nowCartData = array_values($cartData);
@@ -86,7 +86,7 @@ if ($_POST['check'] == 'cartItemUpdateData') {
     if ($newItem == 0) {
         if ($_COOKIE['shopping_cart'] != '') {
             $cookiesIndex = '';
-            $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
+            $cookie_data = $_COOKIE['shopping_cart'];
             $cartData = json_decode($cookie_data, true);
             $dataItem = count($cartData);
             for ($i = 0; $i < $dataItem; $i++) {

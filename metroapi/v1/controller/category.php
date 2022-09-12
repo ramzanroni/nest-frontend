@@ -50,6 +50,7 @@ if (empty($_GET)) {
             $query->execute();
             $rowCount = $query->rowCount();
             $categoryArray = array();
+            // $ip_server = 'https://neo.fuljor.com/erp/companies/neo_bazar/part_pics/';
             $ip_server = 'http://' . $_SERVER['SERVER_ADDR'] . "/" . "metroapi/v1/";
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $categoryID = $row['groupid'];

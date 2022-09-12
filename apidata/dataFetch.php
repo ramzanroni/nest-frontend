@@ -8,7 +8,7 @@ include_once('./inc/apiendpoint.php');
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => APIENDPOINT . "product.php",
+    CURLOPT_URL => APIENDPOINT . "product.php?limit=All",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

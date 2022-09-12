@@ -11823,7 +11823,7 @@ footer .hotline img {
   .logo.logo-width-1 {
     margin-right: 0;
     position: absolute;
-    left: 8%;
+    left: 50%;
     -webkit-transform: translateX(-50%);
   }
 

@@ -1,10 +1,41 @@
 <?php
 include 'function.php';
+include_once('apiendpoint.php');
 if (session_id() == '') {
     session_start();
 }
 list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, ceil(count($categoryItemData) / 2));
 
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => APIENDPOINT . "category-find.php",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "Authorization:" . APIKEY,
+        "cache-control: no-cache"
+    ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    $category = json_decode($response);
+    $categoryItems = (array) $category->data->menu->items;
+    $mainMenuList = (array)$category->data->menu->parents;
+    $mainMenu = $mainMenuList[0];
+    // print_r($categoryItems);
+    // print_r($categoryItems[1]->groupname);
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -343,10 +374,50 @@ list($categoryFirstHalf, $categorySecondHalf) = array_chunk($categoryItemData, c
                                 <ul class="dropdown">
                                     <?php
 
-                                    foreach ($categoryItemData as $categoryValueMobile) {
+                                    foreach ($mainMenu as $categoryValueMobile) {
+                                        $secondSubMenu = $mainMenuList[$categoryValueMobile];
+                                        if (count($secondSubMenu) > 0) {
                                     ?>
-                                        <li><a href="products.php?category_id=<?php echo $categoryValueMobile->categoryID;  ?>"><?php echo $categoryValueMobile->categoryName; ?></a>
-                                        </li>
+                                            <li class="menu-item-has-children">
+                                                <a href="products.php?category_id=<?php echo $categoryValueMobile;  ?>"><?php echo $categoryItems[$categoryValueMobile]->groupname; ?></a>
+                                                <ul class="dropdown">
+                                                    <?php
+                                                    foreach ($secondSubMenu as $secondSubID) {
+                                                        $thirdSubMenu = $mainMenuList[$secondSubID];
+                                                        if (count($thirdSubMenu) > 0) {
+                                                    ?>
+                                                            <li class="menu-item-has-children">
+                                                                <a href="products.php?category_id=<?php echo $secondSubID;  ?>"><?php echo $categoryItems[$secondSubID]->groupname; ?></a>
+                                                                <ul class="dropdown">
+                                                                    <?php
+                                                                    foreach ($thirdSubMenu as $thirdSubMenuID) {
+                                                                    ?>
+                                                                        <li><a href="products.php?category_id=<?php echo $thirdSubMenuID;  ?>"><?php echo $categoryItems[$thirdSubMenuID]->groupname; ?></a></li>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </ul>
+                                                            </li>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <li><a href="products.php?category_id=<?php echo $secondSubID;  ?>"><?php echo $categoryItems[$secondSubID]->groupname; ?></a>
+                                                            </li>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </li>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <li><a href="products.php?category_id=<?php echo $categoryValueMobile;  ?>"><?php echo $categoryItems[$categoryValueMobile]->groupname; ?></a>
+                                            </li>
+                                        <?php
+                                        }
+
+                                        ?>
 
                                     <?php
                                     }

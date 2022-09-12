@@ -113,9 +113,9 @@ class Product
     }
     public function setCategory($category)
     {
-        if ($category == null) {
-            throw new ProductException("Category  Error");
-        }
+        // if ($category == null) {
+        //     throw new ProductException("Category  Error");
+        // }
         $this->_category = $category;
     }
 

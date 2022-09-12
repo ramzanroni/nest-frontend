@@ -633,3 +633,21 @@ footer .hotline img {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.menu-box1 {
+    position: absolute !important;
+    top: 0px;
+    left: 299px;
+    width: 265px;
+    z-index: 999;
+    background: white;
+}
+
+.menu-box2 {
+    position: absolute !important;
+    top: 0px;
+    left: 564px;
+    width: 265px;
+    z-index: 999;
+    background: white;
+}

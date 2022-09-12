@@ -62,9 +62,9 @@ if ($err) {
     $result = json_decode($response);
     $areaData = $result->data->area;
 }
-foreach ($areaData as  $area) {
-    echo $area->id;
-}
+// foreach ($areaData as  $area) {
+//     echo $area->id;
+// }
 ?>
 <main class="main">
     <?php

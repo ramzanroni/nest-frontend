@@ -84,30 +84,6 @@ if (isset($_GET['code'])) {
                                 </div>
                             </div>
                         </nav>
-
-                        <!-- <ul class="nav nav-tabs links" id="myTab" role="tablist">
-                            <div id="btn-nav-previous">&lt;</div>
-                            <div id="btn-nav-next">&gt;</div>
-                            <div class="menu-inner-box">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" onclick="categoryProduct(0)" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
-                            </li>
-
-                            <?php
-                            foreach ($categoryItemData as $categoryValueitem) {
-                                if ($categoryValueitem->parent == 0) {
-                            ?>
-
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" type="button" role="tab" aria-controls="tab-two" aria-selected="false" onclick="categoryProduct(<?php echo $categoryValueitem->categoryID; ?>)">
-                                            <?php echo $categoryValueitem->categoryName; ?>
-                                        </button>
-                                    </li>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </ul> -->
                         <script>
                             $('#btn-nav-previous').click(function() {
                                 $(".menu-inner-box").animate({
@@ -140,171 +116,6 @@ if (isset($_GET['code'])) {
                     </div>
                     <!--End tab-content-->
                 </section>
-                <!--Products Tabs-->
-                <!-- <section class="section-padding pb-5">
-                    <div class="section-title">
-                        <h3 class="">Deals Of The Day</h3>
-                        <a class="show-all" href="products.php">
-                            All Deals
-                            <i class="fi-rs-angle-right"></i>
-                        </a>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="product.php">
-                                            <img src="assets/imgs/banner/banner-5.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="product.php">Seeds of Change Organic Quinoa, Brown</a>
-                                        </h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">NestFood</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$32.85</span>
-                                                <span class="old-price">$33.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="product.php">
-                                            <img src="assets/imgs/banner/banner-6.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="product.php">Perdue Simply Smart Organics Gluten</a>
-                                        </h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Old
-                                                    El Paso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$24.85</span>
-                                                <span class="old-price">$26.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-lg-block">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="product.php">
-                                            <img src="assets/imgs/banner/banner-7.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="product.php">Signature Wood-Fired Mushroom</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Progresso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$12.85</span>
-                                                <span class="old-price">$13.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-xl-block">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="product.php">
-                                            <img src="assets/imgs/banner/banner-8.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="product.php">Simply Lemonade with Raspberry Juice</a>
-                                        </h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.php">Yoplait</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$15.85</span>
-                                                <span class="old-price">$16.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.php"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> -->
-                <!--End Deals-->
                 <section class="banners">
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
@@ -345,7 +156,7 @@ if (isset($_GET['code'])) {
                 <!--End banners-->
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar pt-30">
-                <?php include_once('component/category-component.php'); ?>
+                <?php include_once('component/category-component-menu.php'); ?>
                 <!-- Fillter By Price -->
                 <?php
                 include_once('component/filter-component.php');
@@ -366,6 +177,7 @@ if (isset($_GET['code'])) {
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <section class="popular-categories section-padding">

@@ -18,15 +18,15 @@ $(window).resize(function () {
   }
 });
 // scroll
-$('#btn-nav-previous').click(function() {
+$('#btn-nav-previous').click(function () {
   $(".menu-inner-box").animate({
-      scrollLeft: "-=100px"
+    scrollLeft: "-=100px"
   });
 });
 
-$('#btn-nav-next').click(function() {
+$('#btn-nav-next').click(function () {
   $(".menu-inner-box").animate({
-      scrollLeft: "+=100px"
+    scrollLeft: "+=100px"
   });
 });
 
@@ -68,12 +68,19 @@ $(".close-btn").click(function () {
 });
 
 $(document).ready(function () {
+  $('.menu-box2').mouseleave(function () {
+    $(".menu-box2").css("display", "none");
+  })
+  $('#mainMenuDiv').mouseleave(function () {
+    $(".menu-box1").css("display", "none");
+    $(".menu-box2").css("display", "none");
+  })
   cartItem();
   $("#searchBox").hide();
   $("#searchResultBox").hide();
   preloader();
   $("#preloader-active").hide();
-  
+
 });
 
 function productQuikView(productID) {
@@ -127,6 +134,7 @@ function addtoCart(
       check: check,
     },
     success: function (response) {
+      console.log(response);
       cartItem();
       // $("#myTabContent").load(" #myTabContent > *");
     },
@@ -151,40 +159,10 @@ function firstAddtoCart(
   var idbtn = "item_" + productID;
   var inc = "'increment'";
   var dec = "'decrement'";
-  var newproductName = "'" + productName+"'";
+  var newproductName = "'" + productName + "'";
   var newproductimg = "'" + productImage + "'";
-  var newBtn='<input type="hidden" id="getItem_'+productID+'" value="'+productQuantity+'"><div class="add-cart"><a class="add" style="border-radius: 5px 0px 0px 5px;" onclick="CartItemChange('+"'decrement'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-minus"></i> </a></div><div class="add-cart midCart"><a class="add middlediv" style="border-radius: 0 !important;"><i class="fi-rs-shopping-cart mr-5"></i><span id="cartCount_'+productID+'">'+productQuantity+'</span> </a></div><div class="add-cart"><a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange('+"'increment'"+', '+productID+','+newproductName+','+productprice+','+newproductimg+')"><i class="fi-rs-plus"></i></a></div>';
+  var newBtn = '<input type="hidden" id="getItem_' + productID + '" value="' + productQuantity + '"><div class="add-cart"><a class="add" style="border-radius: 5px 0px 0px 5px;" onclick="CartItemChange(' + "'decrement'" + ', ' + productID + ',' + newproductName + ',' + productprice + ',' + newproductimg + ')"><i class="fi-rs-minus"></i> </a></div><div class="add-cart midCart"><a class="add middlediv" style="border-radius: 0 !important;"><i class="fi-rs-shopping-cart mr-5"></i><span id="cartCount_' + productID + '">' + productQuantity + '</span> </a></div><div class="add-cart"><a class="add" style="border-radius: 0px 5px 5px 0px;" onclick="CartItemChange(' + "'increment'" + ', ' + productID + ',' + newproductName + ',' + productprice + ',' + newproductimg + ')"><i class="fi-rs-plus"></i></a></div>';
 
-  // var newBtn =
-  //   '<input type="hidden" id="getItem_' +
-  //   productID +
-  //   '" value="' +
-  //   productQuantity +
-  //   '"><div class="col-10 float-end after-cart"><div class="col-2 float-end increment" onclick="CartItemChange(' +
-  //   inc +
-  //   "," +
-  //   productID +
-  //   "," +
-  //   newproductName +
-  //   "," +
-  //   productprice +
-  //   "," +
-  //   productprice +
-  //   ')"<a><i class="fi-rs-plus"></i></a></div><div class="col-4 float-end middle"><a><i class="fi-rs-shopping-cart"></i><span id="cartCount_' +
-  //   productID +
-  //   '">' +
-  //   productQuantity +
-  //   '</span></a></div><div class="col-2 float-end add decrement" onclick="CartItemChange(' +
-  //   dec +
-  //   "," +
-  //   productID +
-  //   "," +
-  //   newproductName +
-  //   "," +
-  //   productprice +
-  //   "," +
-  //   newproductimg +
-  //   ')"><a><i class="fi-rs-minus"></i></a></div></div>';
   $(btnId).html(newBtn);
   var activediv = document.getElementById(idbtn);
   activediv.classList.add("d-flex");
@@ -284,7 +262,7 @@ function cartPopUp() {
             '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
             sum +
             '</span></h4></div><div class="shopping-cart-button"><a href="shop-cart.php" class="outline">View cart</a><a href="shop-checkout.php">Order</a></div></div>';
-        } 
+        }
         $("#cartItem" + mobile).html(html);
       },
     });
@@ -527,18 +505,8 @@ function CartItemChange(
 
         var btnPnamenew = "'" + itemDescription + "'";
         var btnPimgnew = "'" + itemImg + "'";
-        var newbtnHtml='<div class="add-cart"><a class="add divsize" onclick="firstAddtoCart('+cartItemID+','+btnPnamenew+','+itemPrice+',1,'+btnPimgnew+')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div >';
-        
-        // var newbtnHtml =
-        //   '<div class="add-cart"><a class="add" onclick="firstAddtoCart(' +
-        //   cartItemID +
-        //   "," +
-        //   btnPnamenew +
-        //   "," +
-        //   itemPrice +
-        //   ",1," +
-        //   btnPimgnew +
-        //   ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div>';
+        var newbtnHtml = '<div class="add-cart"><a class="add divsize" onclick="firstAddtoCart(' + cartItemID + ',' + btnPnamenew + ',' + itemPrice + ',1,' + btnPimgnew + ')"><i class="fi-rs-shopping-cart mr-5"></i>Add </a></div >';
+
         $(newproductBtn).html(newbtnHtml);
         $(newproductBtn).removeClass("d-flex");
       }
@@ -581,7 +549,7 @@ $(document).ready(function () {
   $("#limitValue li").on("click", function () {
     var limit = $(this).attr("data-id");
     $("#getLimit").val(limit);
-    
+
 
     sortingProduct();
   });
@@ -668,7 +636,7 @@ function categoryProduct(categoryId) {
       var a = document.querySelector('.active-menu');
       a.classList.remove('active-menu');
       var b = document.querySelector(navID);
-      b.classList.add('active-menu');     
+      b.classList.add('active-menu');
       $("#productItemField").html(response);
     },
   });
@@ -733,52 +701,50 @@ function userSignup() {
   } else {
     $("#errorAddress").html('');
   }
-  if (flag == 0)
-  {
+  if (flag == 0) {
     var check = "forRegistration";
-      $.ajax({
-        url: "pages/userAction.php",
-        type: "POST",
-        dataType: "json",
-        data: {
-          phoneNumber: phoneNumber,
-          check: check,
-        },
-        success: function (response) {
-          var result = JSON.parse(response);
-          if (result.success == true) {
-            var phone = "'" + phoneNumber + "'";
-            var Name = "'" + userName + "'";
-            var Address = "'" + userAddress + "'";
-            var emailAdd = "'" + email + "'";
-            var emailIdData = "'" + emailID + "'";
-            var mediaData = "'" + media + "'";
-            var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount('+phone+','+Name+','+Address+','+emailAdd+','+emailIdData+','+mediaData+')">Send</button></div>';
-            $("#loginDiv").html(htmlgetOtp);
-            $("#resendField").hide();
-            timmer();
-            setTimeout(function () {
-              $("#countDown").hide();
-              $("#resendField").show();
-            }, 60000);
-          } else {
-            $("#errorNumMessage").html(result.message);
-          }
-          
-        },
-      });
+    $.ajax({
+      url: "pages/userAction.php",
+      type: "POST",
+      dataType: "json",
+      data: {
+        phoneNumber: phoneNumber,
+        check: check,
+      },
+      success: function (response) {
+        var result = JSON.parse(response);
+        if (result.success == true) {
+          var phone = "'" + phoneNumber + "'";
+          var Name = "'" + userName + "'";
+          var Address = "'" + userAddress + "'";
+          var emailAdd = "'" + email + "'";
+          var emailIdData = "'" + emailID + "'";
+          var mediaData = "'" + media + "'";
+          var htmlgetOtp =
+            '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' + phone + ')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="createAccount(' + phone + ',' + Name + ',' + Address + ',' + emailAdd + ',' + emailIdData + ',' + mediaData + ')">Send</button></div>';
+          $("#loginDiv").html(htmlgetOtp);
+          $("#resendField").hide();
+          timmer();
+          setTimeout(function () {
+            $("#countDown").hide();
+            $("#resendField").show();
+          }, 60000);
+        } else {
+          $("#errorNumMessage").html(result.message);
+        }
+
+      },
+    });
   }
 }
 
-function createAccount(phone, name, address, emailAdd, emailIdData,mediaData)
-{
+function createAccount(phone, name, address, emailAdd, emailIdData, mediaData) {
   var otp = $("#getOtp").val();
   var check = "userRegistration";
   if (otp == "") {
     $("#errorNumMessage").html("Please provide your OTP code.");
   }
-  
+
   else {
     $.ajax({
       url: "pages/userAction.php",
@@ -791,8 +757,8 @@ function createAccount(phone, name, address, emailAdd, emailIdData,mediaData)
         otp: otp,
         emailAdd: emailAdd,
         emailIdData: emailIdData,
-        mediaData:mediaData,
-        check:check
+        mediaData: mediaData,
+        check: check
       },
       success: function (response) {
         if (response == "success") {
@@ -801,9 +767,9 @@ function createAccount(phone, name, address, emailAdd, emailIdData,mediaData)
           location.replace('index.php');
         } else {
           $("#errorNumMessage").html(response);
-           setTimeout(function () {
-             loginUserFororder();
-            }, 2000);
+          setTimeout(function () {
+            loginUserFororder();
+          }, 2000);
         }
       },
     });
@@ -832,7 +798,7 @@ function userLogin() {
           if (response == "success") {
             var phone = "'" + phoneNumber + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP('+phone+')">Log in</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' + phone + ')">Resend OTP</a></span><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' + phone + ')">Log in</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -849,7 +815,7 @@ function userLogin() {
   } else {
     $("#errorNumMessage").html("Please Enter a Valid Number");
   }
-  
+
 }
 
 function resendOTP(phoneNumber) {
@@ -865,14 +831,8 @@ function resendOTP(phoneNumber) {
     success: function (response) {
       if (response == "success") {
         var phone = "'" + phoneNumber + "'";
-        // var htmlLogin =
-        //   '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="getOtp" name="getOtp" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send!  <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' +
-        //   phone +
-        //   ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkOTP(' +
-        //   phone +
-        //   ')">Log in</button></div>';
-        var htmlLogin = '<span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP('+phone+')">Resend OTP</a></span>';
-        // console.log(htmlLogin);
+        var htmlLogin = '<span id="resendDiv"><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="resendOTP(' + phone + ')">Resend OTP</a></span>';
+
         $("#resendDiv").html(htmlLogin);
 
         $("#resendField").hide();
@@ -881,9 +841,7 @@ function resendOTP(phoneNumber) {
           $("#countDown").hide();
           $("#resendField").show();
         }, 60000);
-        // alertMessage("Some thing is wrong..!");
       }
-      // alertMessageSuccess("OTP Send Success..");
     },
   });
 }
@@ -964,8 +922,7 @@ function updateUserData(userPhone) {
     });
   }
 }
-function checkEmail(email, name, emailID)
-{
+function checkEmail(email, name, emailID) {
   var check = "checkEmail";
   $.ajax({
     url: "pages/userAction.php",
@@ -975,7 +932,7 @@ function checkEmail(email, name, emailID)
       check: check,
       name: name,
       email: email,
-      emailID:emailID
+      emailID: emailID
     },
     success: function (response) {
       if (response == "success") {
@@ -989,8 +946,7 @@ function checkEmail(email, name, emailID)
     },
   });
 }
-function emailRegister(name, email, emailID)
-{
+function emailRegister(name, email, emailID) {
   var check = "loginpopupview";
   $.ajax({
     url: "pages/userAction.php",
@@ -1035,8 +991,7 @@ function loginUserFororder() {
   });
 }
 
-function registrationInterface()
-{
+function registrationInterface() {
   $("#userName").show();
   $("#userAddress").show();
   $("#loginView").show();
@@ -1072,7 +1027,7 @@ function placeorder(phoneNumber, token) {
     alertMessage("Please select area.");
 
     $("#area").addClass('select2-container-class');
-    
+
     flag = 0;
   }
   if (phone == "") {
@@ -1141,7 +1096,7 @@ function getDeliveryCharge(id) {
 }
 // searchItem
 function searchItem(productSearchItem) {
-  
+
   var categoryName = $("#category_name").val();
   var check = "searchItem";
   if (productSearchItem.length > 1) {
@@ -1185,21 +1140,20 @@ function viewAllProduct() {
 
 function viewAllItem(categoryId, itemString) {
   console.log(itemString);
-  if (categoryId == '')
-  {
+  if (categoryId == '') {
     window.location.replace(
       "/nest-frontend/products.php?product_name=" +
-        itemString 
+      itemString
     );
   } else {
     window.location.replace(
       "/nest-frontend/products.php?product_name=" +
-        itemString +
-        "&category=" +
-        categoryId
+      itemString +
+      "&category=" +
+      categoryId
     );
-    }
-  
+  }
+
   // var check = "viewAllItem";
   // $.ajax({
   //   url: "pages/searchAction.php",
@@ -1276,8 +1230,8 @@ function searchProductMobile(searchString) {
 function viewAllItemMobile(searchSrt) {
   window.location.replace(
     "/nest-frontend/products.php?product_name=" +
-      searchSrt +
-      "&category="
+    searchSrt +
+    "&category="
   );
 }
 
@@ -1344,7 +1298,7 @@ function OrderCancel(orderId) {
 }
 
 // deleteOrderItem
-function deleteOrderItem(orderNo,lineNo) {
+function deleteOrderItem(orderNo, lineNo) {
   var check = "deleteOrderItem";
   var btnID = "cancel_" + orderNo + "_" + lineNo;
   $.ajax({
@@ -1353,7 +1307,7 @@ function deleteOrderItem(orderNo,lineNo) {
 
     data: {
       orderNo: orderNo,
-      lineNo:lineNo,
+      lineNo: lineNo,
       check: check,
     },
     success: function (response) {
@@ -1369,8 +1323,7 @@ function deleteOrderItem(orderNo,lineNo) {
 
 // CancelCartoonDelivery
 
-function CancelCartoonDelivery(orderNumber, orderlineno)
-{
+function CancelCartoonDelivery(orderNumber, orderlineno) {
   var check = "CancelCartoonDelivery";
   $.ajax({
     url: "pages/orderAction.php",
@@ -1378,7 +1331,7 @@ function CancelCartoonDelivery(orderNumber, orderlineno)
 
     data: {
       orderNumber: orderNumber,
-      orderlineno:orderlineno,
+      orderlineno: orderlineno,
       check: check,
     },
     success: function (response) {
@@ -1388,8 +1341,7 @@ function CancelCartoonDelivery(orderNumber, orderlineno)
 }
 
 // updatePhone
-function updatePhone()
-{
+function updatePhone() {
   var newPhone = $("#newPhone").val();
   if ($.isNumeric(newPhone)) {
     var phoneReg = new RegExp(/(^(\+88|0088)?(01){1}[56789]{1}(\d){8})$/);
@@ -1433,15 +1385,13 @@ function updatePhone()
 }
 
 // changePhone
-function changePhone(oldPhone)
-{
+function changePhone(oldPhone) {
   // var oldPhone = "'" + oldPhoneNum + "'";
-  var html='<input id="oldphone" type="hidden" value="'+oldPhone+'"><div class="container"><div class="row"><div class="col-xl-12 col-lg-12 col-md-12 m-auto"><div class="row"><div class="col-lg-6 pr-30 d-none d-lg-block"><img class="border-radius-15" src="assets/imgs/page/login-1.png" alt=""></div><div class="col-lg-6 col-md-8"><div class="login_wrap widget-taber-content background-white"> <div class="padding_eight_all bg-white" id="loginDiv"><div class="heading_s1"><h1 class="mb-5">Change Phone Number</h1></div><div class="form-group"> <input type="text" required="" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter your new phone number*"><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="sendOTP()">Send</button></div> </div></div></div> </div></div></div></div>';
+  var html = '<input id="oldphone" type="hidden" value="' + oldPhone + '"><div class="container"><div class="row"><div class="col-xl-12 col-lg-12 col-md-12 m-auto"><div class="row"><div class="col-lg-6 pr-30 d-none d-lg-block"><img class="border-radius-15" src="assets/imgs/page/login-1.png" alt=""></div><div class="col-lg-6 col-md-8"><div class="login_wrap widget-taber-content background-white"> <div class="padding_eight_all bg-white" id="loginDiv"><div class="heading_s1"><h1 class="mb-5">Change Phone Number</h1></div><div class="form-group"> <input type="text" required="" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter your new phone number*"><small class="text-danger" id="errorNumMessage"></small></div><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="sendOTP()">Send</button></div> </div></div></div> </div></div></div></div>';
   $("#modalDiv").html(html);
 }
 
-function sendOTP()
-{
+function sendOTP() {
   var check = "userPhoneUpOTP";
   var newPhone = $("#newPhoneNumber").val();
   var hh = "oooo";
@@ -1454,7 +1404,7 @@ function sendOTP()
       $.ajax({
         url: "pages/userAction.php",
         type: "POST",
-    
+
         data: {
           newPhone: newPhone,
           check: check,
@@ -1463,8 +1413,8 @@ function sendOTP()
           if (response == "success") {
             var phoneNumber = "'" + newPhone + "'";
             var htmlgetOtp =
-              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP('+phoneNumber+
-              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP('+phoneNumber +')">Log in</button></div>';
+              '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP(' + phoneNumber +
+              ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP(' + phoneNumber + ')">Log in</button></div>';
             $("#loginDiv").html(htmlgetOtp);
             $("#resendField").hide();
             timmer();
@@ -1481,8 +1431,7 @@ function sendOTP()
   }
 }
 
-function PhoneResendOTP(updatePhone)
-{
+function PhoneResendOTP(updatePhone) {
 
   // console.log(updatePhone);
   var newPhone = updatePhone;
@@ -1496,11 +1445,10 @@ function PhoneResendOTP(updatePhone)
       check: check,
     },
     success: function (response) {
-      if (response == 'success')
-      {
+      if (response == 'success') {
         var phoneNumber = "'" + newPhone + "'";
-         var htmlgetOtp =
-          '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP('+phoneNumber +')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP('+phoneNumber+')">Log in</button></div>';
+        var htmlgetOtp =
+          '<div class="heading_s1"><h1 class="mb-5">Enter Your Otp</h1></div><div class="form-group"><input type="text" required="" id="userOTP" name="userOTP" placeholder="Enter Your OTP*" /><small class="text-danger" id="errorNumMessage"></small></div><p id="countDown">OTP has been send! <span id="time"></span></p><a class="" id="resendField" onclick="PhoneResendOTP(' + phoneNumber + ')">Resend OTP</a><div class="form-group"><button type="submit" class="btn btn-heading btn-block hover-up" name="login" onclick="checkNewOTP(' + phoneNumber + ')">Log in</button></div>';
         $("#loginDiv").html(htmlgetOtp);
         $("#resendField").hide();
         timmer();
@@ -1508,14 +1456,13 @@ function PhoneResendOTP(updatePhone)
           $("#countDown").hide();
           $("#resendField").show();
         }, 60000);
-        }
-     
+      }
+
     },
   });
 }
 
-function checkNewOTP(newNumber)
-{
+function checkNewOTP(newNumber) {
   var oldNumber = $("#oldphone").val();
   var otp = $("#userOTP").val();
   var check = "checkUpdateOTP";
@@ -1549,7 +1496,44 @@ function checkNewOTP(newNumber)
 
 }
 
-function curlErrorFunction()
-{
+function curlErrorFunction() {
   alert("working");
+}
+
+function getOtherMenu(catId) {
+  $(".menu-box1").css("display", "block");
+  var check = "menuBarOpen";
+  $.ajax({
+    url: "pages/menuAction.php",
+    type: "POST",
+
+    data: {
+      catId: catId,
+      check: check,
+    },
+    success: function (response) {
+      $("#submenu").html(response);
+    },
+  });
+}
+function removeSubmenu() {
+  $(".menu-box1").css("display", "none");
+}
+
+
+function getOtherMenu1(catId) {
+  $(".menu-box2").css("display", "block");
+  var check = "menuBarOpen1";
+  $.ajax({
+    url: "pages/menuAction.php",
+    type: "POST",
+
+    data: {
+      catId: catId,
+      check: check,
+    },
+    success: function (response) {
+      $("#submenu2").html(response);
+    },
+  });
 }
