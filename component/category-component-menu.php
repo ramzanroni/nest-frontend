@@ -50,7 +50,8 @@ if ($err) {
         display: none;
         position: absolute;
         right: -250px;
-        top: -104px;
+        margin-top: 5px;
+        top: -73px;
         width: 249px;
         background-color: white;
         z-index: 99;
@@ -112,10 +113,31 @@ if ($err) {
         font-size: 24px;
         padding-left: 50px;
     }
+
+    .widget-category-2 ul li {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        line-height: 5px;
+        border-radius: 5px;
+        border: 1px solid #F2F3F4;
+        padding: 9px 18px;
+        margin: 0px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        transition: .3s;
+        -moz-transition: .3s;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+    }
 </style>
 
-<div class="sidebar-widget-menu widget-category-2 mb-30">
-    <h5 class="section-title-style mb-30">Category</h5>
+<div class="sidebar-widget-menu widget-category-2 mb-10">
+    <h5 class="section-title-style">Category</h5>
     <div class="menudiv">
         <ul class="">
             <?php

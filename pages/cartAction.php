@@ -62,7 +62,9 @@ if ($_POST['check'] == "deleteItemFromCart") {
         echo $afterRemoveCart;
     }
 }
-
+if ($_POST['check'] == 'clearCart') {
+    setcookie('shopping_cart', '', time() + (86400 * 30), "/");
+}
 // UpdateHoleCart
 
 if ($_POST['check'] == 'UpdateHoleCart') {

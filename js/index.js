@@ -402,6 +402,22 @@ function removeItem(removeId) {
     },
   });
 }
+function clearCart() {
+  var check = "clearCart";
+  $.ajax({
+    url: "pages/cartAction.php",
+    type: "POST",
+
+    data: {
+      check: check,
+    },
+    success: function (response) {
+      cartItem();
+      $("#mainCartDivPage").load(" #mainCartDivPage > *");
+      alertMessageSuccess("Remove Cart Success..");
+    },
+  });
+}
 
 function updateCart(totalItem) {
   var carItems = [];
