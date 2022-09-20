@@ -33,8 +33,6 @@ if ($err) {
     $categoryItems = (array) $category->data->menu->items;
     $mainMenuList = (array)$category->data->menu->parents;
     $mainMenu = $mainMenuList[0];
-    // print_r($categoryItems);
-    // print_r($categoryItems[1]->groupname);
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +60,108 @@ if ($err) {
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="./js/index.js"></script>
-    <style></style>
+    <style>
+        .dropdown {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100px;
+            background-color: #fff;
+        }
+
+        .dropdown li {
+            position: relative;
+        }
+
+        .dropdown li a {
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        .dropdown li ul {
+            position: absolute;
+            top: 0;
+            left: 266px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: none;
+            line-height: normal;
+            background-color: #fff;
+            width: 295px;
+        }
+
+        .dropdown li ul li a {
+            text-align: left;
+            font-size: 14px;
+            padding: 10px;
+            display: block;
+            white-space: nowrap;
+        }
+
+
+        .dropdown li ul li ul {
+            left: 100%;
+            top: 0;
+        }
+
+
+        ul li:hover>ul {
+            display: block;
+        }
+
+        .sidebar-widget-menu {
+            position: relative;
+            border: 1px solid #ececec;
+            border-radius: 15px;
+            -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+            box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+        }
+
+        .section-title-style {
+            border-bottom: 1px solid #ececec;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            font-size: 24px;
+            padding-left: 50px;
+        }
+
+        .widget-category-2 ul li {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            line-height: 5px;
+            border-radius: 5px;
+            border: 1px solid #F2F3F4;
+            padding: 9px 18px;
+            margin: 0px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            transition: .3s;
+            -moz-transition: .3s;
+            -webkit-transition: .3s;
+            -o-transition: .3s;
+        }
+
+        .count {
+            display: inline-block;
+            background-color: #BCE3C9;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 20px;
+            margin-left: 5px;
+            font-size: 12px;
+            color: #253D4E;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,6 +170,7 @@ if ($err) {
         setcookie('first', true, time() + (86400 * 30), "/");
     ?>
         <!-- Modal -->
+
         <div class="modal fade custom-modal" id="onloadModal" tabindex="-1" aria-labelledby="onloadModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -177,8 +277,72 @@ if ($err) {
                     <div class="logo logo-width-1">
                         <a href="index.php"><img src="assets/imgs/theme/logo.png" alt="logo" /></a>
                     </div>
-                    <div class="header-right">
-                        <div class="search-style-2">
+                    <div class="main-categori-wrap d-none d-lg-block">
+                        <a class="categories-button-active category-box" href="#">
+                            <span class="fi-rs-apps"></span>Categories
+                            <i class="fi-rs-angle-down"></i>
+                        </a>
+
+                        <div class="categories-dropdown-wrap categories-dropdown-active-large dropdown font-heading">
+                            <div class="menudiv">
+                                <ul class="">
+                                    <?php
+                                    foreach ($mainMenu as $categoryValue) {
+                                        $secondSubMenu = $mainMenuList[$categoryValue];
+                                        if (count($secondSubMenu) > 0) {
+                                    ?>
+                                            <li class="">
+                                                <a tabindex="-1" href="products.php?category_id=<?php echo $categoryValue; ?>"> <img src="./metroapi/v1/images/<?php echo $categoryItems[$categoryValue]->image; ?>" alt="" /><?php echo  $categoryItems[$categoryValue]->groupname; ?> </a><span class="count">></span>
+                                                <ul class="">
+                                                    <?php
+                                                    foreach ($secondSubMenu as $secondSubID) {
+                                                        $thirdSubMenu = $mainMenuList[$secondSubID];
+                                                        if (count($thirdSubMenu) > 0) {
+                                                    ?>
+                                                            <li class="">
+                                                                <a href="products.php?category_id=<?php echo $secondSubID; ?>"><?php echo  $categoryItems[$secondSubID]->groupname; ?></a><span class="count">></span>
+
+                                                                <ul class="parent">
+                                                                    <?php
+                                                                    foreach ($thirdSubMenu as $thirdSubMenuID) {
+                                                                    ?>
+                                                                        <li><a href="products.php?category_id=<?php echo $thirdSubMenuID; ?>"><?php echo  $categoryItems[$thirdSubMenuID]->groupname; ?> </a></li>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </ul>
+                                                            </li>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <li class=""><a href="products.php?category_id=<?php echo $secondSubID; ?>"><?php echo  $categoryItems[$secondSubID]->groupname; ?></a></li>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </li>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <li><a href="products.php?category_id=<?php echo $categoryValue; ?>"><?php echo  $categoryItems[$categoryValue]->groupname; ?></a></li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="header-right searchHeader">
+                        <div class="search-style-2 searchBox">
                             <form method="POST" id="allProduct" onsubmit="event.preventDefault(); viewAllProduct();">
                                 <select class="select-active" id="category_name">
                                     <option value="">All Categories</option>
@@ -257,41 +421,7 @@ if ($err) {
                         <a href="index.php"><img src="assets/imgs/theme/logo.png" alt="logo" /></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
-                        <div class="main-categori-wrap d-none d-lg-block">
-                            <a class="categories-button-active" href="#">
-                                <span class="fi-rs-apps"></span> <span class="et">Browse</span> All Categories
-                                <i class="fi-rs-angle-down"></i>
-                            </a>
-                            <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        <?php
-                                        foreach ($categoryFirstHalf as $categoryFirstHalfvalue) {
-                                        ?>
-                                            <li>
-                                                <a href="products.php?category_id=<?php echo $categoryFirstHalfvalue->categoryID; ?>">
-                                                    <img src="<?php echo $categoryFirstHalfvalue->categoryImg; ?>" alt="" /><?php echo $categoryFirstHalfvalue->categoryName; ?></a>
-                                            </li>
-                                        <?php
-                                        }
-                                        ?>
-                                    </ul>
-                                    <ul class="end">
-                                        <?php
-                                        foreach ($categorySecondHalf as $categorySecondHalfvalue) {
-                                        ?>
-                                            <li>
-                                                <a href="products.php?category_id=<?php echo $categorySecondHalfvalue->categoryID;  ?>">
-                                                    <img src="<?php echo $categorySecondHalfvalue->categoryImg; ?>" alt="" /><?php echo $categorySecondHalfvalue->categoryName; ?></a>
-                                            </li>
-                                        <?php
-                                        }
-                                        ?>
-                                    </ul>
-                                </div>
 
-                            </div>
-                        </div>
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
@@ -468,3 +598,12 @@ if ($err) {
         </div>
     </div>
     </div>
+    <script>
+        $('.child').hide(); //Hide children by default
+
+        $('.parent').children().click(function() {
+            // event.preventDefault();
+            $(this).children('.child').slideToggle('slow');
+            $(this).find('span').toggle();
+        });
+    </script>

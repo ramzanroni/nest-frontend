@@ -53,7 +53,7 @@ if ($_POST['check'] == "searchItem") {
 
             <div class="col-6 p-2 serchItemBox">
                 <div class="col-3 p-2 float-start">
-                    <img src="//<?php echo $itemValue->img; ?>" alt="" width="80px" height="80px">
+                    <img src="<?php echo $itemValue->img; ?>" alt="" width="80px" height="80px">
                 </div>
                 <div class="col-7 float-end">
                     <a href="product.php?product_id=<?php echo $itemValue->stockid; ?>" class="h6"><?php echo $itemValue->description; ?></a><br>

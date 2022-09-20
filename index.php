@@ -156,7 +156,9 @@ if (isset($_GET['code'])) {
                 <!--End banners-->
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar pt-30">
-                <?php include_once('component/category-component-menu.php'); ?>
+                <?php
+                // include_once('component/category-component-menu.php');
+                ?>
                 <!-- Fillter By Price -->
                 <?php
                 include_once('component/filter-component.php');
