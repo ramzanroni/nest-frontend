@@ -159,14 +159,16 @@ if (isset($_GET['code'])) {
                 <?php
                 // include_once('component/category-component-menu.php');
                 ?>
+
+                <?php
+                include_once('component/newproduct-component.php');
+                ?>
                 <!-- Fillter By Price -->
                 <?php
                 include_once('component/filter-component.php');
                 ?>
                 <!-- Product sidebar Widget -->
-                <?php
-                include_once('component/newproduct-component.php');
-                ?>
+
                 <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
                     <img src="assets/imgs/banner/banner-11.png" alt="" />
                     <div class="banner-text">

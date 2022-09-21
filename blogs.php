@@ -2,13 +2,23 @@
 include 'apidata/dataFetch.php';
 include 'inc/header.php';
 include 'config.php';
+$subUrl = '';
+if (isset($_GET['category_id']) && $_GET['category_id'] != '') {
+    $categoryId = $_GET['category_id'];
+    $subUrlTotal = "admin/blog/blog.php?category_id=" . $categoryId;
+    $subUrl = "admin/blog/blog.php?category_id=" . $categoryId . "&start=0&limit=2";
+} else {
+    $subUrlTotal = "admin/blog/blog.php";
+    $subUrl = "admin/blog/blog.php?start=0&limit=2";
+}
+
 
 
 // total blogs 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => APIENDPOINT . "admin/blog/blog.php",
+    CURLOPT_URL => APIENDPOINT . $subUrlTotal,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -36,7 +46,7 @@ if ($err) {
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => APIENDPOINT . "admin/blog/blog.php?start=0&limit=2",
+    CURLOPT_URL => APIENDPOINT . $subUrl,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -60,6 +70,7 @@ if ($err) {
     $result = json_decode($response);
     $blogs = $result->data->blog;
 }
+
 ?>
 <main class="main">
     <div class="page-header mt-30 mb-75">
@@ -67,7 +78,7 @@ if ($err) {
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h1 class="mb-15">Blogss</h1>
+                        <h1 class="mb-15">Blogs</h1>
                         <div class="breadcrumb">
                             <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                             <span></span> Blogs
@@ -81,14 +92,6 @@ if ($err) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="blogItem">
-                    <div class="shop-product-fillter mb-50">
-                        <div class="totall-product">
-                            <h2>
-                                <img class="w-36px mr-10" src="assets/imgs/theme/icons/category-1.svg" alt="" />
-                                Recips Articles
-                            </h2>
-                        </div>
-                    </div>
                     <div class="loop-grid">
                         <div class="row">
                             <?php
@@ -96,7 +99,7 @@ if ($err) {
                             ?>
                                 <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                                     <div class="post-thumb">
-                                        <a href="blogs.php?id=<?php echo $blog->id; ?>">
+                                        <a href="blog.php?id=<?php echo $blog->id; ?>">
                                             <img class="border-radius-15" src="<?php echo '../urban/' . $blog->image; ?>" alt="" />
                                         </a>
                                         <div class="entry-meta">
@@ -106,7 +109,7 @@ if ($err) {
                                     <div class="entry-content-2">
                                         <h6 class="mb-10 font-sm"><a class="entry-meta text-muted" href="blogs.php?category_id=<?php echo $blog->category_id; ?>"><?php echo $blog->category_name; ?></a></h6>
                                         <h4 class="post-title mb-15">
-                                            <a href="blogs.php?id=<?php echo $blog->id; ?>"><?php echo $blog->title; ?></a>
+                                            <a href="blog.php?id=<?php echo $blog->id; ?>"><?php echo $blog->title; ?></a>
                                         </h4>
                                         <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                             <div>
@@ -141,7 +144,7 @@ if ($err) {
                                         <li id="blogPagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
                                                                                                         echo 'active';
                                                                                                     } ?>">
-                                            <a class="page-link" onclick="BlogPagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                            <a class="page-link" onclick="blogPagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
                                         </li>
                                     <?php
                                     }
@@ -168,7 +171,7 @@ if ($err) {
 
                                     ?>
                                     <li class="page-item">
-                                        <a class="page-link" onclick="pagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
+                                        <a class="page-link" onclick="blogPagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
                                     </li>
                                 <?php
                                 }

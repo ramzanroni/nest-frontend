@@ -5647,7 +5647,7 @@ table .product-thumbnail img {
 }
 
 .shopping-summery table> :not(caption)>*>* {
-  padding: 15px 0;
+  padding: 0px 0px;
 }
 
 .shopping-summery table td,
@@ -5674,8 +5674,7 @@ table .product-thumbnail img {
 }
 
 .shopping-summery table tbody tr img {
-  max-width: 120px;
-  border: 1px solid #ececec;
+  max-width: 50px;
   border-radius: 15px;
 }
 
@@ -9141,7 +9140,8 @@ span.fi-rs-apps {
 
 .categories-dropdown-wrap ul li a img {
   max-width: 30px;
-  margin-right: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .categories-dropdown-wrap ul li:hover .dropdown-menu {
@@ -9424,7 +9424,7 @@ span.fi-rs-apps {
   border-radius: 5px;
   border: 1px solid #F2F3F4;
   padding: 9px 18px;
-  margin: 0 0 15px 0;
+  margin: 0px 0px 10px 0px !important;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -9559,15 +9559,16 @@ span.fi-rs-apps {
 .widget-category-2 .count {
   display: inline-block;
   background-color: #BCE3C9;
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   line-height: 24px;
   text-align: center;
   border-radius: 20px;
-  margin-left: 5px;
-  font-size: 12px;
+  margin-right: 10px;
+  font-size: 11px;
   color: #253D4E;
 }
+
 
 /*Social network widget*/
 .follow-us a {
@@ -11772,8 +11773,13 @@ footer .hotline img {
   }
 
   .shopping-summery table tbody tr img {
-    max-width: 80px;
+    max-width: 50px;
     margin-right: 15px;
+  }
+
+  .shopping-summery table tbody tr td {
+    vertical-align: middle !important;
+    padding-left: 10px !important;
   }
 
   .shopping-summery .form-check-label {
@@ -12920,7 +12926,7 @@ footer .hotline img {
   }
 
   .shopping-summery table tbody tr img {
-    max-width: 180px;
+    max-width: 50px;
     margin-right: 0;
   }
 

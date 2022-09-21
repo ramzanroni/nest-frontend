@@ -134,7 +134,7 @@ function addtoCart(
       check: check,
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
       cartItem();
       // $("#myTabContent").load(" #myTabContent > *");
     },
@@ -225,7 +225,7 @@ function cartPopUp() {
         var cartData = JSON.parse(response);
         var html = "No product in your cart.";
         if (cartData.length > 0) {
-          console.log(cartData);
+          // console.log(cartData);
           var sum = 0;
           var html = '<div class="cartbox"><ul>';
           for (let i = 0; i < cartData.length; i++) {
@@ -292,8 +292,6 @@ function deleteCatItem(
 
   var productBtnId = "#item_" + product_id;
   var productBtnjsID = ".item_" + product_id;
-  // data.parentElement.parentElement.remove();
-  // console.log(item.parentElement.parentElement);
   var check = "deleteItemFromCart";
   $.ajax({
     url: "pages/cartAction.php",
@@ -308,7 +306,7 @@ function deleteCatItem(
       alertMessageSuccess("Cart Product Delete Success..");
       var cartData = JSON.parse(response);
       var sum = 0;
-      var html = "<ul>";
+      var html = "<div class='cartbox'><ul>";// add div with class in the starting position for solve cart problem
       for (let i = 0; i < cartData.length; i++) {
         var cartPname = "'" + cartData[i].productName + "'";
         var cartPimg = "'" + cartData[i].productImage + "'";
@@ -334,7 +332,7 @@ function deleteCatItem(
           ')"><i class="fi-rs-cross-small"></i></a></div></li>';
         sum = sum + cartData[i].productprice * cartData[i].productQuantity;
       }
-      html += "</ul>";
+      html += "</ul></div>";
       html +=
         '<div class="shopping-cart-footer"><div class="shopping-cart-total"><h4>Total <span>৳' +
         sum +
@@ -631,6 +629,26 @@ function pagination(pageNumber) {
   });
 }
 
+// blog pagination 
+function blogPagination(pageNumber) {
+  var check = "paginationBlog";
+  $.ajax({
+    url: "pages/productPageAction.php",
+    type: "POST",
+
+    data: {
+      pageNumber: pageNumber,
+      check: check,
+    },
+    beforeSend: function () {
+      $("#preloader-active").show();
+    },
+    success: function (response) {
+      $("#preloader-active").hide();
+      $("#blogItem").html(response);
+    },
+  });
+}
 // categoryProduct
 function categoryProduct(categoryId) {
   var check = "categoryWiseProduct";
@@ -810,7 +828,7 @@ function userLogin() {
           check: check,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           if (response == "success") {
             var phone = "'" + phoneNumber + "'";
             var htmlgetOtp =
@@ -877,7 +895,7 @@ function checkOTP(phone) {
         check: check,
       },
       success: function (response) {
-        console.log(response);
+        // console.log(response);
 
         if (response == "success") {
           // window.location.href = "page-account.php";
@@ -1024,7 +1042,7 @@ function placeorder(phoneNumber, token) {
   var name = $("#name").val();
   var address = $("#address").val();
   var area = $("#area").val();
-  console.log(area);
+  // console.log(area);
   var phone = $("#phone").val();
   var town = $("#town").val();
   var additionalPhone = $("#additionalPhone").val();
@@ -1072,7 +1090,7 @@ function placeorder(phoneNumber, token) {
         check: check,
       },
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         if (response == "success") {
           alertMessageSuccess("Order Place Success.");
           setTimeout(function () {
@@ -1148,14 +1166,14 @@ function searchItem(productSearchItem) {
 function viewAllProduct() {
   var searchItemData = $("#searchItemData").val();
   var category_name = $("#category_name").val();
-  console.log(searchItemData);
+  // console.log(searchItemData);
   viewAllItem(category_name, searchItemData);
 }
 
 
 
 function viewAllItem(categoryId, itemString) {
-  console.log(itemString);
+  // console.log(itemString);
   if (categoryId == '') {
     window.location.replace(
       "/nest-frontend/products.php?product_name=" +
@@ -1264,7 +1282,7 @@ function showHideRow(row, flagid, orderProductID, orderNumber) {
       check: check,
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
       $("#itemDetails" + flagid).html(response);
     },
   });
@@ -1327,7 +1345,7 @@ function deleteOrderItem(orderNo, lineNo) {
       check: check,
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
 
       if (response == "success") {
         alertMessageSuccess("Item Cancel Success.");
@@ -1351,7 +1369,7 @@ function CancelCartoonDelivery(orderNumber, orderlineno) {
       check: check,
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
     },
   });
 }
@@ -1375,7 +1393,7 @@ function updatePhone() {
           check: check,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           if (response == "success") {
             var phone = "'" + newPhone + "'";
             var htmlgetOtp =
@@ -1494,7 +1512,7 @@ function checkNewOTP(newNumber) {
         check: check,
       },
       success: function (response) {
-        console.log(response);
+        // console.log(response);
 
         if (response == "success") {
           window.location.href = "logout.php";

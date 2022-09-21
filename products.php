@@ -77,7 +77,7 @@ if (isset($_GET['category_id'])) {
             <div class="container">
                 <div class="archive-header">
                     <div class="row align-items-center">
-                        <div class="col-xl-3">
+                        <div class="col-xl-12">
                             <h1 class="mb-15"> <?php echo $categoryName; ?></h1>
                             <div class="breadcrumb">
                                 <a href="index.php" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>

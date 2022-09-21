@@ -60,7 +60,7 @@ include 'inc/header.php';
                                 foreach ($cartData as $key => $cartproduct) {
                                 ?>
                                     <tr class="pt-30">
-                                        <td class="image product-thumbnail pt-40 start pl-30"><img src="<?php echo $cartproduct->productImage; ?>" alt="#"></td>
+                                        <td class="image product-thumbnail pt-30 start pl-30"><img src="<?php echo $cartproduct->productImage; ?>" alt="#"></td>
                                         <td class="product-des product-name">
                                             <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.php"><?php echo $cartproduct->productName; ?></a>
                                             </h6>
@@ -77,7 +77,7 @@ include 'inc/header.php';
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="price" data-title="Price">
+                                        <td class="price" data-title="Total Price">
                                             <h4 class="text-brand" id="totalProductPrice_<?php echo $key; ?>">
                                                 ৳<?php echo $cartproduct->productQuantity * $cartproduct->productprice; ?> </h4>
                                         </td>
