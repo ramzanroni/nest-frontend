@@ -630,7 +630,7 @@ function pagination(pageNumber) {
 }
 
 // blog pagination 
-function blogPagination(pageNumber) {
+function blogPagination(pageNumber, categoryId) {
   var check = "paginationBlog";
   $.ajax({
     url: "pages/productPageAction.php",
@@ -638,6 +638,7 @@ function blogPagination(pageNumber) {
 
     data: {
       pageNumber: pageNumber,
+      categoryId: categoryId,
       check: check,
     },
     beforeSend: function () {
@@ -648,6 +649,62 @@ function blogPagination(pageNumber) {
       $("#blogItem").html(response);
     },
   });
+}
+
+//comment pagination
+function commentPagination(pageNumber, commentId) {
+  var check = "paginationComment";
+  $.ajax({
+    url: "pages/productPageAction.php",
+    type: "POST",
+
+    data: {
+      pageNumber: pageNumber,
+      commentId: commentId,
+      check: check,
+    },
+    beforeSend: function () {
+      $("#preloader-active").show();
+    },
+    success: function (response) {
+      $("#preloader-active").hide();
+      $("#commentItem").html(response);
+    },
+  });
+}
+
+//add comment 
+
+function addComment(commentId, userPhone) {
+  var comment = $("#comment").val();
+  var check = "addComment";
+  if (comment == '') {
+    $("#comment").css({ border: "1px solid red" });
+  } else {
+    $.ajax({
+      url: "pages/commentAction.php",
+      type: "POST",
+
+      data: {
+        comment: comment,
+        commentId: commentId,
+        userPhone: userPhone,
+        check: check,
+      },
+      beforeSend: function () {
+        $("#preloader-active").show();
+      },
+      success: function (response) {
+        $("#preloader-active").hide();
+        if (response == 'success') {
+          alertMessageSuccess("Comment create success.");
+          $("#commentItem").load(" #commentItem > *");
+        } else {
+          alertMessage(response);
+        }
+      },
+    });
+  }
 }
 // categoryProduct
 function categoryProduct(categoryId) {
@@ -828,7 +885,7 @@ function userLogin() {
           check: check,
         },
         success: function (response) {
-          // console.log(response);
+          console.log(response);
           if (response == "success") {
             var phone = "'" + phoneNumber + "'";
             var htmlgetOtp =

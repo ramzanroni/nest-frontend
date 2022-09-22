@@ -129,7 +129,7 @@ class Blog
         $blog['category_id'] = $this->getCategory_id();
         $blog['category_name'] = $this->getCategory_name();
         $blog['title'] = $this->getTitle();
-        // $blog['body'] = $this->getBody();
+        $blog['body'] = $this->getBody();
         $blog['image'] = $this->getImage();
         $blog['create_by'] = $this->getCreate_by();
         $blog['create_at'] = $this->getCreated_at();

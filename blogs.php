@@ -3,6 +3,8 @@ include 'apidata/dataFetch.php';
 include 'inc/header.php';
 include 'config.php';
 $subUrl = '';
+$categoryId = 0;
+$subUrlTotal = '';
 if (isset($_GET['category_id']) && $_GET['category_id'] != '') {
     $categoryId = $_GET['category_id'];
     $subUrlTotal = "admin/blog/blog.php?category_id=" . $categoryId;
@@ -144,14 +146,14 @@ if ($err) {
                                         <li id="blogPagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
                                                                                                         echo 'active';
                                                                                                     } ?>">
-                                            <a class="page-link" onclick="blogPagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                            <a class="page-link" onclick="blogPagination(<?php echo $i; ?>, <?php echo $categoryId; ?>)"><?php echo $i; ?></a>
                                         </li>
                                     <?php
                                     }
 
                                     ?>
                                     <li class="page-item">
-                                        <a class="page-link" onclick="blogPagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
+                                        <a class="page-link" onclick="blogPagination(2, <?php echo $categoryId; ?>)"><i class="fi-rs-arrow-small-right"></i></a>
                                     </li>
                                 <?php
                                 } elseif ($numberOfpage > 5) {
@@ -164,14 +166,14 @@ if ($err) {
                                         <li id="pagination_<?php echo $i; ?>" class="page-item <?php if ($i == 1) {
                                                                                                     echo 'active';
                                                                                                 } ?>">
-                                            <a class="page-link" onclick="blogPagination(<?php echo $i; ?>)"><?php echo $i; ?></a>
+                                            <a class="page-link" onclick="blogPagination(<?php echo $i; ?>, <?php echo $categoryId; ?>)"><?php echo $i; ?></a>
                                         </li>
                                     <?php
                                     }
 
                                     ?>
                                     <li class="page-item">
-                                        <a class="page-link" onclick="blogPagination(2)"><i class="fi-rs-arrow-small-right"></i></a>
+                                        <a class="page-link" onclick="blogPagination(2, <?php echo $categoryId; ?>)"><i class="fi-rs-arrow-small-right"></i></a>
                                     </li>
                                 <?php
                                 }
