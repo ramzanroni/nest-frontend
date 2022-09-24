@@ -15,11 +15,13 @@ class BlogComment
     private $create_at;
     private $blog_comment_id;
     private $parent;
+    private $title;
 
-    public function __construct($id, $blog_id, $comment, $ratings, $user_id, $user_name, $status, $create_at, $blog_comment_id, $parent)
+    public function __construct($id, $blog_id, $title, $comment, $ratings, $user_id, $user_name, $status, $create_at, $blog_comment_id, $parent)
     {
         $this->setId($id);
         $this->setBlog_id($blog_id);
+        $this->setTitle($title);
         $this->setComment($comment);
         $this->setRatings($ratings);
         $this->setUser_id($user_id);
@@ -45,6 +47,14 @@ class BlogComment
     function getBlog_id()
     {
         return $this->blog_id;
+    }
+    function setTitle($title)
+    {
+        $this->title = $title;
+    }
+    function getTitel()
+    {
+        return $this->title;
     }
     function setComment($comment)
     {
@@ -116,6 +126,7 @@ class BlogComment
         $blogComment = array();
         $blogComment['id'] = $this->getId();
         $blogComment['blog_id'] = $this->getBlog_id();
+        $blogComment['title'] = $this->getTitel();
         $blogComment['comment'] = $this->getComment();
         $blogComment['ratings'] = $this->getRatings();
         $blogComment['user_id'] = $this->getUser_id();

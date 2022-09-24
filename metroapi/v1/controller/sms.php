@@ -67,7 +67,6 @@ function sendSms($phoneNumber, $otpNumber, $expDate, $counter, $flag)
         $response->send();
         exit;
     }
-
     $addPhone = $writeDB->prepare('INSERT INTO temp_otp(phone, otp, expair_at, counter,flag) VALUES (:phoneNumber,:otpNumber,:expDate,:counter,:flag)');
     $addPhone->bindParam(':phoneNumber', $phoneNumber, PDO::PARAM_STR);
     $addPhone->bindPARAM(':otpNumber', $otpNumber, PDO::PARAM_STR);
@@ -629,6 +628,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         // $userId = 123;
                         $created_by = '0';
                         $updated_by = '0';
+                        $address2 = '';
+                        $address3 = '';
+                        $address4 = '';
+                        $bid = '';
+                        $picture = '';
                         // insert in contact master 
                         try {
                             $query = "INSERT INTO contact_master(
@@ -636,7 +640,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                 code,
                                 name,
                                 address1,
+                                address2,
+                                address3,
+                                address4,
                                 phone1,
+                                email,
+                                bid,
+                                picture,
                                 created_by,
                                 created_at,
                                 updated_by
@@ -646,7 +656,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                 :userId,
                                 :name,
                                 :address,
+                                :address2,
+                                :address3,
+                                :address4,
                                 :phone,
+                                :email,
+                                :bid,
+                                :picture,
                                 :created_by,
                                 CURRENT_TIMESTAMP(),
                                 :updated_by);";
@@ -656,7 +672,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $insertContactStmt->bindParam(':userId', $userId, PDO::PARAM_STR);
                             $insertContactStmt->bindParam(':name', $name, PDO::PARAM_STR);
                             $insertContactStmt->bindParam(':address', $address, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':address2', $address2, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':address3', $address3, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':address4', $address4, PDO::PARAM_STR);
                             $insertContactStmt->bindParam(':phone', $phone, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':email', $email, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':bid', $bid, PDO::PARAM_STR);
+                            $insertContactStmt->bindParam(':picture', $picture, PDO::PARAM_STR);
                             $insertContactStmt->bindParam(':created_by', $created_by, PDO::PARAM_STR);
                             $insertContactStmt->bindParam(':updated_by', $updated_by, PDO::PARAM_STR);
                             $insertContactStmt->execute();
@@ -715,6 +737,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
                         //insert debtormaster
                         try {
+                            $login_id = '';
                             $currcode = "BDT";
                             $salestype = "DP";
                             $holdreason = "1";
@@ -734,15 +757,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $typeid = "1";
                             $custcatid1 = "0";
                             $op_bal = "0";
+                            $phone2 = '';
                             $created_at = "2022-06-30 17:09:09";
                             $updated_at = "0000-00-00 00:00:00";
                             $updated_by = "0";
                             $status = "1";
+                            $bin_no = '';
+                            $nid_no = '';
                             $query = "INSERT INTO debtorsmaster(
                                                                             debtorno,
                                                                             cm_id,
                                                                             name,
                                                                             address1,
+                                                                            login_id,
                                                                             currcode,
                                                                             salestype,
                                                                             clientsince,
@@ -764,11 +791,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                                                             custcatid1,
                                                                             op_bal,
                                                                             phone1,
+                                                                            phone2,
+                                                                            email,
                                                                             created_by,
                                                                             created_at,
                                                                             updated_at,
                                                                             updated_by,
                                                                             status,
+                                                                            bin_no,
+                                                                            nid_no,
                                                                             user_token
                                                                         )
                                                                         VALUES(
@@ -776,6 +807,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                                                             :cm_id,
                                                                             :name,
                                                                             :address,
+                                                                            :login_id,
                                                                             :currcode,
                                                                             :salestype,
                                                                             now(),
@@ -797,11 +829,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                                                             :custcatid1,
                                                                             :op_bal,
                                                                             :phone1,
+                                                                            :phone2,
+                                                                            :email,
                                                                             :created_by,
                                                                             :created_at,
                                                                             :updated_at,
                                                                             :updated_by,
                                                                             :status,
+                                                                            :bin_no,
+                                                                            :nid_no,
                                                                             :user_token
                                                                         )";
 
@@ -810,6 +846,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $insertDebtorStmt->bindParam(':cm_id', $userId, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':name', $name, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':address', $address, PDO::PARAM_STR);
+                            $insertDebtorStmt->bindParam(':login_id', $login_id, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':currcode', $currcode, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':salestype', $salestype, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':holdreason', $holdreason, PDO::PARAM_STR);
@@ -830,11 +867,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $insertDebtorStmt->bindParam(':custcatid1', $custcatid1, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':op_bal', $op_bal, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':phone1', $phone, PDO::PARAM_STR);
+                            $insertDebtorStmt->bindParam(':phone2', $phone2, PDO::PARAM_STR);
+                            $insertDebtorStmt->bindParam(':email', $email, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':created_by', $created_by, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':created_at', $created_at, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':updated_by', $updated_by, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':status', $status, PDO::PARAM_STR);
+                            $insertDebtorStmt->bindParam(':bin_no', $bin_no, PDO::PARAM_STR);
+                            $insertDebtorStmt->bindParam(':nid_no', $nid_no, PDO::PARAM_STR);
                             $insertDebtorStmt->bindParam(':user_token', $token, PDO::PARAM_STR);
                             $insertDebtorStmt->execute();
                         } catch (PDOException $ex) {
@@ -875,6 +916,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $op_bal = "0";
                             $aggrigate_cr = "1";
                             $discount_amt = "0";
+                            $specialinstructions = '';
                             $query = "INSERT INTO custbranch(
                                                                    
                                                                     debtorno,
@@ -892,6 +934,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                                                     defaultshipvia,
                                                                     deliverblind,
                                                                     disabletrans,
+                                                                    specialinstructions,
                                                                     branchdistance,
                                                                     travelrate,
                                                                     businessunit,
@@ -922,6 +965,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                                                                     :defaultshipvia,
                                                                     :deliverblind,
                                                                     :disabletrans,
+                                                                    :specialinstructions,
                                                                     :branchdistance,
                                                                     :travelrate,
                                                                     :businessunit,
@@ -951,6 +995,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             $insertBranchStmt->bindParam(':defaultshipvia', $defaultshipvia, PDO::PARAM_STR);
                             $insertBranchStmt->bindParam(':deliverblind', $deliverblind, PDO::PARAM_STR);
                             $insertBranchStmt->bindParam(':disabletrans', $disabletrans, PDO::PARAM_STR);
+                            $insertBranchStmt->bindParam(':specialinstructions', $specialinstructions, PDO::PARAM_STR);
                             $insertBranchStmt->bindParam(':branchdistance', $branchdistance, PDO::PARAM_STR);
                             $insertBranchStmt->bindParam(':travelrate', $travelrate, PDO::PARAM_STR);
                             $insertBranchStmt->bindParam(':businessunit', $businessunit, PDO::PARAM_STR);
