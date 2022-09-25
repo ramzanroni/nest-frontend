@@ -5245,7 +5245,7 @@ table .product-thumbnail img {
 }
 
 .detail-extralink .detail-qty {
-  margin: 0 6px 15px 0;
+  /* margin: 0 6px 15px 0; */
   background: #fff;
   border: 2px solid var(--secondary-color) !important;
   font-size: 16px;

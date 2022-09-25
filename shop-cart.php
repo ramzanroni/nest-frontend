@@ -60,9 +60,9 @@ include 'inc/header.php';
                                 foreach ($cartData as $key => $cartproduct) {
                                 ?>
                                     <tr class="pt-30">
-                                        <td class="image product-thumbnail pt-30 start pl-30"><img src="<?php echo $cartproduct->productImage; ?>" alt="#"></td>
+                                        <td class="image product-thumbnail start"><img src="<?php echo $cartproduct->productImage; ?>" alt="#"></td>
                                         <td class="product-des product-name">
-                                            <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="product.php"><?php echo $cartproduct->productName; ?></a>
+                                            <h6 class="mb-5"><a class="product-name text-heading" href="product.php"><?php echo $cartproduct->productName; ?></a>
                                             </h6>
                                         </td>
                                         <td class="price" data-title="Price">

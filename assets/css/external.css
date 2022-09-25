@@ -654,7 +654,7 @@ footer .hotline img {
 
 
 /* menubar  */
-.dropdown {
+.dropdown-1 {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -662,18 +662,18 @@ footer .hotline img {
     background-color: #fff;
 }
 
-.dropdown li {
+.dropdown-1 li {
     position: relative;
 }
 
-.dropdown li a {
+.dropdown-1 li a {
     text-align: center;
     text-decoration: none;
     display: block;
     padding: 10px;
 }
 
-.dropdown li ul {
+.dropdown-1 li ul {
     position: absolute;
     top: 0;
     left: 266px;
@@ -686,7 +686,7 @@ footer .hotline img {
     width: 295px;
 }
 
-.dropdown li ul li a {
+.dropdown-1 li ul li a {
     text-align: left;
     font-size: 14px;
     padding: 10px;
@@ -695,7 +695,7 @@ footer .hotline img {
 }
 
 
-.dropdown li ul li ul {
+.dropdown-1 li ul li ul {
     left: 100%;
     top: 0;
 }

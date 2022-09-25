@@ -181,7 +181,7 @@ if ($err) {
                             <i class="fi-rs-angle-down"></i>
                         </a>
 
-                        <div class="categories-dropdown-wrap categories-dropdown-active-large dropdown font-heading">
+                        <div class="categories-dropdown-wrap categories-dropdown-active-large dropdown-1 font-heading">
                             <div class="menudiv">
                                 <ul class="">
                                     <?php
